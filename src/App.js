@@ -3,6 +3,7 @@ import { Row, Col, Button, Alert } from 'react-bootstrap';
 
 import GamePicker from './components/GamePicker';
 import GameOptions from './components/GameOptions';
+import CharacterList from './components/CharacterList';
 
 import Picker from './Picker';
 
@@ -23,7 +24,7 @@ class App extends Component {
         reclasses: false,
       },
       picking: false,
-      picks: [],
+      picks: null,
     }
 
     this.handleGamePick = this.handleGamePick.bind(this);
@@ -33,7 +34,17 @@ class App extends Component {
   }
 
   handleGamePick(e) {
-    this.setState({game: e.target.value});
+    // update max if too big
+    if (this.state.numPicks > Game[e.target.value].characters.length) {
+      this.setState({
+        numPicks: Game[e.target.value].characters.length
+      })
+    }
+    // update other stuff
+    this.setState({
+      game: e.target.value,
+      picks: null,
+    });
   }
 
   handleOptionChange(e, opt) {
@@ -85,13 +96,13 @@ class App extends Component {
           <Row>
             <p />
             {Game[this.state.game].disabled &&
-              (
+              <Col md={10}>
                 <Alert bsStyle="danger">
                   This game is not available yet. Reason cited:
                   <br />
                   <li>{Game[this.state.game].disabled}</li>
                 </Alert>
-              )
+              </Col>
             }
             <Button
               bsSize="large"
@@ -104,6 +115,9 @@ class App extends Component {
           </Row>
         </Col>
         <Col md={8}>
+          {this.state.picks &&
+            <CharacterList picks={this.state.picks} game={this.state.game} />
+          }
         </Col>
       </Row>
     );
