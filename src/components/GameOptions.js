@@ -27,6 +27,17 @@ class GameOptions extends Component {
                 Pick {flag}
               </Checkbox>
             )}
+            {Game[this.props.game].flags.hasOwnProperty('classes') &&
+              <Checkbox
+                checked={this.props.options['troll']}
+                disabled={!this.props.options['classes']}
+                onChange={(e) => {
+                  this.props.handleOptionChange(e, 'troll');
+                }}
+              >
+                Allow 'troll' classes
+              </Checkbox>
+            }
             <Checkbox
               checked={this.props.options['balanced']}
               onChange={(e) => {

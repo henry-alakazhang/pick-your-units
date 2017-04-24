@@ -90,12 +90,27 @@ export default class Picker {
       promo = this.game.classes[pick.class].promo;
     }
 
+    // repick if troll characters not allowed
+    if (!this.options['troll']) {
+      // a 'troll' class is a STR-only class for a MAG-only character, or vice versa
+      console.log(pick, !character.stat.STR, !this.game.classes[pick.class].stat.MAG, !character.stat.MAG, !this.game.classes[pick.class].stat.STR);
+      if (!character.stat.STR && !this.game.classes[pick.class].stat.MAG) {
+        this.makePick();
+        return;
+      }
+      if (!character.stat.MAG && !this.game.classes[pick.class].stat.STR) {
+        this.makePick();
+        return;
+      }
+    }
+
     // repick if unbalanced (forced characters remain forced)
     if (this.options['balanced'] && force === undefined && !this.maintainsBalance(pick)) {
       console.log(pick, "retrying");
       this.makePick();
       return;
     }
+
 
     // add character to list
     this.picks.characters.push(pick);

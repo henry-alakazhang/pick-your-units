@@ -23,6 +23,7 @@ class App extends Component {
         children: false,
         classes: true,
         balanced: false,
+        troll: false,
       },
       picking: false,
       picks: null,
