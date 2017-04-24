@@ -4,29 +4,44 @@ function randIn(arr) {
   return Math.floor(Math.random() * arr.length);
 }
 
+/*
+ * Returns either a string value or a random element in an array,
+ * depending on the type of the passed element
+ */
+function getOrRand(obj) {
+  if (typeof obj === 'string') {
+    return obj;
+  } else {
+    return obj[randIn(obj)];
+  }
+}
+
 export default class Picker {
   constructor(game, numPicks, options) {
+    console.log(game, numPicks, options);
     this.game = Game[game];
     this.numPicks = numPicks;
     this.options = options;
-  }
-
-  generatePicks() {
-    if (this.game.short === "fe14" || this.game.short === "fe13") {
-      return this.pick3DS(this.game, this.game.characters, this.numPicks, this.options);
-    } else if (this.game.short === "fe11" || this.game.short === "fe12") {
-      return this.pickDS(this.game, this.game.characters, this.numPicks, this.options);
-    } else if (this.game.short === "fe4") {
-      return this.pickFE4(this.game, this.game.characters, this.numPicks, this.options);
-    } else {
-      return this.pickGeneric(this.game, this.game.characters, this.numPicks, this.options);
+    this.pool = Object.keys(this.game.characters);
+    this.picks = {
+      characters: [],
+      weapons: {},
     }
   }
 
-  pickGeneric(game, characters, numPicks, options) {
+  /*
+   * Generates picks for the given settings
+   * Returns a promise to return the picks (generates asynchronously)
+   */
+  generatePicks() {
     return new Promise(function(resolve, reject) {
-      let picks = {
-        characters: game.free.slice()
+      // pick free characters
+      for (const name of this.game.free) {
+        this.makePick(name);
+      }
+      // loop and add characters
+      while (this.picks.characters.length < this.numPicks) {
+        this.makePick();
       }
 
       // if (game.routes) {
@@ -37,30 +52,105 @@ export default class Picker {
       //   }
       // }
 
-      // loop and add characters
-      while (picks.characters.length < numPicks) {
-        const pick = randIn(characters);
-        picks.characters.push(characters[pick]);
-        characters.splice(pick, 1);
+      console.log(this.picks);
+      resolve(this.picks);
+    }.bind(this));
+  }
+
+  /*
+   * Makes a single pick and updates the pick list and pool
+   * parameter 'pick' is an optional forced character pick
+   * empty parameter results in a random pick
+   */
+  makePick(force) {
+    let char = force;
+    if (char === undefined) {
+      char = this.pool[randIn(this.pool)];
+    }
+
+    // pick character
+    const character = this.game.characters[char];
+    let pick = {
+      name: char,
+      class: getOrRand(character.class),
+    }
+
+    // set class
+    let promo = this.game.classes[pick.class].promo;
+    while (promo != null) {
+      pick.class = getOrRand(promo);
+      promo = this.game.classes[pick.class].promo;
+    }
+
+    // repick if unbalanced (forced characters remain forced)
+    if (this.options['balanced'] && force === undefined && !this.maintainsBalance(pick)) {
+      console.log(pick, "retrying");
+      this.makePick();
+      return;
+    }
+
+    // add character to list
+    this.picks.characters.push(pick);
+    this.pool.splice(this.pool.indexOf(pick.name), 1);
+
+    // include must-haves and exclude exclusions
+    if (character.include) {
+      for (const char of character.include) {
+        // no room; remove this character and pick another one
+        if (this.picks.characters.length === this.numPicks) {
+          console.log("No room for " + char + " deleting " + pick.name)
+          this.picks.characters.pop();
+          this.makePick();
+          return;
+        }
+        // if not already picked, pick them
+        if (this.pool.indexOf(char) !== -1) {
+          console.log("Picking " + char + " to go with " + pick.name);
+          this.makePick(char);
+        }
       }
-
-      console.log(picks);
-      resolve(picks);
-    });
+    }
+    if (character.exclude) {
+      for (const char of character.exclude) {
+        console.log("Excluding ", char);
+        this.pool.splice(this.pool.indexOf(char), 1);
+      }
+    }
   }
 
-  pick3DS(game, characters, numPicks, options) {
-    // TODO
-    // needs options for supports, children, and partner/friend seal shenanigans
-  }
+  /**
+   * Returns whether a new pick would maintain weapon balance across the classes
+   */
+  maintainsBalance(pick) {
+    let counts = Object.keys(this.game.classes).reduce(function(acc, val) {
+      for (const weap of this.game.classes[val].weapons) {
+        acc[weap] = 0;
+      }
+      return acc;
+    }.bind(this), {});
 
-  pickDS(game, characters, numPicks, options) {
-    // TODO
-    // needs options for class changing to any class in set, but with limits
-  }
+    for (const char of this.picks.characters) {
+      for (const weap of this.game.classes[char.class].weapons) {
+        counts[weap]++;
+      }
+    }
 
-  pickFE4(game, characters, numPicks, options) {
-    // TODO
-    // needs options for supports and children
+    const avg = Object.keys(counts).reduce((acc, val) => acc + counts[val], 0) / Object.keys(counts).length;
+
+    // for ordinary weapons users, check if they improve balance
+    for (const weap of this.game.classes[pick.class].weapons) {
+      // console.log(weap, counts[weap], avg);
+      if (counts[weap] < avg + 1)
+        return true;
+    }
+
+    // for non-weapon users, check if balance is ok
+    for (const weap in counts) {
+      if (Math.abs(counts[weap] - avg) > 2) {
+        return false;
+      }
+    }
+
+    return true;
   }
 }

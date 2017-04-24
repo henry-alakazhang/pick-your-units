@@ -22,6 +22,7 @@ class App extends Component {
         supports: false,
         children: false,
         reclasses: false,
+        balanced: false,
       },
       picking: false,
       picks: null,
@@ -35,9 +36,9 @@ class App extends Component {
 
   handleGamePick(e) {
     // update max if too big
-    if (this.state.numPicks > Game[e.target.value].characters.length) {
+    if (this.state.numPicks > Object.keys(Game[e.target.value].characters).length) {
       this.setState({
-        numPicks: Game[e.target.value].characters.length
+        numPicks: Object.keys(Game[e.target.value].characters).length
       })
     }
     // update other stuff
@@ -58,7 +59,7 @@ class App extends Component {
   }
 
   handleStart() {
-    this.setState({picking: true});
+    this.setState({picking: true, picks: null});
     const picker = new Picker(this.state.game, this.state.numPicks, this.state.options);
     picker.generatePicks().then((res) => {
       this.setState({

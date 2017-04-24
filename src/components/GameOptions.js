@@ -14,23 +14,29 @@ class GameOptions extends Component {
     return (
       <Row>
         <h3>Options</h3>
-        {Game[this.props.game].flags &&
-          <form>
-            <FormGroup>
-              {Object.keys(Game[this.props.game].flags).map((flag) =>
-                <Checkbox
-                  checked={this.props.options[flag]}
-                  key={flag}
-                  onChange={(e) => {
-                    this.props.handleOptionChange(e, flag);
-                  }}
-                >
-                  Pick {flag}
-                </Checkbox>
-              )}
-            </FormGroup>
-          </form>
-        }
+        <form>
+          <FormGroup>
+            {Object.keys(Game[this.props.game].flags).map((flag) =>
+              <Checkbox
+                checked={this.props.options[flag]}
+                key={flag}
+                onChange={(e) => {
+                  this.props.handleOptionChange(e, flag);
+                }}
+              >
+                Pick {flag}
+              </Checkbox>
+            )}
+            <Checkbox
+              checked={this.props.options['balanced']}
+              onChange={(e) => {
+                this.props.handleOptionChange(e, 'balanced');
+              }}
+            >
+              Balance weapons types
+            </Checkbox>
+          </FormGroup>
+        </form>
         <Form inline>
           <FormGroup>
             <ControlLabel>Pick  </ControlLabel>{' '}
@@ -38,7 +44,7 @@ class GameOptions extends Component {
               style={styles.spinner}
               type="number"
               value={this.props.numPicks}
-              max={Game[this.props.game].characters.length}
+              max={Object.keys(Game[this.props.game].characters).length}
               onChange={this.props.handleNumChange}
             />
             {' '}<ControlLabel>  units</ControlLabel>
