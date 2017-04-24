@@ -21,7 +21,7 @@ class App extends Component {
         avatar: true,
         supports: false,
         children: false,
-        reclasses: false,
+        classes: true,
         balanced: false,
       },
       picking: false,

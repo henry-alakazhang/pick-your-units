@@ -523,7 +523,8 @@ export default {
       },"Kent": {
         class:"Cavalier"
       },"Legault": {
-        class:"Thief"
+        class:"Thief",
+        exclude: ["Matthew"]
       },"Louise": {
         class:"Sniper"
       },"Lowen": {
@@ -535,7 +536,8 @@ export default {
       },"Marcus": {
         class:"Paladin"
       },"Matthew": {
-        class:"Thief"
+        class:"Thief",
+        exclude: ["Legault"] // cos we can't have two assassins
       },"Ninian": {
         class:"Dancer"
       },"Nino": {
@@ -922,7 +924,6 @@ export default {
     free: ["Eirika", "Ephraim"],
     flags: {
       supports: true,
-      classes: true,
     }
   },
 
@@ -1198,8 +1199,219 @@ export default {
 
   "Awakening": {
     short: "fe13",
-    disabled: "Need to implement children/class changes",
-    characters: ["Chrom", "Robin", "Lissa", "Frederick", "Sully", "Virion", "Stahl", "Vaike", "Miriel", "Sumia", "Kellam", "Donnel", "Lon’qu", "Ricken", "Maribelle", "Panne", "Gaius", "Cordelia", "Gregor", "Nowi", "Libra", "Tharja", "Anna", "Olivia", "Cherche", "Henry", "Say’ri", "Tiki", "Basilio", "Flavia"],
+    characters: {
+      "Robin": {
+        class: ["Tactician","Cavalier","Knight","Myrmidon","Mercenary","Fighter","Barbarian","Archer","Thief","Pegasus Knight","Wyvern Rider","Mage","Dark Mage","Priest","Cleric","Troubadour"]
+      }, "Chrom": {
+        class:["Lord", "Cavalier", "Archer"]
+      },"Lissa": {
+        class:["Cleric", "Pegasus Knight", "Troubadour"]
+      },"Frederick": {
+        class:["Cavalier", "Knight", "Wyvern Rider"]
+      },"Sully": {
+        class:["Cavalier", "Myrmidon", "Wyvern Rider"]
+      },"Virion": {
+        class:["Archer", "Wyvern Rider", "Mage"]
+      },"Stahl": {
+        class:["Cavalier", "Archer", "Myrmidon"]
+      },"Vaike": {
+        class:["Fighter", "Thief", "Barbarian"]
+      },"Miriel": {
+        class:["Mage", "Troubadour", "Dark Mage"]
+      },"Sumia": {
+        class:["Pegasus Knight", "Knight", "Cleric"]
+      },"Kellam": {
+        class:["Knight", "Thief", "Priest"]
+      },"Donnel": {
+        class:["Villager", "Fighter", "Mercenary"]
+      },"Lon'qu": {
+        class:["Myrmidon", "Thief", "Wyvern Rider"]
+      },"Ricken": {
+        class:["Mage", "Cavalier", "Archer"]
+      },"Maribelle": {
+        class:["Troubadour", "Pegasus Knight", "Mage"]
+      },"Panne": {
+        class:["Taguel", "Thief", "Wyvern Rider"]
+      },"Gaius": {
+        class:["Thief", "Fighter", "Myrmidon"]
+      },"Cordelia": {
+        class:["Pegasus Knight", "Mercenary", "Dark Mage"]
+      },"Gregor": {
+        class:["Mercenary", "Barbarian", "Myrmidon"]
+      },"Nowi": {
+        class:["Manakete", "Mage", "Wyvern Rider"]
+      },"Libra": {
+        class:["Priest", "Mage", "Dark Mage"]
+      },"Tharja": {
+        class:["Dark Mage", "Knight", "Archer"]
+      },"Anna": {
+        class:["Thief", "Archer", "Mage"]
+      },"Olivia": {
+        class:["Dancer", "Myrmidon", "Pegasus Knight"]
+      },"Cherche": {
+        class:["Wyvern Rider", "Troubadour", "Cleric"]
+      },"Henry": {
+        class:["Dark Mage", "Barbarian", "Thief"]
+      },"Say'ri": {
+        class:["Myrmidon", "Pegasus Knight", "Wyvern Rider"]
+      },"Tiki": {
+        class:["Manakete", "Wyvern Rider", "Mage"]
+      },"Basilio": {
+        class:["Fighter", "Barbarian", "Knight"]
+      },"Flavia": {
+        class:["Mercenary", "Thief", "Knight"]
+      }
+    },
+    classes: {
+      "Lord": {
+        weapons:["Sword"],
+        promo: ["Great Lord"]
+      }, "Great Lord": {
+        weapons:["Sword, Lance"],
+        promo: null
+      }, "Tactician": {
+        weapons:["Sword, Tome"],
+        promo: ["Grandmaster"]
+      }, "Grandmaster": {
+        weapons:["Sword, Tome"],
+        promo: null
+      }, "Cavalier": {
+        weapons:["Sword, Lance"],
+        promo: ["Paladin", "Great Knight"]
+      }, "Paladin": {
+        weapons:["Sword, Lance"],
+        promo: null
+      }, "Great Knight": {
+        weapons:["Sword, Lance, Axe"],
+        promo: null
+      }, "Knight": {
+        weapons:["Lance"],
+        promo: ["Great Knight", "General"]
+      }, "General": {
+        weapons:["Lance, Axe"],
+        promo: null
+      }, "Myrmidon": {
+        weapons:["Sword"],
+        promo: ["Swordmaster", "Assassin"]
+      }, "Swordmaster": {
+        weapons:["Sword"],
+        promo: null
+      }, "Mercenary": {
+        weapons:["Sword"],
+        promo: ["Hero", "Bow Knight"]
+      }, "Hero": {
+        weapons:["Sword, Axe"],
+        promo: null
+      }, "Fighter": {
+        weapons:["Axe"],
+        promo: ["Hero", "Warrior"]
+      }, "Warrior": {
+        weapons:["Axe, Bow"],
+        promo: null
+      }, "Barbarian": {
+        weapons:["Axe"],
+        promo: ["Berserker", "Warrior"]
+      }, "Berserker": {
+        weapons:["Axe"],
+        promo: null
+      }, "Archer": {
+        weapons:["Bow"],
+        promo: ["Sniper", "Bow Knight"]
+      }, "Sniper": {
+        weapons:["Bow"],
+        promo: null
+      }, "Bow Knight": {
+        weapons:["Sword, Bow"],
+        promo: null
+      }, "Thief": {
+        weapons:["Sword"],
+        promo: ["Assassin", "Trickster"]
+      }, "Assassin": {
+        weapons:["Sword, Bow"],
+        promo: null
+      }, "Trickster": {
+        weapons:["Sword, Staff"],
+        promo: null
+      }, "Pegasus Knight": {
+        weapons:["Lance"],
+        promo: ["Falcon Knight", "Dark Flier"]
+      }, "Falcon Knight": {
+        weapons:["Lance, Staff"],
+        promo: null
+      }, "Dark Flier": {
+        weapons:["Lance, Tome"],
+        promo: null
+      }, "Wyvern Rider": {
+        weapons:["Axe"],
+        promo: ["Wyvern Lord", "Griffon Rider"]
+      }, "Wyvern Lord": {
+        weapons:["Lance, Axe"],
+        promo: null
+      }, "Griffon Rider": {
+        weapons:["Axe"],
+        promo: null
+      }, "Mage": {
+        weapons:["Tome"],
+        promo: ["Sage", "Dark Knight"]
+      }, "Sage": {
+        weapons:["Tome, Staff"],
+        promo: null
+      }, "Dark Mage": {
+        weapons:["Tome"],
+        promo: ["Sorcerer", "Dark Knight"]
+      }, "Sorcerer": {
+        weapons:["Tome"],
+        promo: null
+      }, "Dark Knight": {
+        weapons:["Sword, Tome"],
+        promo: null
+      }, "Priest": {
+        weapons:["Staff"],
+        promo: ["War Monk", "Sage"]
+      }, "Cleric": {
+        weapons:["Staff"],
+        promo: ["War Cleric", "Sage"]
+      }, "War Monk": {
+        weapons:["Axe, Staff"],
+        promo: null
+      }, "War Cleric": {
+        weapons:["Axe, Staff"],
+        promo: null
+      }, "Troubadour": {
+        weapons:["Staff"],
+        promo: ["War Cleric", "Valkyrie"]
+      }, "Valkyrie": {
+        weapons:["Tome, Staff"],
+        promo: null
+      }, "Villager": {
+        weapons:["Lance"],
+        promo: null
+      }, "Dancer": {
+        weapons:["Sword"],
+        promo: null
+      }, "Taguel": {
+        weapons:["Stone"],
+        promo: null
+      }, "Manakete": {
+        weapons:["Stone"],
+        promo: null
+      }, "Lodestar": {
+        weapons:["Sword"],
+        promo: null
+      }, "Dread Fighter": {
+        weapons:["Sword, Axe, Tome"],
+        promo: null
+      }, "Bride": {
+        weapons:["Lance, Bow, Staff"],
+        promo: null
+      }, "Soldier": {
+        weapons:["Lance"],
+        promo: null
+      }, "Merchant": {
+        weapons:["Lance"],
+        promo: null
+      }
+    },
     free: ["Chrom", "Robin"],
     flags: {
       avatar: true,
@@ -1211,8 +1423,266 @@ export default {
 
   "Fates: Birthright": {
     short: "fe14",
-    disabled: "Need to implement children/class changes",
-    characters: [],
+    characters: {
+      "Corrin": {
+        class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Monk", "Shrine Maiden", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (M)"]
+      },
+      "Felicia": {
+        class:["Troubadour (F)", "Mercenary"]
+      },
+      "Jakob": {
+        class:["Troubadour (M)", "Cavalier"]
+      },
+      "Kaze": {
+        class:["Ninja", "Samurai"]
+      },
+      "Azura": {
+        class:["Songstress", "Sky Knight"]
+      },
+      "Silas": {
+        class:["Cavalier", "Mercenary"]
+      },
+      "Shura": {
+        class:["Outlaw", "Ninja", "Fighter"]
+      },
+      "Izana": {
+        class:["Monk", "Samurai", "Apothecary"]
+      },
+      "Mozu": {
+        class:["Villager", "Archer"]
+      },
+      "Rinkah": {
+        class:["Oni Savage", "Ninja"]
+      },
+      "Sakura": {
+        class:["Shrine Maiden", "Sky Knight"]
+      },
+      "Hana": {
+        class:["Samurai", "Shrine Maiden"]
+      },
+      "Subaki": {
+        class:["Sky Knight", "Samurai"]
+      },
+      "Saizo": {
+        class:["Ninja", "Samurai"]
+      },
+      "Orochi": {
+        class:["Diviner", "Apothecary"]
+      },
+      "Hinoka": {
+        class:["Sky Knight", "Spear Fighter"]
+      },
+      "Azama": {
+        class:["Monk", "Apothecary"]
+      },
+      "Setsuna": {
+        class:["Archer", "Ninja"]
+      },
+      "Hayato": {
+        class:["Diviner", "Oni Savage"]
+      },
+      "Oboro": {
+        class:["Spear Fighter", "Apothecary"]
+      },
+      "Hinata": {
+        class:["Samurai", "Oni Savage"]
+      },
+      "Takumi": {
+        class:["Archer", "Spear Fighter"]
+      },
+      "Kagero": {
+        class:["Ninja", "Diviner"]
+      },
+      "Reina": {
+        class:["Sky Knight", "Diviner", "Ninja"]
+      },
+      "Kaden": {
+        class:["Kitsune", "Diviner"]
+      },
+      "Ryoma": {
+        class:["Samurai", "Sky Knight"]
+      },
+      "Scarlet": {
+        class:["Wyvern Rider", "Outlaw", "Knight"]
+      },
+      "Yukimura": {
+        class:["Apothecary", "Samurai", "Monk"]
+      }
+    },
+    classes: {
+      "Nohr Prince": {
+        weapons: ["Sword", "Stone"],
+        promo: ["Hoshido Noble"]
+      }, "Samurai": {
+        weapons: ["Sword"],
+        promo: ["Swordmaster", "Master of Arms"]
+      }, "Villager": {
+        weapons: ["Lance"],
+        promo: ["Master of Arms", "Merchant"]
+      }, "Apothecary": {
+        weapons: ["Bow"],
+        promo: ["Merchant", "Mechanist"]
+      }, "Ninja": {
+        weapons: ["Kunai"],
+        promo: ["Mechanist", "Master Ninja"]
+      }, "Oni Savage": {
+        weapons: ["Axe"],
+        promo: ["Oni Chieftain", "Blacksmith"]
+      }, "Spear Fighter": {
+        weapons: ["Lance"],
+        promo: ["Spear Master", "Basara"]
+      }, "Diviner": {
+        weapons: ["Tome"],
+        promo: ["Basara", "Onmyoji"]
+      }, "Monk": {
+        weapons: ["Staff"],
+        promo: ["Onmyoji", "Great Master"]
+      }, "Shrine Maiden": {
+        weapons: ["Staff"],
+        promo: ["Onmyoji", "Priestess"]
+      }, "Sky Knight": {
+        weapons: ["Lance"],
+        promo: ["Falcon Knight", "Kinshi Knight"]
+      }, "Archer": {
+        weapons: ["Bow"],
+        promo: ["Kinshi Knight", "Sniper"]
+      }, "Kitsune": {
+        weapons: ["Stone"],
+        promo: ["Ninetails"]
+      }, "Songstress": {
+        weapons: ["Lance"],
+        promo: null
+      }, "Hoshido Noble": {
+        weapons: ["Sword", "Staff", "Stone"],
+        promo: null
+      }, "Swordmaster": {
+        weapons: ["Sword"],
+        promo: null
+      }, "Master of Arms": {
+        weapons: ["Sword", "Lance", "Axe"],
+        promo: null
+      }, "Merchant": {
+        weapons: ["Lance", "Bow"],
+        promo: null
+      }, "Mechanist": {
+        weapons: ["Kunai", "Bow"],
+        promo: null
+      }, "Master Ninja": {
+        weapons: ["Sword", "Kunai"],
+        promo: null
+      }, "Oni Chieftain": {
+        weapons: ["Axe", "Tome"],
+        promo: null
+      }, "Blacksmith": {
+        weapons: ["Sword", "Axe"],
+        promo: null
+      }, "Spear Master": {
+        weapons: ["Lance"],
+        promo: null
+      }, "Basara": {
+        weapons: ["Lance", "Tome"],
+        promo: null
+      }, "Onmyoji": {
+        weapons: ["Tome", "Staff"],
+        promo: null
+      }, "Great Master": {
+        weapons: ["Lance", "Staff"],
+        promo: null
+      }, "Priestess": {
+        weapons: ["Bow", "Staff"],
+        promo: null
+      }, "Falcon Knight": {
+        weapons: ["Lance", "Staff"],
+        promo: null
+      }, "Kinshi Knight": {
+        weapons: ["Lance", "Bow"],
+        promo: null
+      }, "Sniper": {
+        weapons: ["Bow"],
+        promo: null
+      }, "Ninetails": {
+        weapons: ["Stone"],
+        promo: null
+      }, "Cavalier": {
+        weapons: ["Sword", "Lance"],
+        promo: ["Paladin", "Great Knight"]
+      }, "Knight": {
+        weapons: ["Lance"],
+        promo: ["General", "Great Knight"]
+      }, "Fighter": {
+        weapons: ["Axe"],
+        promo: ["Berserker", "Hero"]
+      }, "Mercenary": {
+        weapons: ["Sword"],
+        promo: ["Hero", "Bow Knight"]
+      }, "Outlaw": {
+        weapons: ["Bow"],
+        promo: ["Bow Knight", "Adventurer"]
+      }, "Wyvern Rider": {
+        weapons: ["Axe"],
+        promo: ["Wyvern Lord", "Malig Knight"]
+      }, "Dark Mage": {
+        weapons: ["Tome"],
+        promo: ["Sorcerer", "Dark Knight"]
+      }, "Troubadour (M)": {
+        weapons: ["Staff"],
+        promo: ["Strategist", "Butler"]
+      }, "Troubadour (F)": {
+        weapons: ["Staff"],
+        promo: ["Strategist", "Maid"]
+      }, "Wolfskin": {
+        weapons: ["Stone"],
+        promo: ["Wolfssegner"]
+      }, "Nohr Noble": {
+        weapons: ["Sword", "Tome", "Stone"],
+        promo: null
+      }, "Paladin": {
+        weapons: ["Sword", "Lance"],
+        promo: null
+      }, "Great Knight": {
+        weapons: ["Sword", "Lance", "Axe"],
+        promo: null
+      }, "General": {
+        weapons: ["Lance", "Axe"],
+        promo: null
+      }, "Berserker": {
+        weapons: ["Axe"],
+        promo: null
+      }, "Hero": {
+        weapons: ["Sword", "Axe"],
+        promo: null
+      }, "Bow Knight": {
+        weapons: ["Sword", "Bow"],
+        promo: null
+      }, "Adventurer": {
+        weapons: ["Bow", "Staff"],
+        promo: null
+      }, "Wyvern Lord": {
+        weapons: ["Lance", "Axe"],
+        promo: null
+      }, "Malig Knight": {
+        weapons: ["Axe", "Tome"],
+        promo: null
+      }, "Sorcerer": {
+        weapons: ["Tome"],
+        promo: null
+      }, "Dark Knight": {
+        weapons: ["Sword", "Tome"],
+        promo: null
+      }, "Strategist": {
+        weapons: ["Tome", "Staff"],
+        promo: null
+      }, "Butler": {
+        weapons: ["Kunai", "Staff"],
+        promo: null
+      }, "Maid": {
+        weapons: ["Kunai", "Staff"],
+        promo: null
+      }, "Wolfssegner": {
+        weapons: ["Stone"],
+        promo: null
+      }
+    },
     free: ["Corrin"],
     flags: {
       avatar: true,
@@ -1224,8 +1694,263 @@ export default {
 
   "Fates: Conquest": {
     short: "fe14",
-    disabled: "Need to implement children/class changes",
-    characters: [],
+    characters: {
+      "Corrin": {
+        class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Monk", "Shrine Maiden", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (M)"]
+      },
+      "Gunter": {
+        class:["Cavalier", "Mercenary", "Wyvern Rider"]
+      },
+      "Felicia": {
+        class:["Troubadour (F)", "Mercenary"]
+      },
+      "Jakob": {
+        class:["Troubadour (M)", "Cavalier"]
+      },
+      "Kaze": {
+        class:["Ninja", "Samurai"]
+      },
+      "Azura": {
+        class:["Songstress", "Sky Knight"]
+      },
+      "Silas": {
+        class:["Cavalier", "Mercenary"]
+      },
+      "Shura": {
+        class:["Outlaw", "Ninja", "Fighter"]
+      },
+      "Izana": {
+        class:["Monk", "Samurai", "Apothecary"]
+      },
+      "Mozu": {
+        class:["Villager", "Archer"]
+      },
+      "Elise": {
+        class:["Troubadour (F)", "Wyvern Rider"]
+      },
+      "Arthur": {
+        class:["Fighter", "Cavalier"]
+      },
+      "Effie": {
+        class:["Knight", "Troubadour (F)"]
+      },
+      "Odin": {
+        class:["Dark Mage", "Samurai"]
+      },
+      "Niles": {
+        class:["Outlaw", "Dark Mage"]
+      },
+      "Nyx": {
+        class:["Dark Mage", "Outlaw"]
+      },
+      "Camilla": {
+        class:["Wyvern Rider", "Dark Mage"]
+      },
+      "Selena": {
+        class:["Mercenary", "Sky Knight"]
+      },
+      "Beruka": {
+        class:["Wyvern Rider", "Fighter"]
+      },
+      "Laslow": {
+        class:["Mercenary", "Ninja"]
+      },
+      "Peri": {
+        class:["Cavalier", "Dark Mage"]
+      },
+      "Benny": {
+        class:["Knight", "Fighter"]
+      },
+      "Charlotte": {
+        class:["Fighter", "Troubadour (F)"]
+      },
+      "Leo": {
+        class:["Dark Mage", "Troubadour (M)"]
+      },
+      "Keaton": {
+        class:["Wolfskin", "Fighter"]
+      },
+      "Xander": {
+        class:["Cavalier", "Wyvern Rider"]
+      },
+      "Flora": {
+        class:["Troubadour (F)", "Dark Mage", "Mercenary"]
+      }
+    },
+    classes: {
+      "Nohr Prince": {
+        weapons: ["Sword", "Stone"],
+        promo: ["Nohr Noble"]
+      }, "Samurai": {
+        weapons: ["Sword"],
+        promo: ["Swordmaster", "Master of Arms"]
+      }, "Villager": {
+        weapons: ["Lance"],
+        promo: ["Master of Arms", "Merchant"]
+      }, "Apothecary": {
+        weapons: ["Bow"],
+        promo: ["Merchant", "Mechanist"]
+      }, "Ninja": {
+        weapons: ["Kunai"],
+        promo: ["Mechanist", "Master Ninja"]
+      }, "Oni Savage": {
+        weapons: ["Axe"],
+        promo: ["Oni Chieftain", "Blacksmith"]
+      }, "Spear Fighter": {
+        weapons: ["Lance"],
+        promo: ["Spear Master", "Basara"]
+      }, "Diviner": {
+        weapons: ["Tome"],
+        promo: ["Basara", "Onmyoji"]
+      }, "Monk": {
+        weapons: ["Staff"],
+        promo: ["Onmyoji", "Great Master"]
+      }, "Shrine Maiden": {
+        weapons: ["Staff"],
+        promo: ["Onmyoji", "Priestess"]
+      }, "Sky Knight": {
+        weapons: ["Lance"],
+        promo: ["Falcon Knight", "Kinshi Knight"]
+      }, "Archer": {
+        weapons: ["Bow"],
+        promo: ["Kinshi Knight", "Sniper"]
+      }, "Kitsune": {
+        weapons: ["Stone"],
+        promo: ["Ninetails"]
+      }, "Songstress": {
+        weapons: ["Lance"],
+        promo: null
+      }, "Hoshido Noble": {
+        weapons: ["Sword", "Staff", "Stone"],
+        promo: null
+      }, "Swordmaster": {
+        weapons: ["Sword"],
+        promo: null
+      }, "Master of Arms": {
+        weapons: ["Sword", "Lance", "Axe"],
+        promo: null
+      }, "Merchant": {
+        weapons: ["Lance", "Bow"],
+        promo: null
+      }, "Mechanist": {
+        weapons: ["Kunai", "Bow"],
+        promo: null
+      }, "Master Ninja": {
+        weapons: ["Sword", "Kunai"],
+        promo: null
+      }, "Oni Chieftain": {
+        weapons: ["Axe", "Tome"],
+        promo: null
+      }, "Blacksmith": {
+        weapons: ["Sword", "Axe"],
+        promo: null
+      }, "Spear Master": {
+        weapons: ["Lance"],
+        promo: null
+      }, "Basara": {
+        weapons: ["Lance", "Tome"],
+        promo: null
+      }, "Onmyoji": {
+        weapons: ["Tome", "Staff"],
+        promo: null
+      }, "Great Master": {
+        weapons: ["Lance", "Staff"],
+        promo: null
+      }, "Priestess": {
+        weapons: ["Bow", "Staff"],
+        promo: null
+      }, "Falcon Knight": {
+        weapons: ["Lance", "Staff"],
+        promo: null
+      }, "Kinshi Knight": {
+        weapons: ["Lance", "Bow"],
+        promo: null
+      }, "Sniper": {
+        weapons: ["Bow"],
+        promo: null
+      }, "Ninetails": {
+        weapons: ["Stone"],
+        promo: null
+      }, "Cavalier": {
+        weapons: ["Sword", "Lance"],
+        promo: ["Paladin", "Great Knight"]
+      }, "Knight": {
+        weapons: ["Lance"],
+        promo: ["General", "Great Knight"]
+      }, "Fighter": {
+        weapons: ["Axe"],
+        promo: ["Berserker", "Hero"]
+      }, "Mercenary": {
+        weapons: ["Sword"],
+        promo: ["Hero", "Bow Knight"]
+      }, "Outlaw": {
+        weapons: ["Bow"],
+        promo: ["Bow Knight", "Adventurer"]
+      }, "Wyvern Rider": {
+        weapons: ["Axe"],
+        promo: ["Wyvern Lord", "Malig Knight"]
+      }, "Dark Mage": {
+        weapons: ["Tome"],
+        promo: ["Sorcerer", "Dark Knight"]
+      }, "Troubadour (M)": {
+        weapons: ["Staff"],
+        promo: ["Strategist", "Butler"]
+      }, "Troubadour (F)": {
+        weapons: ["Staff"],
+        promo: ["Strategist", "Maid"]
+      }, "Wolfskin": {
+        weapons: ["Stone"],
+        promo: ["Wolfssegner"]
+      }, "Nohr Noble": {
+        weapons: ["Sword", "Tome", "Stone"],
+        promo: null
+      }, "Paladin": {
+        weapons: ["Sword", "Lance"],
+        promo: null
+      }, "Great Knight": {
+        weapons: ["Sword", "Lance", "Axe"],
+        promo: null
+      }, "General": {
+        weapons: ["Lance", "Axe"],
+        promo: null
+      }, "Berserker": {
+        weapons: ["Axe"],
+        promo: null
+      }, "Hero": {
+        weapons: ["Sword", "Axe"],
+        promo: null
+      }, "Bow Knight": {
+        weapons: ["Sword", "Bow"],
+        promo: null
+      }, "Adventurer": {
+        weapons: ["Bow", "Staff"],
+        promo: null
+      }, "Wyvern Lord": {
+        weapons: ["Lance", "Axe"],
+        promo: null
+      }, "Malig Knight": {
+        weapons: ["Axe", "Tome"],
+        promo: null
+      }, "Sorcerer": {
+        weapons: ["Tome"],
+        promo: null
+      }, "Dark Knight": {
+        weapons: ["Sword", "Tome"],
+        promo: null
+      }, "Strategist": {
+        weapons: ["Tome", "Staff"],
+        promo: null
+      }, "Butler": {
+        weapons: ["Kunai", "Staff"],
+        promo: null
+      }, "Maid": {
+        weapons: ["Kunai", "Staff"],
+        promo: null
+      }, "Wolfssegner": {
+        weapons: ["Stone"],
+        promo: null
+      }
+    },
     free: ["Corrin"],
     flags: {
       avatar: true,
@@ -1237,8 +1962,314 @@ export default {
 
   "Fates: Revelation": {
     short: "fe14",
-    disabled: "Need to implement children/class changes",
-    characters: [],
+    characters: {
+      "Corrin": {
+        class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Monk", "Shrine Maiden", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (M)"]
+      },
+      "Gunter": {
+        class:["Cavalier", "Mercenary", "Wyvern Rider"]
+      },
+      "Felicia": {
+        class:["Troubadour (F)", "Mercenary"]
+      },
+      "Jakob": {
+        class:["Troubadour (M)", "Cavalier"]
+      },
+      "Kaze": {
+        class:["Ninja", "Samurai"]
+      },
+      "Azura": {
+        class:["Songstress", "Sky Knight"]
+      },
+      "Silas": {
+        class:["Cavalier", "Mercenary"]
+      },
+      "Shura": {
+        class:["Outlaw", "Ninja", "Fighter"]
+      },
+      "Mozu": {
+        class:["Villager", "Archer"]
+      },
+      "Rinkah": {
+        class:["Oni Savage", "Ninja"]
+      },
+      "Sakura": {
+        class:["Shrine Maiden", "Sky Knight"]
+      },
+      "Hana": {
+        class:["Samurai", "Shrine Maiden"]
+      },
+      "Subaki": {
+        class:["Sky Knight", "Samurai"]
+      },
+      "Saizo": {
+        class:["Ninja", "Samurai"]
+      },
+      "Orochi": {
+        class:["Diviner", "Apothecary"]
+      },
+      "Hinoka": {
+        class:["Sky Knight", "Spear Fighter"]
+      },
+      "Azama": {
+        class:["Monk", "Apothecary"]
+      },
+      "Setsuna": {
+        class:["Archer", "Ninja"]
+      },
+      "Hayato": {
+        class:["Diviner", "Oni Savage"]
+      },
+      "Oboro": {
+        class:["Spear Fighter", "Apothecary"]
+      },
+      "Hinata": {
+        class:["Samurai", "Oni Savage"]
+      },
+      "Takumi": {
+        class:["Archer", "Spear Fighter"]
+      },
+      "Kagero": {
+        class:["Ninja", "Diviner"]
+      },
+      "Reina": {
+        class:["Sky Knight", "Diviner", "Ninja"]
+      },
+      "Kaden": {
+        class:["Kitsune", "Diviner"]
+      },
+      "Ryoma": {
+        class:["Samurai", "Sky Knight"]
+      },
+      "Elise": {
+        class:["Troubadour (F)", "Wyvern Rider"]
+      },
+      "Arthur": {
+        class:["Fighter", "Cavalier"]
+      },
+      "Effie": {
+        class:["Knight", "Troubadour (F)"]
+      },
+      "Odin": {
+        class:["Dark Mage", "Samurai"]
+      },
+      "Niles": {
+        class:["Outlaw", "Dark Mage"]
+      },
+      "Nyx": {
+        class:["Dark Mage", "Outlaw"]
+      },
+      "Camilla": {
+        class:["Wyvern Rider", "Dark Mage"]
+      },
+      "Selena": {
+        class:["Mercenary", "Sky Knight"]
+      },
+      "Beruka": {
+        class:["Wyvern Rider", "Fighter"]
+      },
+      "Laslow": {
+        class:["Mercenary", "Ninja"]
+      },
+      "Peri": {
+        class:["Cavalier", "Dark Mage"]
+      },
+      "Benny": {
+        class:["Knight", "Fighter"]
+      },
+      "Charlotte": {
+        class:["Fighter", "Troubadour (F)"]
+      },
+      "Leo": {
+        class:["Dark Mage", "Troubadour (M)"]
+      },
+      "Keaton": {
+        class:["Wolfskin", "Fighter"]
+      },
+      "Xander": {
+        class:["Cavalier", "Wyvern Rider"]
+      },
+      "Flora": {
+        class:["Troubadour (F)", "Dark Mage", "Mercenary"]
+      },
+      "Fuga": {
+        class:["Samurai", "Oni Savage", "Monk"]
+      },
+    },
+    classes: {
+      "Nohr Prince": {
+        weapons: ["Sword", "Stone"],
+        promo: ["Nohr Noble", "Hoshido Noble"]
+      }, "Samurai": {
+        weapons: ["Sword"],
+        promo: ["Swordmaster", "Master of Arms"]
+      }, "Villager": {
+        weapons: ["Lance"],
+        promo: ["Master of Arms", "Merchant"]
+      }, "Apothecary": {
+        weapons: ["Bow"],
+        promo: ["Merchant", "Mechanist"]
+      }, "Ninja": {
+        weapons: ["Kunai"],
+        promo: ["Mechanist", "Master Ninja"]
+      }, "Oni Savage": {
+        weapons: ["Axe"],
+        promo: ["Oni Chieftain", "Blacksmith"]
+      }, "Spear Fighter": {
+        weapons: ["Lance"],
+        promo: ["Spear Master", "Basara"]
+      }, "Diviner": {
+        weapons: ["Tome"],
+        promo: ["Basara", "Onmyoji"]
+      }, "Monk": {
+        weapons: ["Staff"],
+        promo: ["Onmyoji", "Great Master"]
+      }, "Shrine Maiden": {
+        weapons: ["Staff"],
+        promo: ["Onmyoji", "Priestess"]
+      }, "Sky Knight": {
+        weapons: ["Lance"],
+        promo: ["Falcon Knight", "Kinshi Knight"]
+      }, "Archer": {
+        weapons: ["Bow"],
+        promo: ["Kinshi Knight", "Sniper"]
+      }, "Kitsune": {
+        weapons: ["Stone"],
+        promo: ["Ninetails"]
+      }, "Songstress": {
+        weapons: ["Lance"],
+        promo: null
+      }, "Hoshido Noble": {
+        weapons: ["Sword", "Staff", "Stone"],
+        promo: null
+      }, "Swordmaster": {
+        weapons: ["Sword"],
+        promo: null
+      }, "Master of Arms": {
+        weapons: ["Sword", "Lance", "Axe"],
+        promo: null
+      }, "Merchant": {
+        weapons: ["Lance", "Bow"],
+        promo: null
+      }, "Mechanist": {
+        weapons: ["Kunai", "Bow"],
+        promo: null
+      }, "Master Ninja": {
+        weapons: ["Sword", "Kunai"],
+        promo: null
+      }, "Oni Chieftain": {
+        weapons: ["Axe", "Tome"],
+        promo: null
+      }, "Blacksmith": {
+        weapons: ["Sword", "Axe"],
+        promo: null
+      }, "Spear Master": {
+        weapons: ["Lance"],
+        promo: null
+      }, "Basara": {
+        weapons: ["Lance", "Tome"],
+        promo: null
+      }, "Onmyoji": {
+        weapons: ["Tome", "Staff"],
+        promo: null
+      }, "Great Master": {
+        weapons: ["Lance", "Staff"],
+        promo: null
+      }, "Priestess": {
+        weapons: ["Bow", "Staff"],
+        promo: null
+      }, "Falcon Knight": {
+        weapons: ["Lance", "Staff"],
+        promo: null
+      }, "Kinshi Knight": {
+        weapons: ["Lance", "Bow"],
+        promo: null
+      }, "Sniper": {
+        weapons: ["Bow"],
+        promo: null
+      }, "Ninetails": {
+        weapons: ["Stone"],
+        promo: null
+      }, "Cavalier": {
+        weapons: ["Sword", "Lance"],
+        promo: ["Paladin", "Great Knight"]
+      }, "Knight": {
+        weapons: ["Lance"],
+        promo: ["General", "Great Knight"]
+      }, "Fighter": {
+        weapons: ["Axe"],
+        promo: ["Berserker", "Hero"]
+      }, "Mercenary": {
+        weapons: ["Sword"],
+        promo: ["Hero", "Bow Knight"]
+      }, "Outlaw": {
+        weapons: ["Bow"],
+        promo: ["Bow Knight", "Adventurer"]
+      }, "Wyvern Rider": {
+        weapons: ["Axe"],
+        promo: ["Wyvern Lord", "Malig Knight"]
+      }, "Dark Mage": {
+        weapons: ["Tome"],
+        promo: ["Sorcerer", "Dark Knight"]
+      }, "Troubadour (M)": {
+        weapons: ["Staff"],
+        promo: ["Strategist", "Butler"]
+      }, "Troubadour (F)": {
+        weapons: ["Staff"],
+        promo: ["Strategist", "Maid"]
+      }, "Wolfskin": {
+        weapons: ["Stone"],
+        promo: ["Wolfssegner"]
+      }, "Nohr Noble": {
+        weapons: ["Sword", "Tome", "Stone"],
+        promo: null
+      }, "Paladin": {
+        weapons: ["Sword", "Lance"],
+        promo: null
+      }, "Great Knight": {
+        weapons: ["Sword", "Lance", "Axe"],
+        promo: null
+      }, "General": {
+        weapons: ["Lance", "Axe"],
+        promo: null
+      }, "Berserker": {
+        weapons: ["Axe"],
+        promo: null
+      }, "Hero": {
+        weapons: ["Sword", "Axe"],
+        promo: null
+      }, "Bow Knight": {
+        weapons: ["Sword", "Bow"],
+        promo: null
+      }, "Adventurer": {
+        weapons: ["Bow", "Staff"],
+        promo: null
+      }, "Wyvern Lord": {
+        weapons: ["Lance", "Axe"],
+        promo: null
+      }, "Malig Knight": {
+        weapons: ["Axe", "Tome"],
+        promo: null
+      }, "Sorcerer": {
+        weapons: ["Tome"],
+        promo: null
+      }, "Dark Knight": {
+        weapons: ["Sword", "Tome"],
+        promo: null
+      }, "Strategist": {
+        weapons: ["Tome", "Staff"],
+        promo: null
+      }, "Butler": {
+        weapons: ["Kunai", "Staff"],
+        promo: null
+      }, "Maid": {
+        weapons: ["Kunai", "Staff"],
+        promo: null
+      }, "Wolfssegner": {
+        weapons: ["Stone"],
+        promo: null
+      }
+    },
     free: ["Corrin"],
     flags: {
       avatar: true,

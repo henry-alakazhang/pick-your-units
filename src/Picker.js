@@ -71,11 +71,19 @@ export default class Picker {
     // pick character
     const character = this.game.characters[char];
     let pick = {
-      name: char,
-      class: getOrRand(character.class),
+      name: char
     }
 
     // set class
+    // if there's only one option or the random classes is set, get a random one
+    if (this.options['classes'] || !this.game.flags['classes']) {
+      pick.class = getOrRand(character.class);
+    } else {
+      // else use default
+      pick.class = character.class[0];
+    }
+
+    console.log(pick);
     let promo = this.game.classes[pick.class].promo;
     while (promo != null) {
       pick.class = getOrRand(promo);
