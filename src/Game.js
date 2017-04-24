@@ -1202,93 +1202,123 @@ export default {
     characters: {
       "Robin": {
         class: ["Tactician","Cavalier","Knight","Myrmidon","Mercenary","Fighter","Barbarian","Archer","Thief","Pegasus Knight","Wyvern Rider","Mage","Dark Mage","Priest","Cleric","Troubadour"],
+        base: "Tactician",
         stat: { STR: true, MAG: true }
       }, "Chrom": {
         class:["Lord", "Cavalier", "Archer"],
+        base: "Lord",
         stat: { STR: true }
       },"Lissa": {
         class:["Cleric", "Pegasus Knight", "Troubadour"],
+        base: "Cleric",
         stat: { MAG: true }
       },"Frederick": {
         class:["Cavalier", "Knight", "Wyvern Rider"],
+        base: "Great Knight",
         stat: { STR: true }
       },"Sully": {
         class:["Cavalier", "Myrmidon", "Wyvern Rider"],
+        base: "Cavalier",
         stat: { STR: true }
       },"Virion": {
         class:["Archer", "Wyvern Rider", "Mage"],
+        base: "Archer",
         stat: { STR: true }
       },"Stahl": {
         class:["Cavalier", "Archer", "Myrmidon"],
+        base: "Cavalier",
         stat: { STR: true }
       },"Vaike": {
         class:["Fighter", "Thief", "Barbarian"],
+        base: "Fighter",
         stat: { STR: true }
       },"Miriel": {
         class:["Mage", "Troubadour", "Dark Mage"],
+        base: "Mage",
         stat: { MAG: true }
       },"Sumia": {
         class:["Pegasus Knight", "Knight", "Cleric"],
+        base: "Pegasus Knight",
         stat: { STR: true }
       },"Kellam": {
         class:["Knight", "Thief", "Priest"],
+        base: "Knight",
         stat: { STR: true }
       },"Donnel": {
         class:["Villager", "Fighter", "Mercenary"],
+        base: "Hero", // hardcoded cos there's no troll Donnel
         stat: { STR: true }
       },"Lon'qu": {
         class:["Myrmidon", "Thief", "Wyvern Rider"],
+        base: "Myrmidon",
         stat: { STR: true }
       },"Ricken": {
         class:["Mage", "Cavalier", "Archer"],
+        base: "Mage",
         stat: { MAG: true }
       },"Maribelle": {
         class:["Troubadour", "Pegasus Knight", "Mage"],
+        base: "Troubadour",
         stat: { MAG: true }
       },"Panne": {
         class:["Taguel", "Thief", "Wyvern Rider"],
+        base: "Taguel",
         stat: { STR: true }
       },"Gaius": {
         class:["Thief", "Fighter", "Myrmidon"],
+        base: "Thief",
         stat: { STR: true }
       },"Cordelia": {
         class:["Pegasus Knight", "Mercenary", "Dark Mage"],
+        base: "Pegasus Knight",
         stat: { STR: true }
       },"Gregor": {
         class:["Mercenary", "Barbarian", "Myrmidon"],
+        base: "Mercenary",
         stat: { STR: true }
       },"Nowi": {
         class:["Manakete", "Mage", "Wyvern Rider"],
+        base: "Manakete",
         stat: { STR: true, MAG: true }
       },"Libra": {
         class:["Priest", "Mage", "Dark Mage"],
+        base: "War Priest",
         stat: { STR: true, MAG: true }
       },"Tharja": {
         class:["Dark Mage", "Knight", "Archer"],
+        base: "Dark Mage",
         stat: { MAG: true }
       },"Anna": {
         class:["Thief", "Archer", "Mage"],
+        base: "Trickster",
         stat: { STR: true, MAG: true }
       },"Olivia": {
         class:["Dancer", "Myrmidon", "Pegasus Knight"],
+        base: "Dancer",
         stat: { STR: true }
       },"Cherche": {
         class:["Wyvern Rider", "Troubadour", "Cleric"],
+        base: "Wyvern Rider",
         stat: { STR: true }
       },"Henry": {
         class:["Dark Mage", "Barbarian", "Thief"],
+        base: "Dark Mage",
         stat: { STR: true, MAG: true }
       },"Say'ri": {
         class:["Myrmidon", "Pegasus Knight", "Wyvern Rider"],
+        base: "Swordmaster",
         stat: { STR: true }
       },"Tiki": {
         class:["Manakete", "Wyvern Rider", "Mage"],
+        base: "Manakete",
         stat: { STR: true }
       },"Basilio": {
         class:["Fighter", "Barbarian", "Knight"],
+        base: "Warrior",
         stat: { STR: true }
       },"Flavia": {
         class:["Mercenary", "Thief", "Knight"],
+        base: "Hero",
         stat: { STR: true }
       }
     },
@@ -1505,114 +1535,142 @@ export default {
     characters: {
       "Corrin": {
         class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Monk", "Shrine Maiden", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (M)"],
+        base: "Nohr Prince",
         stat: { STR: true, MAG: true }
       },
       "Felicia": {
         class:["Troubadour (F)", "Mercenary"],
+        base: "Maid",
         stat: { MAG: true }
       },
       "Jakob": {
         class:["Troubadour (M)", "Cavalier"],
+        base: "Butler",
         stat: { STR: true }
       },
       "Kaze": {
         class:["Ninja", "Samurai"],
+        base: "Ninja",
         stat: { STR: true }
       },
       "Azura": {
         class:["Songstress", "Sky Knight"],
+        base: "Songstress",
         stat: { STR: true }
       },
       "Silas": {
         class:["Cavalier", "Mercenary"],
+        base: "Cavalier",
         stat: { STR: true }
       },
       "Shura": {
         class:["Outlaw", "Ninja", "Fighter"],
+        base: "Adventurer",
         stat: { STR: true }
       },
       "Izana": {
         class:["Monk", "Samurai", "Apothecary"],
+        base: "Onmyoji",
         stat: { MAG: true }
       },
       "Mozu": {
         class:["Villager", "Archer"],
+        base: "Villager",
         stat: { STR: true }
       },
       "Rinkah": {
         class:["Oni Savage", "Ninja"],
+        base: "Oni Savage",
         stat: { STR: true }
       },
       "Sakura": {
         class:["Shrine Maiden", "Sky Knight"],
+        base: "Shrine Maiden",
         stat: { STR: true, MAG: true }
       },
       "Hana": {
         class:["Samurai", "Shrine Maiden"],
+        base: "Samurai",
         stat: { STR: true }
       },
       "Subaki": {
         class:["Sky Knight", "Samurai"],
+        base: "Sky Knight",
         stat: { STR: true }
       },
       "Saizo": {
         class:["Ninja", "Samurai"],
+        base: "Ninja",
         stat: { STR: true, MAG: true }
       },
       "Orochi": {
         class:["Diviner", "Apothecary"],
+        base: "Diviner",
         stat: { MAG: true }
       },
       "Hinoka": {
         class:["Sky Knight", "Spear Fighter"],
+        base: "Sky Knight",
         stat: { STR: true }
       },
       "Azama": {
         class:["Monk", "Apothecary"],
+        base: "Monk",
         stat: { STR: true }
       },
       "Setsuna": {
         class:["Archer", "Ninja"],
+        base: "Archer",
         stat: { STR: true }
       },
       "Hayato": {
         class:["Diviner", "Oni Savage"],
+        base: "Diviner",
         stat: { STR: true, MAG: true }
       },
       "Oboro": {
         class:["Spear Fighter", "Apothecary"],
+        base: "Spear Fighter",
         stat: { STR: true }
       },
       "Hinata": {
         class:["Samurai", "Oni Savage"],
+        base: "Samurai",
         stat: { STR: true }
       },
       "Takumi": {
         class:["Archer", "Spear Fighter"],
+        base: "Archer",
         stat: { STR: true }
       },
       "Kagero": {
         class:["Ninja", "Diviner"],
+        base: "Ninja",
         stat: { STR: true }
       },
       "Reina": {
         class:["Sky Knight", "Diviner", "Ninja"],
+        base: "Kinshi Knight",
         stat: { STR: true }
       },
       "Kaden": {
         class:["Kitsune", "Diviner"],
+        base: "Kitsune",
         stat: { STR: true }
       },
       "Ryoma": {
         class:["Samurai", "Sky Knight"],
+        base: "Swordmaster",
         stat: { STR: true }
       },
       "Scarlet": {
         class:["Wyvern Rider", "Outlaw", "Knight"],
+        base: "Wyvern Rider",
         stat: { STR: true }
       },
       "Yukimura": {
         class:["Apothecary", "Samurai", "Monk"],
+        base: "Mechanist",
         stat: { STR: true }
       }
     },
@@ -1861,110 +1919,137 @@ export default {
     characters: {
       "Corrin": {
         class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Monk", "Shrine Maiden", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (M)"],
-        stat: { STR: true, MAG: true },
+        base: "Nohr Prince",
+        stat: { STR: true, MAG: true }
       },
       "Gunter": {
         class:["Cavalier", "Mercenary", "Wyvern Rider"],
+        base: "Great Knight",
         stat: { STR: true }
       },
       "Felicia": {
         class:["Troubadour (F)", "Mercenary"],
+        base: "Maid",
         stat: { MAG: true }
       },
       "Jakob": {
         class:["Troubadour (M)", "Cavalier"],
+        base: "Butler",
         stat: { STR: true }
       },
       "Kaze": {
         class:["Ninja", "Samurai"],
+        base: "Ninja",
         stat: { STR: true }
       },
       "Azura": {
         class:["Songstress", "Sky Knight"],
+        base: "Songstress",
         stat: { STR: true }
       },
       "Silas": {
         class:["Cavalier", "Mercenary"],
+        base: "Cavalier",
         stat: { STR: true }
       },
       "Shura": {
         class:["Outlaw", "Ninja", "Fighter"],
+        base: "Adventurer",
         stat: { STR: true }
       },
       "Izana": {
         class:["Monk", "Samurai", "Apothecary"],
+        base: "Onmyoji",
         stat: { MAG: true }
       },
       "Mozu": {
         class:["Villager", "Archer"],
+        base: "Villager",
         stat: { STR: true }
       },
       "Elise": {
         class:["Troubadour (F)", "Wyvern Rider"],
+        base: "Troubadour (F)",
         stat: { MAG: true }
       },
       "Arthur": {
         class:["Fighter", "Cavalier"],
+        base: "Fighter",
         stat: { STR: true }
       },
       "Effie": {
         class:["Knight", "Troubadour (F)"],
+        base: "Knight",
         stat: { STR: true }
       },
       "Odin": {
         class:["Dark Mage", "Samurai"],
+        base: "Dark Mage",
         stat: { STR: true, MAG: true }
       },
       "Niles": {
         class:["Outlaw", "Dark Mage"],
+        base: "Outlaw",
         stat: { STR: true }
       },
       "Nyx": {
         class:["Dark Mage", "Outlaw"],
+        base: "Dark Mage",
         stat: { MAG: true }
       },
       "Camilla": {
         class:["Wyvern Rider", "Dark Mage"],
+        base: "Malig Knight",
         stat: { STR: true, MAG: true }
       },
       "Selena": {
         class:["Mercenary", "Sky Knight"],
+        base: "Mercenary",
         stat: { STR: true }
       },
       "Beruka": {
         class:["Wyvern Rider", "Fighter"],
+        base: "Wyvern Rider",
         stat: { STR: true }
       },
       "Laslow": {
         class:["Mercenary", "Ninja"],
+        base: "Mercenary",
         stat: { STR: true }
       },
       "Peri": {
         class:["Cavalier", "Dark Mage"],
+        base: "Cavalier",
         stat: { STR: true }
       },
       "Benny": {
         class:["Knight", "Fighter"],
+        base: "Knight",
         stat: { STR: true }
       },
       "Charlotte": {
         class:["Fighter", "Troubadour (F)"],
+        base: "Fighter",
         stat: { STR: true }
       },
       "Leo": {
         class:["Dark Mage", "Troubadour (M)"],
+        base: "Dark Knight",
         stat: { STR: true, MAG: true }
       },
       "Keaton": {
         class:["Wolfskin", "Fighter"],
+        base: "Wolfskin",
         stat: { STR: true }
       },
       "Xander": {
         class:["Cavalier", "Wyvern Rider"],
+        base: "Paladin",
         stat: { STR: true }
       },
       "Flora": {
         class:["Troubadour (F)", "Dark Mage", "Mercenary"],
+        base: "Maid",
         stat: { STR: true }
       }
     },
@@ -2213,178 +2298,222 @@ export default {
     characters: {
       "Corrin": {
         class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Monk", "Shrine Maiden", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (M)"],
+        base: "Nohr Prince",
         stat: { STR: true, MAG: true }
       },
       "Gunter": {
         class:["Cavalier", "Mercenary", "Wyvern Rider"],
+        base: "Great Knigh",
         stat: { STR: true }
       },
       "Felicia": {
         class:["Troubadour (F)", "Mercenary"],
+        base: "Maid",
         stat: { MAG: true }
       },
       "Jakob": {
         class:["Troubadour (M)", "Cavalier"],
+        base: "Butler",
         stat: { STR: true }
       },
       "Kaze": {
         class:["Ninja", "Samurai"],
+        base: "Ninja",
         stat: { STR: true }
       },
       "Azura": {
         class:["Songstress", "Sky Knight"],
+        base: "Songstress",
         stat: { STR: true }
       },
       "Silas": {
         class:["Cavalier", "Mercenary"],
+        base: "Cavalier",
         stat: { STR: true }
       },
       "Shura": {
         class:["Outlaw", "Ninja", "Fighter"],
+        base: "Adventurer",
         stat: { STR: true }
       },
       "Mozu": {
         class:["Villager", "Archer"],
+        base: "Villager",
         stat: { STR: true }
       },
       "Rinkah": {
         class:["Oni Savage", "Ninja"],
+        base: "Oni Savage",
         stat: { STR: true }
       },
       "Sakura": {
         class:["Shrine Maiden", "Sky Knight"],
+        base: "Shrine Maiden",
         stat: { STR: true, MAG: true }
       },
       "Hana": {
         class:["Samurai", "Shrine Maiden"],
+        base: "Samurai",
         stat: { STR: true }
       },
       "Subaki": {
         class:["Sky Knight", "Samurai"],
+        base: "Sky Knight",
         stat: { STR: true }
       },
       "Saizo": {
         class:["Ninja", "Samurai"],
+        base: "Ninja",
         stat: { STR: true, MAG: true }
       },
       "Orochi": {
         class:["Diviner", "Apothecary"],
+        base: "Diviner",
         stat: { MAG: true }
       },
       "Hinoka": {
         class:["Sky Knight", "Spear Fighter"],
+        base: "Sky Knight",
         stat: { STR: true }
       },
       "Azama": {
         class:["Monk", "Apothecary"],
+        base: "Monk",
         stat: { STR: true }
       },
       "Setsuna": {
         class:["Archer", "Ninja"],
+        base: "Archer",
         stat: { STR: true }
       },
       "Hayato": {
         class:["Diviner", "Oni Savage"],
+        base: "Diviner",
         stat: { STR: true, MAG: true }
       },
       "Oboro": {
         class:["Spear Fighter", "Apothecary"],
+        base: "Spear Fighter",
         stat: { STR: true }
       },
       "Hinata": {
         class:["Samurai", "Oni Savage"],
+        base: "Samurai",
         stat: { STR: true }
       },
       "Takumi": {
         class:["Archer", "Spear Fighter"],
+        base: "Archer",
         stat: { STR: true }
       },
       "Kagero": {
         class:["Ninja", "Diviner"],
+        base: "Ninja",
         stat: { STR: true }
       },
       "Reina": {
         class:["Sky Knight", "Diviner", "Ninja"],
+        base: "Kinshi Knight",
         stat: { STR: true }
       },
       "Kaden": {
         class:["Kitsune", "Diviner"],
+        base: "Kitsune",
         stat: { STR: true }
       },
       "Ryoma": {
         class:["Samurai", "Sky Knight"],
+        base: "Swordmaster",
         stat: { STR: true }
       },
       "Elise": {
         class:["Troubadour (F)", "Wyvern Rider"],
+        base: "Troubadour (F)",
         stat: { MAG: true }
       },
       "Arthur": {
         class:["Fighter", "Cavalier"],
+        base: "Fighter",
         stat: { STR: true }
       },
       "Effie": {
         class:["Knight", "Troubadour (F)"],
+        base: "Knight",
         stat: { STR: true }
       },
       "Odin": {
         class:["Dark Mage", "Samurai"],
+        base: "Dark Mage",
         stat: { STR: true, MAG: true }
       },
       "Niles": {
         class:["Outlaw", "Dark Mage"],
+        base: "Outlaw",
         stat: { STR: true }
       },
       "Nyx": {
         class:["Dark Mage", "Outlaw"],
+        base: "Dark Mage",
         stat: { MAG: true }
       },
       "Camilla": {
         class:["Wyvern Rider", "Dark Mage"],
+        base: "Malig Knight",
         stat: { STR: true, MAG: true }
       },
       "Selena": {
         class:["Mercenary", "Sky Knight"],
+        base: "Mercenary",
         stat: { STR: true }
       },
       "Beruka": {
         class:["Wyvern Rider", "Fighter"],
+        base: "Wyvern Rider",
         stat: { STR: true }
       },
       "Laslow": {
         class:["Mercenary", "Ninja"],
+        base: "Mercenary",
         stat: { STR: true }
       },
       "Peri": {
         class:["Cavalier", "Dark Mage"],
+        base: "Cavalier",
         stat: { STR: true }
       },
       "Benny": {
         class:["Knight", "Fighter"],
+        base: "Knight",
         stat: { STR: true }
       },
       "Charlotte": {
         class:["Fighter", "Troubadour (F)"],
+        base: "Fighter",
         stat: { STR: true }
       },
       "Leo": {
         class:["Dark Mage", "Troubadour (M)"],
+        base: "Dark Knight",
         stat: { STR: true, MAG: true }
       },
       "Keaton": {
         class:["Wolfskin", "Fighter"],
+        base: "Wolfskin",
         stat: { STR: true }
       },
       "Xander": {
         class:["Cavalier", "Wyvern Rider"],
+        base: "Paladin",
         stat: { STR: true }
       },
       "Flora": {
         class:["Troubadour (F)", "Dark Mage", "Mercenary"],
+        base: "Maid",
         stat: { STR: true }
       },
       "Fuga": {
         class:["Samurai", "Oni Savage", "Monk"],
+        base: "Master of Arms",
         stat: { STR: true }
       },
     },

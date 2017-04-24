@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Form, FormGroup, FormControl, ControlLabel, Checkbox } from 'react-bootstrap';
+import { Row, Form, FormGroup, FormControl, ControlLabel, Checkbox, Tooltip, OverlayTrigger } from 'react-bootstrap';
 
 import Game from '../Game';
 

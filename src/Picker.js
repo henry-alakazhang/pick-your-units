@@ -91,17 +91,9 @@ export default class Picker {
     }
 
     // repick if troll characters not allowed
-    if (!this.options['troll']) {
-      // a 'troll' class is a STR-only class for a MAG-only character, or vice versa
-      console.log(pick, !character.stat.STR, !this.game.classes[pick.class].stat.MAG, !character.stat.MAG, !this.game.classes[pick.class].stat.STR);
-      if (!character.stat.STR && !this.game.classes[pick.class].stat.MAG) {
-        this.makePick();
-        return;
-      }
-      if (!character.stat.MAG && !this.game.classes[pick.class].stat.STR) {
-        this.makePick();
-        return;
-      }
+    if (!this.options['troll'] && this.isTrollPick(pick)) {
+      this.makePick(force);
+      return;
     }
 
     // repick if unbalanced (forced characters remain forced)
@@ -175,5 +167,29 @@ export default class Picker {
     }
 
     return true;
+  }
+
+  isTrollPick(pick) {
+    const pickChar = this.game.characters[pick.name];
+    const pickClass = this.game.classes[pick.class];
+    // a 'troll' class is a STR-only class for a MAG-only character, or vice versa
+    if (!pickChar.stat.STR && !pickClass.stat.MAG) {
+      return true;
+    }
+    if (!pickChar.stat.MAG && !pickClass.stat.STR) {
+      return true;
+    }
+
+    // fates has e-rank hell, which counts as a troll pick
+    if (this.game.short === 'fe14') {
+      for (const weap of this.game.classes[pickChar.base].weapons) {
+        if (pickClass.weapons.indexOf(weap) !== -1) {
+          return false;
+        }
+      }
+      return true;
+    } else{
+      return false;
+    }
   }
 }
