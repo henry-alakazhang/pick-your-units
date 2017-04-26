@@ -1,3 +1,25 @@
+// lists for pairings
+// M is males, F is females, CX is chilren
+const AWAKE_M = ["Robin (M)", "Frederick", "Virion", "Stahl", "Vaike", "Kellam", "Donnel", "Lon'qu", "Ricken", "Gaius", "Gregor", "Libra", "Henry"];
+const AWAKE_F = ["Robin (F)", "Lissa", "Sully", "Miriel", "Maribelle", "Panne", "Cordelia", "Nowi", "Tharja", "Olivia", "Cherche"];
+const AWAKE_CM = [];
+const AWAKE_CF = [];
+
+const FATES_F = [];
+const FATES_M = [];
+const FATES_CF = [];
+const FATES_CM = [];
+const BR_M = [];
+const BR_F = [];
+const BR_CM = [];
+const BR_CF = [];
+const CQ_M = [];
+const CQ_F = [];
+const CQ_CM = [];
+const CQ_CF = [];
+// everyone has unique pairing sets in rev
+
+
 export default {
   list: [
     "Fire Emblem",
@@ -232,7 +254,7 @@ export default {
     characters: [],
     free: ["Sigurd", "Seliph"],
     flags: {
-      supports: true,
+      pairings: true,
       children: true,
     }
   },
@@ -471,7 +493,6 @@ export default {
     },
     free: ["Roy"],
     flags: {
-      supports: true,
     }
   },
 
@@ -703,7 +724,6 @@ export default {
     },
     free: ["Eliwood"],
     flags: {
-      supports: true,
     }
   },
 
@@ -923,7 +943,6 @@ export default {
     },
     free: ["Eirika", "Ephraim"],
     flags: {
-      supports: true,
     }
   },
 
@@ -1164,7 +1183,6 @@ export default {
     },
     free: ["Ike"],
     flags: {
-      supports: true,
     }
   },
 
@@ -1173,7 +1191,6 @@ export default {
     disabled: "Need to figure out how these routes work",
     characters: ["Aran", "Astrid", "Bastian", "Boyd", "Brom", "Caineghis", "Calill", "Danved", "Edward", "Elincia", "Ena", "Fiona", "Gareth", "Gatrie", "Geoffrey", "Giffca", "Haar", "Heather", "Ike", "Ilyana", "Janaff", "Jill", "Kieran", "Kurthnaga", "Kyza", "Laura", "Leanne", "Leonardo", "Lethe", "Lucia", "Lyre", "Makalov", "Marcia", "Meg", "Mia", "Micaiah", "Mist", "Mordecai", "Muarim", "Naesala", "Nailah", "Nasir", "Nealuchi", "Nephenee", "Nolan", "Oscar", "Pelleas", "Rafiel", "Ranulf", "Reyson", "Rhys", "Rolf", "Sanaki", "Shinon", "Sigrun", "Skrimir", "Soren", "Sothe", "Stefan", "Tanith", "Tauroneo", "Tibarn", "Titania", "Tormod", "Ulki", "Vika", "Volke", "Volug", "Zihark"],
     flags: {
-      supports: true,
     }
   },
 
@@ -1200,126 +1217,238 @@ export default {
   "Awakening": {
     short: "fe13",
     characters: {
-      "Robin": {
-        class: ["Tactician","Cavalier","Knight","Myrmidon","Mercenary","Fighter","Barbarian","Archer","Thief","Pegasus Knight","Wyvern Rider","Mage","Dark Mage","Priest","Cleric","Troubadour"],
+      "Robin (M)": {
+        class: ["Tactician","Cavalier","Knight","Myrmidon","Mercenary","Fighter","Barbarian","Archer","Thief","Wyvern Rider","Mage","Dark Mage","Priest","Cleric"],
         base: "Tactician",
+        exclude: ["Robin (F)"],
+        pairings: ["Sumia", "Lissa", "Sully", "Miriel", "Maribelle", "Panne", "Cordelia", "Nowi", "Tharja", "Olivia", "Cherche", "Say'ri", "Flavia", "Tiki"],
         stat: { STR: true, MAG: true }
-      }, "Chrom": {
+      },
+      "Robin (F)": {
+        class: ["Tactician","Cavalier","Knight","Myrmidon","Mercenary","Archer","Thief","Pegasus Knight","Wyvern Rider","Mage","Dark Mage","Priest","Cleric","Troubadour"],
+        base: "Tactician",
+        exclude: ["Robin (M)"],
+        pairings: ["Chrom", "Frederick", "Virion", "Stahl", "Vaike", "Kellam", "Donnel", "Lon'qu", "Ricken", "Gaius", "Gregor", "Libra", "Henry", "Basilio"],
+        stat: { STR: true, MAG: true }
+      },
+      "Chrom": {
         class:["Lord", "Cavalier", "Archer"],
         base: "Lord",
+        pairings: ["Sully, Sumia, Maribelle, Olivia"],
         stat: { STR: true }
       },"Lissa": {
         class:["Cleric", "Pegasus Knight", "Troubadour"],
         base: "Cleric",
+        pairings: AWAKE_M,
         stat: { MAG: true }
       },"Frederick": {
         class:["Cavalier", "Knight", "Wyvern Rider"],
         base: "Great Knight",
+        pairings: AWAKE_F,
         stat: { STR: true }
       },"Sully": {
         class:["Cavalier", "Myrmidon", "Wyvern Rider"],
         base: "Cavalier",
+        pairings: AWAKE_M,
         stat: { STR: true }
       },"Virion": {
         class:["Archer", "Wyvern Rider", "Mage"],
         base: "Archer",
+        pairings: AWAKE_F,
         stat: { STR: true }
       },"Stahl": {
         class:["Cavalier", "Archer", "Myrmidon"],
         base: "Cavalier",
+        pairings: AWAKE_F,
         stat: { STR: true }
       },"Vaike": {
         class:["Fighter", "Thief", "Barbarian"],
         base: "Fighter",
+        pairings: AWAKE_F,
         stat: { STR: true }
       },"Miriel": {
         class:["Mage", "Troubadour", "Dark Mage"],
         base: "Mage",
+        pairings: AWAKE_M,
         stat: { MAG: true }
       },"Sumia": {
         class:["Pegasus Knight", "Knight", "Cleric"],
         base: "Pegasus Knight",
+        pairings: ["Chrom", "Frederick", "Gaius", "Henry"],
         stat: { STR: true }
       },"Kellam": {
         class:["Knight", "Thief", "Priest"],
         base: "Knight",
+        pairings: AWAKE_F,
         stat: { STR: true }
       },"Donnel": {
         class:["Villager", "Fighter", "Mercenary"],
         base: "Hero", // hardcoded cos there's no troll Donnel
+        pairings: AWAKE_F,
         stat: { STR: true }
       },"Lon'qu": {
         class:["Myrmidon", "Thief", "Wyvern Rider"],
         base: "Myrmidon",
+        pairings: AWAKE_F,
         stat: { STR: true }
       },"Ricken": {
         class:["Mage", "Cavalier", "Archer"],
         base: "Mage",
+        pairings: AWAKE_F,
         stat: { MAG: true }
       },"Maribelle": {
         class:["Troubadour", "Pegasus Knight", "Mage"],
         base: "Troubadour",
+        pairings: AWAKE_M,
         stat: { MAG: true }
       },"Panne": {
         class:["Taguel", "Thief", "Wyvern Rider"],
         base: "Taguel",
+        pairings: AWAKE_M,
         stat: { STR: true }
       },"Gaius": {
         class:["Thief", "Fighter", "Myrmidon"],
         base: "Thief",
+        pairings: AWAKE_F,
         stat: { STR: true }
       },"Cordelia": {
         class:["Pegasus Knight", "Mercenary", "Dark Mage"],
         base: "Pegasus Knight",
+        pairings: AWAKE_M,
         stat: { STR: true }
       },"Gregor": {
         class:["Mercenary", "Barbarian", "Myrmidon"],
         base: "Mercenary",
+        pairings: AWAKE_F,
         stat: { STR: true }
       },"Nowi": {
         class:["Manakete", "Mage", "Wyvern Rider"],
         base: "Manakete",
+        pairings: AWAKE_M,
         stat: { STR: true, MAG: true }
       },"Libra": {
         class:["Priest", "Mage", "Dark Mage"],
         base: "War Priest",
+        pairings: AWAKE_F,
         stat: { STR: true, MAG: true }
       },"Tharja": {
         class:["Dark Mage", "Knight", "Archer"],
         base: "Dark Mage",
+        pairings: AWAKE_M,
         stat: { MAG: true }
       },"Anna": {
         class:["Thief", "Archer", "Mage"],
         base: "Trickster",
+        pairings: ["Robin (M)"],
         stat: { STR: true, MAG: true }
       },"Olivia": {
         class:["Dancer", "Myrmidon", "Pegasus Knight"],
         base: "Dancer",
+        pairings: AWAKE_M,
         stat: { STR: true }
       },"Cherche": {
         class:["Wyvern Rider", "Troubadour", "Cleric"],
         base: "Wyvern Rider",
+        pairings: AWAKE_M,
         stat: { STR: true }
       },"Henry": {
         class:["Dark Mage", "Barbarian", "Thief"],
         base: "Dark Mage",
+        pairings: AWAKE_F,
         stat: { STR: true, MAG: true }
       },"Say'ri": {
         class:["Myrmidon", "Pegasus Knight", "Wyvern Rider"],
         base: "Swordmaster",
+        pairings: ["Robin (M)"],
         stat: { STR: true }
       },"Tiki": {
         class:["Manakete", "Wyvern Rider", "Mage"],
         base: "Manakete",
+        pairings: ["Robin (M)"],
         stat: { STR: true }
       },"Basilio": {
         class:["Fighter", "Barbarian", "Knight"],
         base: "Warrior",
+        pairings: ["Robin (F)"],
         stat: { STR: true }
       },"Flavia": {
         class:["Mercenary", "Thief", "Knight"],
         base: "Hero",
+        pairings: ["Robin (M)"],
         stat: { STR: true }
+      }
+    },
+    children: {
+      "Lucina": {
+        class: ["Lord", "Cavalier", "Archer"],
+        stat: { STR: true },
+        pairings: AWAKE_CM,
+        parent: "Chrom",
+      }, "Owain": {
+        class: ["Myrmidon", "Priest", "Barbarian"],
+        stat: { STR: true },
+        pairings: AWAKE_CF,
+        parent: "Lissa",
+      }, "Inigo": {
+        class: ["Mercenary", "Myrmidon", "Barbarian"],
+        stat: { STR: true, MAG: true},
+        pairings: AWAKE_CM,
+        parent: "Olivia"
+      }, "Brady": {
+        class: ["Priest", "Cavalier", "Mage"],
+        stat: { STR: true, MAG: true},
+        pairings: AWAKE_CF,
+        parent: "Maribelle"
+      }, "Kjelle": {
+        class: ["Knight", "Myrmidon", "Cavalier", "Wyvern Rider"],
+        stat: { STR: true },
+        pairings:  AWAKE_CM,
+        parent: "Sully"
+      }, "Cynthia": {
+        class: ["Pegasus Knight", "Knight", "Cleric"],
+        stat: { STR: true },
+        pairings:  AWAKE_CM,
+        parent: "Sumia"
+      }, "Severa": {
+        class: ["Mercenary", "Pegasus Knight", "Dark Mage"],
+        stat: { STR: true },
+        pairings:  AWAKE_CM,
+        parent: "Cordelia"
+      }, "Gerome": {
+        class: ["Wyvern Rider", "Fighter", "Priest"],
+        stat: { STR: true },
+        pairings: AWAKE_CF,
+        parent: "Cherche"
+      }, "Morgan (F)": {
+        class: ["Tactician","Cavalier","Knight","Myrmidon","Mercenary","Pegasus Knight","Archer","Thief","Wyvern Rider","Mage","Dark Mage","Cleric"],
+        stat: { STR: true, MAG: true },
+        parent: "Robin (M)",
+        pairings: AWAKE_CM,
+      }, "Morgan (M)": {
+        class: ["Tactician","Cavalier","Knight","Myrmidon","Mercenary","Fighter","Barbarian","Archer","Thief","Wyvern Rider","Mage","Dark Mage","Priest"],
+        stat: { STR: true, MAG: true },
+        parent: "Robin (F)",
+        pairings: AWAKE_CM,
+      }, "Yarne": {
+        class: ["Taguel", "Thief", "Barbarian"],
+        stat: { STR: true },
+        pairings:  AWAKE_CM,
+        parent: "Panne"
+      }, "Laurent": {
+        class: ["Mage", "Barbarian", "Dark Mage"],
+        stat: { MAG: true },
+        pairings: AWAKE_CF,
+        parent: "Miriel"
+      }, "Noire": {
+        class: ["Archer", "Knight", "Dark Mage"],
+        stat: { STR: true, MAG: true },
+        pairings:  AWAKE_CM,
+        parent: "Tharja"
+      }, "Nah": {
+        class: ["Manakete", "Wyvern Rider", "Mage"],
+        stat: { STR: true, MAG: true },
+        pairings: AWAKE_CM,
+        parent: "Nowi"
       }
     },
     classes: {
@@ -1521,10 +1650,10 @@ export default {
         stat: { STR: true }
       }
     },
-    free: ["Chrom", "Robin"],
+    free: ["Chrom"],
+    avatar: ["Robin (M)", "Robin (F)"],
     flags: {
-      avatar: true,
-      supports: true,
+      pairings: true,
       children: true,
       classes: true,
     }
@@ -1533,8 +1662,13 @@ export default {
   "Fates: Birthright": {
     short: "fe14",
     characters: {
-      "Corrin": {
-        class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Monk", "Shrine Maiden", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (M)"],
+      "Corrin (M)": {
+        class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Monk", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (M)"],
+        base: "Nohr Prince",
+        stat: { STR: true, MAG: true }
+      },
+      "Corrin (F)": {
+        class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Shrine Maiden", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (F)"],
         base: "Nohr Prince",
         stat: { STR: true, MAG: true }
       },
@@ -1905,10 +2039,10 @@ export default {
         stat: { STR: true }
       }
     },
-    free: ["Corrin"],
+    free: [],
+    avatar: ["Corrin (M)", "Corrin (F)"],
     flags: {
-      avatar: true,
-      supports: true,
+      pairings: true,
       children: true,
       classes: true,
     }
@@ -1917,8 +2051,13 @@ export default {
   "Fates: Conquest": {
     short: "fe14",
     characters: {
-      "Corrin": {
-        class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Monk", "Shrine Maiden", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (M)"],
+      "Corrin (M)": {
+        class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Monk", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (M)"],
+        base: "Nohr Prince",
+        stat: { STR: true, MAG: true }
+      },
+      "Corrin (F)": {
+        class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Shrine Maiden", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (F)"],
         base: "Nohr Prince",
         stat: { STR: true, MAG: true }
       },
@@ -2284,10 +2423,10 @@ export default {
         stat: { STR: true }
       }
     },
-    free: ["Corrin"],
+    free: [["Corrin (M)", "Corrin (F)"]],
     flags: {
       avatar: true,
-      supports: true,
+      pairings: true,
       children: true,
       classes: true,
     }
@@ -2296,8 +2435,13 @@ export default {
   "Fates: Revelation": {
     short: "fe14",
     characters: {
-      "Corrin": {
-        class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Monk", "Shrine Maiden", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (M)"],
+      "Corrin (M)": {
+        class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Monk", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (M)"],
+        base: "Nohr Prince",
+        stat: { STR: true, MAG: true }
+      },
+      "Corrin (F)": {
+        class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Shrine Maiden", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (F)"],
         base: "Nohr Prince",
         stat: { STR: true, MAG: true }
       },
@@ -2748,10 +2892,10 @@ export default {
         stat: { STR: true }
       }
     },
-    free: ["Corrin"],
+    free: [],
+    avatar: ["Corrin (M)", "Corrin (F)"],
     flags: {
-      avatar: true,
-      supports: true,
+      pairings: true,
       children: true,
       classes: true,
     }

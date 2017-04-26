@@ -18,8 +18,7 @@ class App extends Component {
       game: Game.list[0],
       numPicks: 12,
       options: {
-        avatar: true,
-        supports: false,
+        pairings: false,
         children: false,
         classes: true,
         balanced: false,

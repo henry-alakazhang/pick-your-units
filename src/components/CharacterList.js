@@ -42,7 +42,11 @@ class CharacterList extends Component {
                   alt={char.name}
                 />
               </td>
-              <td>{char.name}</td>
+              {game.children && game.children[char.name] ?
+                <td>{this.props.picks.pairings[game.children[char.name].parent] + '!' + char.name}</td>
+              :
+                <td>{char.name}</td>
+              }
               <td>{char.class}</td>
             </tr>
             ))}

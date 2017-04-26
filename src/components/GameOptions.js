@@ -18,6 +18,7 @@ class GameOptions extends Component {
           <FormGroup>
             {Object.keys(Game[this.props.game].flags).map((flag) =>
               <Checkbox
+                disabled={flag === 'avatar'}
                 checked={this.props.options[flag]}
                 key={flag}
                 onChange={(e) => {
