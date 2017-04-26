@@ -56,7 +56,8 @@ class GameOptions extends Component {
               style={styles.spinner}
               type="number"
               value={this.props.numPicks}
-              max={Object.keys(Game[this.props.game].characters).length}
+              min={0}
+              max={22}
               onChange={this.props.handleNumChange}
             />
             {' '}<ControlLabel>  units</ControlLabel>

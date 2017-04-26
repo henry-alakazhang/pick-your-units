@@ -35,16 +35,18 @@ class App extends Component {
   }
 
   handleGamePick(e) {
-    // update max if too big
-    if (this.state.numPicks > Object.keys(Game[e.target.value].characters).length) {
-      this.setState({
-        numPicks: Object.keys(Game[e.target.value].characters).length
-      })
-    }
     // update other stuff
     this.setState({
       game: e.target.value,
+      numPicks: 12,
       picks: null,
+      options: {
+        pairings: false,
+        children: false,
+        classes: true,
+        balanced: false,
+        troll: false,
+      },
     });
   }
 

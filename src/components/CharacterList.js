@@ -7,6 +7,7 @@ import Game from '../Game';
 class CharacterList extends Component {
   render() {
     const game = Game[this.props.game];
+    const picks = this.props.picks.characters;
 
     // portrait width:
     let width = 0;
@@ -19,7 +20,65 @@ class CharacterList extends Component {
     } else if (game.short === 'fe9' || game.short === 'fe10') {
       width = 125;
     } else if (game.short === 'fe13' || game.short === 'fe14') {
-      width = 150;
+      width = 140;
+    }
+
+    let tableRows = [];
+
+    if (this.props.picks.usePairings) {
+      for (let i = 0; i < picks.length; i+= 2) {
+        const char = picks[i];
+        const char2 = picks[i+1];
+        tableRows.push((
+          <tr key={char.name}>
+            <td width={width}>
+              <img
+                src={require("../../images/" + game.short + "/" + char.name.toLowerCase() + ".png")}
+                alt={char.name}
+              />
+            </td>
+            {game.children && game.children[char.name] ?
+              <td>{this.props.picks.pairings[game.children[char.name].parent] + '!' + char.name}</td>
+            :
+              <td>{char.name}</td>
+            }
+            <td>{char.class}</td>
+            <td> S-rank </td>
+            <td width={width}>
+              <img
+                src={require("../../images/" + game.short + "/" + char2.name.toLowerCase() + ".png")}
+                alt={char2.name}
+              />
+            </td>
+            {game.children && game.children[char2.name] ?
+              <td>{this.props.picks.pairings[game.children[char2.name].parent] + '!' + char2.name}</td>
+            :
+              <td>{char2.name}</td>
+            }
+            <td>{char2.class}</td>
+          </tr>
+        ));
+      }
+    } else {
+      for (let i = 0; i < picks.length; i++) {
+        const char = picks[i];
+        tableRows.push((
+          <tr key={char.name}>
+            <td width={width}>
+              <img
+                src={require("../../images/" + game.short + "/" + char.name.toLowerCase() + ".png")}
+                alt={char.name}
+              />
+            </td>
+            {game.children && game.children[char.name] ?
+              <td>{this.props.picks.pairings[game.children[char.name].parent] + '!' + char.name}</td>
+            :
+              <td>{char.name}</td>
+            }
+            <td>{char.class}</td>
+          </tr>
+        ));
+      }
     }
 
     return (
@@ -34,22 +93,7 @@ class CharacterList extends Component {
             transitionAppear={true}
             component="tbody"
           >
-            {this.props.picks.characters.map((char) =>
-            (<tr key={char.name}>
-              <td width={width}>
-                <img
-                  src={require("../../images/" + game.short + "/" + char.name.toLowerCase() + ".png")}
-                  alt={char.name}
-                />
-              </td>
-              {game.children && game.children[char.name] ?
-                <td>{this.props.picks.pairings[game.children[char.name].parent] + '!' + char.name}</td>
-              :
-                <td>{char.name}</td>
-              }
-              <td>{char.class}</td>
-            </tr>
-            ))}
+            {tableRows}
           </ReactCSSTransitionGroup>
         </Table>
       </Row>

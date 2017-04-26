@@ -2,8 +2,8 @@
 // M is males, F is females, CX is chilren
 const AWAKE_M = ["Robin (M)", "Frederick", "Virion", "Stahl", "Vaike", "Kellam", "Donnel", "Lon'qu", "Ricken", "Gaius", "Gregor", "Libra", "Henry"];
 const AWAKE_F = ["Robin (F)", "Lissa", "Sully", "Miriel", "Maribelle", "Panne", "Cordelia", "Nowi", "Tharja", "Olivia", "Cherche"];
-const AWAKE_CM = [];
-const AWAKE_CF = [];
+const AWAKE_CM = ["Owain", "Inigo", "Brady", "Gerome", "Morgan (M)", "Yarne", "Laurent"];
+const AWAKE_CF = ["Lucina", "Kjelle", "Cynthia", "Severa", "Morgan (F)", "Noire", "Nah"];
 
 const FATES_F = [];
 const FATES_M = [];
@@ -1220,21 +1220,19 @@ export default {
       "Robin (M)": {
         class: ["Tactician","Cavalier","Knight","Myrmidon","Mercenary","Fighter","Barbarian","Archer","Thief","Wyvern Rider","Mage","Dark Mage","Priest","Cleric"],
         base: "Tactician",
-        exclude: ["Robin (F)"],
         pairings: ["Sumia", "Lissa", "Sully", "Miriel", "Maribelle", "Panne", "Cordelia", "Nowi", "Tharja", "Olivia", "Cherche", "Say'ri", "Flavia", "Tiki"],
         stat: { STR: true, MAG: true }
       },
       "Robin (F)": {
         class: ["Tactician","Cavalier","Knight","Myrmidon","Mercenary","Archer","Thief","Pegasus Knight","Wyvern Rider","Mage","Dark Mage","Priest","Cleric","Troubadour"],
         base: "Tactician",
-        exclude: ["Robin (M)"],
         pairings: ["Chrom", "Frederick", "Virion", "Stahl", "Vaike", "Kellam", "Donnel", "Lon'qu", "Ricken", "Gaius", "Gregor", "Libra", "Henry", "Basilio"],
         stat: { STR: true, MAG: true }
       },
       "Chrom": {
         class:["Lord", "Cavalier", "Archer"],
         base: "Lord",
-        pairings: ["Sully, Sumia, Maribelle, Olivia"],
+        pairings: ["Sully", "Sumia", "Maribelle", "Olivia"],
         stat: { STR: true }
       },"Lissa": {
         class:["Cleric", "Pegasus Knight", "Troubadour"],
@@ -1457,27 +1455,27 @@ export default {
         promo: ["Great Lord"],
         stat: { STR: true }
       }, "Great Lord": {
-        weapons:["Sword, Lance"],
+        weapons:["Sword", "Lance"],
         promo: null,
         stat: { STR: true }
       }, "Tactician": {
-        weapons:["Sword, Tome"],
+        weapons:["Sword", "Tome"],
         promo: ["Grandmaster"],
         stat: { STR: true, MAG: true }
       }, "Grandmaster": {
-        weapons:["Sword, Tome"],
+        weapons:["Sword", "Tome"],
         promo: null,
         stat: { STR: true, MAG: true }
       }, "Cavalier": {
-        weapons:["Sword, Lance"],
+        weapons:["Sword", "Lance"],
         promo: ["Paladin", "Great Knight"],
         stat: { STR: true }
       }, "Paladin": {
-        weapons:["Sword, Lance"],
+        weapons:["Sword", "Lance"],
         promo: null,
         stat: { STR: true }
       }, "Great Knight": {
-        weapons:["Sword, Lance, Axe"],
+        weapons:["Sword", "Lance", "Axe"],
         promo: null,
         stat: { STR: true }
       }, "Knight": {
@@ -1485,7 +1483,7 @@ export default {
         promo: ["Great Knight", "General"],
         stat: { STR: true }
       }, "General": {
-        weapons:["Lance, Axe"],
+        weapons:["Lance", "Axe"],
         promo: null,
         stat: { STR: true }
       }, "Myrmidon": {
@@ -1501,7 +1499,7 @@ export default {
         promo: ["Hero", "Bow Knight"],
         stat: { STR: true }
       }, "Hero": {
-        weapons:["Sword, Axe"],
+        weapons:["Sword", "Axe"],
         promo: null,
         stat: { STR: true }
       }, "Fighter": {
@@ -1509,7 +1507,7 @@ export default {
         promo: ["Hero", "Warrior"],
         stat: { STR: true }
       }, "Warrior": {
-        weapons:["Axe, Bow"],
+        weapons:["Axe", "Bow"],
         promo: null,
         stat: { STR: true }
       }, "Barbarian": {
@@ -1529,7 +1527,7 @@ export default {
         promo: null,
         stat: { STR: true }
       }, "Bow Knight": {
-        weapons:["Sword, Bow"],
+        weapons:["Sword", "Bow"],
         promo: null,
         stat: { STR: true }
       }, "Thief": {
@@ -1537,11 +1535,11 @@ export default {
         promo: ["Assassin", "Trickster"],
         stat: { STR: true }
       }, "Assassin": {
-        weapons:["Sword, Bow"],
+        weapons:["Sword", "Bow"],
         promo: null,
         stat: { STR: true }
       }, "Trickster": {
-        weapons:["Sword, Staff"],
+        weapons:["Sword", "Staff"],
         promo: null,
         stat: { STR: true }
       }, "Pegasus Knight": {
@@ -1549,11 +1547,11 @@ export default {
         promo: ["Falcon Knight", "Dark Flier"],
         stat: { STR: true }
       }, "Falcon Knight": {
-        weapons:["Lance, Staff"],
+        weapons:["Lance", "Staff"],
         promo: null,
         stat: { STR: true }
       }, "Dark Flier": {
-        weapons:["Lance, Tome"],
+        weapons:["Lance", "Tome"],
         promo: null,
         stat: { STR: true, MAG: true }
       }, "Wyvern Rider": {
@@ -1561,7 +1559,7 @@ export default {
         promo: ["Wyvern Lord", "Griffon Rider"],
         stat: { STR: true }
       }, "Wyvern Lord": {
-        weapons:["Lance, Axe"],
+        weapons:["Lance", "Axe"],
         promo: null,
         stat: { STR: true }
       }, "Griffon Rider": {
@@ -1573,7 +1571,7 @@ export default {
         promo: ["Sage", "Dark Knight"],
         stat: { MAG: true }
       }, "Sage": {
-        weapons:["Tome, Staff"],
+        weapons:["Tome", "Staff"],
         promo: null,
         stat: { MAG: true }
       }, "Dark Mage": {
@@ -1585,7 +1583,7 @@ export default {
         promo: null,
         stat: { MAG: true }
       }, "Dark Knight": {
-        weapons:["Sword, Tome"],
+        weapons:["Sword", "Tome"],
         promo: null,
         stat: { STR: true, MAG: true }
       }, "Priest": {
@@ -1597,11 +1595,11 @@ export default {
         promo: ["War Cleric", "Sage"],
         stat: { MAG: true }
       }, "War Monk": {
-        weapons:["Axe, Staff"],
+        weapons:["Axe", "Staff"],
         promo: null,
         stat: { STR: true, MAG: true }
       }, "War Cleric": {
-        weapons:["Axe, Staff"],
+        weapons:["Axe", "Staff"],
         promo: null,
         stat: { STR: true, MAG: true }
       }, "Troubadour": {
@@ -1609,7 +1607,7 @@ export default {
         promo: ["War Cleric", "Valkyrie"],
         stat: { MAG: true }
       }, "Valkyrie": {
-        weapons:["Tome, Staff"],
+        weapons:["Tome", "Staff"],
         promo: null,
         stat: { MAG: true }
       }, "Villager": {
@@ -1633,11 +1631,11 @@ export default {
         promo: null,
         stat: { STR: true }
       }, "Dread Fighter": {
-        weapons:["Sword, Axe, Tome"],
+        weapons:["Sword", "Axe", "Tome"],
         promo: null,
         stat: { STR: true, MAG: true }
       }, "Bride": {
-        weapons:["Lance, Bow, Staff"],
+        weapons:["Lance", "Bow", "Staff"],
         promo: null,
         stat: { STR: true }
       }, "Soldier": {
@@ -1651,7 +1649,7 @@ export default {
       }
     },
     free: ["Chrom"],
-    avatar: ["Robin (M)", "Robin (F)"],
+    avatar: "Robin",
     flags: {
       pairings: true,
       children: true,
@@ -2040,7 +2038,7 @@ export default {
       }
     },
     free: [],
-    avatar: ["Corrin (M)", "Corrin (F)"],
+    avatar: "Corrin",
     flags: {
       pairings: true,
       children: true,
@@ -2424,8 +2422,8 @@ export default {
       }
     },
     free: [["Corrin (M)", "Corrin (F)"]],
+    avatar: "Corrin",
     flags: {
-      avatar: true,
       pairings: true,
       children: true,
       classes: true,
@@ -2893,7 +2891,7 @@ export default {
       }
     },
     free: [],
-    avatar: ["Corrin (M)", "Corrin (F)"],
+    avatar: "Corrin",
     flags: {
       pairings: true,
       children: true,

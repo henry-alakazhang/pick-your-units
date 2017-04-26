@@ -26,7 +26,8 @@ export default class Picker {
     this.picks = {
       characters: [],
       weapons: {},
-      pairings: [],
+      pairings: {},
+      usePairings: options['pairings'],
     }
   }
 
@@ -35,13 +36,18 @@ export default class Picker {
    * Returns a promise to return the picks (generates asynchronously)
    */
   generatePicks() {
+    console.log(this.pool);
     return new Promise(function(resolve, reject) {
       let avatar = null;
       if (this.game.avatar) {
-        const gender = randIn(this.game.avatar);
-        avatar = this.game.avatar[gender];;
-        // remove other-gendered one
-        this.pool.splice(this.pool.indexOf(this.game.avatar[1-gender]), 1);
+        const gender = Math.floor(Math.random()*2);
+        if (gender == 1) {
+          avatar = this.game.avatar + " (F)";
+          this.pool.splice(this.pool.indexOf(this.game.avatar + " (M)"), 1);
+        } else {
+          avatar = this.game.avatar + " (M)";
+          this.pool.splice(this.pool.indexOf(this.game.avatar + " (F)"), 1);
+        }
       }
 
       // set pairings - done even if the 'pairings' option isn't checked
@@ -82,7 +88,7 @@ export default class Picker {
    */
   pairUp(person) {
     // more than 1 waifu will ruin your laifu
-    if (this.getPartner(person) !== null)
+    if (this.getPartner(person))
       return true;
 
     // how do you pair that which does not exist?
@@ -92,26 +98,21 @@ export default class Picker {
     const profile = this.game.characters[person] || this.game.children[person];
     const availables = profile.pairings.slice();
     let pair = randIn(availables);
-    while ((this.pool.indexOf(availables[pair]) === -1 || this.getPartner(availables[pair]) !== null) && availables.length > 0) {
+    while ((this.pool.indexOf(availables[pair]) === -1 || this.getPartner(availables[pair])) && availables.length > 0) {
       availables.splice(pair, 1);
       pair = randIn(availables);
     }
     // if there's someone in the pool, then there's someone left to pair
     if (availables.length > 0) {
-      this.picks.pairings.push([person, availables[pair]]);
+      this.picks.pairings[person] = availables[pair];
+      this.picks.pairings[availables[pair]] = person;
       return true;
     }
     return false;
   }
 
   getPartner(person) {
-    for (const pair of this.picks.pairings) {
-      if (pair[0] == person)
-        return pair[1];
-      if (pair[1] == person)
-        return pair[0];
-    }
-    return null;
+    return this.picks.pairings[person];
   }
 
   /*
@@ -124,6 +125,15 @@ export default class Picker {
     if (char === undefined) {
       char = this.pool[randIn(this.pool)];
     }
+
+    // can't pick someone twice.
+    if (this.pool.indexOf(char) === -1)
+      return;
+
+    // only pick paired units for pairing runs
+    if (this.game.flags['pairings'] && this.options['pairings'] && !this.getPartner(char))
+      return;
+
 
     const character = this.game.characters[char] || this.game.children[char];
     let pick = {
@@ -154,7 +164,6 @@ export default class Picker {
 
     // repick if unbalanced (forced characters remain forced)
     if (this.options['balanced'] && force === undefined && !this.maintainsBalance(pick)) {
-      console.log(pick, "retrying");
       this.makePick();
       return;
     }
@@ -168,27 +177,24 @@ export default class Picker {
       for (const char of character.include) {
         // no room; remove this character and pick another one
         if (this.picks.characters.length === this.numPicks) {
-          console.log("No room for " + char + " deleting " + pick.name)
           this.picks.characters.pop();
           this.makePick();
           return;
         }
         // if not already picked, pick them
         if (this.pool.indexOf(char) !== -1) {
-          console.log("Picking " + char + " to go with " + pick.name);
           this.makePick(char);
         }
       }
     }
     if (character.exclude) {
       for (const char of character.exclude) {
-        console.log("Excluding ", char);
         this.pool.splice(this.pool.indexOf(char), 1);
       }
     }
     // add partner if pairing up
-    if (this.options['pairings'] && this.getPartner(character)) {
-      this.makePick(this.getPartner(character));
+    if (this.game.flags['pairings'] && this.options['pairings'] && this.getPartner(pick.name)) {
+      this.makePick(this.getPartner(pick.name));
     }
   }
 
