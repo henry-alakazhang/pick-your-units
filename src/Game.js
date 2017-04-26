@@ -323,7 +323,7 @@ export default {
       class:"Sniper",
     }, "Juno": {
       class:"Falcon Knight",
-      exclude:"Dayan"
+      exclude:["Dayan"]
     }, "Klein": {
       class:"Archer",
     }, "Lalum": {
