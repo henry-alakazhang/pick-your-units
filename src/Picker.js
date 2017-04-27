@@ -143,7 +143,12 @@ export default class Picker {
     // set class
     // if there's only one option or the random classes is set, get a random one
     if (this.options['classes'] || !this.game.flags['classes']) {
-      pick.class = getOrRand(character.class);
+      if (this.game.inheritClasses) {
+        // check for inheritance (from partners/friends/parents)
+        pick.class = getOrRand(this.game.inheritClasses(this.game, this.picks.pairings, char));
+      } else {
+        pick.class = getOrRand(character.class);
+      }
     } else {
       // else use default
       pick.class = character.class[0];

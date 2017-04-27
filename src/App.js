@@ -84,7 +84,7 @@ class App extends Component {
         <center>
           <h1>Fire Emblem Pick-Your-Unit</h1>
         </center>
-        <Col md={4}>
+        <Col md={3}>
           <GamePicker
             value={this.state.game}
             handler={this.handleGamePick}
@@ -99,7 +99,7 @@ class App extends Component {
           <Row>
             <p />
             {Game[this.state.game].disabled &&
-              <Col md={10}>
+              <Col sm={10}>
                 <Alert bsStyle="danger">
                   This game is not available yet. Reason cited:
                   <br />
@@ -117,7 +117,7 @@ class App extends Component {
             </Button>
           </Row>
         </Col>
-        <Col md={8}>
+        <Col md={9}>
           {this.state.picks &&
             <CharacterList picks={this.state.picks} game={this.state.game} />
           }

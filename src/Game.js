@@ -17,8 +17,56 @@ const CQ_M = [];
 const CQ_F = [];
 const CQ_CM = [];
 const CQ_CF = [];
-// everyone has unique pairing sets in rev
+// no rev lists because everyone has unique support pools based on their original ones
 
+const AWAKENING_inheritClasses = function(game, pairings, to) {
+  // only kids inherit in awakening
+  if (!game.children[to]) {
+    return game.characters[to].class;
+  }
+
+  // only other parent, since base is included in class pool
+  const from = pairings[game.children[to].parent];
+  let classes = game.children[to].class.slice();
+  let inherits = game.characters[from].class.slice();
+  // replace wrong-gendered classes
+  // girls:
+  if (AWAKE_CF.indexOf(to) !== -1) {
+    inherits[inherits.indexOf("Priest")] = "Cleric";
+    if (from === "Vaike") {
+      inherits[inherits.indexOf("Barbarian")] = "Knight";
+      inherits[inherits.indexOf("Fighter")] = "Mercenary";
+    }
+    if (from === "Gaius" || from === "Donnel") {
+      inherits[inherits.indexOf("Fighter")] = "Pegasus Knight";
+    }
+    if (from === "Donnel") {
+      inherits[inherits.indexOf("Villager")] = "Troubadour";
+    }
+    if (from === "Gregor" || from === "Henry") {
+      inherits[inherits.indexOf("Barbarian")] = "Troubadour";
+    }
+  }
+  // boys don't need this, because the changes are already reflected in their personal pools
+
+  // add the classes
+  for (const i of inherits) {
+    if (i === "Lord")
+      continue;
+    if (classes.indexOf(i) === -1) {
+      classes.push(i);
+    }
+  }
+  return classes;
+}
+
+const FATES_inheritClasses = function(game, from, to) {
+  let classes = game.chars[to].class.slice();
+  const uninheritable = ["Nohr Prince", "Songstress", "Kitsune", "Wolfskin", "Villager"];
+  if (uninheritable.indexOf(game.chars[from].class[0]) !== -1) {
+
+  }
+}
 
 export default {
   list: [
@@ -1216,6 +1264,7 @@ export default {
 
   "Awakening": {
     short: "fe13",
+    inheritClasses: AWAKENING_inheritClasses,
     characters: {
       "Robin (M)": {
         class: ["Tactician","Cavalier","Knight","Myrmidon","Mercenary","Fighter","Barbarian","Archer","Thief","Wyvern Rider","Mage","Dark Mage","Priest","Cleric"],
@@ -1390,7 +1439,7 @@ export default {
       }, "Inigo": {
         class: ["Mercenary", "Myrmidon", "Barbarian"],
         stat: { STR: true, MAG: true},
-        pairings: AWAKE_CM,
+        pairings: AWAKE_CF,
         parent: "Olivia"
       }, "Brady": {
         class: ["Priest", "Cavalier", "Mage"],
@@ -1426,11 +1475,11 @@ export default {
         class: ["Tactician","Cavalier","Knight","Myrmidon","Mercenary","Fighter","Barbarian","Archer","Thief","Wyvern Rider","Mage","Dark Mage","Priest"],
         stat: { STR: true, MAG: true },
         parent: "Robin (F)",
-        pairings: AWAKE_CM,
+        pairings: AWAKE_CF,
       }, "Yarne": {
         class: ["Taguel", "Thief", "Barbarian"],
         stat: { STR: true },
-        pairings:  AWAKE_CM,
+        pairings:  AWAKE_CF,
         parent: "Panne"
       }, "Laurent": {
         class: ["Mage", "Barbarian", "Dark Mage"],
@@ -1659,6 +1708,7 @@ export default {
 
   "Fates: Birthright": {
     short: "fe14",
+    inheritClasses: FATES_inheritClasses,
     characters: {
       "Corrin (M)": {
         class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Monk", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (M)"],
@@ -2048,6 +2098,7 @@ export default {
 
   "Fates: Conquest": {
     short: "fe14",
+    inheritClasses: FATES_inheritClasses,
     characters: {
       "Corrin (M)": {
         class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Monk", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (M)"],
@@ -2421,7 +2472,7 @@ export default {
         stat: { STR: true }
       }
     },
-    free: [["Corrin (M)", "Corrin (F)"]],
+    free: [],
     avatar: "Corrin",
     flags: {
       pairings: true,
@@ -2432,6 +2483,7 @@ export default {
 
   "Fates: Revelation": {
     short: "fe14",
+    inheritClasses: FATES_inheritClasses,
     characters: {
       "Corrin (M)": {
         class: ["Nohr Prince", "Samurai", "Villager", "Apothecary", "Ninja", "Oni Savage", "Spear Fighter", "Diviner", "Monk", "Sky Knight", "Archer", "Cavalier", "Knight", "Fighter", "Mercenary", "Outlaw", "Wyvern Rider", "Dark Mage", "Troubadour (M)"],
