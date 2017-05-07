@@ -40,8 +40,8 @@ export default class Picker {
     return new Promise(function(resolve, reject) {
       let avatar = null;
       if (this.game.avatar) {
-        const gender = Math.floor(Math.random()*2);
-        if (gender == 1) {
+        const gender = Math.random();
+        if (gender >= 0.5) {
           avatar = this.game.avatar + " (F)";
           this.pool.splice(this.pool.indexOf(this.game.avatar + " (M)"), 1);
         } else {
