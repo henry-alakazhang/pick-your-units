@@ -1685,12 +1685,71 @@ const CQ_CF = [];
 const RV_AM = BR_AM.concat(CQ_AM);
 const RV_AF = BR_AF.concat(CQ_AF);
 
-const FATES_inheritClasses = function(game, from, to) {
-  let classes = game.characters[to].class.slice();
-  // const uninheritable = ["Nohr Prince", "Songstress", "Kitsune", "Wolfskin", "Villager"];
-  // if (uninheritable.indexOf(game.characters[from].class[0]) !== -1) {
-  //
-  // }
+const FATES_inheritClasses = function(game, pairings, to) {
+  let classes = game.characters[to].class.slice() || game.children[to].class.slice();
+
+  // inherit from partner (if exists)
+  if (pairings[to]) {
+    _FATES_inheritClassesInternal(game, classes, pairings[to]);
+  }
+
+  // inherit from parent (if exists);
+  if (game.children[to]) {
+    const otherParent = pairings[game.children[to].parent];
+    if (otherParent) {
+      _FATES_inheritClassesInternal(game, classes, otherParent);
+    }
+  }
+
+  return classes;
+}
+
+const _FATES_inheritClassesInternal = function(game, classes, from) {
+  const parallel = {
+    "Cavalier": "Ninja",
+    "Knight": "Spear Fighter",
+    "Fighter": "Oni Savage",
+    "Mercenary": "Samurai",
+    "Outlaw": "Archer",
+    "Samurai": "Mercenary",
+    "Oni Savage": "Fighter",
+    "Spear Fighter": "Knight",
+    "Diviner": "Dark Mage",
+    "Sky Knight": "Wyvern Rider",
+    "Archer": "Outlaw",
+    "Wyvern Rider": "Sky Knight",
+    "Ninja": "Cavalier",
+    "Dark Mage": "Diviner",
+    "Wolfskin": "Outlaw",
+    "Kitsune": "Apothecary",
+    "Songstress": "Troubadour",
+    "Villager": "Apothecary",
+  }
+
+  const inherit = game.characters[from].class || game.children[from].class;
+  const uninheritable = ["Nohr Prince", "Songstress", "Kitsune", "Wolfskin", "Villager"];
+
+  // if first slot is uninheritable class
+  if (uninheritable.indexOf(inherit[0]) !== -1) {
+    // try giving second class
+    if (classes[0] !== inherit[1]) {
+      classes.push(inherit[1]);
+    } else {
+      // use parallel class instead
+      if (inherit[1] === "Nohr Prince") {
+        if(parallel[inherit[1]]) // some classes have no parallel - sucked in
+          classes.push(parallel[inherit[1]]);
+      } else {
+        classes.push(parallel[inherit[0]]);
+      }
+    }
+  } else {
+    if (classes[0] !== inherit[0]) {
+      classes.push(inherit[0]);
+    } else {
+      classes.push(inherit[1]);
+    }
+  }
   return classes;
 }
 
@@ -2101,6 +2160,8 @@ const fe14br = {
       stat: { STR: true }
     }
   },
+  children: {
+  },
   classes: {
     ...FATES_CLASSES,
     ...{
@@ -2292,6 +2353,8 @@ const fe14cq = {
       pairings: ["Corrin (F)"],
       stat: { MAG: true }
     }
+  },
+  children: {
   },
   classes:  {
     ...FATES_CLASSES,
@@ -2586,6 +2649,8 @@ const fe14rev = {
       pairings: ["Corrin (F)"],
       stat: { STR: true }
     }
+  },
+  children: {
   },
   classes: {
     ...FATES_CLASSES,
