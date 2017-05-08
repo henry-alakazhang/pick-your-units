@@ -1156,6 +1156,7 @@ const fe11 = {
   free: ["Marth"],
   flags: {
     classes: true,
+    troll: true
   }
 };
 
@@ -1166,6 +1167,7 @@ const fe12 = {
   free:["Marth", "Kris"],
   flags: {
     classes: true,
+    troll: true
   }
 };
 
@@ -1656,8 +1658,10 @@ const fe13 = {
   avatar: "Robin",
   flags: {
     pairings: true,
+    onlypairs: true,
     children: true,
     classes: true,
+    troll: true
   }
 };
 
@@ -2275,8 +2279,11 @@ const fe14br = {
   avatar: "Corrin",
   flags: {
     pairings: true,
+    friends: true,
+    onlypairs: true,
     children: true,
     classes: true,
+    troll: true
   }
 };
 
@@ -2554,8 +2561,11 @@ const fe14cq = {
   avatar: "Corrin",
   flags: {
     pairings: true,
+    friends: true,
+    onlypairs: true,
     children: true,
     classes: true,
+    troll: true
   }
 };
 
@@ -2983,8 +2993,11 @@ const fe14rev = {
   avatar: "Corrin",
   flags: {
     pairings: true,
+    friends: true,
+    onlypairs: true,
     children: true,
     classes: true,
+    troll: true
   }
 };
 

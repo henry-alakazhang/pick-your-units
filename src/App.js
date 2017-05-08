@@ -19,6 +19,8 @@ class App extends Component {
       numPicks: 12,
       options: {
         pairings: false,
+        friends: false,
+        onlypairs: false,
         children: false,
         classes: true,
         balanced: false,
@@ -42,6 +44,8 @@ class App extends Component {
       picks: null,
       options: {
         pairings: false,
+        friends: false,
+        onlypairs: false,
         children: false,
         classes: true,
         balanced: false,
@@ -51,8 +55,17 @@ class App extends Component {
   }
 
   handleOptionChange(e, opt) {
+    const cascade = {
+      pairings: ['onlypairs', 'children'],
+      classes: ['troll']
+    }
     let options = this.state.options;
     options[opt] = e.target.checked;
+    // cascade and remove invalid options
+    if (!e.target.checked && cascade[opt]) {
+      for (const opt2 of cascade[opt])
+        options[opt2] = false;
+    }
     this.setState({options:options});
   }
 

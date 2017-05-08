@@ -27,7 +27,10 @@ export default class Picker {
       characters: [],
       weapons: {},
       pairings: {},
-      usePairings: options['pairings'],
+      options: {
+        pairings: options['pairings'],
+        onlypairs: options['onlypairs'],
+      }
     }
   }
 
@@ -50,9 +53,8 @@ export default class Picker {
         }
       }
 
-      // set pairings - done even if the 'pairings' option isn't checked
-      // because we need pairings for children
-      if (this.game.flags['pairings']) {
+      // set pairings
+      if (this.game.flags['pairings'] && this.options['pairings']) {
         // prioritise parents
         for (const child in this.game.children) {
           if (this.pairUp(this.game.children[child].parent) && this.options['children']) {
@@ -131,9 +133,8 @@ export default class Picker {
       return;
 
     // only pick paired units for pairing runs
-    if (this.game.flags['pairings'] && this.options['pairings'] && !this.getPartner(char))
+    if (this.game.flags['onlypairs'] && this.options['onlypairs'] && !this.getPartner(char))
       return;
-
 
     const character = this.game.characters[char] || this.game.children[char];
     let pick = {
@@ -143,7 +144,7 @@ export default class Picker {
     // set class
     // if there's only one option or the random classes is set, get a random one
     if (this.options['classes'] || !this.game.flags['classes']) {
-      if (this.game.inheritClasses) {
+      if (this.options['pairings'] && this.game.inheritClasses) {
         // check for inheritance (from partners/friends/parents)
         pick.class = getOrRand(this.game.inheritClasses(this.game, this.picks.pairings, char));
       } else {
@@ -198,7 +199,7 @@ export default class Picker {
       }
     }
     // add partner if pairing up
-    if (this.game.flags['pairings'] && this.options['pairings'] && this.getPartner(pick.name)) {
+    if (this.game.flags['onlypairs'] && this.options['onlypairs'] && this.getPartner(pick.name)) {
       this.makePick(this.getPartner(pick.name));
     }
   }

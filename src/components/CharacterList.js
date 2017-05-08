@@ -5,6 +5,25 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Game from '../Game';
 
 class CharacterList extends Component {
+  constructor(props) {
+    super(props);
+    this.getDisplayName = this.getDisplayName.bind(this);
+  }
+
+  getDisplayName(char) {
+    const game = Game[this.props.game];
+    // ! notation for kids
+    let name = '';
+    if (game.children && game.children[char.name]) {
+      name += this.props.picks.pairings[game.children[char.name].parent] + '!';
+    }
+    name += char.name;
+    if (this.props.picks.options['pairings'] && !this.props.picks.options['onlypairs'] && this.props.picks.pairings[char.name]) {
+      name += ' (S ' + this.props.picks.pairings[char.name] + ')';
+    }
+    return name;
+  }
+
   render() {
     const game = Game[this.props.game];
     const picks = this.props.picks.characters;
@@ -25,24 +44,22 @@ class CharacterList extends Component {
 
     let tableRows = [];
 
-    if (this.props.picks.usePairings) {
+    if (this.props.picks.options['onlypairs']) {
       for (let i = 0; i < picks.length; i+= 2) {
-        const char = picks[i];
+        const char1 = picks[i];
         const char2 = picks[i+1];
+        const char1display = this.getDisplayName(char1);
+        const char2display = this.getDisplayName(char2);
         tableRows.push((
-          <tr key={char.name}>
+          <tr key={char1.name}>
             <td width={width}>
               <img
-                src={require("../../images/" + game.short + "/" + char.name.toLowerCase() + ".png")}
-                alt={char.name}
+                src={require("../../images/" + game.short + "/" + char1.name.toLowerCase() + ".png")}
+                alt={char1.name}
               />
             </td>
-            {game.children && game.children[char.name] ?
-              <td>{this.props.picks.pairings[game.children[char.name].parent] + '!' + char.name}</td>
-            :
-              <td>{char.name}</td>
-            }
-            <td>{char.class}</td>
+            <td>{char1display}</td>
+            <td>{char1.class}</td>
             <td> S-rank </td>
             <td width={width}>
               <img
@@ -50,11 +67,7 @@ class CharacterList extends Component {
                 alt={char2.name}
               />
             </td>
-            {game.children && game.children[char2.name] ?
-              <td>{this.props.picks.pairings[game.children[char2.name].parent] + '!' + char2.name}</td>
-            :
-              <td>{char2.name}</td>
-            }
+            <td>{char2display}</td>
             <td>{char2.class}</td>
           </tr>
         ));
@@ -62,6 +75,7 @@ class CharacterList extends Component {
     } else {
       for (let i = 0; i < picks.length; i++) {
         const char = picks[i];
+        const displayName = this.getDisplayName(char);
         tableRows.push((
           <tr key={char.name}>
             <td width={width}>
@@ -70,11 +84,7 @@ class CharacterList extends Component {
                 alt={char.name}
               />
             </td>
-            {game.children && game.children[char.name] ?
-              <td>{this.props.picks.pairings[game.children[char.name].parent] + '!' + char.name}</td>
-            :
-              <td>{char.name}</td>
-            }
+            <td>{displayName}</td>
             <td>{char.class}</td>
           </tr>
         ));
