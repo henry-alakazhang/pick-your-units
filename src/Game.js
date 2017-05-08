@@ -199,6 +199,7 @@ const fe2 = {
 
 const fe3 = {
   short: "fe3",
+  disabled: "I'll get around to this eventually",
   characters: ["Marth", "Abel", "Arran", "Astria", "Bantu", "Cecil", "Xane", "Tiki", "Draug", "Ellerean", "Elice", "Est", "Feena", "Jeorge", "Gordon", "Julian", "Cain", "Castor", "Catria", "Linde", "Luke", "Matthis", "Malliesia", "Maria", "Merric", "Midia", "Minerva", "Nabarl", "Nina", "Ogma", "Palla", "Lena", "Rickard", "Rody", "Roshea", "Ryan", "Samson", "Samto", "Sheeda", "Sheema", "Sirius", "Warren", "Wendel", "Yubello", "Yumina"],
   free: ["Marth"],
   flags: {},
@@ -1767,7 +1768,6 @@ const FATES_inheritClasses = function(game, pairings, to) {
       _FATES_inheritClassesInternal(game, classes, parent2);
   }
 
-  console.log(to, pairings, classes);
   return classes;
 }
 

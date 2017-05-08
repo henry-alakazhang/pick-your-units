@@ -39,7 +39,6 @@ export default class Picker {
    * Returns a promise to return the picks (generates asynchronously)
    */
   generatePicks() {
-    console.log(this.pool);
     return new Promise(function(resolve, reject) {
       let avatar = null;
       if (this.game.avatar) {
@@ -155,7 +154,6 @@ export default class Picker {
       pick.class = character.class[0];
     }
 
-    console.log(pick);
     let promo = this.game.classes[pick.class].promo;
     while (promo != null) {
       pick.class = getOrRand(promo);
