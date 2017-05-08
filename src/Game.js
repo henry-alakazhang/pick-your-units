@@ -1664,46 +1664,35 @@ const fe13 = {
 // RX is royals since you can't pair them together.
 const FATES_M = ["Jakob", "Silas", "Kaze", "Corrin (M)"];
 const FATES_F = ["Felicia", "Azura", "Mozu", "Corrin (F)"];
-const FATES_CM = [];
-const FATES_CF = [];
+const FATES_CM = ["Kana (M)", "Shigure", "Dwyer"];
+const FATES_CF = ["Sophie", "Midori"];
 const BR_M = ["Saizo", "Kaden", "Hinata", "Azama", "Subaki", "Hayato"];
 const BR_RM = ["Ryoma", "Takumi"];
 const BR_AM = FATES_M.concat(BR_M, BR_RM);
 const BR_F = ["Hinoka", "Sakura", "Rinkah", "Orochi", "Kagero", "Hana", "Setsuna", "Oboro"];
 const BR_RF = ["Hinoka", "Sakura"];
 const BR_AF = FATES_F.concat(BR_F, BR_RF);
-const BR_CM = [];
-const BR_CF = [];
+const BR_CM = ["Shiro", "Kiragi", "Asugi", "Hisame"];
+const BR_CF = ["Selkie", "Mitama", "Caeldori", "Rhajat"];
+const BR_ACM = FATES_CM.concat(BR_CM);
+const BR_ACF = FATES_CF.concat(BR_CF);
 const CQ_M = ["Benny", "Keaton", "Arthur", "Odin", "Laslow", "Niles"];
 const CQ_RM = ["Xander", "Leo"];
 const CQ_AM = FATES_M.concat(CQ_M, CQ_RM);
 const CQ_F = ["Charlotte", "Effie", "Peri", "Beruka", "Selena", "Nyx"];
 const CQ_RF = ["Camilla", "Elise"];
 const CQ_AF = FATES_F.concat(CQ_F, CQ_RF);
-const CQ_CM = [];
-const CQ_CF = [];
+const CQ_CM = ["Siegbert", "Forrest", "Ignatius", "Percy"];
+const CQ_CF = ["Velouria", "Ophelia", "Soleil", "Nina"];
+const CQ_ACM = FATES_CM.concat(CQ_CM);
+const CQ_ACF = FATES_CF.concat(CQ_CF);
 const RV_AM = BR_AM.concat(CQ_AM);
-const RV_AF = BR_AF.concat(CQ_AF);
+const RV_AF = BR_AF.concat(CQ_AF)
+const RV_ACM = BR_ACM.concat(CQ_ACM);
+const RV_ACF = BR_ACF.concat(CQ_ACF);
 
-const FATES_inheritClasses = function(game, pairings, to) {
-  let classes = game.characters[to].class.slice() || game.children[to].class.slice();
-
-  // inherit from partner (if exists)
-  if (pairings[to]) {
-    _FATES_inheritClassesInternal(game, classes, pairings[to]);
-  }
-
-  // inherit from parent (if exists);
-  if (game.children[to]) {
-    const otherParent = pairings[game.children[to].parent];
-    if (otherParent) {
-      _FATES_inheritClassesInternal(game, classes, otherParent);
-    }
-  }
-
-  return classes;
-}
-
+// inherits from one character to another's pool
+// TODO: fix genderlocked classes (Maid/Butler, Monk/Shrine Maiden)
 const _FATES_inheritClassesInternal = function(game, classes, from) {
   const parallel = {
     "Cavalier": "Ninja",
@@ -1722,25 +1711,26 @@ const _FATES_inheritClassesInternal = function(game, classes, from) {
     "Dark Mage": "Diviner",
     "Wolfskin": "Outlaw",
     "Kitsune": "Apothecary",
-    "Songstress": "Troubadour",
+    "Songstress": "Troubadour (F)",
     "Villager": "Apothecary",
   }
 
-  const inherit = game.characters[from].class || game.children[from].class;
+  const char = game.characters[from] || game.children[from];
+  const inherit = char.class;
   const uninheritable = ["Nohr Prince", "Songstress", "Kitsune", "Wolfskin", "Villager"];
 
   // if first slot is uninheritable class
   if (uninheritable.indexOf(inherit[0]) !== -1) {
     // try giving second class
-    if (classes[0] !== inherit[1]) {
+    if (inherit[1] && classes[0] !== inherit[1]) {
       classes.push(inherit[1]);
     } else {
       // use parallel class instead
-      if (inherit[1] === "Nohr Prince") {
-        if(parallel[inherit[1]]) // some classes have no parallel - sucked in
-          classes.push(parallel[inherit[1]]);
-      } else {
-        classes.push(parallel[inherit[0]]);
+      if (inherit[0] !== "Nohr Prince") {
+        if (parallel[inherit[0]]) // some classes have no parallel - sucked in
+          classes.push(parallel[inherit[0]]);
+      } else if (inherit[1]) {
+        classes.push(parallel[inherit[1]]);
       }
     }
   } else {
@@ -1750,6 +1740,30 @@ const _FATES_inheritClassesInternal = function(game, classes, from) {
       classes.push(inherit[1]);
     }
   }
+  return classes;
+}
+
+const FATES_inheritClasses = function(game, pairings, to) {
+  const char = game.characters[to] || game.children[to];
+  let classes = char.class.slice();
+
+  // inherit from partner (if exists)
+  if (pairings[to]) {
+    _FATES_inheritClassesInternal(game, classes, pairings[to]);
+  }
+
+  // inherit from parent (if exists);
+  if (game.children[to]) {
+    const parent1 = game.children[to].parent;
+    const parent2 = pairings[parent1];
+    // inherit from main parent if not automated (Kana only)
+    if (parent1 && classes.length === 1)
+      _FATES_inheritClassesInternal(game, classes, parent1);
+    if (parent2)
+      _FATES_inheritClassesInternal(game, classes, parent2);
+  }
+
+  console.log(to, pairings, classes);
   return classes;
 }
 
@@ -2161,6 +2175,91 @@ const fe14br = {
     }
   },
   children: {
+    "Kana (M)": {
+      base: "Nohr Prince",
+      class: ["Nohr Prince"],
+      pairings: BR_ACF,
+      stat: { STR: true, MAG: true },
+      parent: "Corrin (F)",
+    }, "Kana (F)": {
+      base: "Nohr Prince",
+      class: ["Nohr Prince"],
+      pairings: BR_ACM,
+      stat: { STR: true, MAG: true },
+      parent: "Corrin (M)",
+    }, "Shigure": {
+      base: "Sky Knight",
+      class: ["Sky Knight", "Troubadour (M)"],
+      pairings: BR_ACF,
+      stat: { STR: true },
+      parent: "Azura",
+    }, "Dwyer": {
+      base: "Troubadour (M)",
+      class: ["Troubadour (F)", "Cavalier"],
+      pairings: BR_ACF,
+      stat: { STR: true },
+      parent: "Jakob",
+    }, "Sophie": {
+      base: "Cavalier",
+      class: ["Cavalier", "Mercenary"],
+      pairings: BR_ACM,
+      stat: { STR: true },
+      parent: "Silas",
+    }, "Midori": {
+      base: "Apothecary",
+      class: ["Apothecary", "Ninja"],
+      pairings: BR_ACM,
+      stat: { STR: true },
+      parent: "Kaze",
+    }, "Shiro": {
+      base: "Spear Fighter",
+      class: ["Spear Fighter", "Samurai"],
+      pairings: BR_ACF,
+      stat: { STR: true },
+      parent: "Ryoma",
+    }, "Kiragi": {
+      base: "Archer",
+      class: ["Archer", "Spear Fighter"],
+      pairings: BR_ACF,
+      stat: { STR: true },
+      parent: "Takumi",
+    }, "Asugi": {
+      base: "Ninja",
+      class: ["Ninja", "Samurai"],
+      pairings: BR_ACF,
+      stat: { STR: true, MAG: true },
+      parent: "Saizo",
+    }, "Selkie": {
+      base: "Kitsune",
+      class: ["Kitsune", "Diviner"],
+      pairings: BR_ACM,
+      stat: { STR: true },
+      parent: "Kaden",
+    }, "Hisame": {
+      base: "Samurai",
+      class: ["Samurai", "Oni Savage"],
+      pairings: BR_ACF,
+      stat: { STR: true },
+      parent: "Hinata",
+    }, "Mitama": {
+      base: "Shrine Maiden",
+      class: ["Shrine Maiden", "Apothecary"],
+      pairings: BR_ACM,
+      stat: { STR: true, MAG: true },
+      parent: "Azama",
+    }, "Caeldori": {
+      base: "Sky Knight",
+      class: ["Sky Knight", "Samurai"],
+      pairings: BR_ACM,
+      stat: { STR: true },
+      parent: "Subaki",
+    }, "Rhajat": {
+      base: "Diviner",
+      class: ["Diviner", "Oni Savage"],
+      pairings: BR_ACM.concat(["Corrin (F)"]),
+      stat: { MAG: true },
+      parent: "Hayato",
+    }
   },
   classes: {
     ...FATES_CLASSES,
@@ -2355,6 +2454,91 @@ const fe14cq = {
     }
   },
   children: {
+    "Kana (M)": {
+      base: "Nohr Prince",
+      class: ["Nohr Prince"],
+      pairings: CQ_ACF,
+      stat: { STR: true, MAG: true },
+      parent: "Corrin (F)",
+    }, "Kana (F)": {
+      base: "Nohr Prince",
+      class: ["Nohr Prince"],
+      pairings: CQ_ACM,
+      stat: { STR: true, MAG: true },
+      parent: "Corrin (M)",
+    }, "Shigure": {
+      base: "Sky Knight",
+      class: ["Sky Knight", "Troubadour (M)"],
+      pairings: CQ_ACF,
+      stat: { STR: true },
+      parent: "Azura",
+    }, "Dwyer": {
+      base: "Troubadour (M)",
+      class: ["Troubadour (M)", "Cavalier"],
+      pairings: CQ_ACF,
+      stat: { STR: true },
+      parent: "Jakob",
+    }, "Sophie": {
+      base: "Cavalier",
+      class: ["Cavalier", "Mercenary"],
+      pairings: CQ_ACM,
+      stat: { STR: true },
+      parent: "Silas",
+    }, "Midori": {
+      base: "Apothecary",
+      class: ["Apothecary", "Ninja"],
+      pairings: CQ_ACM,
+      stat: { STR: true },
+      parent: "Kaze",
+    }, "Siegbert": {
+      base: "Cavalier",
+      class: ["Cavalier", "Wyvern Rider"],
+      pairings: CQ_ACF,
+      stat: { STR: true },
+      parent: "Xander",
+    }, "Forrest": {
+      base: "Troubadour (M)",
+      class: ["Troubadour (M)", "Dark Mage"],
+      pairings: CQ_ACF,
+      stat: { MAG: true },
+      parent: "Leo",
+    }, "Ignatius": {
+      base: "Knight",
+      class: ["Knight", "Fighter"],
+      pairings: CQ_ACF,
+      stat: { STR: true },
+      parent: "Benny",
+    }, "Velouria": {
+      base: "Wolfskin",
+      class: ["Wolfskin", "Fighter"],
+      pairings: CQ_ACM,
+      stat: { STR: true },
+      parent: "Keaton",
+    }, "Percy": {
+      base: "Wyvern Rider",
+      class: ["Wyvern Rider", "Fighter"],
+      pairings: CQ_ACF,
+      stat: { STR: true },
+      parent: "Arthur",
+    }, "Ophelia": {
+      base: "Dark Mage",
+      class: ["Dark Mage", "Samurai"],
+      pairings: CQ_ACM,
+      stat: { MAG: true },
+      parent: "Odin",
+    }, "Soleil": {
+      base: "Mercenary",
+      class: ["Mercenary", "Ninja"],
+      pairings: CQ_ACM,
+      stat: { STR: true },
+      parent: "Laslow",
+    }, "Nina": {
+      base: "Outlaw",
+      class: ["Outlaw", "Dark Mage"],
+      pairings: CQ_ACM,
+      stat: { STR: true },
+      parent: "Niles"
+    }
   },
   classes:  {
     ...FATES_CLASSES,
@@ -2651,6 +2835,139 @@ const fe14rev = {
     }
   },
   children: {
+    "Kana (M)": {
+      base: "Nohr Prince",
+      class: ["Nohr Prince"],
+      pairings: RV_ACF,
+      stat: { STR: true, MAG: true },
+      parent: "Corrin (F)",
+    }, "Kana (F)": {
+      base: "Nohr Prince",
+      class: ["Nohr Prince"],
+      pairings: RV_ACM,
+      stat: { STR: true, MAG: true },
+      parent: "Corrin (M)",
+    }, "Shigure": {
+      base: "Sky Knight",
+      class: ["Sky Knight", "Troubadour (M)"],
+      pairings: RV_ACF,
+      stat: { STR: true },
+      parent: "Azura",
+    }, "Dwyer": {
+      base: "Troubadour (M)",
+      class: ["Troubadour (M)", "Cavalier"],
+      pairings: RV_ACF,
+      stat: { STR: true },
+      parent: "Jakob",
+    }, "Sophie": {
+      base: "Cavalier",
+      class: ["Cavalier", "Mercenary"],
+      pairings: RV_ACM,
+      stat: { STR: true },
+      parent: "Silas",
+    }, "Midori": {
+      base: "Apothecary",
+      class: ["Apothecary", "Ninja"],
+      pairings: RV_ACM,
+      stat: { STR: true },
+      parent: "Kaze",
+    }, "Shiro": {
+      base: "Spear Fighter",
+      class: ["Spear Fighter", "Samurai"],
+      pairings: BR_ACF,
+      stat: { STR: true },
+      parent: "Ryoma",
+    }, "Kiragi": {
+      base: "Archer",
+      class: ["Archer", "Spear Fighter"],
+      pairings: BR_ACF,
+      stat: { STR: true },
+      parent: "Takumi",
+    }, "Asugi": {
+      base: "Ninja",
+      class: ["Ninja", "Samurai"],
+      pairings: BR_ACF,
+      stat: { STR: true, MAG: true },
+      parent: "Saizo",
+    }, "Selkie": {
+      base: "Kitsune",
+      class: ["Kitsune", "Diviner"],
+      pairings: BR_ACM,
+      stat: { STR: true },
+      parent: "Kaden",
+    }, "Hisame": {
+      base: "Samurai",
+      class: ["Samurai", "Oni Savage"],
+      pairings: BR_ACF,
+      stat: { STR: true },
+      parent: "Hinata",
+    }, "Mitama": {
+      base: "Shrine Maiden",
+      class: ["Shrine Maiden", "Apothecary"],
+      pairings: BR_ACM,
+      stat: { STR: true, MAG: true },
+      parent: "Azama",
+    }, "Caeldori": {
+      base: "Sky Knight",
+      class: ["Sky Knight", "Samurai"],
+      pairings: BR_ACM,
+      stat: { STR: true },
+      parent: "Subaki",
+    }, "Rhajat": {
+      base: "Diviner",
+      class: ["Diviner", "Oni Savage"],
+      pairings: BR_ACM.concat(["Corrin (F)"]),
+      stat: { MAG: true },
+      parent: "Hayato",
+    }, "Siegbert": {
+      base: "Cavalier",
+      class: ["Cavalier", "Wyvern Rider"],
+      pairings: CQ_ACF,
+      stat: { STR: true },
+      parent: "Xander",
+    }, "Forrest": {
+      base: "Troubadour (M)",
+      class: ["Troubadour (M)", "Dark Mage"],
+      pairings: CQ_ACF,
+      stat: { MAG: true },
+      parent: "Leo",
+    }, "Ignatius": {
+      base: "Knight",
+      class: ["Knight", "Fighter"],
+      pairings: CQ_ACF,
+      stat: { STR: true },
+      parent: "Benny",
+    }, "Velouria": {
+      base: "Wolfskin",
+      class: ["Wolfskin", "Fighter"],
+      pairings: CQ_ACM,
+      stat: { STR: true },
+      parent: "Keaton",
+    }, "Percy": {
+      base: "Wyvern Rider",
+      class: ["Wyvern Rider", "Fighter"],
+      pairings: CQ_ACF,
+      stat: { STR: true },
+      parent: "Arthur",
+    }, "Ophelia": {
+      base: "Dark Mage",
+      class: ["Dark Mage", "Samurai"],
+      pairings: CQ_ACM,
+      stat: { MAG: true },
+      parent: "Odin",
+    }, "Soleil": {
+      base: "Mercenary",
+      class: ["Mercenary", "Ninja"],
+      pairings: CQ_ACM,
+      stat: { STR: true },
+      parent: "Laslow",
+    }, "Nina": {
+      base: "Outlaw",
+      class: ["Outlaw", "Dark Mage"],
+      pairings: CQ_ACM,
+      stat: { STR: true },
+      parent: "Niles"
+    }
   },
   classes: {
     ...FATES_CLASSES,
