@@ -12,16 +12,35 @@ class CharacterList extends Component {
 
   getDisplayName(char) {
     const game = Game[this.props.game];
-    // ! notation for kids
+    const picks = this.props.picks;
+
     let name = '';
+    let extra = '';
+    // ! notation for kids
     if (game.children && game.children[char.name]) {
-      name += this.props.picks.pairings[game.children[char.name].parent] + '!';
+      name += picks.pairings[game.children[char.name].parent] + '!';
     }
+
+    // actual name
     name += char.name;
-    if (this.props.picks.options['pairings'] && !this.props.picks.options['onlypairs'] && this.props.picks.pairings[char.name]) {
+
+    // pairing if applicable
+    if (picks.options['pairings'] && !picks.options['onlypairs']
+        && picks.pairings[char.name] && char.showPair) {
       name += ' (S ' + this.props.picks.pairings[char.name] + ')';
     }
-    return name;
+
+    // boon/bane for avatar
+    if (char.name.indexOf(game.avatar) !== -1) {
+      extra += '+' + char.stats.boon + ' -' + char.stats.bane + ' ';
+    }
+
+    return (
+      <td>
+        <p>{name}</p>
+        <p>{extra}</p>
+      </td>
+    );
   }
 
   render() {
@@ -48,8 +67,8 @@ class CharacterList extends Component {
       for (let i = 0; i < picks.length; i+= 2) {
         const char1 = picks[i];
         const char2 = picks[i+1];
-        const char1display = this.getDisplayName(char1);
-        const char2display = this.getDisplayName(char2);
+        // const char1display ;
+        // const char2display ;
         tableRows.push((
           <tr key={char1.name}>
             <td width={width}>
@@ -58,7 +77,7 @@ class CharacterList extends Component {
                 alt={char1.name}
               />
             </td>
-            <td>{char1display}</td>
+            {this.getDisplayName(char1)}
             <td>{char1.class}</td>
             <td> S-rank </td>
             <td width={width}>
@@ -67,7 +86,7 @@ class CharacterList extends Component {
                 alt={char2.name}
               />
             </td>
-            <td>{char2display}</td>
+            {this.getDisplayName(char2)}
             <td>{char2.class}</td>
           </tr>
         ));

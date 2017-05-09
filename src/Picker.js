@@ -65,8 +65,20 @@ export default class Picker {
         }
       }
 
-      if (avatar)
+      if (avatar) {
         this.makePick(avatar);
+
+        // pick boon and bane stats for avatar
+        const stats = ["Str", "Mag", "Skl", "Spd", "Luk", "Def", "Res"];
+        this.picks.characters[0].stats = {
+          boon: null,
+          bane: null,
+        }
+        while (this.picks.characters[0].stats.boon === this.picks.characters[0].stats.bane) {
+          this.picks.characters[0].stats.boon = getOrRand(stats);
+          this.picks.characters[0].stats.bane = getOrRand(stats);
+        }
+      }
 
       // pick free characters
       for (const forced of this.game.free) {
@@ -145,7 +157,18 @@ export default class Picker {
     if (this.options['classes'] || !this.game.flags['classes']) {
       if (this.options['pairings'] && this.game.inheritClasses) {
         // check for inheritance (from partners/friends/parents)
-        pick.class = getOrRand(this.game.inheritClasses(this.game, this.picks.pairings, char));
+        const classPool = this.game.inheritClasses(this.game, this.picks.pairings, char);
+        const classPick = randIn(classPool);
+        pick.class = classPool[classPick];
+        // only show pairing if class is inherited from them
+        if (this.game.short === 'fe14' && !this.options['onlypairs']) {
+          // first added class is partner's
+          if (this.game.characters[char] && classPick === this.game.characters[char].class.length)
+            pick.showPair = true;
+          // for kids, it's the second because they inherit a class from a parent
+          if (this.game.children[char] && classPick === this.game.children[char].class.length)
+            pick.showPair = true;
+        }
       } else {
         pick.class = getOrRand(character.class);
       }

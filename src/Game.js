@@ -1752,11 +1752,6 @@ const FATES_inheritClasses = function(game, pairings, to) {
   const char = game.characters[to] || game.children[to];
   let classes = char.class.slice();
 
-  // inherit from partner (if exists)
-  if (pairings[to]) {
-    _FATES_inheritClassesInternal(game, classes, pairings[to]);
-  }
-
   // inherit from parent (if exists);
   if (game.children[to]) {
     const parent1 = game.children[to].parent;
@@ -1768,6 +1763,11 @@ const FATES_inheritClasses = function(game, pairings, to) {
       _FATES_inheritClassesInternal(game, classes, parent2);
   }
 
+  // inherit from partner (if exists)
+  if (pairings[to]) {
+    _FATES_inheritClassesInternal(game, classes, pairings[to]);
+  }
+  
   return classes;
 }
 
