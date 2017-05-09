@@ -1179,7 +1179,9 @@ const AWAKE_F = ["Robin (F)", "Lissa", "Sully", "Miriel", "Maribelle", "Panne", 
 const AWAKE_CM = ["Owain", "Inigo", "Brady", "Gerome", "Morgan (M)", "Yarne", "Laurent"];
 const AWAKE_CF = ["Lucina", "Kjelle", "Cynthia", "Severa", "Morgan (F)", "Noire", "Nah"];
 
-const AWAKENING_inheritClasses = function(game, pairings, to) {
+const AWAKENING_inheritClasses = function(game, picks, to) {
+  const pairings = picks.pairings;
+
   // only kids inherit in awakening
   if (!game.children[to]) {
     return game.characters[to].class;
