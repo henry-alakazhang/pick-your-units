@@ -4,7 +4,8 @@ const fe1 = {
     "Abel": {
       class:"Cavalier",
     }, "Arran": {
-      class:"Paladin"
+      class:"Paladin",
+      exclude: ["Samson"],
     }, "Astria": {
       class:"Hero"
     }, "Bantu": {
@@ -80,7 +81,8 @@ const fe1 = {
     }, "Cord": {
       class:"Fighter"
     }, "Samson": {
-      class:"Hero"
+      class:"Hero",
+      exclude: ["Arran"],
     }, "Caeda": {
       class:"Pegasus Knight"
     }, "Tomas": {
@@ -134,7 +136,7 @@ const fe1 = {
     },
     "Hunter": {
       weapons: ["Bow"],
-      promo: null
+      promo: "Sniper"
     },
     "Bow Knight": {
       weapons: ["Bow"],
@@ -953,8 +955,6 @@ const fe9 = {
       class:"Tiger"
     },"Muarim": {
       class:"Tiger"
-    },"Naesala": {
-      class:"Raven"
     },"Nephenee": {
       class:"Soldier"
     },"Oscar": {
@@ -979,8 +979,6 @@ const fe9 = {
       class:"Falcon Knight"
     },"Tauroneo": {
       class:"General"
-    },"Tibarn": {
-      class:"Hawk"
     },"Titania": {
       class:"Paladin (Lance/Axe)"
     },"Tormod": {
@@ -1676,7 +1674,7 @@ const FATES_CF = ["Sophie", "Midori"];
 const BR_M = ["Saizo", "Kaden", "Hinata", "Azama", "Subaki", "Hayato"];
 const BR_RM = ["Ryoma", "Takumi"];
 const BR_AM = FATES_M.concat(BR_M, BR_RM);
-const BR_F = ["Hinoka", "Sakura", "Rinkah", "Orochi", "Kagero", "Hana", "Setsuna", "Oboro"];
+const BR_F = ["Rinkah", "Orochi", "Kagero", "Hana", "Setsuna", "Oboro"];
 const BR_RF = ["Hinoka", "Sakura"];
 const BR_AF = FATES_F.concat(BR_F, BR_RF);
 const BR_CM = ["Shiro", "Kiragi", "Asugi", "Hisame"];
@@ -2390,13 +2388,13 @@ const fe14cq = {
       class:["Villager", "Archer"],
       base: "Villager",
       pairings: CQ_AM,
+      friends: ["Effie", "Nyx"],
       stat: { STR: true }
     },
     "Gunter": {
       class:["Cavalier", "Mercenary", "Wyvern Rider"],
       base: "Great Knight",
       pairings: ["Corrin (F)"],
-      friends: ["Effie", "Nyx"],
       stat: { STR: true }
     },
     "Elise": {
