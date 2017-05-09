@@ -76,7 +76,7 @@ class GameOptions extends Component {
               style={styles.spinner}
               type="number"
               value={this.props.numPicks}
-              min={0}
+              min={2}
               max={22}
               onChange={this.props.handleNumChange}
             />
