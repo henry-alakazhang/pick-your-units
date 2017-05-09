@@ -27,7 +27,9 @@ export default class Picker {
       characters: [],
       weapons: {},
       pairings: {},
+      friends: {},
       options: {
+        friends: options['friends'],
         pairings: options['pairings'],
         onlypairs: options['onlypairs'],
       }
@@ -62,6 +64,17 @@ export default class Picker {
         }
         for (const other of this.pool) {
           this.pairUp(other);
+        }
+      }
+
+      if (this.game.flags['friends'] && this.options['friends']) {
+        for (const char in this.game.characters) {
+          if (this.game.characters[char].friends)
+            this.picks.friends[char] = getOrRand(this.game.characters[char].friends);
+        }
+        for (const child in this.game.children) {
+          if (this.game.children[child].friends)
+            this.picks.friends[child] = getOrRand(this.game.children[child].friends);
         }
       }
 
@@ -157,17 +170,31 @@ export default class Picker {
     if (this.options['classes'] || !this.game.flags['classes']) {
       if (this.options['pairings'] && this.game.inheritClasses) {
         // check for inheritance (from partners/friends/parents)
-        const classPool = this.game.inheritClasses(this.game, this.picks.pairings, char);
+        const classPool = this.game.inheritClasses(this.game, this.picks, char);
         const classPick = randIn(classPool);
+        console.log(char, classPool);
         pick.class = classPool[classPick];
+
         // only show pairing if class is inherited from them
-        if (this.game.short === 'fe14' && !this.options['onlypairs']) {
+        if (this.game.short === 'fe14' && !this.options['onlypairs'] && this.picks.pairings[char]) {
           // first added class is partner's
-          if (this.game.characters[char] && classPick === this.game.characters[char].class.length)
+          if (classPick === character.class.length)
             pick.showPair = true;
           // for kids, it's the second because they inherit a class from a parent
-          if (this.game.children[char] && classPick === this.game.children[char].class.length)
+          if (classPick === character.class.length + 1)
             pick.showPair = true;
+        }
+
+        // only show friend if class is inherited from them
+        if (this.options['friends'] && this.picks.friends[char]) {
+          // skip over a class if paired
+          const add = (this.picks.pairings[char] ? 1 : 0)
+          // second class added is a friend's
+          if (classPick === character.class.length + add)
+            pick.showFriend = true;
+          // for kids, it's the third because they inherit a class from a parent
+          if (classPick === character.class.length + add + 1)
+            pick.showFriend = true;
         }
       } else {
         pick.class = getOrRand(character.class);

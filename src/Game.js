@@ -1748,14 +1748,14 @@ const _FATES_inheritClassesInternal = function(game, classes, from) {
   return classes;
 }
 
-const FATES_inheritClasses = function(game, pairings, to) {
+const FATES_inheritClasses = function(game, picks, to) {
   const char = game.characters[to] || game.children[to];
   let classes = char.class.slice();
 
   // inherit from parent (if exists);
   if (game.children[to]) {
     const parent1 = game.children[to].parent;
-    const parent2 = pairings[parent1];
+    const parent2 = picks.pairings[parent1];
     // inherit from main parent if not automated (Kana only)
     if (parent1 && classes.length === 1)
       _FATES_inheritClassesInternal(game, classes, parent1);
@@ -1764,10 +1764,14 @@ const FATES_inheritClasses = function(game, pairings, to) {
   }
 
   // inherit from partner (if exists)
-  if (pairings[to]) {
-    _FATES_inheritClassesInternal(game, classes, pairings[to]);
+  if (picks.pairings[to]) {
+    _FATES_inheritClassesInternal(game, classes, picks.pairings[to]);
   }
-  
+
+  if (picks.options['friends'] && picks.friends[to]) {
+    _FATES_inheritClassesInternal(game, classes, picks.friends[to]);
+  }
+
   return classes;
 }
 
@@ -2019,30 +2023,35 @@ const fe14br = {
       class:["Troubadour (F)", "Mercenary"],
       base: "Maid",
       pairings: BR_AM,
+      friends: ["Hana"],
       stat: { MAG: true }
     },
     "Jakob": {
       class:["Troubadour (M)", "Cavalier"],
       base: "Butler",
       pairings: BR_AF,
+      friends: ["Silas", "Takumi"],
       stat: { STR: true }
     },
     "Kaze": {
       class:["Ninja", "Samurai"],
       base: "Ninja",
       pairings: BR_AF,
+      friends: ["Saizo", "Silas"],
       stat: { STR: true }
     },
     "Azura": {
       class:["Songstress", "Sky Knight"],
       base: "Songstress",
       pairings: BR_AM,
+      friends: ["Hinoka", "Sakura"],
       stat: { STR: true }
     },
     "Silas": {
       class:["Cavalier", "Mercenary"],
       base: "Cavalier",
       pairings: BR_AF,
+      friends: ["Ryoma", "Jakob", "Kaze"],
       stat: { STR: true }
     },
     "Shura": {
@@ -2055,90 +2064,105 @@ const fe14br = {
       class:["Villager", "Archer"],
       base: "Villager",
       pairings: BR_AM,
+      friends: ["Oboro"],
       stat: { STR: true }
     },
     "Rinkah": {
       class:["Oni Savage", "Ninja"],
       base: "Oni Savage",
       pairings: BR_AM,
+      friends: ["Orochi", "Kagero", "Oboro"],
       stat: { STR: true }
     },
     "Sakura": {
       class:["Shrine Maiden", "Sky Knight"],
       base: "Shrine Maiden",
       pairings: FATES_M.concat(BR_M),
+      friends: ["Hinoka", "Hana", "Azura"],
       stat: { STR: true, MAG: true }
     },
     "Hana": {
       class:["Samurai", "Shrine Maiden"],
       base: "Samurai",
       pairings: BR_AM,
+      friends: ["Sakura", "Setsuna"],
       stat: { STR: true }
     },
     "Subaki": {
       class:["Sky Knight", "Samurai"],
       base: "Sky Knight",
       pairings: BR_AF,
+      friends: ["Azama", "Saizo", "Hinata"],
       stat: { STR: true }
     },
     "Saizo": {
       class:["Ninja", "Samurai"],
       base: "Ninja",
       pairings: BR_AF,
+      friends: ["Ryoma", "Subaki", "Kaze"],
       stat: { STR: true, MAG: true }
     },
     "Orochi": {
       class:["Diviner", "Apothecary"],
       base: "Diviner",
       pairings: BR_AM,
+      friends: ["Rinkah", "Kagero", "Oboro"],
       stat: { MAG: true }
     },
     "Hinoka": {
       class:["Sky Knight", "Spear Fighter"],
       base: "Sky Knight",
       pairings: FATES_M.concat(BR_M),
+      friends: ["Sakura", "Setsuna", "Azura"],
       stat: { STR: true }
     },
     "Azama": {
       class:["Monk", "Apothecary"],
       base: "Monk",
       pairings: BR_AF,
+      friends: ["Kaden", "Subaki", "Hayato"],
       stat: { STR: true }
     },
     "Setsuna": {
       class:["Archer", "Ninja"],
       base: "Archer",
       pairings: BR_AM,
+      friends: ["Hinoka", "Kagero", "Hana"],
       stat: { STR: true }
     },
     "Hayato": {
       class:["Diviner", "Oni Savage"],
       base: "Diviner",
       pairings: BR_AF,
+      friends: ["Kaden", "Azama"],
       stat: { STR: true, MAG: true }
     },
     "Oboro": {
       class:["Spear Fighter", "Apothecary"],
       base: "Spear Fighter",
       pairings: BR_AM,
+      friends: ["Orochi", "Rinkah", "Mozu"],
       stat: { STR: true }
     },
     "Hinata": {
       class:["Samurai", "Oni Savage"],
       base: "Samurai",
       pairings: BR_AF,
+      friends: ["Takumi", "Kaden", "Subaki"],
       stat: { STR: true }
     },
     "Takumi": {
       class:["Archer", "Spear Fighter"],
       base: "Archer",
       pairings: FATES_F.concat(BR_F),
+      friends: ["Ryoma", "Hinata", "Jakob"],
       stat: { STR: true }
     },
     "Kagero": {
       class:["Ninja", "Diviner"],
       base: "Ninja",
       pairings: BR_AM,
+      friends: ["Orochi", "Rinkah", "Setsuna"],
       stat: { STR: true }
     },
     "Reina": {
@@ -2151,12 +2175,14 @@ const fe14br = {
       class:["Kitsune", "Diviner"],
       base: "Kitsune",
       pairings: BR_AF,
+      friends: ["Hinata", "Azama", "Hayato"],
       stat: { STR: true }
     },
     "Ryoma": {
       class:["Samurai", "Sky Knight"],
       base: "Swordmaster",
       pairings: FATES_F.concat(BR_F),
+      friends: ["Saizo", "Silas", "Takumi"],
       stat: { STR: true }
     },
     "Izana": {
@@ -2183,84 +2209,98 @@ const fe14br = {
       base: "Nohr Prince",
       class: ["Nohr Prince"],
       pairings: BR_ACF,
+      friends: ["Shiro"],
       stat: { STR: true, MAG: true },
       parent: "Corrin (F)",
     }, "Kana (F)": {
       base: "Nohr Prince",
       class: ["Nohr Prince"],
       pairings: BR_ACM,
+      friends: ["Midori", "Mitama", "Selkie"],
       stat: { STR: true, MAG: true },
       parent: "Corrin (M)",
     }, "Shigure": {
       base: "Sky Knight",
       class: ["Sky Knight", "Troubadour (M)"],
       pairings: BR_ACF,
+      friends: ["Hisame"],
       stat: { STR: true },
       parent: "Azura",
     }, "Dwyer": {
       base: "Troubadour (M)",
       class: ["Troubadour (F)", "Cavalier"],
       pairings: BR_ACF,
+      friends: ["Asugi", "Kiragi"],
       stat: { STR: true },
       parent: "Jakob",
     }, "Sophie": {
       base: "Cavalier",
       class: ["Cavalier", "Mercenary"],
       pairings: BR_ACM,
+      friends: ["Caeldori"],
       stat: { STR: true },
       parent: "Silas",
     }, "Midori": {
       base: "Apothecary",
       class: ["Apothecary", "Ninja"],
       pairings: BR_ACM,
+      friends: ["Selkie", "Kana (F)"],
       stat: { STR: true },
       parent: "Kaze",
     }, "Shiro": {
       base: "Spear Fighter",
       class: ["Spear Fighter", "Samurai"],
       pairings: BR_ACF,
+      friends: ["Kiragi", "Asugi", "Kana (M)"],
       stat: { STR: true },
       parent: "Ryoma",
     }, "Kiragi": {
       base: "Archer",
       class: ["Archer", "Spear Fighter"],
       pairings: BR_ACF,
+      friends: ["Shiro", "Hisame", "Dwyer"],
       stat: { STR: true },
       parent: "Takumi",
     }, "Asugi": {
       base: "Ninja",
       class: ["Ninja", "Samurai"],
       pairings: BR_ACF,
+      friends: ["Shiro", "Hisame", "Dwyer"],
       stat: { STR: true, MAG: true },
       parent: "Saizo",
     }, "Selkie": {
       base: "Kitsune",
       class: ["Kitsune", "Diviner"],
       pairings: BR_ACM,
+      friends: ["Rhajat", "Midori", "Kana (F)"],
       stat: { STR: true },
       parent: "Kaden",
     }, "Hisame": {
       base: "Samurai",
       class: ["Samurai", "Oni Savage"],
       pairings: BR_ACF,
+      friends: ["Kiragi", "Asugi", "Shigure"],
       stat: { STR: true },
       parent: "Hinata",
     }, "Mitama": {
       base: "Shrine Maiden",
       class: ["Shrine Maiden", "Apothecary"],
       pairings: BR_ACM,
+      friends: ["Caeldori", "Rhajat", "Kana (F)"],
       stat: { STR: true, MAG: true },
       parent: "Azama",
     }, "Caeldori": {
       base: "Sky Knight",
       class: ["Sky Knight", "Samurai"],
       pairings: BR_ACM,
+      friends: ["Mitama", "Rhajat", "Sophie"],
       stat: { STR: true },
       parent: "Subaki",
     }, "Rhajat": {
       base: "Diviner",
       class: ["Diviner", "Oni Savage"],
       pairings: BR_ACM.concat(["Corrin (F)"]),
+      friends: ["Caeldori", "Mitama", "Selkie"],
       stat: { MAG: true },
       parent: "Hayato",
     }
@@ -2307,30 +2347,35 @@ const fe14cq = {
       class:["Troubadour (F)", "Mercenary"],
       base: "Maid",
       pairings: CQ_AM,
+      friends: ["Peri", "Flora"],
       stat: { MAG: true }
     },
     "Jakob": {
       class:["Troubadour (M)", "Cavalier"],
       base: "Butler",
       pairings: CQ_AF,
+      friends: ["Gunter", "Silas"],
       stat: { STR: true }
     },
     "Kaze": {
       class:["Ninja", "Samurai"],
       base: "Ninja",
       pairings: CQ_AF,
+      friends: ["Silas", "Xander"],
       stat: { STR: true }
     },
     "Azura": {
       class:["Songstress", "Sky Knight"],
       base: "Songstress",
       pairings: CQ_AM,
+      friends: ["Elise"],
       stat: { STR: true }
     },
     "Silas": {
       class:["Cavalier", "Mercenary"],
       base: "Cavalier",
       pairings: CQ_AF,
+      friends: ["Jakob", "Kaze"],
       stat: { STR: true }
     },
     "Shura": {
@@ -2349,108 +2394,126 @@ const fe14cq = {
       class:["Cavalier", "Mercenary", "Wyvern Rider"],
       base: "Great Knight",
       pairings: ["Corrin (F)"],
+      friends: ["Effie", "Nyx"],
       stat: { STR: true }
     },
     "Elise": {
       class:["Troubadour (F)", "Wyvern Rider"],
       base: "Troubadour (F)",
       pairings: FATES_M.concat(CQ_M),
+      friends: ["Camilla", "Azura", "Effie"],
       stat: { MAG: true }
     },
     "Arthur": {
       class:["Fighter", "Cavalier"],
       base: "Fighter",
       pairings: CQ_AF,
+      friends: ["Benny", "Keaton", "Niles"],
       stat: { STR: true }
     },
     "Effie": {
       class:["Knight", "Troubadour (F)"],
       base: "Knight",
       pairings: CQ_AM,
+      friends: ["Elise", "Mozu", "Nyx"],
       stat: { STR: true }
     },
     "Odin": {
       class:["Dark Mage", "Samurai"],
       base: "Dark Mage",
       pairings: CQ_AF,
+      friends: ["Leo", "Laslow", "Niles"],
       stat: { STR: true, MAG: true }
     },
     "Niles": {
       class:["Outlaw", "Dark Mage"],
       base: "Outlaw",
       pairings: CQ_AF.concat(["Corrin (M)"]),
+      friends: ["Leo", "Odin", "Arthur"],
       stat: { STR: true }
     },
     "Nyx": {
       class:["Dark Mage", "Outlaw"],
       base: "Dark Mage",
       pairings: CQ_AM,
+      friends: ["Mozu", "Charlotte", "Effie"],
       stat: { MAG: true }
     },
     "Camilla": {
       class:["Wyvern Rider", "Dark Mage"],
       base: "Malig Knight",
       pairings: FATES_M.concat(CQ_M),
+      friends: ["Elise", "Beruka", "Selena"],
       stat: { STR: true, MAG: true }
     },
     "Selena": {
       class:["Mercenary", "Sky Knight"],
       base: "Mercenary",
       pairings: CQ_AM,
+      friends: ["Camilla", "Beruka", "Peri"],
       stat: { STR: true }
     },
     "Beruka": {
       class:["Wyvern Rider", "Fighter"],
       base: "Wyvern Rider",
       pairings: CQ_AM,
+      friends: ["Camilla", "Charlotte", "Selena"],
       stat: { STR: true }
     },
     "Laslow": {
       class:["Mercenary", "Ninja"],
       base: "Mercenary",
       pairings: CQ_AF,
+      friends: ["Xander", "Odin", "Keaton"],
       stat: { STR: true }
     },
     "Peri": {
       class:["Cavalier", "Dark Mage"],
       base: "Cavalier",
       pairings: CQ_AM,
+      friends: ["Felicia", "Charlotte", "Selena"],
       stat: { STR: true }
     },
     "Benny": {
       class:["Knight", "Fighter"],
       base: "Knight",
       pairings: CQ_AF,
+      friends: ["Keaton", "Arthur"],
       stat: { STR: true }
     },
     "Charlotte": {
       class:["Fighter", "Troubadour (F)"],
       base: "Fighter",
       pairings: CQ_AM,
+      friends: ["Peri", "Beruka", "Nyx"],
       stat: { STR: true }
     },
     "Leo": {
       class:["Dark Mage", "Troubadour (M)"],
       base: "Dark Knight",
       pairings: FATES_F.concat(CQ_F),
+      friends: ["Xander", "Odin", "Niles"],
       stat: { STR: true, MAG: true }
     },
     "Keaton": {
       class:["Wolfskin", "Fighter"],
       base: "Wolfskin",
       pairings: CQ_AF,
+      friends: ["Benny", "Arthur", "Laslow"],
       stat: { STR: true }
     },
     "Xander": {
       class:["Cavalier", "Wyvern Rider"],
       base: "Paladin",
       pairings: FATES_F.concat(CQ_F),
+      friends: ["Kaze", "Laslow", "Leo"],
       stat: { STR: true }
     },
     "Flora": {
       class:["Troubadour (F)", "Dark Mage", "Mercenary"],
       base: "Maid",
       pairings: ["Corrin (M)"],
+      friends: ["Felicia"],
       stat: { STR: true }
     },
     "Izana": {
@@ -2465,84 +2528,98 @@ const fe14cq = {
       base: "Nohr Prince",
       class: ["Nohr Prince"],
       pairings: CQ_ACF,
+    	friends: ["Siegbert", "Percy"],
       stat: { STR: true, MAG: true },
       parent: "Corrin (F)",
     }, "Kana (F)": {
       base: "Nohr Prince",
       class: ["Nohr Prince"],
       pairings: CQ_ACM,
+      friends: ["Midori", "Velouria"],
       stat: { STR: true, MAG: true },
       parent: "Corrin (M)",
     }, "Shigure": {
       base: "Sky Knight",
       class: ["Sky Knight", "Troubadour (M)"],
       pairings: CQ_ACF,
+      friends: ["Forrest"],
       stat: { STR: true },
       parent: "Azura",
     }, "Dwyer": {
       base: "Troubadour (M)",
       class: ["Troubadour (M)", "Cavalier"],
       pairings: CQ_ACF,
+      friends: ["Percy"],
       stat: { STR: true },
       parent: "Jakob",
     }, "Sophie": {
       base: "Cavalier",
       class: ["Cavalier", "Mercenary"],
       pairings: CQ_ACM,
+      friends: ["Velouria", "Soleil"],
       stat: { STR: true },
       parent: "Silas",
     }, "Midori": {
       base: "Apothecary",
       class: ["Apothecary", "Ninja"],
       pairings: CQ_ACM,
+      friends: ["Kana (F)", "Ophelia"],
       stat: { STR: true },
       parent: "Kaze",
     }, "Siegbert": {
       base: "Cavalier",
       class: ["Cavalier", "Wyvern Rider"],
       pairings: CQ_ACF,
+      friends: ["Kana (M)", "Forrest", "Ignatius"],
       stat: { STR: true },
       parent: "Xander",
     }, "Forrest": {
       base: "Troubadour (M)",
       class: ["Troubadour (M)", "Dark Mage"],
       pairings: CQ_ACF,
+      friends: ["Siegbert", "Shigure", "Ignatius"],
       stat: { MAG: true },
       parent: "Leo",
     }, "Ignatius": {
       base: "Knight",
       class: ["Knight", "Fighter"],
       pairings: CQ_ACF,
+      friends: ["Siegbert", "Forrest", "Percy"],
       stat: { STR: true },
       parent: "Benny",
     }, "Velouria": {
       base: "Wolfskin",
       class: ["Wolfskin", "Fighter"],
       pairings: CQ_ACM,
+      friends: ["Sophie", "Kana (F)", "Nina"],
       stat: { STR: true },
       parent: "Keaton",
     }, "Percy": {
       base: "Wyvern Rider",
       class: ["Wyvern Rider", "Fighter"],
       pairings: CQ_ACF,
+      friends: ["Ignatius", "Dwyer", "Kana (M)"],
       stat: { STR: true },
       parent: "Arthur",
     }, "Ophelia": {
       base: "Dark Mage",
       class: ["Dark Mage", "Samurai"],
       pairings: CQ_ACM,
+      friends: ["Midori", "Soleil"],
       stat: { MAG: true },
       parent: "Odin",
     }, "Soleil": {
       base: "Mercenary",
       class: ["Mercenary", "Ninja"],
       pairings: CQ_ACM,
+      friends: ["Ophelia", "Sophie", "Nina"],
       stat: { STR: true },
       parent: "Laslow",
     }, "Nina": {
       base: "Outlaw",
       class: ["Outlaw", "Dark Mage"],
       pairings: CQ_ACM,
+      friends: ["Soleil", "Velouria"],
       stat: { STR: true },
       parent: "Niles"
     }
@@ -2589,30 +2666,35 @@ const fe14rev = {
       class:["Troubadour (F)", "Mercenary"],
       base: "Maid",
       pairings: RV_AM,
+      friends: ["Hana", "Peri", "Flora"],
       stat: { MAG: true }
     },
     "Jakob": {
       class:["Troubadour (M)", "Cavalier"],
       base: "Butler",
       pairings: RV_AF,
+      friends: ["Silas", "Takumi"],
       stat: { STR: true }
     },
     "Kaze": {
       class:["Ninja", "Samurai"],
       base: "Ninja",
       pairings: RV_AF,
+      friends: ["Saizo", "Silas", "Xander"],
       stat: { STR: true }
     },
     "Azura": {
       class:["Songstress", "Sky Knight"],
       base: "Songstress",
       pairings: RV_AM,
+      friends: ["Hinoka", "Sakura", "Elise"],
       stat: { STR: true }
     },
     "Silas": {
       class:["Cavalier", "Mercenary"],
       base: "Cavalier",
       pairings: RV_AF,
+      friends: ["Ryoma", "Jakob", "Kaze"],
       stat: { STR: true }
     },
     "Shura": {
@@ -2625,6 +2707,7 @@ const fe14rev = {
       class:["Villager", "Archer"],
       base: "Villager",
       pairings: RV_AM,
+      friends: ["Oboro", "Effie", "Nyx"],
       stat: { STR: true }
     },
     "Gunter": {
@@ -2637,186 +2720,217 @@ const fe14rev = {
       class:["Troubadour (F)", "Wyvern Rider"],
       base: "Troubadour (F)",
       pairings: FATES_M.concat(CQ_M).concat(BR_RM),
+      friends: ["Camilla", "Azura", "Effie", "Sakura"],
       stat: { MAG: true }
     },
     "Arthur": {
       class:["Fighter", "Cavalier"],
       base: "Fighter",
       pairings: CQ_AF.concat(["Kagero", "Setsuna"]),
+      friends: ["Benny", "Keaton", "Niles", "Azama"],
       stat: { STR: true }
     },
     "Effie": {
       class:["Knight", "Troubadour (F)"],
       base: "Knight",
       pairings: CQ_AM.concat(["Hayato", "Azama"]),
+      friends: ["Elise", "Mozu", "Nyx", "Hana"],
       stat: { STR: true }
     },
     "Odin": {
       class:["Dark Mage", "Samurai"],
       base: "Dark Mage",
       pairings: CQ_AF.concat(["Orochi", "Kagero"]),
+      friends: ["Leo", "Laslow", "Niles", "Hinata"],
       stat: { STR: true, MAG: true }
     },
     "Niles": {
       class:["Outlaw", "Dark Mage"],
       base: "Outlaw",
       pairings: CQ_AF.concat(["Corrin (M)", "Setsuna", "Oboro"]),
+      friends: ["Leo", "Odin", "Arthur", "Subaki"],
       stat: { STR: true }
     },
     "Nyx": {
       class:["Dark Mage", "Outlaw"],
       base: "Dark Mage",
       pairings: CQ_AM.concat(["Hayato", "Subaki"]),
+      friends: ["Mozu", "Charlotte", "Effie", "Orochi"],
       stat: { MAG: true }
     },
     "Camilla": {
       class:["Wyvern Rider", "Dark Mage"],
       base: "Malig Knight",
       pairings: FATES_M.concat(CQ_M).concat(BR_RM),
+      friends: ["Elise", "Beruka", "Selena", "Hinoka"],
       stat: { STR: true, MAG: true }
     },
     "Selena": {
       class:["Mercenary", "Sky Knight"],
       base: "Mercenary",
       pairings: CQ_AM.concat(["Subaki", "Hinata"]),
+      friends: ["Camilla", "Beruka", "Peri", "Setsuna"],
       stat: { STR: true }
     },
     "Beruka": {
       class:["Wyvern Rider", "Fighter"],
       base: "Wyvern Rider",
       pairings: CQ_AM.concat(["Azama", "Saizo"]),
+      friends: ["Camilla", "Charlotte", "Selena", "Oboro"],
       stat: { STR: true }
     },
     "Laslow": {
       class:["Mercenary", "Ninja"],
       base: "Mercenary",
       pairings: CQ_AF.concat(["Orochi", "Hana"]),
+      friends: ["Xander", "Odin", "Keaton", "Saizo"],
       stat: { STR: true }
     },
     "Peri": {
       class:["Cavalier", "Dark Mage"],
       base: "Cavalier",
       pairings: CQ_AM.concat(["Hinata", "Kaden"]),
+      friends: ["Felicia", "Charlotte", "Selena", "Kagero"],
       stat: { STR: true }
     },
     "Benny": {
       class:["Knight", "Fighter"],
       base: "Knight",
       pairings: CQ_AF.concat(["Rinkah", "Oboro"]),
+      friends: ["Keaton", "Arthur", "Hayato"],
       stat: { STR: true }
     },
     "Charlotte": {
       class:["Fighter", "Troubadour (F)"],
       base: "Fighter",
       pairings: CQ_AM.concat(["Saizo", "Kaden"]),
+      friends: ["Peri", "Beruka", "Nyx", "Rinkah"],
       stat: { STR: true }
     },
     "Leo": {
       class:["Dark Mage", "Troubadour (M)"],
       base: "Dark Knight",
       pairings: FATES_F.concat(CQ_F).concat(BR_RF),
+      friends: ["Xander", "Odin", "Niles", "Takumi"],
       stat: { STR: true, MAG: true }
     },
     "Keaton": {
       class:["Wolfskin", "Fighter"],
       base: "Wolfskin",
       pairings: CQ_AF.concat(["Rinkah", "Hana"]),
+      friends: ["Benny", "Arthur", "Laslow", "Kaden"],
       stat: { STR: true }
     },
     "Xander": {
       class:["Cavalier", "Wyvern Rider"],
       base: "Paladin",
       pairings: FATES_F.concat(CQ_F).concat(BR_RF),
+      friends: ["Kaze", "Laslow", "Leo", "Ryoma"],
       stat: { STR: true }
     },
     "Flora": {
       class:["Troubadour (F)", "Dark Mage", "Mercenary"],
       base: "Maid",
       pairings: ["Corrin (M)"],
+      friends: ["Felicia"],
       stat: { STR: true }
     },
     "Rinkah": {
       class:["Oni Savage", "Ninja"],
       base: "Oni Savage",
       pairings: BR_AM.concat(["Benny", "Keaton"]),
+      friends: ["Orochi", "Kagero", "Oboro", "Charlotte"],
       stat: { STR: true }
     },
     "Sakura": {
       class:["Shrine Maiden", "Sky Knight"],
       base: "Shrine Maiden",
       pairings: FATES_M.concat(BR_M).concat(CQ_RM),
+      friends: ["Hinoka", "Hana", "Azura", "Elise"],
       stat: { STR: true, MAG: true }
     },
     "Hana": {
       class:["Samurai", "Shrine Maiden"],
       base: "Samurai",
       pairings: BR_AM.concat(["Laslow", "Keaton"]),
+      friends: ["Sakura", "Setsuna", "Effie"],
       stat: { STR: true }
     },
     "Subaki": {
       class:["Sky Knight", "Samurai"],
       base: "Sky Knight",
       pairings: BR_AF.concat(["Selena", "Nyx"]),
+      friends: ["Azama", "Saizo", "Hinata", "Niles"],
       stat: { STR: true }
     },
     "Saizo": {
       class:["Ninja", "Samurai"],
       base: "Ninja",
       pairings: BR_AF.concat(["Charlotte", "Beruka"]),
+      friends: ["Ryoma", "Subaki", "Kaze", "Laslow"],
       stat: { STR: true, MAG: true }
     },
     "Orochi": {
       class:["Diviner", "Apothecary"],
       base: "Diviner",
       pairings: BR_AM.concat(["Laslow", "Odin"]),
+      friends: ["Rinkah", "Kagero", "Oboro", "Nyx"],
       stat: { MAG: true }
     },
     "Hinoka": {
       class:["Sky Knight", "Spear Fighter"],
       base: "Sky Knight",
       pairings: FATES_M.concat(BR_M).concat(CQ_RM),
+      friends: ["Sakura", "Setsuna", "Azura", "Camilla"],
       stat: { STR: true }
     },
     "Azama": {
       class:["Monk", "Apothecary"],
       base: "Monk",
       pairings: BR_AF.concat(["Effie", "Beruka"]),
+      friends: ["Kaden", "Subaki", "Hayato", "Arthur"],
       stat: { STR: true }
     },
     "Setsuna": {
       class:["Archer", "Ninja"],
       base: "Archer",
       pairings: BR_AM.concat(["Niles", "Arthur"]),
+      friends: ["Hinoka", "Kagero", "Hana", "Selena"],
       stat: { STR: true }
     },
     "Hayato": {
       class:["Diviner", "Oni Savage"],
       base: "Diviner",
       pairings: BR_AF.concat(["Nyx", "Effie"]),
+      friends: ["Kaden", "Azama", "Benny"],
       stat: { STR: true, MAG: true }
     },
     "Oboro": {
       class:["Spear Fighter", "Apothecary"],
       base: "Spear Fighter",
       pairings: BR_AM.concat(["Benny", "Niles"]),
+      friends: ["Orochi", "Rinkah", "Mozu", "Beruka"],
       stat: { STR: true }
     },
     "Hinata": {
       class:["Samurai", "Oni Savage"],
       base: "Samurai",
       pairings: BR_AF.concat(["Peri", "Selena"]),
+      friends: ["Takumi", "Kaden", "Subaki", "Odin"],
       stat: { STR: true }
     },
     "Takumi": {
       class:["Archer", "Spear Fighter"],
       base: "Archer",
       pairings: FATES_F.concat(BR_F).concat(CQ_RF),
+      friends: ["Ryoma", "Hinata", "Jakob", "Leo"],
       stat: { STR: true }
     },
     "Kagero": {
       class:["Ninja", "Diviner"],
       base: "Ninja",
       pairings: BR_AM.concat(["Odin", "Arthur"]),
+      friends: ["Orochi", "Rinkah", "Setsuna", "Peri"],
       stat: { STR: true }
     },
     "Reina": {
@@ -2829,18 +2943,21 @@ const fe14rev = {
       class:["Kitsune", "Diviner"],
       base: "Kitsune",
       pairings: BR_AF.concat(["Charlotte", "Peri"]),
+      friends: ["Hinata", "Azama", "Hayato", "Keaton"],
       stat: { STR: true }
     },
     "Ryoma": {
       class:["Samurai", "Sky Knight"],
       base: "Swordmaster",
       pairings: FATES_F.concat(BR_F).concat(CQ_RF),
+      friends: ["Saizo", "Silas", "Takumi", "Xander"],
       stat: { STR: true }
     },
     "Fuga": {
       class:["Samurai", "Oni Savage", "Monk"],
       base: "Master of Arms",
       pairings: ["Corrin (F)"],
+      friends: ["Hayato"],
       stat: { STR: true }
     }
   },
@@ -2849,132 +2966,154 @@ const fe14rev = {
       base: "Nohr Prince",
       class: ["Nohr Prince"],
       pairings: RV_ACF,
+      friends: ["Shiro", "Siegbert", "Percy"],
       stat: { STR: true, MAG: true },
       parent: "Corrin (F)",
     }, "Kana (F)": {
       base: "Nohr Prince",
       class: ["Nohr Prince"],
       pairings: RV_ACM,
+      friends: ["Midori", "Mitama", "Selkie", "Velouria"],
       stat: { STR: true, MAG: true },
       parent: "Corrin (M)",
     }, "Shigure": {
       base: "Sky Knight",
       class: ["Sky Knight", "Troubadour (M)"],
       pairings: RV_ACF,
+      friends: ["Hisame", "Forrest"],
       stat: { STR: true },
       parent: "Azura",
     }, "Dwyer": {
       base: "Troubadour (M)",
       class: ["Troubadour (M)", "Cavalier"],
       pairings: RV_ACF,
+      friends: ["Asugi", "Kiragi", "Percy"],
       stat: { STR: true },
       parent: "Jakob",
     }, "Sophie": {
       base: "Cavalier",
       class: ["Cavalier", "Mercenary"],
       pairings: RV_ACM,
+      friends: ["Caeldori", "Velouria", "Soleil"],
       stat: { STR: true },
       parent: "Silas",
     }, "Midori": {
       base: "Apothecary",
       class: ["Apothecary", "Ninja"],
       pairings: RV_ACM,
+      friends: ["Selkie", "Kana (F)", "Ophelia"],
       stat: { STR: true },
       parent: "Kaze",
     }, "Shiro": {
       base: "Spear Fighter",
       class: ["Spear Fighter", "Samurai"],
       pairings: BR_ACF,
+      friends: ["Kiragi", "Asugi", "Kana (M)", "Siegbert"],
       stat: { STR: true },
       parent: "Ryoma",
     }, "Kiragi": {
       base: "Archer",
       class: ["Archer", "Spear Fighter"],
       pairings: BR_ACF,
+      friends: ["Shiro", "Hisame", "Dwyer", "Forrest"],
       stat: { STR: true },
       parent: "Takumi",
     }, "Asugi": {
       base: "Ninja",
       class: ["Ninja", "Samurai"],
       pairings: BR_ACF,
+      friends: ["Shiro", "Hisame", "Dwyer", "Ignatius"],
       stat: { STR: true, MAG: true },
       parent: "Saizo",
     }, "Selkie": {
       base: "Kitsune",
       class: ["Kitsune", "Diviner"],
       pairings: BR_ACM,
+      friends: ["Rhajat", "Midori", "Kana (F)", "Velouria"],
       stat: { STR: true },
       parent: "Kaden",
     }, "Hisame": {
       base: "Samurai",
       class: ["Samurai", "Oni Savage"],
       pairings: BR_ACF,
+      friends: ["Kiragi", "Asugi", "Shigure", "Percy"],
       stat: { STR: true },
       parent: "Hinata",
     }, "Mitama": {
       base: "Shrine Maiden",
       class: ["Shrine Maiden", "Apothecary"],
       pairings: BR_ACM,
+      friends: ["Caeldori", "Rhajat", "Kana (F)", "Soleil"],
       stat: { STR: true, MAG: true },
       parent: "Azama",
     }, "Caeldori": {
       base: "Sky Knight",
       class: ["Sky Knight", "Samurai"],
       pairings: BR_ACM,
+      friends: ["Mitama", "Rhajat", "Sophie", "Nina"],
       stat: { STR: true },
       parent: "Subaki",
     }, "Rhajat": {
       base: "Diviner",
       class: ["Diviner", "Oni Savage"],
       pairings: BR_ACM.concat(["Corrin (F)"]),
+      friends: ["Caeldori", "Mitama", "Selkie", "Ophelia"],
       stat: { MAG: true },
       parent: "Hayato",
     }, "Siegbert": {
       base: "Cavalier",
       class: ["Cavalier", "Wyvern Rider"],
       pairings: CQ_ACF,
+      friends: ["Kana (M)", "Forrest", "Ignatius", "Shiro"],
       stat: { STR: true },
       parent: "Xander",
     }, "Forrest": {
       base: "Troubadour (M)",
       class: ["Troubadour (M)", "Dark Mage"],
       pairings: CQ_ACF,
+      friends: ["Siegbert", "Shigure", "Ignatius", "Kiragi"],
       stat: { MAG: true },
       parent: "Leo",
     }, "Ignatius": {
       base: "Knight",
       class: ["Knight", "Fighter"],
       pairings: CQ_ACF,
+      friends: ["Siegbert", "Forrest", "Percy", "Asugi"],
       stat: { STR: true },
       parent: "Benny",
     }, "Velouria": {
       base: "Wolfskin",
       class: ["Wolfskin", "Fighter"],
       pairings: CQ_ACM,
+      friends: ["Sophie", "Kana (F)", "Nina", "Selkie"],
       stat: { STR: true },
       parent: "Keaton",
     }, "Percy": {
       base: "Wyvern Rider",
       class: ["Wyvern Rider", "Fighter"],
       pairings: CQ_ACF,
+      friends: ["Ignatius", "Dwyer", "Kana (M)", "Hisame"],
       stat: { STR: true },
       parent: "Arthur",
     }, "Ophelia": {
       base: "Dark Mage",
       class: ["Dark Mage", "Samurai"],
       pairings: CQ_ACM,
+      friends: ["Midori", "Soleil", "Rhajat"],
       stat: { MAG: true },
       parent: "Odin",
     }, "Soleil": {
       base: "Mercenary",
       class: ["Mercenary", "Ninja"],
       pairings: CQ_ACM,
+      friends: ["Ophelia", "Sophie", "Nina", "Mitama"],
       stat: { STR: true },
       parent: "Laslow",
     }, "Nina": {
       base: "Outlaw",
       class: ["Outlaw", "Dark Mage"],
       pairings: CQ_ACM,
+      friends: ["Soleil", "Velouria", "Caeldori"],
       stat: { STR: true },
       parent: "Niles"
     }

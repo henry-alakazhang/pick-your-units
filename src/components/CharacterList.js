@@ -25,9 +25,10 @@ class CharacterList extends Component {
     name += char.name;
 
     // pairing if applicable
-    if (picks.options['pairings'] && !picks.options['onlypairs']
-        && picks.pairings[char.name] && char.showPair) {
+    if (picks.options['pairings'] && !picks.options['onlypairs'] && char.showPair) {
       name += ' (S ' + this.props.picks.pairings[char.name] + ')';
+    } else if (picks.options['friends'] && char.showFriend) {
+      name += ' (A+ ' + this.props.picks.friends[char.name] + ')';
     }
 
     // boon/bane for avatar
@@ -55,10 +56,8 @@ class CharacterList extends Component {
       width = 75;
     } else if (game.short === 'fe6' || game.short === 'fe7' || game.short === 'fe8') {
       width = 100;
-    } else if (game.short === 'fe9' || game.short === 'fe10') {
-      width = 125;
-    } else if (game.short === 'fe13' || game.short === 'fe14') {
-      width = 140;
+    } else if (game.short === 'fe9' || game.short === 'fe10' || game.short === 'fe13' || game.short === 'fe14') {
+      width = 120;
     }
 
     let tableRows = [];

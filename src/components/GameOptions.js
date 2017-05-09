@@ -18,7 +18,7 @@ class GameOptions extends Component {
       },
       friends: {
         display: "Pick A+ supports",
-        disabled: true,
+        disabled: false,
       },
       onlypairs: {
         display: "Only pick couples",
