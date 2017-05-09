@@ -26,6 +26,11 @@ export default class Picker {
     this.picks = {
       characters: [],
       weapons: {},
+      pairings: {},
+      options: {
+        pairings: options['pairings'],
+        onlypairs: options['onlypairs'],
+      }
     }
   }
 
@@ -35,26 +40,80 @@ export default class Picker {
    */
   generatePicks() {
     return new Promise(function(resolve, reject) {
-      // pick free characters
-      for (const name of this.game.free) {
-        this.makePick(name);
+      let avatar = null;
+      if (this.game.avatar) {
+        const gender = Math.random();
+        if (gender >= 0.5) {
+          avatar = this.game.avatar + " (F)";
+          this.pool.splice(this.pool.indexOf(this.game.avatar + " (M)"), 1);
+        } else {
+          avatar = this.game.avatar + " (M)";
+          this.pool.splice(this.pool.indexOf(this.game.avatar + " (F)"), 1);
+        }
       }
+
+      // set pairings
+      if (this.game.flags['pairings'] && this.options['pairings']) {
+        // prioritise parents
+        for (const child in this.game.children) {
+          if (this.pairUp(this.game.children[child].parent) && this.options['children']) {
+            this.pool.push(child);
+          }
+        }
+        for (const other of this.pool) {
+          this.pairUp(other);
+        }
+      }
+
+      if (avatar)
+        this.makePick(avatar);
+
+      // pick free characters
+      for (const forced of this.game.free) {
+        this.makePick(getOrRand(forced));
+      }
+
       // loop and add characters
       while (this.picks.characters.length < this.numPicks) {
         this.makePick();
       }
 
-      // if (game.routes) {
-      //   picks.routes = [];
-      //   for (const set of game.routes) {
-      //     const pick = randIn(set);
-      //     picks.routes.push(set[pick]);
-      //   }
-      // }
-
       console.log(this.picks);
       resolve(this.picks);
     }.bind(this));
+  }
+
+  /*
+   * Pairs an unpaired character with another unpaired character
+   * Returns whether that character is paired
+   */
+  pairUp(person) {
+    // more than 1 waifu will ruin your laifu
+    if (this.getPartner(person))
+      return true;
+
+    // how do you pair that which does not exist?
+    if (this.pool.indexOf(person) === -1)
+      return false;
+
+    const profile = this.game.characters[person] || this.game.children[person];
+    const availables = profile.pairings.slice();
+    let pair = randIn(availables);
+    while ((this.pool.indexOf(availables[pair]) === -1 || this.getPartner(availables[pair])) && availables.length > 0) {
+      availables.splice(pair, 1);
+      pair = randIn(availables);
+    }
+    // if there's someone in the pool, then there's someone left to pair
+    if (availables.length > 0) {
+      this.picks.pairings[person] = availables[pair];
+      this.picks.pairings[availables[pair]] = person;
+      return true;
+    }
+    return false;
+  }
+
+  getPartner(person) {
+    return this.picks.pairings[person];
   }
 
   /*
@@ -68,8 +127,15 @@ export default class Picker {
       char = this.pool[randIn(this.pool)];
     }
 
-    // pick character
-    const character = this.game.characters[char];
+    // can't pick someone twice.
+    if (this.pool.indexOf(char) === -1)
+      return;
+
+    // only pick paired units for pairing runs
+    if (this.game.flags['onlypairs'] && this.options['onlypairs'] && !this.getPartner(char))
+      return;
+
+    const character = this.game.characters[char] || this.game.children[char];
     let pick = {
       name: char
     }
@@ -77,13 +143,17 @@ export default class Picker {
     // set class
     // if there's only one option or the random classes is set, get a random one
     if (this.options['classes'] || !this.game.flags['classes']) {
-      pick.class = getOrRand(character.class);
+      if (this.options['pairings'] && this.game.inheritClasses) {
+        // check for inheritance (from partners/friends/parents)
+        pick.class = getOrRand(this.game.inheritClasses(this.game, this.picks.pairings, char));
+      } else {
+        pick.class = getOrRand(character.class);
+      }
     } else {
       // else use default
       pick.class = character.class[0];
     }
 
-    console.log(pick);
     let promo = this.game.classes[pick.class].promo;
     while (promo != null) {
       pick.class = getOrRand(promo);
@@ -98,11 +168,9 @@ export default class Picker {
 
     // repick if unbalanced (forced characters remain forced)
     if (this.options['balanced'] && force === undefined && !this.maintainsBalance(pick)) {
-      console.log(pick, "retrying");
       this.makePick();
       return;
     }
-
 
     // add character to list
     this.picks.characters.push(pick);
@@ -113,23 +181,24 @@ export default class Picker {
       for (const char of character.include) {
         // no room; remove this character and pick another one
         if (this.picks.characters.length === this.numPicks) {
-          console.log("No room for " + char + " deleting " + pick.name)
           this.picks.characters.pop();
           this.makePick();
           return;
         }
         // if not already picked, pick them
         if (this.pool.indexOf(char) !== -1) {
-          console.log("Picking " + char + " to go with " + pick.name);
           this.makePick(char);
         }
       }
     }
     if (character.exclude) {
       for (const char of character.exclude) {
-        console.log("Excluding ", char);
         this.pool.splice(this.pool.indexOf(char), 1);
       }
+    }
+    // add partner if pairing up
+    if (this.game.flags['onlypairs'] && this.options['onlypairs'] && this.getPartner(pick.name)) {
+      this.makePick(this.getPartner(pick.name));
     }
   }
 
@@ -170,8 +239,13 @@ export default class Picker {
   }
 
   isTrollPick(pick) {
-    const pickChar = this.game.characters[pick.name];
+    const pickChar = this.game.characters[pick.name] || this.game.children[pick.name];
     const pickClass = this.game.classes[pick.class];
+
+    // games without class changes have no troll picks
+    if (!pickChar.stat)
+      return false;
+
     // a 'troll' class is a STR-only class for a MAG-only character, or vice versa
     if (!pickChar.stat.STR && !pickClass.stat.MAG) {
       return true;

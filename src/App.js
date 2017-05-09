@@ -18,8 +18,9 @@ class App extends Component {
       game: Game.list[0],
       numPicks: 12,
       options: {
-        avatar: true,
-        supports: false,
+        pairings: false,
+        friends: false,
+        onlypairs: false,
         children: false,
         classes: true,
         balanced: false,
@@ -36,22 +37,35 @@ class App extends Component {
   }
 
   handleGamePick(e) {
-    // update max if too big
-    if (this.state.numPicks > Object.keys(Game[e.target.value].characters).length) {
-      this.setState({
-        numPicks: Object.keys(Game[e.target.value].characters).length
-      })
-    }
     // update other stuff
     this.setState({
       game: e.target.value,
+      numPicks: 12,
       picks: null,
+      options: {
+        pairings: false,
+        friends: false,
+        onlypairs: false,
+        children: false,
+        classes: true,
+        balanced: false,
+        troll: false,
+      },
     });
   }
 
   handleOptionChange(e, opt) {
+    const cascade = {
+      pairings: ['onlypairs', 'children'],
+      classes: ['troll']
+    }
     let options = this.state.options;
     options[opt] = e.target.checked;
+    // cascade and remove invalid options
+    if (!e.target.checked && cascade[opt]) {
+      for (const opt2 of cascade[opt])
+        options[opt2] = false;
+    }
     this.setState({options:options});
   }
 
@@ -83,7 +97,7 @@ class App extends Component {
         <center>
           <h1>Fire Emblem Pick-Your-Unit</h1>
         </center>
-        <Col md={4}>
+        <Col md={3}>
           <GamePicker
             value={this.state.game}
             handler={this.handleGamePick}
@@ -98,7 +112,7 @@ class App extends Component {
           <Row>
             <p />
             {Game[this.state.game].disabled &&
-              <Col md={10}>
+              <Col sm={10}>
                 <Alert bsStyle="danger">
                   This game is not available yet. Reason cited:
                   <br />
@@ -116,7 +130,7 @@ class App extends Component {
             </Button>
           </Row>
         </Col>
-        <Col md={8}>
+        <Col md={9}>
           {this.state.picks &&
             <CharacterList picks={this.state.picks} game={this.state.game} />
           }

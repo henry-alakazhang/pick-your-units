@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Form, FormGroup, FormControl, ControlLabel, Checkbox, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Row, Form, FormGroup, FormControl, ControlLabel, Checkbox } from 'react-bootstrap';
 
 import Game from '../Game';
 
@@ -11,6 +11,37 @@ class GameOptions extends Component {
       }
     }
 
+    const optionStuff = {
+      pairings: {
+        display: "Pick pairings",
+        disabled: false,
+      },
+      friends: {
+        display: "Pick A+ supports",
+        disabled: true,
+      },
+      onlypairs: {
+        display: "Only pick couples",
+        disabled: !this.props.options['pairings'],
+      },
+      children: {
+        display: "Pick child units",
+        disabled: !this.props.options['pairings'],
+      },
+      classes: {
+        display: "Pick classes",
+        disabled: false,
+      },
+      troll: {
+        display: "Allow 'troll' classes",
+        disabled: !this.props.options['classes']
+      },
+      balanced: {
+        display: "Balance weapon types",
+        disabled: false,
+      },
+    }
+
     return (
       <Row>
         <h3>Options</h3>
@@ -18,33 +49,23 @@ class GameOptions extends Component {
           <FormGroup>
             {Object.keys(Game[this.props.game].flags).map((flag) =>
               <Checkbox
+                disabled={optionStuff[flag].disabled}
                 checked={this.props.options[flag]}
                 key={flag}
                 onChange={(e) => {
                   this.props.handleOptionChange(e, flag);
                 }}
               >
-                Pick {flag}
+                { optionStuff[flag].display }
               </Checkbox>
             )}
-            {Game[this.props.game].flags.hasOwnProperty('classes') &&
-              <Checkbox
-                checked={this.props.options['troll']}
-                disabled={!this.props.options['classes']}
-                onChange={(e) => {
-                  this.props.handleOptionChange(e, 'troll');
-                }}
-              >
-                Allow 'troll' classes
-              </Checkbox>
-            }
             <Checkbox
               checked={this.props.options['balanced']}
               onChange={(e) => {
                 this.props.handleOptionChange(e, 'balanced');
               }}
             >
-              Balance weapons types
+              { optionStuff['balanced'].display }
             </Checkbox>
           </FormGroup>
         </form>
@@ -55,7 +76,8 @@ class GameOptions extends Component {
               style={styles.spinner}
               type="number"
               value={this.props.numPicks}
-              max={Object.keys(Game[this.props.game].characters).length}
+              min={0}
+              max={22}
               onChange={this.props.handleNumChange}
             />
             {' '}<ControlLabel>  units</ControlLabel>
