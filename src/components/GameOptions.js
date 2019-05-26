@@ -8,38 +8,38 @@ class GameOptions extends Component {
     const optionStuff = {
       pairings: {
         display: "Pick pairings",
-        disabled: false
+        disabled: false,
       },
       friends: {
         display: "Pick A+ supports",
-        disabled: false
+        disabled: false,
       },
       onlypairs: {
         display: "Only pick couples",
-        disabled: !this.props.options["pairings"]
+        disabled: !this.props.options["pairings"],
       },
       children: {
         display: "Pick child units",
-        disabled: !this.props.options["pairings"]
+        disabled: !this.props.options["pairings"],
       },
       classes: {
         display: "Pick classes",
-        disabled: false
+        disabled: false,
       },
       troll: {
         display: "Allow 'troll' classes",
-        disabled: !this.props.options["classes"]
+        disabled: !this.props.options["classes"],
       },
       balanced: {
         display: "Balance weapon types",
-        disabled: false
-      }
+        disabled: false,
+      },
     };
 
     const styles = {
       spinner: {
-        width: 70
-      }
+        width: 70,
+      },
     };
 
     return (

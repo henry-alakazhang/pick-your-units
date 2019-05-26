@@ -31,8 +31,8 @@ export default class Picker {
       options: {
         friends: options["friends"],
         pairings: options["pairings"],
-        onlypairs: options["onlypairs"]
-      }
+        onlypairs: options["onlypairs"],
+      },
     };
   }
 
@@ -93,7 +93,7 @@ export default class Picker {
           const stats = ["Str", "Mag", "Skl", "Spd", "Luk", "Def", "Res"];
           this.picks.characters[0].stats = {
             boon: null,
-            bane: null
+            bane: null,
           };
           while (
             this.picks.characters[0].stats.boon ===
@@ -184,7 +184,7 @@ export default class Picker {
 
     const character = this.game.characters[char] || this.game.children[char];
     let pick = {
-      name: char
+      name: char,
     };
 
     // set class

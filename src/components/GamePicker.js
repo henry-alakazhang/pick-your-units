@@ -7,8 +7,8 @@ class GamePicker extends Component {
   render() {
     const styles = {
       gameInput: {
-        width: "auto"
-      }
+        width: "auto",
+      },
     };
 
     return (

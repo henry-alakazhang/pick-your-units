@@ -2,238 +2,238 @@ const fe1 = {
   short: "fe1",
   characters: {
     Abel: {
-      class: "Cavalier"
+      class: "Cavalier",
     },
     Arran: {
       class: "Paladin",
-      exclude: ["Samson"]
+      exclude: ["Samson"],
     },
     Astria: {
-      class: "Hero"
+      class: "Hero",
     },
     Bantu: {
-      class: "Manakete"
+      class: "Manakete",
     },
     Barst: {
-      class: "Fighter"
+      class: "Fighter",
     },
     Vyland: {
-      class: "Cavalier"
+      class: "Cavalier",
     },
     Boa: {
-      class: "Bishop"
+      class: "Bishop",
     },
     Caesar: {
-      class: "Mercenary"
+      class: "Mercenary",
     },
     Xane: {
-      class: "Commando"
+      class: "Commando",
     },
     Tiki: {
-      class: "Manakete"
+      class: "Manakete",
     },
     Draug: {
-      class: "Knight"
+      class: "Knight",
     },
     Elice: {
-      class: "Priest"
+      class: "Priest",
     },
     Est: {
-      class: "Pegasus Knight"
+      class: "Pegasus Knight",
     },
     Jeorge: {
-      class: "Sniper"
+      class: "Sniper",
     },
     Gordon: {
-      class: "Archer"
+      class: "Archer",
     },
     Hardin: {
-      class: "Cavalier"
+      class: "Cavalier",
     },
     jagen: {
-      class: "Paladin"
+      class: "Paladin",
     },
     Julian: {
-      class: "Thief"
+      class: "Thief",
     },
     Cain: {
-      class: "Cavalier"
+      class: "Cavalier",
     },
     Castor: {
-      class: "Archer"
+      class: "Archer",
     },
     Catria: {
-      class: "Pegasus Knight"
+      class: "Pegasus Knight",
     },
     Lorenze: {
-      class: "General"
+      class: "General",
     },
     Linde: {
-      class: "Mage"
+      class: "Mage",
     },
     Matthis: {
-      class: "Cavalier"
+      class: "Cavalier",
     },
     Bord: {
-      class: "Fighter"
+      class: "Fighter",
     },
     Maria: {
-      class: "Priest"
+      class: "Priest",
     },
     Merric: {
-      class: "Mage"
+      class: "Mage",
     },
     Marth: {
-      class: "Lord"
+      class: "Lord",
     },
     Midia: {
-      class: "Paladin"
+      class: "Paladin",
     },
     Minerva: {
-      class: "Dracoknight"
+      class: "Dracoknight",
     },
     Macellan: {
-      class: "Knight"
+      class: "Knight",
     },
     Nabarl: {
-      class: "Mercenary"
+      class: "Mercenary",
     },
     Ogma: {
-      class: "Mercenary"
+      class: "Mercenary",
     },
     Palla: {
-      class: "Pegasus Knight"
+      class: "Pegasus Knight",
     },
     Radd: {
-      class: "Mercenary"
+      class: "Mercenary",
     },
     Lena: {
-      class: "Priest"
+      class: "Priest",
     },
     Rickard: {
-      class: "Thief"
+      class: "Thief",
     },
     Roshea: {
-      class: "Cavalier"
+      class: "Cavalier",
     },
     Cord: {
-      class: "Fighter"
+      class: "Fighter",
     },
     Samson: {
       class: "Hero",
-      exclude: ["Arran"]
+      exclude: ["Arran"],
     },
     Caeda: {
-      class: "Pegasus Knight"
+      class: "Pegasus Knight",
     },
     Tomas: {
-      class: "Archer"
+      class: "Archer",
     },
     Dolph: {
-      class: "Knight"
+      class: "Knight",
     },
     Wendel: {
-      class: "Bishop"
+      class: "Bishop",
     },
     Wolf: {
-      class: "Bow Knight"
+      class: "Bow Knight",
     },
     Sedgar: {
-      class: "Bow Knight"
-    }
+      class: "Bow Knight",
+    },
   },
   classes: {
     Lord: {
       weapons: ["Sword"],
-      promo: null
+      promo: null,
     },
     Mercenary: {
       weapons: ["Sword"],
-      promo: "Hero"
+      promo: "Hero",
     },
     Hero: {
       weapons: ["Sword"],
-      promo: null
+      promo: null,
     },
     Thief: {
       weapons: ["Sword"],
-      promo: null
+      promo: null,
     },
     Commando: {
       weapons: ["Sword"],
-      promo: null
+      promo: null,
     },
     Fighter: {
       weapons: ["Axe"],
-      promo: null
+      promo: null,
     },
     Pirate: {
       weapons: ["Axe"],
-      promo: null
+      promo: null,
     },
     Archer: {
       weapons: ["Bow"],
-      promo: "Sniper"
+      promo: "Sniper",
     },
     Sniper: {
       weapons: ["Bow"],
-      promo: null
+      promo: null,
     },
     Hunter: {
       weapons: ["Bow"],
-      promo: "Sniper"
+      promo: "Sniper",
     },
     "Bow Knight": {
       weapons: ["Bow"],
-      promo: null
+      promo: null,
     },
     Cavalier: {
       weapons: ["Sword", "Lance"],
-      promo: "Paladin"
+      promo: "Paladin",
     },
     Paladin: {
       weapons: ["Sword", "Lance"],
-      promo: null
+      promo: null,
     },
     Knight: {
       weapons: ["Sword", "Lance"],
-      promo: null
+      promo: null,
     },
     General: {
       weapons: ["Sword"],
-      promo: null
+      promo: null,
     },
     "Pegasus Knight": {
       weapons: ["Sword", "Lance"],
-      promo: "Dracoknight"
+      promo: "Dracoknight",
     },
     Dracoknight: {
       weapons: ["Sword", "Lance"],
-      promo: null
+      promo: null,
     },
     Shooter: {
       weapons: ["Firearm"],
-      promo: null
+      promo: null,
     },
     Mage: {
       weapons: ["Magic"],
-      promo: "Bishop"
+      promo: "Bishop",
     },
     Priest: {
       weapons: ["Staff"],
-      promo: "Bishop"
+      promo: "Bishop",
     },
     Bishop: {
       weapons: ["Magic", "Staff"],
-      promo: null
+      promo: null,
     },
     Manakete: {
       weapons: ["Dragonstone"],
-      promo: null
-    }
+      promo: null,
+    },
   },
   free: ["Marth"],
-  flags: {}
+  flags: {},
 };
 
 const fe2 = {
@@ -241,7 +241,7 @@ const fe2 = {
   disabled: "Nobody plays Gaiden",
   free: ["Alm", "Celica"],
   characters: [],
-  flags: {}
+  flags: {},
 };
 
 const fe3 = {
@@ -292,10 +292,10 @@ const fe3 = {
     "Warren",
     "Wendel",
     "Yubello",
-    "Yumina"
+    "Yumina",
   ],
   free: ["Marth"],
-  flags: {}
+  flags: {},
 };
 
 const fe4 = {
@@ -305,8 +305,8 @@ const fe4 = {
   free: ["Sigurd", "Seliph"],
   flags: {
     pairings: true,
-    children: true
-  }
+    children: true,
+  },
 };
 
 const fe5 = {
@@ -314,7 +314,7 @@ const fe5 = {
   disabled: "Nobody plays Thracia",
   characters: [],
   free: ["Lief"],
-  flags: {}
+  flags: {},
   // nobody does PMUs for this shit anyway.
 };
 
@@ -323,625 +323,625 @@ const fe6 = {
   routes: [["A", "B"], ["Sacae", "Ilia"]],
   characters: {
     Allen: {
-      class: "Cavalier"
+      class: "Cavalier",
     },
     Astohl: {
-      class: "Thief"
+      class: "Thief",
     },
     Barth: {
-      class: "Knight"
+      class: "Knight",
     },
     Bartre: {
       class: "Warrior",
-      exclude: ["Lalum", "Echidna"]
+      exclude: ["Lalum", "Echidna"],
     },
     Bors: {
-      class: "Knight"
+      class: "Knight",
     },
     Cath: {
-      class: "Thief"
+      class: "Thief",
     },
     Cecilia: {
-      class: "Valkyrie"
+      class: "Valkyrie",
     },
     Chad: {
-      class: "Thief"
+      class: "Thief",
     },
     Clarine: {
-      class: "Troubadour"
+      class: "Troubadour",
     },
     Dayan: {
       class: "Nomad Trooper",
-      exclude: ["Juno"]
+      exclude: ["Juno"],
     },
     Dieck: {
-      class: "Mercenary"
+      class: "Mercenary",
     },
     Dorothy: {
-      class: "Archer"
+      class: "Archer",
     },
     Douglas: {
-      class: "General"
+      class: "General",
     },
     Echidna: {
       class: "Hero",
-      exclude: ["Elphin", "Bartre"]
+      exclude: ["Elphin", "Bartre"],
     },
     Ellen: {
-      class: "Priest"
+      class: "Priest",
     },
     Elphin: {
       class: "Bard",
-      exclude: ["Lalum", "Echidna"]
+      exclude: ["Lalum", "Echidna"],
     },
     Fa: {
-      class: "Manakete"
+      class: "Manakete",
     },
     Fir: {
-      class: "Myrmidon"
+      class: "Myrmidon",
     },
     Garret: {
-      class: "Berserker"
+      class: "Berserker",
     },
     Geese: {
-      class: "Pirate"
+      class: "Pirate",
     },
     Gonzales: {
-      class: "Bandit"
+      class: "Bandit",
     },
     Hugh: {
-      class: "Mage"
+      class: "Mage",
     },
     Igrene: {
-      class: "Sniper"
+      class: "Sniper",
     },
     Juno: {
       class: "Falcon Knight",
-      exclude: ["Dayan"]
+      exclude: ["Dayan"],
     },
     Klein: {
-      class: "Archer"
+      class: "Archer",
     },
     Lalum: {
       class: "Dancer",
-      exclude: ["Elphin", "Bartre"]
+      exclude: ["Elphin", "Bartre"],
     },
     Lance: {
-      class: "Cavalier"
+      class: "Cavalier",
     },
     Lilina: {
-      class: "Mage"
+      class: "Mage",
     },
     Lot: {
-      class: "Fighter"
+      class: "Fighter",
     },
     Lugh: {
-      class: "Mage"
+      class: "Mage",
     },
     Marcus: {
-      class: "Paladin"
+      class: "Paladin",
     },
     Miledy: {
-      class: "Wyvern Rider"
+      class: "Wyvern Rider",
     },
     Niime: {
-      class: "Druid"
+      class: "Druid",
     },
     Noah: {
-      class: "Cavalier"
+      class: "Cavalier",
     },
     Oujay: {
-      class: "Mercenary"
+      class: "Mercenary",
     },
     Percival: {
-      class: "Paladin"
+      class: "Paladin",
     },
     Raigh: {
-      class: "Shaman"
+      class: "Shaman",
     },
     Roy: {
-      class: "Lord"
+      class: "Lord",
     },
     Rutger: {
-      class: "Myrmidon"
+      class: "Myrmidon",
     },
     Saul: {
-      class: "Priest"
+      class: "Priest",
     },
     Shin: {
-      class: "Nomad"
+      class: "Nomad",
     },
     Sophia: {
-      class: "Shaman"
+      class: "Shaman",
     },
     Sue: {
-      class: "Nomad"
+      class: "Nomad",
     },
     Tate: {
-      class: "Pegasus Knight"
+      class: "Pegasus Knight",
     },
     Shanna: {
-      class: "Pegasus Knight"
+      class: "Pegasus Knight",
     },
     Trec: {
-      class: "Cavalier"
+      class: "Cavalier",
     },
     Wade: {
-      class: "Fighter"
+      class: "Fighter",
     },
     Wendy: {
-      class: "Knight"
+      class: "Knight",
     },
     Wolt: {
-      class: "Archer"
+      class: "Archer",
     },
     Zealot: {
-      class: "Paladin"
+      class: "Paladin",
     },
     Zeiss: {
-      class: "Wyvern Rider"
-    }
+      class: "Wyvern Rider",
+    },
   },
   classes: {
     Lord: {
       weapons: ["Sword"],
-      promo: "Master Lord"
+      promo: "Master Lord",
     },
     "Master Lord": {
       weapons: ["Sword"],
-      promo: null
+      promo: null,
     },
     Mercenary: {
       weapons: ["Sword"],
-      promo: "Hero"
+      promo: "Hero",
     },
     Hero: {
       weapons: ["Sword", "Axe"],
-      promo: null
+      promo: null,
     },
     Myrmidon: {
       weapons: ["Sword"],
-      promo: "Swordmaster"
+      promo: "Swordmaster",
     },
     Swordmaster: {
       weapons: ["Sword"],
-      promo: null
+      promo: null,
     },
     Thief: {
       weapons: ["Sword"],
-      promo: null
+      promo: null,
     },
     Knight: {
       weapons: ["Lance"],
-      promo: "General"
+      promo: "General",
     },
     General: {
       weapons: ["Lance", "Axe"],
-      promo: null
+      promo: null,
     },
     Soldier: {
       weapons: ["Lance"],
-      promo: null
+      promo: null,
     },
     Fighter: {
       weapons: ["Axe"],
-      promo: "Warrior"
+      promo: "Warrior",
     },
     Warrior: {
       weapons: ["Axe", "Bow"],
-      promo: null
+      promo: null,
     },
     Bandit: {
       weapons: ["Axe"],
-      promo: "Berserker"
+      promo: "Berserker",
     },
     Pirate: {
       weapons: ["Axe"],
-      promo: "Berserker"
+      promo: "Berserker",
     },
     Berserker: {
       weapons: ["Axe"],
-      promo: null
+      promo: null,
     },
     Archer: {
       weapons: ["Bow"],
-      promo: "Sniper"
+      promo: "Sniper",
     },
     Sniper: {
       weapons: ["Bow"],
-      promo: null
+      promo: null,
     },
     Nomad: {
       weapons: ["Bow"],
-      promo: "Nomad Trooper"
+      promo: "Nomad Trooper",
     },
     "Nomad Trooper": {
       weapons: ["Sword", "Bow"],
-      promo: null
+      promo: null,
     },
     Cavalier: {
       weapons: ["Sword", "Lance"],
-      promo: "Paladin"
+      promo: "Paladin",
     },
     Paladin: {
       weapons: ["Sword", "Lance", "Axe"],
-      promo: null
+      promo: null,
     },
     "Pegasus Knight": {
       weapons: ["Lance"],
-      promo: "Falcon Knight"
+      promo: "Falcon Knight",
     },
     "Falcon Knight": {
       weapons: ["Sword", "Lance"],
-      promo: null
+      promo: null,
     },
     "Wyvern Rider": {
       weapons: ["Lance"],
-      promo: "Wyvern Lord"
+      promo: "Wyvern Lord",
     },
     "Wyvern Lord": {
       weapons: ["Sword", "Lance"],
-      promo: null
+      promo: null,
     },
     Priest: {
       weapons: ["Staff"],
-      promo: "Bishop"
+      promo: "Bishop",
     },
     Bishop: {
       weapons: ["Staff", "Light"],
-      promo: null
+      promo: null,
     },
     Troubadour: {
       weapons: ["Staff"],
-      promo: "Valkyrie"
+      promo: "Valkyrie",
     },
     Valkyrie: {
       weapons: ["Staff", "Anima"],
-      promo: null
+      promo: null,
     },
     Mage: {
       weapons: ["Anima"],
-      promo: "Sage"
+      promo: "Sage",
     },
     Sage: {
       weapons: ["Staff", "Anima"],
-      promo: null
+      promo: null,
     },
     Shaman: {
       weapons: ["Dark"],
-      promo: "Druid"
+      promo: "Druid",
     },
     Druid: {
       weapons: ["Staff", "Dark"],
-      promo: null
+      promo: null,
     },
     Bard: {
       weapons: [],
-      promo: null
+      promo: null,
     },
     Dancer: {
       weapons: [],
-      promo: null
+      promo: null,
     },
     Manakete: {
       weapons: [],
-      promo: null
-    }
+      promo: null,
+    },
   },
   free: ["Roy"],
-  flags: {}
+  flags: {},
 };
 
 const fe7 = {
   short: "fe7",
   characters: {
     Bartre: {
-      class: "Fighter"
+      class: "Fighter",
     },
     Canas: {
-      class: "Shaman"
+      class: "Shaman",
     },
     Dart: {
-      class: "Pirate"
+      class: "Pirate",
     },
     Dorcas: {
-      class: "Fighter"
+      class: "Fighter",
     },
     Eliwood: {
-      class: "Lord (Eliwood)"
+      class: "Lord (Eliwood)",
     },
     Erk: {
-      class: "Mage"
+      class: "Mage",
     },
     Farina: {
-      class: "Pegasus Knight"
+      class: "Pegasus Knight",
     },
     Fiora: {
-      class: "Pegasus Knight"
+      class: "Pegasus Knight",
     },
     Florina: {
-      class: "Pegasus Knight"
+      class: "Pegasus Knight",
     },
     Geitz: {
       class: "Warrior",
-      exclude: ["Wallace"]
+      exclude: ["Wallace"],
     },
     Guy: {
-      class: "Myrmidon"
+      class: "Myrmidon",
     },
     Harken: {
       class: "Hero",
-      exclude: ["Karel"]
+      exclude: ["Karel"],
     },
     Hawkeye: {
-      class: "Berserker"
+      class: "Berserker",
     },
     Heath: {
-      class: "Wyvern Rider"
+      class: "Wyvern Rider",
     },
     Hector: {
-      class: "Lord (Hector)"
+      class: "Lord (Hector)",
     },
     Isadora: {
-      class: "Paladin"
+      class: "Paladin",
     },
     Jaffar: {
-      class: "Assassin"
+      class: "Assassin",
     },
     Karel: {
       class: "Swordmaster",
-      exclude: ["Harken"]
+      exclude: ["Harken"],
     },
     Karla: {
       class: "Swordmaster",
-      include: ["Bartre"]
+      include: ["Bartre"],
     },
     Kent: {
-      class: "Cavalier"
+      class: "Cavalier",
     },
     Legault: {
       class: "Thief",
-      exclude: ["Matthew"]
+      exclude: ["Matthew"],
     },
     Louise: {
-      class: "Sniper"
+      class: "Sniper",
     },
     Lowen: {
-      class: "Cavalier"
+      class: "Cavalier",
     },
     Lucius: {
-      class: "Monk"
+      class: "Monk",
     },
     Lyn: {
-      class: "Lord (Lyn)"
+      class: "Lord (Lyn)",
     },
     Marcus: {
-      class: "Paladin"
+      class: "Paladin",
     },
     Matthew: {
       class: "Thief",
-      exclude: ["Legault"] // cos we can't have two assassins
+      exclude: ["Legault"], // cos we can't have two assassins
     },
     Ninian: {
-      class: "Dancer"
+      class: "Dancer",
     },
     Nino: {
-      class: "Mage"
+      class: "Mage",
     },
     Oswin: {
-      class: "Knight"
+      class: "Knight",
     },
     Pent: {
-      class: "Sage"
+      class: "Sage",
     },
     Priscilla: {
-      class: "Troubadour"
+      class: "Troubadour",
     },
     Rath: {
-      class: "Nomad"
+      class: "Nomad",
     },
     Raven: {
-      class: "Mercenary"
+      class: "Mercenary",
     },
     Rebecca: {
-      class: "Archer"
+      class: "Archer",
     },
     Renault: {
-      class: "Bishop"
+      class: "Bishop",
     },
     Sain: {
-      class: "Cavalier"
+      class: "Cavalier",
     },
     Serra: {
-      class: "Cleric"
+      class: "Cleric",
     },
     Vaida: {
-      class: "Wyvern Lord"
+      class: "Wyvern Lord",
     },
     Wallace: {
       class: "General",
-      exclude: ["Geitz"]
+      exclude: ["Geitz"],
     },
     Wil: {
-      class: "Archer"
-    }
+      class: "Archer",
+    },
   },
   classes: {
     "Lord (Lyn)": {
       weapons: ["Sword"],
-      promo: "Blade Lord"
+      promo: "Blade Lord",
     },
     "Blade Lord": {
       weapons: ["Sword", "Bow"],
-      promo: null
+      promo: null,
     },
     "Lord (Eliwood)": {
       weapons: ["Sword"],
-      promo: "Knight Lord"
+      promo: "Knight Lord",
     },
     "Knight Lord": {
       weapons: ["Sword", "Lance"],
-      promo: null
+      promo: null,
     },
     "Lord (Hector)": {
       weapons: ["Axe"],
-      promo: "Great Lord"
+      promo: "Great Lord",
     },
     "Great Lord": {
       weapons: ["Sword", "Axe"],
-      promo: null
+      promo: null,
     },
     Mercenary: {
       weapons: ["Sword"],
-      promo: "Hero"
+      promo: "Hero",
     },
     Hero: {
       weapons: ["Sword", "Axe"],
-      promo: null
+      promo: null,
     },
     Myrmidon: {
       weapons: ["Sword"],
-      promo: "Swordmaster"
+      promo: "Swordmaster",
     },
     Swordmaster: {
       weapons: ["Sword"],
-      promo: null
+      promo: null,
     },
     Thief: {
       weapons: ["Sword"],
-      promo: "Assassin"
+      promo: "Assassin",
     },
     Assassin: {
       weapons: ["Sword"],
-      promo: null
+      promo: null,
     },
     Knight: {
       weapons: ["Lance"],
-      promo: "General"
+      promo: "General",
     },
     General: {
       weapons: ["Lance", "Axe"],
-      promo: null
+      promo: null,
     },
     Soldier: {
       weapons: ["Lance"],
-      promo: null
+      promo: null,
     },
     Fighter: {
       weapons: ["Axe"],
-      promo: "Warrior"
+      promo: "Warrior",
     },
     Warrior: {
       weapons: ["Axe", "Bow"],
-      promo: null
+      promo: null,
     },
     Bandit: {
       weapons: ["Axe"],
-      promo: "Berserker"
+      promo: "Berserker",
     },
     Pirate: {
       weapons: ["Axe"],
-      promo: "Berserker"
+      promo: "Berserker",
     },
     Corsair: {
       weapons: ["Axe"],
-      promo: null
+      promo: null,
     },
     Berserker: {
       weapons: ["Axe"],
-      promo: null
+      promo: null,
     },
     Archer: {
       weapons: ["Bow"],
-      promo: "Sniper"
+      promo: "Sniper",
     },
     Sniper: {
       weapons: ["Bow"],
-      promo: null
+      promo: null,
     },
     Nomad: {
       weapons: ["Bow"],
-      promo: "Nomad Trooper"
+      promo: "Nomad Trooper",
     },
     "Nomad Trooper": {
       weapons: ["Sword", "Bow"],
-      promo: null
+      promo: null,
     },
     Cavalier: {
       weapons: ["Sword", "Lance"],
-      promo: "Paladin"
+      promo: "Paladin",
     },
     Paladin: {
       weapons: ["Sword", "Lance", "Axe"],
-      promo: null
+      promo: null,
     },
     "Pegasus Knight": {
       weapons: ["Lance"],
-      promo: "Falcon Knight"
+      promo: "Falcon Knight",
     },
     "Falcon Knight": {
       weapons: ["Sword", "Lance"],
-      promo: null
+      promo: null,
     },
     "Wyvern Rider": {
       weapons: ["Lance"],
-      promo: "Wyvern Lord"
+      promo: "Wyvern Lord",
     },
     "Wyvern Lord": {
       weapons: ["Sword", "Lance"],
-      promo: null
+      promo: null,
     },
     Monk: {
       weapons: ["Light"],
-      promo: "Bishop"
+      promo: "Bishop",
     },
     Cleric: {
       weapons: ["Staff"],
-      promo: "Bishop"
+      promo: "Bishop",
     },
     Bishop: {
       weapons: ["Staff", "Light"],
-      promo: null
+      promo: null,
     },
     Troubadour: {
       weapons: ["Staff"],
-      promo: "Valkyrie"
+      promo: "Valkyrie",
     },
     Valkyrie: {
       weapons: ["Staff", "Anima"],
-      promo: null
+      promo: null,
     },
     Mage: {
       weapons: ["Anima"],
-      promo: "Sage"
+      promo: "Sage",
     },
     Sage: {
       weapons: ["Staff", "Anima"],
-      promo: null
+      promo: null,
     },
     ArchSage: {
       weapons: ["Staff", "Anima", "Light", "Dark"],
-      promo: null
+      promo: null,
     },
     Shaman: {
       weapons: ["Dark"],
-      promo: "Druid"
+      promo: "Druid",
     },
     Druid: {
       weapons: ["Staff", "Dark"],
-      promo: null
+      promo: null,
     },
     "Dark Druid": {
       weapons: ["Staff", "Anima", "Light", "Dark"],
-      promo: null
+      promo: null,
     },
     Dancer: {
       weapons: [],
-      promo: null
-    }
+      promo: null,
+    },
   },
   free: ["Eliwood"],
-  flags: {}
+  flags: {},
 };
 
 const fe8 = {
@@ -949,626 +949,634 @@ const fe8 = {
   routes: [["Eirika", "Ephraim"]],
   characters: {
     Amelia: {
-      class: "Recruit"
+      class: "Recruit",
     },
     Artur: {
-      class: "Monk"
+      class: "Monk",
     },
     Colm: {
-      class: "Thief"
+      class: "Thief",
     },
     Cormag: {
-      class: "Wyvern Rider"
+      class: "Wyvern Rider",
     },
     Dozla: {
-      class: "Berserker"
+      class: "Berserker",
     },
     Duessel: {
-      class: "Great Knight"
+      class: "Great Knight",
     },
     Eirika: {
-      class: "Lord (Eirika)"
+      class: "Lord (Eirika)",
     },
     Ephraim: {
-      class: "Lord (Ephraim)"
+      class: "Lord (Ephraim)",
     },
     Ewan: {
-      class: "Pupil"
+      class: "Pupil",
     },
     Forde: {
-      class: "Cavalier"
+      class: "Cavalier",
     },
     Franz: {
-      class: "Cavalier"
+      class: "Cavalier",
     },
     Garcia: {
-      class: "Fighter"
+      class: "Fighter",
     },
     Gerik: {
-      class: "Mercenary"
+      class: "Mercenary",
     },
     Gilliam: {
-      class: "Knight"
+      class: "Knight",
     },
     Innes: {
-      class: "Sniper"
+      class: "Sniper",
     },
     Joshua: {
-      class: "Myrmidon"
+      class: "Myrmidon",
     },
     Knoll: {
-      class: "Shaman"
+      class: "Shaman",
     },
     Kyle: {
-      class: "Cavalier"
+      class: "Cavalier",
     },
     "L'Arachel": {
-      class: "Troubadour"
+      class: "Troubadour",
     },
     Lute: {
-      class: "Mage"
+      class: "Mage",
     },
     Marisa: {
-      class: "Myrmidon"
+      class: "Myrmidon",
     },
     Moulder: {
-      class: "Priest"
+      class: "Priest",
     },
     Myrrh: {
-      class: "Manakete"
+      class: "Manakete",
     },
     Natasha: {
-      class: "Cleric"
+      class: "Cleric",
     },
     Neimi: {
-      class: "Archer"
+      class: "Archer",
     },
     Rennac: {
-      class: "Rogue"
+      class: "Rogue",
     },
     Ross: {
-      class: "Journeyman"
+      class: "Journeyman",
     },
     Saleh: {
-      class: "Sage"
+      class: "Sage",
     },
     Seth: {
-      class: "Paladin"
+      class: "Paladin",
     },
     Syrene: {
-      class: "Falcon Knight"
+      class: "Falcon Knight",
     },
     Tana: {
-      class: "Pegasus Knight"
+      class: "Pegasus Knight",
     },
     Tethys: {
-      class: "Dancer"
+      class: "Dancer",
     },
     Vanessa: {
-      class: "Pegasus Knight"
-    }
+      class: "Pegasus Knight",
+    },
   },
   classes: {
     "Lord (Eirika)": {
       weapons: ["Sword"],
-      promo: "Great Lord (Eirika)"
+      promo: "Great Lord (Eirika)",
     },
     "Great Lord (Eirika)": {
       weapons: ["Sword"],
-      promo: null
+      promo: null,
     },
     "Lord (Ephraim)": {
       weapons: ["Lance"],
-      promo: "Great Lord (Ephraim)"
+      promo: "Great Lord (Ephraim)",
     },
     "Great Lord (Ephraim)": {
       weapons: ["Lance"],
-      promo: null
+      promo: null,
     },
     Mercenary: {
       weapons: ["Sword"],
-      promo: ["Hero", "Bow Knight"]
+      promo: ["Hero", "Bow Knight"],
     },
     Hero: {
       weapons: ["Sword", "Axe"],
-      promo: null
+      promo: null,
     },
     Myrmidon: {
       weapons: ["Sword"],
-      promo: ["Swordmaster", "Assassin"]
+      promo: ["Swordmaster", "Assassin"],
     },
     Swordmaster: {
       weapons: ["Sword"],
-      promo: null
+      promo: null,
     },
     Thief: {
       weapons: ["Sword"],
-      promo: ["Assassin", "Rogue"]
+      promo: ["Assassin", "Rogue"],
     },
     Assassin: {
       weapons: ["Sword"],
-      promo: null
+      promo: null,
     },
     Rogue: {
       weapons: ["Sword"],
-      promo: null
+      promo: null,
     },
     Knight: {
       weapons: ["Lance"],
-      promo: ["General", "Great Knight"]
+      promo: ["General", "Great Knight"],
     },
     General: {
       weapons: ["Lance", "Axe", "Sword"],
-      promo: null
+      promo: null,
     },
     Soldier: {
       weapons: ["Lance"],
-      promo: null
+      promo: null,
     },
     Fighter: {
       weapons: ["Axe"],
-      promo: ["Warrior", "Hero"]
+      promo: ["Warrior", "Hero"],
     },
     Warrior: {
       weapons: ["Axe", "Bow"],
-      promo: null
+      promo: null,
     },
     Bandit: {
       weapons: ["Axe"],
-      promo: ["Berserker", "Warrior"]
+      promo: ["Berserker", "Warrior"],
     },
     Pirate: {
       weapons: ["Axe"],
-      promo: ["Berserker", "Warrior"]
+      promo: ["Berserker", "Warrior"],
     },
     Berserker: {
       weapons: ["Axe"],
-      promo: null
+      promo: null,
     },
     Archer: {
       weapons: ["Bow"],
-      promo: ["Sniper", "Bow Knight"]
+      promo: ["Sniper", "Bow Knight"],
     },
     Sniper: {
       weapons: ["Bow"],
-      promo: null
+      promo: null,
     },
     "Bow Knight": {
       weapons: ["Sword", "Bow"],
-      promo: null
+      promo: null,
     },
     Cavalier: {
       weapons: ["Sword", "Lance"],
-      promo: ["Paladin", "Great Knight"]
+      promo: ["Paladin", "Great Knight"],
     },
     Paladin: {
       weapons: ["Sword", "Lance"],
-      promo: null
+      promo: null,
     },
     "Great Knight": {
       weapons: ["Sword", "Lance", "Axe"],
-      promo: null
+      promo: null,
     },
     "Pegasus Knight": {
       weapons: ["Lance"],
-      promo: ["Falcon Knight", "Wyvern Knight"]
+      promo: ["Falcon Knight", "Wyvern Knight"],
     },
     "Falcon Knight": {
       weapons: ["Sword", "Lance"],
-      promo: null
+      promo: null,
     },
     "Wyvern Rider": {
       weapons: ["Lance"],
-      promo: ["Wyvern Lord", "Wyvern Knight"]
+      promo: ["Wyvern Lord", "Wyvern Knight"],
     },
     "Wyvern Lord": {
       weapons: ["Sword", "Lance"],
-      promo: null
+      promo: null,
     },
     "Wyvern Knight": {
       weapons: ["Lance"],
-      promo: null
+      promo: null,
     },
     Monk: {
       weapons: ["Light"],
-      promo: ["Bishop", "Sage"]
+      promo: ["Bishop", "Sage"],
     },
     Cleric: {
       weapons: ["Staff"],
-      promo: ["Bishop", "Valkyrie"]
+      promo: ["Bishop", "Valkyrie"],
     },
     Priest: {
       weapons: ["Staff"],
-      promo: ["Bishop", "Sage"]
+      promo: ["Bishop", "Sage"],
     },
     Bishop: {
       weapons: ["Staff", "Light"],
-      promo: null
+      promo: null,
     },
     Troubadour: {
       weapons: ["Staff"],
-      promo: ["Valkyrie", "Mage Knight"]
+      promo: ["Valkyrie", "Mage Knight"],
     },
     Valkyrie: {
       weapons: ["Staff", "Light"],
-      promo: null
+      promo: null,
     },
     Mage: {
       weapons: ["Anima"],
-      promo: ["Sage", "Mage Knight"]
+      promo: ["Sage", "Mage Knight"],
     },
     "Mage Knight": {
       weapons: ["Staff", "Anima"],
-      promo: null
+      promo: null,
     },
     Sage: {
       weapons: ["Staff", "Anima", "Light"],
-      promo: null
+      promo: null,
     },
     Shaman: {
       weapons: ["Dark"],
-      promo: ["Druid", "Summoner"]
+      promo: ["Druid", "Summoner"],
     },
     Summoner: {
       weapons: ["Staff", "Dark"],
-      promo: null
+      promo: null,
     },
     Druid: {
       weapons: ["Staff", "Anima", "Dark"],
-      promo: null
+      promo: null,
     },
     Dancer: {
       weapons: [],
-      promo: null
+      promo: null,
     },
     Journeyman: {
       weapons: ["Axe"],
-      promo: ["Pirate", "Fighter"]
+      promo: ["Pirate", "Fighter"],
     },
     Recruit: {
       weapons: ["Lance"],
-      promo: ["Knight", "Cavalier"]
+      promo: ["Knight", "Cavalier"],
     },
     Pupil: {
       weapons: ["Anima"],
-      promo: ["Mage", "Shaman"]
+      promo: ["Mage", "Shaman"],
     },
     Manakete: {
       weapons: [],
-      promo: null
-    }
+      promo: null,
+    },
   },
   free: ["Eirika", "Ephraim"],
-  flags: {}
+  flags: {},
 };
 
 const fe9 = {
   short: "fe9",
   characters: {
     Astrid: {
-      class: "Bow Knight"
+      class: "Bow Knight",
     },
     Bastian: {
-      class: "Sage"
+      class: "Sage",
     },
     Boyd: {
-      class: "Fighter"
+      class: "Fighter",
     },
     Brom: {
-      class: "Knight"
+      class: "Knight",
     },
     Calill: {
-      class: "Sage"
+      class: "Sage",
     },
     Devdan: {
-      class: "Halberdier"
+      class: "Halberdier",
     },
     Elincia: {
-      class: "Princess Crimea"
+      class: "Princess Crimea",
     },
     Gatrie: {
-      class: "Knight"
+      class: "Knight",
     },
     Geoffrey: {
-      class: "Paladin (Sword/Lance)"
+      class: "Paladin (Sword/Lance)",
     },
     Haar: {
-      class: "Wyvern Lord"
+      class: "Wyvern Lord",
     },
     Ike: {
-      class: "Ranger"
+      class: "Ranger",
     },
     Ilyana: {
-      class: "Mage"
+      class: "Mage",
     },
     Janaff: {
-      class: "Hawk"
+      class: "Hawk",
     },
     Jill: {
-      class: "Wyvern Rider"
+      class: "Wyvern Rider",
     },
     Kieran: {
-      class: "Axe Knight"
+      class: "Axe Knight",
     },
     Largo: {
-      class: "Berserker"
+      class: "Berserker",
     },
     Lethe: {
-      class: "Cat"
+      class: "Cat",
     },
     Lucia: {
-      class: "Swordmaster"
+      class: "Swordmaster",
     },
     Makalov: {
-      class: "Sword Knight"
+      class: "Sword Knight",
     },
     Marcia: {
-      class: "Pegasus Knight"
+      class: "Pegasus Knight",
     },
     Mia: {
-      class: "Myrmidon"
+      class: "Myrmidon",
     },
     Mist: {
-      class: "Cleric"
+      class: "Cleric",
     },
     Mordecai: {
-      class: "Tiger"
+      class: "Tiger",
     },
     Muarim: {
-      class: "Tiger"
+      class: "Tiger",
     },
     Nephenee: {
-      class: "Soldier"
+      class: "Soldier",
     },
     Oscar: {
-      class: "Lance Knight"
+      class: "Lance Knight",
     },
     Ranulf: {
-      class: "Cat"
+      class: "Cat",
     },
     Reyson: {
-      class: "Heron"
+      class: "Heron",
     },
     Rhys: {
-      class: "Priest"
+      class: "Priest",
     },
     Rolf: {
-      class: "Archer"
+      class: "Archer",
     },
     Shinon: {
-      class: "Sniper"
+      class: "Sniper",
     },
     Soren: {
-      class: "Mage"
+      class: "Mage",
     },
     Sothe: {
-      class: "Thief"
+      class: "Thief",
     },
     Stefan: {
-      class: "Swordmaster"
+      class: "Swordmaster",
     },
     Tanith: {
-      class: "Falcon Knight"
+      class: "Falcon Knight",
     },
     Tauroneo: {
-      class: "General"
+      class: "General",
     },
     Titania: {
-      class: "Paladin (Lance/Axe)"
+      class: "Paladin (Lance/Axe)",
     },
     Tormod: {
-      class: "Mage"
+      class: "Mage",
     },
     Ulki: {
-      class: "Hawk"
+      class: "Hawk",
     },
     Volke: {
-      class: "Thief (Volke)"
+      class: "Thief (Volke)",
     },
     Zihark: {
-      class: "Myrmidon"
-    }
+      class: "Myrmidon",
+    },
   },
   classes: {
     Ranger: {
       weapons: ["Sword"],
-      promo: "Lord"
+      promo: "Lord",
     },
     Lord: {
       weapons: ["Sword"],
-      promo: null
+      promo: null,
     },
     Hero: {
       weapons: ["Sword", "Axe"],
-      promo: null
+      promo: null,
     },
     Myrmidon: {
       weapons: ["Sword"],
-      promo: "Swordmaster"
+      promo: "Swordmaster",
     },
     Swordmaster: {
       weapons: ["Sword"],
-      promo: null
+      promo: null,
     },
     Soldier: {
       weapons: ["Lance"],
-      promo: "Halberdier"
+      promo: "Halberdier",
     },
     Halberdier: {
       weapons: ["Lance"],
-      promo: null
+      promo: null,
     },
     Fighter: {
       weapons: ["Axe"],
-      promo: "Warrior"
+      promo: "Warrior",
     },
     Warrior: {
       weapons: ["Axe", "Bow"],
-      promo: null
+      promo: null,
     },
     Archer: {
       weapons: ["Bow"],
-      promo: "Sniper"
+      promo: "Sniper",
     },
     Sniper: {
       weapons: ["Bow"],
-      promo: null
+      promo: null,
     },
     Knight: {
       weapons: ["Lance"],
-      promo: "General"
+      promo: "General",
     },
     General: {
       weapons: ["Sword", "Lance"],
-      promo: null
+      promo: null,
     },
     "Sword Knight": {
       weapons: ["Sword"],
       promo: [
         "Paladin (Sword/Lance)",
         "Paladin (Sword/Axe)",
-        "Paladin (Sword/Bow)"
-      ]
+        "Paladin (Sword/Bow)",
+      ],
     },
     "Lance Knight": {
       weapons: ["Lance"],
       promo: [
         "Paladin (Sword/Lance)",
         "Paladin (Lance/Axe)",
-        "Paladin (Lance/Bow)"
-      ]
+        "Paladin (Lance/Bow)",
+      ],
     },
     "Axe Knight": {
       weapons: ["Axe"],
-      promo: ["Paladin (Sword/Axe)", "Paladin (Lance/Axe)", "Paladin (Axe/Bow)"]
+      promo: [
+        "Paladin (Sword/Axe)",
+        "Paladin (Lance/Axe)",
+        "Paladin (Axe/Bow)",
+      ],
     },
     "Bow Knight": {
       weapons: ["Bow"],
-      promo: ["Paladin (Sword/Bow)", "Paladin (Lance/Bow)", "Paladin (Axe/Bow)"]
+      promo: [
+        "Paladin (Sword/Bow)",
+        "Paladin (Lance/Bow)",
+        "Paladin (Axe/Bow)",
+      ],
     },
     "Paladin (Sword/Lance)": {
       weapons: ["Sword", "Lance"],
-      promo: null
+      promo: null,
     },
     "Paladin (Sword/Axe)": {
       weapons: ["Sword", "Axe"],
-      promo: null
+      promo: null,
     },
     "Paladin (Sword/Bow)": {
       weapons: ["Sword", "Bow"],
-      promo: null
+      promo: null,
     },
     "Paladin (Lance/Axe)": {
       weapons: ["Lance", "Axe"],
-      promo: null
+      promo: null,
     },
     "Paladin (Lance/Bow)": {
       weapons: ["Lance", "Bow"],
-      promo: null
+      promo: null,
     },
     "Paladin (Axe/Bow)": {
       weapons: ["Axe", "Bow"],
-      promo: null
+      promo: null,
     },
     "Pegasus Knight": {
       weapons: ["Lance"],
-      promo: "Falcon Knight"
+      promo: "Falcon Knight",
     },
     "Falcon Knight": {
       weapons: ["Sword", "Lance"],
-      promo: null
+      promo: null,
     },
     "Princess Crimea": {
       weapons: ["Sword", "Staff"],
-      promo: null
+      promo: null,
     },
     "Wyvern Rider": {
       weapons: ["Lance"],
-      promo: "Wyvern Lord"
+      promo: "Wyvern Lord",
     },
     "Wyvern Lord": {
       weapons: ["Lance", "Axe"],
-      promo: null
+      promo: null,
     },
     Mage: {
       weapons: ["Fire", "Thunder", "Wind"],
-      promo: "Sage"
+      promo: "Sage",
     },
     Sage: {
       weapons: ["Fire", "Thunder", "Wind", "Staff", "Knife"],
-      promo: null
+      promo: null,
     },
     Priest: {
       weapons: ["Staff"],
-      promo: "Bishop"
+      promo: "Bishop",
     },
     Bishop: {
       weapons: ["Staff"],
-      promo: null
+      promo: null,
     },
     Cleric: {
       weapons: ["Staff"],
-      promo: "Valkyrie"
+      promo: "Valkyrie",
     },
     Valkyrie: {
       weapons: ["Sword", "Staff"],
-      promo: null
+      promo: null,
     },
     Thief: {
       weapons: ["Knife"],
-      promo: null
+      promo: null,
     },
     "Thief (Volke)": {
       weapons: ["Knife"],
-      promo: "Assassin"
+      promo: "Assassin",
     },
     Assassin: {
       weapons: ["Knife"],
-      promo: null
+      promo: null,
     },
     Bandit: {
       weapons: ["Axe"],
-      promo: "Berserker"
+      promo: "Berserker",
     },
     Berserker: {
       weapons: ["Axe"],
-      promo: null
+      promo: null,
     },
     Lion: {
       weapons: [],
-      promo: null
+      promo: null,
     },
     Tiger: {
       weapons: [],
-      promo: null
+      promo: null,
     },
     "Red Dragon": {
       weapons: [],
-      promo: null
+      promo: null,
     },
     Dragon: {
       weapons: [],
-      promo: null
+      promo: null,
     },
     Cat: {
       weapons: [],
-      promo: null
+      promo: null,
     },
     Heron: {
       weapons: [],
-      promo: null
+      promo: null,
     },
     Hawk: {
       weapons: [],
-      promo: null
+      promo: null,
     },
     Raven: {
       weapons: [],
-      promo: null
-    }
+      promo: null,
+    },
   },
   free: ["Ike"],
-  flags: {}
+  flags: {},
 };
 
 const fe10 = {
@@ -1643,9 +1651,9 @@ const fe10 = {
     "Vika",
     "Volke",
     "Volug",
-    "Zihark"
+    "Zihark",
   ],
-  flags: {}
+  flags: {},
 };
 
 const fe11 = {
@@ -1655,8 +1663,8 @@ const fe11 = {
   free: ["Marth"],
   flags: {
     classes: true,
-    troll: true
-  }
+    troll: true,
+  },
 };
 
 const fe12 = {
@@ -1666,8 +1674,8 @@ const fe12 = {
   free: ["Marth", "Kris"],
   flags: {
     classes: true,
-    troll: true
-  }
+    troll: true,
+  },
 };
 
 // lists for pairings
@@ -1685,7 +1693,7 @@ const AWAKE_M = [
   "Gaius",
   "Gregor",
   "Libra",
-  "Henry"
+  "Henry",
 ];
 const AWAKE_F = [
   "Robin (F)",
@@ -1698,7 +1706,7 @@ const AWAKE_F = [
   "Nowi",
   "Tharja",
   "Olivia",
-  "Cherche"
+  "Cherche",
 ];
 const AWAKE_CM = [
   "Owain",
@@ -1707,7 +1715,7 @@ const AWAKE_CM = [
   "Gerome",
   "Morgan (M)",
   "Yarne",
-  "Laurent"
+  "Laurent",
 ];
 const AWAKE_CF = [
   "Lucina",
@@ -1716,7 +1724,7 @@ const AWAKE_CF = [
   "Severa",
   "Morgan (F)",
   "Noire",
-  "Nah"
+  "Nah",
 ];
 
 const AWAKENING_inheritClasses = function(game, picks, to) {
@@ -1780,7 +1788,7 @@ const fe13 = {
         "Mage",
         "Dark Mage",
         "Priest",
-        "Cleric"
+        "Cleric",
       ],
       base: "Tactician",
       pairings: [
@@ -1797,9 +1805,9 @@ const fe13 = {
         "Cherche",
         "Say'ri",
         "Flavia",
-        "Tiki"
+        "Tiki",
       ],
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     "Robin (F)": {
       class: [
@@ -1816,7 +1824,7 @@ const fe13 = {
         "Dark Mage",
         "Priest",
         "Cleric",
-        "Troubadour"
+        "Troubadour",
       ],
       base: "Tactician",
       pairings: [
@@ -1833,233 +1841,233 @@ const fe13 = {
         "Gregor",
         "Libra",
         "Henry",
-        "Basilio"
+        "Basilio",
       ],
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Chrom: {
       class: ["Lord", "Cavalier", "Archer"],
       base: "Lord",
       pairings: ["Sully", "Sumia", "Maribelle", "Olivia"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Lissa: {
       class: ["Cleric", "Pegasus Knight", "Troubadour"],
       base: "Cleric",
       pairings: AWAKE_M,
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Frederick: {
       class: ["Cavalier", "Knight", "Wyvern Rider"],
       base: "Great Knight",
       pairings: AWAKE_F,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Sully: {
       class: ["Cavalier", "Myrmidon", "Wyvern Rider"],
       base: "Cavalier",
       pairings: AWAKE_M,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Virion: {
       class: ["Archer", "Wyvern Rider", "Mage"],
       base: "Archer",
       pairings: AWAKE_F,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Stahl: {
       class: ["Cavalier", "Archer", "Myrmidon"],
       base: "Cavalier",
       pairings: AWAKE_F,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Vaike: {
       class: ["Fighter", "Thief", "Barbarian"],
       base: "Fighter",
       pairings: AWAKE_F,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Miriel: {
       class: ["Mage", "Troubadour", "Dark Mage"],
       base: "Mage",
       pairings: AWAKE_M,
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Sumia: {
       class: ["Pegasus Knight", "Knight", "Cleric"],
       base: "Pegasus Knight",
       pairings: ["Chrom", "Frederick", "Gaius", "Henry"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Kellam: {
       class: ["Knight", "Thief", "Priest"],
       base: "Knight",
       pairings: AWAKE_F,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Donnel: {
       class: ["Villager", "Fighter", "Mercenary"],
       base: "Hero", // hardcoded cos there's no troll Donnel
       pairings: AWAKE_F,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     "Lon'qu": {
       class: ["Myrmidon", "Thief", "Wyvern Rider"],
       base: "Myrmidon",
       pairings: AWAKE_F,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Ricken: {
       class: ["Mage", "Cavalier", "Archer"],
       base: "Mage",
       pairings: AWAKE_F,
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Maribelle: {
       class: ["Troubadour", "Pegasus Knight", "Mage"],
       base: "Troubadour",
       pairings: AWAKE_M,
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Panne: {
       class: ["Taguel", "Thief", "Wyvern Rider"],
       base: "Taguel",
       pairings: AWAKE_M,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Gaius: {
       class: ["Thief", "Fighter", "Myrmidon"],
       base: "Thief",
       pairings: AWAKE_F,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Cordelia: {
       class: ["Pegasus Knight", "Mercenary", "Dark Mage"],
       base: "Pegasus Knight",
       pairings: AWAKE_M,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Gregor: {
       class: ["Mercenary", "Barbarian", "Myrmidon"],
       base: "Mercenary",
       pairings: AWAKE_F,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Nowi: {
       class: ["Manakete", "Mage", "Wyvern Rider"],
       base: "Manakete",
       pairings: AWAKE_M,
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Libra: {
       class: ["Priest", "Mage", "Dark Mage"],
       base: "War Priest",
       pairings: AWAKE_F,
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Tharja: {
       class: ["Dark Mage", "Knight", "Archer"],
       base: "Dark Mage",
       pairings: AWAKE_M,
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Anna: {
       class: ["Thief", "Archer", "Mage"],
       base: "Trickster",
       pairings: ["Robin (M)"],
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Olivia: {
       class: ["Dancer", "Myrmidon", "Pegasus Knight"],
       base: "Dancer",
       pairings: AWAKE_M,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Cherche: {
       class: ["Wyvern Rider", "Troubadour", "Cleric"],
       base: "Wyvern Rider",
       pairings: AWAKE_M,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Henry: {
       class: ["Dark Mage", "Barbarian", "Thief"],
       base: "Dark Mage",
       pairings: AWAKE_F,
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     "Say'ri": {
       class: ["Myrmidon", "Pegasus Knight", "Wyvern Rider"],
       base: "Swordmaster",
       pairings: ["Robin (M)"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Tiki: {
       class: ["Manakete", "Wyvern Rider", "Mage"],
       base: "Manakete",
       pairings: ["Robin (M)"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Basilio: {
       class: ["Fighter", "Barbarian", "Knight"],
       base: "Warrior",
       pairings: ["Robin (F)"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Flavia: {
       class: ["Mercenary", "Thief", "Knight"],
       base: "Hero",
       pairings: ["Robin (M)"],
-      stat: { STR: true }
-    }
+      stat: { STR: true },
+    },
   },
   children: {
     Lucina: {
       class: ["Lord", "Cavalier", "Archer"],
       stat: { STR: true },
       pairings: AWAKE_CM,
-      parent: "Chrom"
+      parent: "Chrom",
     },
     Owain: {
       class: ["Myrmidon", "Priest", "Barbarian"],
       stat: { STR: true },
       pairings: AWAKE_CF,
-      parent: "Lissa"
+      parent: "Lissa",
     },
     Inigo: {
       class: ["Mercenary", "Myrmidon", "Barbarian"],
       stat: { STR: true, MAG: true },
       pairings: AWAKE_CF,
-      parent: "Olivia"
+      parent: "Olivia",
     },
     Brady: {
       class: ["Priest", "Cavalier", "Mage"],
       stat: { STR: true, MAG: true },
       pairings: AWAKE_CF,
-      parent: "Maribelle"
+      parent: "Maribelle",
     },
     Kjelle: {
       class: ["Knight", "Myrmidon", "Cavalier", "Wyvern Rider"],
       stat: { STR: true },
       pairings: AWAKE_CM,
-      parent: "Sully"
+      parent: "Sully",
     },
     Cynthia: {
       class: ["Pegasus Knight", "Knight", "Cleric"],
       stat: { STR: true },
       pairings: AWAKE_CM,
-      parent: "Sumia"
+      parent: "Sumia",
     },
     Severa: {
       class: ["Mercenary", "Pegasus Knight", "Dark Mage"],
       stat: { STR: true },
       pairings: AWAKE_CM,
-      parent: "Cordelia"
+      parent: "Cordelia",
     },
     Gerome: {
       class: ["Wyvern Rider", "Fighter", "Priest"],
       stat: { STR: true },
       pairings: AWAKE_CF,
-      parent: "Cherche"
+      parent: "Cherche",
     },
     "Morgan (F)": {
       class: [
@@ -2074,11 +2082,11 @@ const fe13 = {
         "Wyvern Rider",
         "Mage",
         "Dark Mage",
-        "Cleric"
+        "Cleric",
       ],
       stat: { STR: true, MAG: true },
       parent: "Robin (M)",
-      pairings: AWAKE_CM
+      pairings: AWAKE_CM,
     },
     "Morgan (M)": {
       class: [
@@ -2094,283 +2102,283 @@ const fe13 = {
         "Wyvern Rider",
         "Mage",
         "Dark Mage",
-        "Priest"
+        "Priest",
       ],
       stat: { STR: true, MAG: true },
       parent: "Robin (F)",
-      pairings: AWAKE_CF
+      pairings: AWAKE_CF,
     },
     Yarne: {
       class: ["Taguel", "Thief", "Barbarian"],
       stat: { STR: true },
       pairings: AWAKE_CF,
-      parent: "Panne"
+      parent: "Panne",
     },
     Laurent: {
       class: ["Mage", "Barbarian", "Dark Mage"],
       stat: { MAG: true },
       pairings: AWAKE_CF,
-      parent: "Miriel"
+      parent: "Miriel",
     },
     Noire: {
       class: ["Archer", "Knight", "Dark Mage"],
       stat: { STR: true, MAG: true },
       pairings: AWAKE_CM,
-      parent: "Tharja"
+      parent: "Tharja",
     },
     Nah: {
       class: ["Manakete", "Wyvern Rider", "Mage"],
       stat: { STR: true, MAG: true },
       pairings: AWAKE_CM,
-      parent: "Nowi"
-    }
+      parent: "Nowi",
+    },
   },
   classes: {
     Lord: {
       weapons: ["Sword"],
       promo: ["Great Lord"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     "Great Lord": {
       weapons: ["Sword", "Lance"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Tactician: {
       weapons: ["Sword", "Tome"],
       promo: ["Grandmaster"],
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Grandmaster: {
       weapons: ["Sword", "Tome"],
       promo: null,
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Cavalier: {
       weapons: ["Sword", "Lance"],
       promo: ["Paladin", "Great Knight"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Paladin: {
       weapons: ["Sword", "Lance"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     "Great Knight": {
       weapons: ["Sword", "Lance", "Axe"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Knight: {
       weapons: ["Lance"],
       promo: ["Great Knight", "General"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     General: {
       weapons: ["Lance", "Axe"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Myrmidon: {
       weapons: ["Sword"],
       promo: ["Swordmaster", "Assassin"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Swordmaster: {
       weapons: ["Sword"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Mercenary: {
       weapons: ["Sword"],
       promo: ["Hero", "Bow Knight"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Hero: {
       weapons: ["Sword", "Axe"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Fighter: {
       weapons: ["Axe"],
       promo: ["Hero", "Warrior"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Warrior: {
       weapons: ["Axe", "Bow"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Barbarian: {
       weapons: ["Axe"],
       promo: ["Berserker", "Warrior"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Berserker: {
       weapons: ["Axe"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Archer: {
       weapons: ["Bow"],
       promo: ["Sniper", "Bow Knight"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Sniper: {
       weapons: ["Bow"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     "Bow Knight": {
       weapons: ["Sword", "Bow"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Thief: {
       weapons: ["Sword"],
       promo: ["Assassin", "Trickster"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Assassin: {
       weapons: ["Sword", "Bow"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Trickster: {
       weapons: ["Sword", "Staff"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     "Pegasus Knight": {
       weapons: ["Lance"],
       promo: ["Falcon Knight", "Dark Flier"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     "Falcon Knight": {
       weapons: ["Lance", "Staff"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     "Dark Flier": {
       weapons: ["Lance", "Tome"],
       promo: null,
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     "Wyvern Rider": {
       weapons: ["Axe"],
       promo: ["Wyvern Lord", "Griffon Rider"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     "Wyvern Lord": {
       weapons: ["Lance", "Axe"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     "Griffon Rider": {
       weapons: ["Axe"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Mage: {
       weapons: ["Tome"],
       promo: ["Sage", "Dark Knight"],
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Sage: {
       weapons: ["Tome", "Staff"],
       promo: null,
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     "Dark Mage": {
       weapons: ["Tome"],
       promo: ["Sorcerer", "Dark Knight"],
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Sorcerer: {
       weapons: ["Tome"],
       promo: null,
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     "Dark Knight": {
       weapons: ["Sword", "Tome"],
       promo: null,
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Priest: {
       weapons: ["Staff"],
       promo: ["War Monk", "Sage"],
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Cleric: {
       weapons: ["Staff"],
       promo: ["War Cleric", "Sage"],
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     "War Monk": {
       weapons: ["Axe", "Staff"],
       promo: null,
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     "War Cleric": {
       weapons: ["Axe", "Staff"],
       promo: null,
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Troubadour: {
       weapons: ["Staff"],
       promo: ["War Cleric", "Valkyrie"],
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Valkyrie: {
       weapons: ["Tome", "Staff"],
       promo: null,
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Villager: {
       weapons: ["Lance"],
       promo: ["Fighter", "Mercenary"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Dancer: {
       weapons: ["Sword"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Taguel: {
       weapons: ["Stone"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Manakete: {
       weapons: ["Stone"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Lodestar: {
       weapons: ["Sword"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     "Dread Fighter": {
       weapons: ["Sword", "Axe", "Tome"],
       promo: null,
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Bride: {
       weapons: ["Lance", "Bow", "Staff"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Soldier: {
       weapons: ["Lance"],
       promo: null,
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Merchant: {
       weapons: ["Lance"],
       promo: null,
-      stat: { STR: true }
-    }
+      stat: { STR: true },
+    },
   },
   free: ["Chrom"],
   avatar: "Robin",
@@ -2379,8 +2387,8 @@ const fe13 = {
     onlypairs: true,
     children: true,
     classes: true,
-    troll: true
-  }
+    troll: true,
+  },
 };
 
 // RX is royals since you can't pair them together.
@@ -2434,7 +2442,7 @@ const _FATES_inheritClassesInternal = function(game, classes, from) {
     Wolfskin: "Outlaw",
     Kitsune: "Apothecary",
     Songstress: "Troubadour (F)",
-    Villager: "Apothecary"
+    Villager: "Apothecary",
   };
 
   const char = game.characters[from] || game.children[from];
@@ -2444,7 +2452,7 @@ const _FATES_inheritClassesInternal = function(game, classes, from) {
     "Songstress",
     "Kitsune",
     "Wolfskin",
-    "Villager"
+    "Villager",
   ];
 
   // if first slot is uninheritable class
@@ -2502,283 +2510,283 @@ const FATES_CLASSES = {
   Samurai: {
     weapons: ["Sword"],
     promo: ["Swordmaster", "Master of Arms"],
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Villager: {
     weapons: ["Lance"],
     promo: ["Master of Arms", "Merchant"],
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Apothecary: {
     weapons: ["Bow"],
     promo: ["Merchant", "Mechanist"],
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Ninja: {
     weapons: ["Kunai"],
     promo: ["Mechanist", "Master Ninja"],
-    stat: { STR: true }
+    stat: { STR: true },
   },
   "Oni Savage": {
     weapons: ["Axe"],
     promo: ["Oni Chieftain", "Blacksmith"],
-    stat: { STR: true }
+    stat: { STR: true },
   },
   "Spear Fighter": {
     weapons: ["Lance"],
     promo: ["Spear Master", "Basara"],
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Diviner: {
     weapons: ["Tome"],
     promo: ["Basara", "Onmyoji"],
-    stat: { MAG: true }
+    stat: { MAG: true },
   },
   Monk: {
     weapons: ["Staff"],
     promo: ["Onmyoji", "Great Master"],
-    stat: { MAG: true }
+    stat: { MAG: true },
   },
   "Shrine Maiden": {
     weapons: ["Staff"],
     promo: ["Onmyoji", "Priestess"],
-    stat: { MAG: true }
+    stat: { MAG: true },
   },
   "Sky Knight": {
     weapons: ["Lance"],
     promo: ["Falcon Knight", "Kinshi Knight"],
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Archer: {
     weapons: ["Bow"],
     promo: ["Kinshi Knight", "Sniper"],
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Kitsune: {
     weapons: ["Stone"],
     promo: ["Ninetails"],
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Songstress: {
     weapons: ["Lance"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   "Hoshido Noble": {
     weapons: ["Sword", "Staff", "Stone"],
     promo: null,
-    stat: { STR: true, MAG: true }
+    stat: { STR: true, MAG: true },
   },
   Swordmaster: {
     weapons: ["Sword"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   "Master of Arms": {
     weapons: ["Sword", "Lance", "Axe"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Merchant: {
     weapons: ["Lance", "Bow"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Mechanist: {
     weapons: ["Kunai", "Bow"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   "Master Ninja": {
     weapons: ["Sword", "Kunai"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   "Oni Chieftain": {
     weapons: ["Axe", "Tome"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Blacksmith: {
     weapons: ["Sword", "Axe"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   "Spear Master": {
     weapons: ["Lance"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Basara: {
     weapons: ["Lance", "Tome"],
     promo: null,
-    stat: { STR: true, MAG: true }
+    stat: { STR: true, MAG: true },
   },
   Onmyoji: {
     weapons: ["Tome", "Staff"],
     promo: null,
-    stat: { MAG: true }
+    stat: { MAG: true },
   },
   "Great Master": {
     weapons: ["Lance", "Staff"],
     promo: null,
-    stat: { STR: true, MAG: true }
+    stat: { STR: true, MAG: true },
   },
   Priestess: {
     weapons: ["Bow", "Staff"],
     promo: null,
-    stat: { STR: true, MAG: true }
+    stat: { STR: true, MAG: true },
   },
   "Falcon Knight": {
     weapons: ["Lance", "Staff"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   "Kinshi Knight": {
     weapons: ["Lance", "Bow"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Sniper: {
     weapons: ["Bow"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Ninetails: {
     weapons: ["Stone"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Cavalier: {
     weapons: ["Sword", "Lance"],
     promo: ["Paladin", "Great Knight"],
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Knight: {
     weapons: ["Lance"],
     promo: ["General", "Great Knight"],
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Fighter: {
     weapons: ["Axe"],
     promo: ["Berserker", "Hero"],
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Mercenary: {
     weapons: ["Sword"],
     promo: ["Hero", "Bow Knight"],
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Outlaw: {
     weapons: ["Bow"],
     promo: ["Bow Knight", "Adventurer"],
-    stat: { STR: true }
+    stat: { STR: true },
   },
   "Wyvern Rider": {
     weapons: ["Axe"],
     promo: ["Wyvern Lord", "Malig Knight"],
-    stat: { STR: true }
+    stat: { STR: true },
   },
   "Dark Mage": {
     weapons: ["Tome"],
     promo: ["Sorcerer", "Dark Knight"],
-    stat: { MAG: true }
+    stat: { MAG: true },
   },
   "Troubadour (M)": {
     weapons: ["Staff"],
     promo: ["Strategist", "Butler"],
-    stat: { MAG: true }
+    stat: { MAG: true },
   },
   "Troubadour (F)": {
     weapons: ["Staff"],
     promo: ["Strategist", "Maid"],
-    stat: { MAG: true }
+    stat: { MAG: true },
   },
   Wolfskin: {
     weapons: ["Stone"],
     promo: ["Wolfssegner"],
-    stat: { STR: true }
+    stat: { STR: true },
   },
   "Nohr Noble": {
     weapons: ["Sword", "Tome", "Stone"],
     promo: null,
-    stat: { STR: true, MAG: true }
+    stat: { STR: true, MAG: true },
   },
   Paladin: {
     weapons: ["Sword", "Lance"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   "Great Knight": {
     weapons: ["Sword", "Lance", "Axe"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   General: {
     weapons: ["Lance", "Axe"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Berserker: {
     weapons: ["Axe"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Hero: {
     weapons: ["Sword", "Axe"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   "Bow Knight": {
     weapons: ["Sword", "Bow"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   Adventurer: {
     weapons: ["Bow", "Staff"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   "Wyvern Lord": {
     weapons: ["Lance", "Axe"],
     promo: null,
-    stat: { STR: true }
+    stat: { STR: true },
   },
   "Malig Knight": {
     weapons: ["Axe", "Tome"],
     promo: null,
-    stat: { STR: true, MAG: true }
+    stat: { STR: true, MAG: true },
   },
   Sorcerer: {
     weapons: ["Tome"],
     promo: null,
-    stat: { MAG: true }
+    stat: { MAG: true },
   },
   "Dark Knight": {
     weapons: ["Sword", "Tome"],
     promo: null,
-    stat: { STR: true, MAG: true }
+    stat: { STR: true, MAG: true },
   },
   Strategist: {
     weapons: ["Tome", "Staff"],
     promo: null,
-    stat: { MAG: true }
+    stat: { MAG: true },
   },
   Butler: {
     weapons: ["Kunai", "Staff"],
     promo: null,
-    stat: { STR: true, MAG: true }
+    stat: { STR: true, MAG: true },
   },
   Maid: {
     weapons: ["Kunai", "Staff"],
     promo: null,
-    stat: { STR: true, MAG: true }
+    stat: { STR: true, MAG: true },
   },
   Wolfssegner: {
     weapons: ["Stone"],
     promo: null,
-    stat: { STR: true }
-  }
+    stat: { STR: true },
+  },
 };
 
 const fe14br = {
@@ -2805,11 +2813,11 @@ const fe14br = {
         "Outlaw",
         "Wyvern Rider",
         "Dark Mage",
-        "Troubadour (M)"
+        "Troubadour (M)",
       ],
       base: "Nohr Prince",
       pairings: BR_AF.concat(["Scarlet", "Reina"]),
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     "Corrin (F)": {
       class: [
@@ -2831,196 +2839,196 @@ const fe14br = {
         "Outlaw",
         "Wyvern Rider",
         "Dark Mage",
-        "Troubadour (F)"
+        "Troubadour (F)",
       ],
       base: "Nohr Prince",
       pairings: BR_AM.concat(["Yukimura", "Shura", "Izana"]),
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Felicia: {
       class: ["Troubadour (F)", "Mercenary"],
       base: "Maid",
       pairings: BR_AM,
       friends: ["Hana"],
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Jakob: {
       class: ["Troubadour (M)", "Cavalier"],
       base: "Butler",
       pairings: BR_AF,
       friends: ["Silas", "Takumi"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Kaze: {
       class: ["Ninja", "Samurai"],
       base: "Ninja",
       pairings: BR_AF,
       friends: ["Saizo", "Silas"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Azura: {
       class: ["Songstress", "Sky Knight"],
       base: "Songstress",
       pairings: BR_AM,
       friends: ["Hinoka", "Sakura"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Silas: {
       class: ["Cavalier", "Mercenary"],
       base: "Cavalier",
       pairings: BR_AF,
       friends: ["Ryoma", "Jakob", "Kaze"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Shura: {
       class: ["Outlaw", "Ninja", "Fighter"],
       base: "Adventurer",
       pairings: ["Corrin (F)"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Mozu: {
       class: ["Villager", "Archer"],
       base: "Villager",
       pairings: BR_AM,
       friends: ["Oboro"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Rinkah: {
       class: ["Oni Savage", "Ninja"],
       base: "Oni Savage",
       pairings: BR_AM,
       friends: ["Orochi", "Kagero", "Oboro"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Sakura: {
       class: ["Shrine Maiden", "Sky Knight"],
       base: "Shrine Maiden",
       pairings: FATES_M.concat(BR_M),
       friends: ["Hinoka", "Hana", "Azura"],
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Hana: {
       class: ["Samurai", "Shrine Maiden"],
       base: "Samurai",
       pairings: BR_AM,
       friends: ["Sakura", "Setsuna"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Subaki: {
       class: ["Sky Knight", "Samurai"],
       base: "Sky Knight",
       pairings: BR_AF,
       friends: ["Azama", "Saizo", "Hinata"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Saizo: {
       class: ["Ninja", "Samurai"],
       base: "Ninja",
       pairings: BR_AF,
       friends: ["Ryoma", "Subaki", "Kaze"],
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Orochi: {
       class: ["Diviner", "Apothecary"],
       base: "Diviner",
       pairings: BR_AM,
       friends: ["Rinkah", "Kagero", "Oboro"],
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Hinoka: {
       class: ["Sky Knight", "Spear Fighter"],
       base: "Sky Knight",
       pairings: FATES_M.concat(BR_M),
       friends: ["Sakura", "Setsuna", "Azura"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Azama: {
       class: ["Monk", "Apothecary"],
       base: "Monk",
       pairings: BR_AF,
       friends: ["Kaden", "Subaki", "Hayato"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Setsuna: {
       class: ["Archer", "Ninja"],
       base: "Archer",
       pairings: BR_AM,
       friends: ["Hinoka", "Kagero", "Hana"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Hayato: {
       class: ["Diviner", "Oni Savage"],
       base: "Diviner",
       pairings: BR_AF,
       friends: ["Kaden", "Azama"],
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Oboro: {
       class: ["Spear Fighter", "Apothecary"],
       base: "Spear Fighter",
       pairings: BR_AM,
       friends: ["Orochi", "Rinkah", "Mozu"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Hinata: {
       class: ["Samurai", "Oni Savage"],
       base: "Samurai",
       pairings: BR_AF,
       friends: ["Takumi", "Kaden", "Subaki"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Takumi: {
       class: ["Archer", "Spear Fighter"],
       base: "Archer",
       pairings: FATES_F.concat(BR_F),
       friends: ["Ryoma", "Hinata", "Jakob"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Kagero: {
       class: ["Ninja", "Diviner"],
       base: "Ninja",
       pairings: BR_AM,
       friends: ["Orochi", "Rinkah", "Setsuna"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Reina: {
       class: ["Sky Knight", "Diviner", "Ninja"],
       base: "Kinshi Knight",
       pairings: ["Corrin (M)"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Kaden: {
       class: ["Kitsune", "Diviner"],
       base: "Kitsune",
       pairings: BR_AF,
       friends: ["Hinata", "Azama", "Hayato"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Ryoma: {
       class: ["Samurai", "Sky Knight"],
       base: "Swordmaster",
       pairings: FATES_F.concat(BR_F),
       friends: ["Saizo", "Silas", "Takumi"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Izana: {
       class: ["Monk", "Samurai", "Apothecary"],
       base: "Onmyoji",
       pairings: ["Corrin (F)"],
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Scarlet: {
       class: ["Wyvern Rider", "Outlaw", "Knight"],
       base: "Wyvern Rider",
       pairings: ["Corrin (M)"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Yukimura: {
       class: ["Apothecary", "Samurai", "Monk"],
       base: "Mechanist",
       pairings: ["Corrin (F)"],
-      stat: { STR: true }
-    }
+      stat: { STR: true },
+    },
   },
   children: {
     "Kana (M)": {
@@ -3029,7 +3037,7 @@ const fe14br = {
       pairings: BR_ACF,
       friends: ["Shiro"],
       stat: { STR: true, MAG: true },
-      parent: "Corrin (F)"
+      parent: "Corrin (F)",
     },
     "Kana (F)": {
       base: "Nohr Prince",
@@ -3037,7 +3045,7 @@ const fe14br = {
       pairings: BR_ACM,
       friends: ["Midori", "Mitama", "Selkie"],
       stat: { STR: true, MAG: true },
-      parent: "Corrin (M)"
+      parent: "Corrin (M)",
     },
     Shigure: {
       base: "Sky Knight",
@@ -3045,7 +3053,7 @@ const fe14br = {
       pairings: BR_ACF,
       friends: ["Hisame"],
       stat: { STR: true },
-      parent: "Azura"
+      parent: "Azura",
     },
     Dwyer: {
       base: "Troubadour (M)",
@@ -3053,7 +3061,7 @@ const fe14br = {
       pairings: BR_ACF,
       friends: ["Asugi", "Kiragi"],
       stat: { STR: true },
-      parent: "Jakob"
+      parent: "Jakob",
     },
     Sophie: {
       base: "Cavalier",
@@ -3061,7 +3069,7 @@ const fe14br = {
       pairings: BR_ACM,
       friends: ["Caeldori"],
       stat: { STR: true },
-      parent: "Silas"
+      parent: "Silas",
     },
     Midori: {
       base: "Apothecary",
@@ -3069,7 +3077,7 @@ const fe14br = {
       pairings: BR_ACM,
       friends: ["Selkie", "Kana (F)"],
       stat: { STR: true },
-      parent: "Kaze"
+      parent: "Kaze",
     },
     Shiro: {
       base: "Spear Fighter",
@@ -3077,7 +3085,7 @@ const fe14br = {
       pairings: BR_ACF,
       friends: ["Kiragi", "Asugi", "Kana (M)"],
       stat: { STR: true },
-      parent: "Ryoma"
+      parent: "Ryoma",
     },
     Kiragi: {
       base: "Archer",
@@ -3085,7 +3093,7 @@ const fe14br = {
       pairings: BR_ACF,
       friends: ["Shiro", "Hisame", "Dwyer"],
       stat: { STR: true },
-      parent: "Takumi"
+      parent: "Takumi",
     },
     Asugi: {
       base: "Ninja",
@@ -3093,7 +3101,7 @@ const fe14br = {
       pairings: BR_ACF,
       friends: ["Shiro", "Hisame", "Dwyer"],
       stat: { STR: true, MAG: true },
-      parent: "Saizo"
+      parent: "Saizo",
     },
     Selkie: {
       base: "Kitsune",
@@ -3101,7 +3109,7 @@ const fe14br = {
       pairings: BR_ACM,
       friends: ["Rhajat", "Midori", "Kana (F)"],
       stat: { STR: true },
-      parent: "Kaden"
+      parent: "Kaden",
     },
     Hisame: {
       base: "Samurai",
@@ -3109,7 +3117,7 @@ const fe14br = {
       pairings: BR_ACF,
       friends: ["Kiragi", "Asugi", "Shigure"],
       stat: { STR: true },
-      parent: "Hinata"
+      parent: "Hinata",
     },
     Mitama: {
       base: "Shrine Maiden",
@@ -3117,7 +3125,7 @@ const fe14br = {
       pairings: BR_ACM,
       friends: ["Caeldori", "Rhajat", "Kana (F)"],
       stat: { STR: true, MAG: true },
-      parent: "Azama"
+      parent: "Azama",
     },
     Caeldori: {
       base: "Sky Knight",
@@ -3125,7 +3133,7 @@ const fe14br = {
       pairings: BR_ACM,
       friends: ["Mitama", "Rhajat", "Sophie"],
       stat: { STR: true },
-      parent: "Subaki"
+      parent: "Subaki",
     },
     Rhajat: {
       base: "Diviner",
@@ -3133,8 +3141,8 @@ const fe14br = {
       pairings: BR_ACM.concat(["Corrin (F)"]),
       friends: ["Caeldori", "Mitama", "Selkie"],
       stat: { MAG: true },
-      parent: "Hayato"
-    }
+      parent: "Hayato",
+    },
   },
   classes: {
     ...FATES_CLASSES,
@@ -3142,9 +3150,9 @@ const fe14br = {
       "Nohr Prince": {
         weapons: ["Sword", "Stone"],
         promo: ["Hoshido Noble"],
-        stat: { STR: true, MAG: true }
-      }
-    }
+        stat: { STR: true, MAG: true },
+      },
+    },
   },
   free: [],
   avatar: "Corrin",
@@ -3154,8 +3162,8 @@ const fe14br = {
     onlypairs: true,
     children: true,
     classes: true,
-    troll: true
-  }
+    troll: true,
+  },
 };
 
 const fe14cq = {
@@ -3182,11 +3190,11 @@ const fe14cq = {
         "Outlaw",
         "Wyvern Rider",
         "Dark Mage",
-        "Troubadour (M)"
+        "Troubadour (M)",
       ],
       base: "Nohr Prince",
       pairings: CQ_AF.concat(["Niles", "Flora"]),
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     "Corrin (F)": {
       class: [
@@ -3208,191 +3216,191 @@ const fe14cq = {
         "Outlaw",
         "Wyvern Rider",
         "Dark Mage",
-        "Troubadour (F)"
+        "Troubadour (F)",
       ],
       base: "Nohr Prince",
       pairings: CQ_AM.concat(["Gunter", "Shura", "Izana"]),
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Felicia: {
       class: ["Troubadour (F)", "Mercenary"],
       base: "Maid",
       pairings: CQ_AM,
       friends: ["Peri", "Flora"],
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Jakob: {
       class: ["Troubadour (M)", "Cavalier"],
       base: "Butler",
       pairings: CQ_AF,
       friends: ["Gunter", "Silas"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Kaze: {
       class: ["Ninja", "Samurai"],
       base: "Ninja",
       pairings: CQ_AF,
       friends: ["Silas", "Xander"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Azura: {
       class: ["Songstress", "Sky Knight"],
       base: "Songstress",
       pairings: CQ_AM,
       friends: ["Elise"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Silas: {
       class: ["Cavalier", "Mercenary"],
       base: "Cavalier",
       pairings: CQ_AF,
       friends: ["Jakob", "Kaze"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Shura: {
       class: ["Outlaw", "Ninja", "Fighter"],
       base: "Adventurer",
       pairings: ["Corrin (F)"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Mozu: {
       class: ["Villager", "Archer"],
       base: "Villager",
       pairings: CQ_AM,
       friends: ["Effie", "Nyx"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Gunter: {
       class: ["Cavalier", "Mercenary", "Wyvern Rider"],
       base: "Great Knight",
       pairings: ["Corrin (F)"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Elise: {
       class: ["Troubadour (F)", "Wyvern Rider"],
       base: "Troubadour (F)",
       pairings: FATES_M.concat(CQ_M),
       friends: ["Camilla", "Azura", "Effie"],
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Arthur: {
       class: ["Fighter", "Cavalier"],
       base: "Fighter",
       pairings: CQ_AF,
       friends: ["Benny", "Keaton", "Niles"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Effie: {
       class: ["Knight", "Troubadour (F)"],
       base: "Knight",
       pairings: CQ_AM,
       friends: ["Elise", "Mozu", "Nyx"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Odin: {
       class: ["Dark Mage", "Samurai"],
       base: "Dark Mage",
       pairings: CQ_AF,
       friends: ["Leo", "Laslow", "Niles"],
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Niles: {
       class: ["Outlaw", "Dark Mage"],
       base: "Outlaw",
       pairings: CQ_AF.concat(["Corrin (M)"]),
       friends: ["Leo", "Odin", "Arthur"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Nyx: {
       class: ["Dark Mage", "Outlaw"],
       base: "Dark Mage",
       pairings: CQ_AM,
       friends: ["Mozu", "Charlotte", "Effie"],
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Camilla: {
       class: ["Wyvern Rider", "Dark Mage"],
       base: "Malig Knight",
       pairings: FATES_M.concat(CQ_M),
       friends: ["Elise", "Beruka", "Selena"],
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Selena: {
       class: ["Mercenary", "Sky Knight"],
       base: "Mercenary",
       pairings: CQ_AM,
       friends: ["Camilla", "Beruka", "Peri"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Beruka: {
       class: ["Wyvern Rider", "Fighter"],
       base: "Wyvern Rider",
       pairings: CQ_AM,
       friends: ["Camilla", "Charlotte", "Selena"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Laslow: {
       class: ["Mercenary", "Ninja"],
       base: "Mercenary",
       pairings: CQ_AF,
       friends: ["Xander", "Odin", "Keaton"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Peri: {
       class: ["Cavalier", "Dark Mage"],
       base: "Cavalier",
       pairings: CQ_AM,
       friends: ["Felicia", "Charlotte", "Selena"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Benny: {
       class: ["Knight", "Fighter"],
       base: "Knight",
       pairings: CQ_AF,
       friends: ["Keaton", "Arthur"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Charlotte: {
       class: ["Fighter", "Troubadour (F)"],
       base: "Fighter",
       pairings: CQ_AM,
       friends: ["Peri", "Beruka", "Nyx"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Leo: {
       class: ["Dark Mage", "Troubadour (M)"],
       base: "Dark Knight",
       pairings: FATES_F.concat(CQ_F),
       friends: ["Xander", "Odin", "Niles"],
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Keaton: {
       class: ["Wolfskin", "Fighter"],
       base: "Wolfskin",
       pairings: CQ_AF,
       friends: ["Benny", "Arthur", "Laslow"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Xander: {
       class: ["Cavalier", "Wyvern Rider"],
       base: "Paladin",
       pairings: FATES_F.concat(CQ_F),
       friends: ["Kaze", "Laslow", "Leo"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Flora: {
       class: ["Troubadour (F)", "Dark Mage", "Mercenary"],
       base: "Maid",
       pairings: ["Corrin (M)"],
       friends: ["Felicia"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Izana: {
       class: ["Monk", "Samurai", "Apothecary"],
       base: "Onmyoji",
       pairings: ["Corrin (F)"],
-      stat: { MAG: true }
-    }
+      stat: { MAG: true },
+    },
   },
   children: {
     "Kana (M)": {
@@ -3401,7 +3409,7 @@ const fe14cq = {
       pairings: CQ_ACF,
       friends: ["Siegbert", "Percy"],
       stat: { STR: true, MAG: true },
-      parent: "Corrin (F)"
+      parent: "Corrin (F)",
     },
     "Kana (F)": {
       base: "Nohr Prince",
@@ -3409,7 +3417,7 @@ const fe14cq = {
       pairings: CQ_ACM,
       friends: ["Midori", "Velouria"],
       stat: { STR: true, MAG: true },
-      parent: "Corrin (M)"
+      parent: "Corrin (M)",
     },
     Shigure: {
       base: "Sky Knight",
@@ -3417,7 +3425,7 @@ const fe14cq = {
       pairings: CQ_ACF,
       friends: ["Forrest"],
       stat: { STR: true },
-      parent: "Azura"
+      parent: "Azura",
     },
     Dwyer: {
       base: "Troubadour (M)",
@@ -3425,7 +3433,7 @@ const fe14cq = {
       pairings: CQ_ACF,
       friends: ["Percy"],
       stat: { STR: true },
-      parent: "Jakob"
+      parent: "Jakob",
     },
     Sophie: {
       base: "Cavalier",
@@ -3433,7 +3441,7 @@ const fe14cq = {
       pairings: CQ_ACM,
       friends: ["Velouria", "Soleil"],
       stat: { STR: true },
-      parent: "Silas"
+      parent: "Silas",
     },
     Midori: {
       base: "Apothecary",
@@ -3441,7 +3449,7 @@ const fe14cq = {
       pairings: CQ_ACM,
       friends: ["Kana (F)", "Ophelia"],
       stat: { STR: true },
-      parent: "Kaze"
+      parent: "Kaze",
     },
     Siegbert: {
       base: "Cavalier",
@@ -3449,7 +3457,7 @@ const fe14cq = {
       pairings: CQ_ACF,
       friends: ["Kana (M)", "Forrest", "Ignatius"],
       stat: { STR: true },
-      parent: "Xander"
+      parent: "Xander",
     },
     Forrest: {
       base: "Troubadour (M)",
@@ -3457,7 +3465,7 @@ const fe14cq = {
       pairings: CQ_ACF,
       friends: ["Siegbert", "Shigure", "Ignatius"],
       stat: { MAG: true },
-      parent: "Leo"
+      parent: "Leo",
     },
     Ignatius: {
       base: "Knight",
@@ -3465,7 +3473,7 @@ const fe14cq = {
       pairings: CQ_ACF,
       friends: ["Siegbert", "Forrest", "Percy"],
       stat: { STR: true },
-      parent: "Benny"
+      parent: "Benny",
     },
     Velouria: {
       base: "Wolfskin",
@@ -3473,7 +3481,7 @@ const fe14cq = {
       pairings: CQ_ACM,
       friends: ["Sophie", "Kana (F)", "Nina"],
       stat: { STR: true },
-      parent: "Keaton"
+      parent: "Keaton",
     },
     Percy: {
       base: "Wyvern Rider",
@@ -3481,7 +3489,7 @@ const fe14cq = {
       pairings: CQ_ACF,
       friends: ["Ignatius", "Dwyer", "Kana (M)"],
       stat: { STR: true },
-      parent: "Arthur"
+      parent: "Arthur",
     },
     Ophelia: {
       base: "Dark Mage",
@@ -3489,7 +3497,7 @@ const fe14cq = {
       pairings: CQ_ACM,
       friends: ["Midori", "Soleil"],
       stat: { MAG: true },
-      parent: "Odin"
+      parent: "Odin",
     },
     Soleil: {
       base: "Mercenary",
@@ -3497,7 +3505,7 @@ const fe14cq = {
       pairings: CQ_ACM,
       friends: ["Ophelia", "Sophie", "Nina"],
       stat: { STR: true },
-      parent: "Laslow"
+      parent: "Laslow",
     },
     Nina: {
       base: "Outlaw",
@@ -3505,8 +3513,8 @@ const fe14cq = {
       pairings: CQ_ACM,
       friends: ["Soleil", "Velouria"],
       stat: { STR: true },
-      parent: "Niles"
-    }
+      parent: "Niles",
+    },
   },
   classes: {
     ...FATES_CLASSES,
@@ -3514,9 +3522,9 @@ const fe14cq = {
       "Nohr Prince": {
         weapons: ["Sword", "Stone"],
         promo: ["Nohr Noble"],
-        stat: { STR: true, MAG: true }
-      }
-    }
+        stat: { STR: true, MAG: true },
+      },
+    },
   },
   free: [],
   avatar: "Corrin",
@@ -3526,8 +3534,8 @@ const fe14cq = {
     onlypairs: true,
     children: true,
     classes: true,
-    troll: true
-  }
+    troll: true,
+  },
 };
 
 const fe14rev = {
@@ -3554,11 +3562,11 @@ const fe14rev = {
         "Outlaw",
         "Wyvern Rider",
         "Dark Mage",
-        "Troubadour (M)"
+        "Troubadour (M)",
       ],
       base: "Nohr Prince",
       pairings: RV_AF.concat(["Niles", "Reina", "Flora"]),
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     "Corrin (F)": {
       class: [
@@ -3580,310 +3588,310 @@ const fe14rev = {
         "Outlaw",
         "Wyvern Rider",
         "Dark Mage",
-        "Troubadour (F)"
+        "Troubadour (F)",
       ],
       base: "Nohr Prince",
       pairings: RV_AM.concat(["Shura", "Fuga"]),
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Felicia: {
       class: ["Troubadour (F)", "Mercenary"],
       base: "Maid",
       pairings: RV_AM,
       friends: ["Hana", "Peri", "Flora"],
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Jakob: {
       class: ["Troubadour (M)", "Cavalier"],
       base: "Butler",
       pairings: RV_AF,
       friends: ["Silas", "Takumi"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Kaze: {
       class: ["Ninja", "Samurai"],
       base: "Ninja",
       pairings: RV_AF,
       friends: ["Saizo", "Silas", "Xander"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Azura: {
       class: ["Songstress", "Sky Knight"],
       base: "Songstress",
       pairings: RV_AM,
       friends: ["Hinoka", "Sakura", "Elise"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Silas: {
       class: ["Cavalier", "Mercenary"],
       base: "Cavalier",
       pairings: RV_AF,
       friends: ["Ryoma", "Jakob", "Kaze"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Shura: {
       class: ["Outlaw", "Ninja", "Fighter"],
       base: "Adventurer",
       pairings: ["Corrin (F)"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Mozu: {
       class: ["Villager", "Archer"],
       base: "Villager",
       pairings: RV_AM,
       friends: ["Oboro", "Effie", "Nyx"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Gunter: {
       class: ["Cavalier", "Mercenary", "Wyvern Rider"],
       base: "Great Knight",
       pairings: ["Corrin (F)"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Elise: {
       class: ["Troubadour (F)", "Wyvern Rider"],
       base: "Troubadour (F)",
       pairings: FATES_M.concat(CQ_M).concat(BR_RM),
       friends: ["Camilla", "Azura", "Effie", "Sakura"],
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Arthur: {
       class: ["Fighter", "Cavalier"],
       base: "Fighter",
       pairings: CQ_AF.concat(["Kagero", "Setsuna"]),
       friends: ["Benny", "Keaton", "Niles", "Azama"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Effie: {
       class: ["Knight", "Troubadour (F)"],
       base: "Knight",
       pairings: CQ_AM.concat(["Hayato", "Azama"]),
       friends: ["Elise", "Mozu", "Nyx", "Hana"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Odin: {
       class: ["Dark Mage", "Samurai"],
       base: "Dark Mage",
       pairings: CQ_AF.concat(["Orochi", "Kagero"]),
       friends: ["Leo", "Laslow", "Niles", "Hinata"],
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Niles: {
       class: ["Outlaw", "Dark Mage"],
       base: "Outlaw",
       pairings: CQ_AF.concat(["Corrin (M)", "Setsuna", "Oboro"]),
       friends: ["Leo", "Odin", "Arthur", "Subaki"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Nyx: {
       class: ["Dark Mage", "Outlaw"],
       base: "Dark Mage",
       pairings: CQ_AM.concat(["Hayato", "Subaki"]),
       friends: ["Mozu", "Charlotte", "Effie", "Orochi"],
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Camilla: {
       class: ["Wyvern Rider", "Dark Mage"],
       base: "Malig Knight",
       pairings: FATES_M.concat(CQ_M).concat(BR_RM),
       friends: ["Elise", "Beruka", "Selena", "Hinoka"],
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Selena: {
       class: ["Mercenary", "Sky Knight"],
       base: "Mercenary",
       pairings: CQ_AM.concat(["Subaki", "Hinata"]),
       friends: ["Camilla", "Beruka", "Peri", "Setsuna"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Beruka: {
       class: ["Wyvern Rider", "Fighter"],
       base: "Wyvern Rider",
       pairings: CQ_AM.concat(["Azama", "Saizo"]),
       friends: ["Camilla", "Charlotte", "Selena", "Oboro"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Laslow: {
       class: ["Mercenary", "Ninja"],
       base: "Mercenary",
       pairings: CQ_AF.concat(["Orochi", "Hana"]),
       friends: ["Xander", "Odin", "Keaton", "Saizo"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Peri: {
       class: ["Cavalier", "Dark Mage"],
       base: "Cavalier",
       pairings: CQ_AM.concat(["Hinata", "Kaden"]),
       friends: ["Felicia", "Charlotte", "Selena", "Kagero"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Benny: {
       class: ["Knight", "Fighter"],
       base: "Knight",
       pairings: CQ_AF.concat(["Rinkah", "Oboro"]),
       friends: ["Keaton", "Arthur", "Hayato"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Charlotte: {
       class: ["Fighter", "Troubadour (F)"],
       base: "Fighter",
       pairings: CQ_AM.concat(["Saizo", "Kaden"]),
       friends: ["Peri", "Beruka", "Nyx", "Rinkah"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Leo: {
       class: ["Dark Mage", "Troubadour (M)"],
       base: "Dark Knight",
       pairings: FATES_F.concat(CQ_F).concat(BR_RF),
       friends: ["Xander", "Odin", "Niles", "Takumi"],
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Keaton: {
       class: ["Wolfskin", "Fighter"],
       base: "Wolfskin",
       pairings: CQ_AF.concat(["Rinkah", "Hana"]),
       friends: ["Benny", "Arthur", "Laslow", "Kaden"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Xander: {
       class: ["Cavalier", "Wyvern Rider"],
       base: "Paladin",
       pairings: FATES_F.concat(CQ_F).concat(BR_RF),
       friends: ["Kaze", "Laslow", "Leo", "Ryoma"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Flora: {
       class: ["Troubadour (F)", "Dark Mage", "Mercenary"],
       base: "Maid",
       pairings: ["Corrin (M)"],
       friends: ["Felicia"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Rinkah: {
       class: ["Oni Savage", "Ninja"],
       base: "Oni Savage",
       pairings: BR_AM.concat(["Benny", "Keaton"]),
       friends: ["Orochi", "Kagero", "Oboro", "Charlotte"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Sakura: {
       class: ["Shrine Maiden", "Sky Knight"],
       base: "Shrine Maiden",
       pairings: FATES_M.concat(BR_M).concat(CQ_RM),
       friends: ["Hinoka", "Hana", "Azura", "Elise"],
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Hana: {
       class: ["Samurai", "Shrine Maiden"],
       base: "Samurai",
       pairings: BR_AM.concat(["Laslow", "Keaton"]),
       friends: ["Sakura", "Setsuna", "Effie"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Subaki: {
       class: ["Sky Knight", "Samurai"],
       base: "Sky Knight",
       pairings: BR_AF.concat(["Selena", "Nyx"]),
       friends: ["Azama", "Saizo", "Hinata", "Niles"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Saizo: {
       class: ["Ninja", "Samurai"],
       base: "Ninja",
       pairings: BR_AF.concat(["Charlotte", "Beruka"]),
       friends: ["Ryoma", "Subaki", "Kaze", "Laslow"],
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Orochi: {
       class: ["Diviner", "Apothecary"],
       base: "Diviner",
       pairings: BR_AM.concat(["Laslow", "Odin"]),
       friends: ["Rinkah", "Kagero", "Oboro", "Nyx"],
-      stat: { MAG: true }
+      stat: { MAG: true },
     },
     Hinoka: {
       class: ["Sky Knight", "Spear Fighter"],
       base: "Sky Knight",
       pairings: FATES_M.concat(BR_M).concat(CQ_RM),
       friends: ["Sakura", "Setsuna", "Azura", "Camilla"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Azama: {
       class: ["Monk", "Apothecary"],
       base: "Monk",
       pairings: BR_AF.concat(["Effie", "Beruka"]),
       friends: ["Kaden", "Subaki", "Hayato", "Arthur"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Setsuna: {
       class: ["Archer", "Ninja"],
       base: "Archer",
       pairings: BR_AM.concat(["Niles", "Arthur"]),
       friends: ["Hinoka", "Kagero", "Hana", "Selena"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Hayato: {
       class: ["Diviner", "Oni Savage"],
       base: "Diviner",
       pairings: BR_AF.concat(["Nyx", "Effie"]),
       friends: ["Kaden", "Azama", "Benny"],
-      stat: { STR: true, MAG: true }
+      stat: { STR: true, MAG: true },
     },
     Oboro: {
       class: ["Spear Fighter", "Apothecary"],
       base: "Spear Fighter",
       pairings: BR_AM.concat(["Benny", "Niles"]),
       friends: ["Orochi", "Rinkah", "Mozu", "Beruka"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Hinata: {
       class: ["Samurai", "Oni Savage"],
       base: "Samurai",
       pairings: BR_AF.concat(["Peri", "Selena"]),
       friends: ["Takumi", "Kaden", "Subaki", "Odin"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Takumi: {
       class: ["Archer", "Spear Fighter"],
       base: "Archer",
       pairings: FATES_F.concat(BR_F).concat(CQ_RF),
       friends: ["Ryoma", "Hinata", "Jakob", "Leo"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Kagero: {
       class: ["Ninja", "Diviner"],
       base: "Ninja",
       pairings: BR_AM.concat(["Odin", "Arthur"]),
       friends: ["Orochi", "Rinkah", "Setsuna", "Peri"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Reina: {
       class: ["Sky Knight", "Diviner", "Ninja"],
       base: "Kinshi Knight",
       pairings: ["Corrin (M)"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Kaden: {
       class: ["Kitsune", "Diviner"],
       base: "Kitsune",
       pairings: BR_AF.concat(["Charlotte", "Peri"]),
       friends: ["Hinata", "Azama", "Hayato", "Keaton"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Ryoma: {
       class: ["Samurai", "Sky Knight"],
       base: "Swordmaster",
       pairings: FATES_F.concat(BR_F).concat(CQ_RF),
       friends: ["Saizo", "Silas", "Takumi", "Xander"],
-      stat: { STR: true }
+      stat: { STR: true },
     },
     Fuga: {
       class: ["Samurai", "Oni Savage", "Monk"],
       base: "Master of Arms",
       pairings: ["Corrin (F)"],
       friends: ["Hayato"],
-      stat: { STR: true }
-    }
+      stat: { STR: true },
+    },
   },
   children: {
     "Kana (M)": {
@@ -3892,7 +3900,7 @@ const fe14rev = {
       pairings: RV_ACF,
       friends: ["Shiro", "Siegbert", "Percy"],
       stat: { STR: true, MAG: true },
-      parent: "Corrin (F)"
+      parent: "Corrin (F)",
     },
     "Kana (F)": {
       base: "Nohr Prince",
@@ -3900,7 +3908,7 @@ const fe14rev = {
       pairings: RV_ACM,
       friends: ["Midori", "Mitama", "Selkie", "Velouria"],
       stat: { STR: true, MAG: true },
-      parent: "Corrin (M)"
+      parent: "Corrin (M)",
     },
     Shigure: {
       base: "Sky Knight",
@@ -3908,7 +3916,7 @@ const fe14rev = {
       pairings: RV_ACF,
       friends: ["Hisame", "Forrest"],
       stat: { STR: true },
-      parent: "Azura"
+      parent: "Azura",
     },
     Dwyer: {
       base: "Troubadour (M)",
@@ -3916,7 +3924,7 @@ const fe14rev = {
       pairings: RV_ACF,
       friends: ["Asugi", "Kiragi", "Percy"],
       stat: { STR: true },
-      parent: "Jakob"
+      parent: "Jakob",
     },
     Sophie: {
       base: "Cavalier",
@@ -3924,7 +3932,7 @@ const fe14rev = {
       pairings: RV_ACM,
       friends: ["Caeldori", "Velouria", "Soleil"],
       stat: { STR: true },
-      parent: "Silas"
+      parent: "Silas",
     },
     Midori: {
       base: "Apothecary",
@@ -3932,7 +3940,7 @@ const fe14rev = {
       pairings: RV_ACM,
       friends: ["Selkie", "Kana (F)", "Ophelia"],
       stat: { STR: true },
-      parent: "Kaze"
+      parent: "Kaze",
     },
     Shiro: {
       base: "Spear Fighter",
@@ -3940,7 +3948,7 @@ const fe14rev = {
       pairings: BR_ACF,
       friends: ["Kiragi", "Asugi", "Kana (M)", "Siegbert"],
       stat: { STR: true },
-      parent: "Ryoma"
+      parent: "Ryoma",
     },
     Kiragi: {
       base: "Archer",
@@ -3948,7 +3956,7 @@ const fe14rev = {
       pairings: BR_ACF,
       friends: ["Shiro", "Hisame", "Dwyer", "Forrest"],
       stat: { STR: true },
-      parent: "Takumi"
+      parent: "Takumi",
     },
     Asugi: {
       base: "Ninja",
@@ -3956,7 +3964,7 @@ const fe14rev = {
       pairings: BR_ACF,
       friends: ["Shiro", "Hisame", "Dwyer", "Ignatius"],
       stat: { STR: true, MAG: true },
-      parent: "Saizo"
+      parent: "Saizo",
     },
     Selkie: {
       base: "Kitsune",
@@ -3964,7 +3972,7 @@ const fe14rev = {
       pairings: BR_ACM,
       friends: ["Rhajat", "Midori", "Kana (F)", "Velouria"],
       stat: { STR: true },
-      parent: "Kaden"
+      parent: "Kaden",
     },
     Hisame: {
       base: "Samurai",
@@ -3972,7 +3980,7 @@ const fe14rev = {
       pairings: BR_ACF,
       friends: ["Kiragi", "Asugi", "Shigure", "Percy"],
       stat: { STR: true },
-      parent: "Hinata"
+      parent: "Hinata",
     },
     Mitama: {
       base: "Shrine Maiden",
@@ -3980,7 +3988,7 @@ const fe14rev = {
       pairings: BR_ACM,
       friends: ["Caeldori", "Rhajat", "Kana (F)", "Soleil"],
       stat: { STR: true, MAG: true },
-      parent: "Azama"
+      parent: "Azama",
     },
     Caeldori: {
       base: "Sky Knight",
@@ -3988,7 +3996,7 @@ const fe14rev = {
       pairings: BR_ACM,
       friends: ["Mitama", "Rhajat", "Sophie", "Nina"],
       stat: { STR: true },
-      parent: "Subaki"
+      parent: "Subaki",
     },
     Rhajat: {
       base: "Diviner",
@@ -3996,7 +4004,7 @@ const fe14rev = {
       pairings: BR_ACM.concat(["Corrin (F)"]),
       friends: ["Caeldori", "Mitama", "Selkie", "Ophelia"],
       stat: { MAG: true },
-      parent: "Hayato"
+      parent: "Hayato",
     },
     Siegbert: {
       base: "Cavalier",
@@ -4004,7 +4012,7 @@ const fe14rev = {
       pairings: CQ_ACF,
       friends: ["Kana (M)", "Forrest", "Ignatius", "Shiro"],
       stat: { STR: true },
-      parent: "Xander"
+      parent: "Xander",
     },
     Forrest: {
       base: "Troubadour (M)",
@@ -4012,7 +4020,7 @@ const fe14rev = {
       pairings: CQ_ACF,
       friends: ["Siegbert", "Shigure", "Ignatius", "Kiragi"],
       stat: { MAG: true },
-      parent: "Leo"
+      parent: "Leo",
     },
     Ignatius: {
       base: "Knight",
@@ -4020,7 +4028,7 @@ const fe14rev = {
       pairings: CQ_ACF,
       friends: ["Siegbert", "Forrest", "Percy", "Asugi"],
       stat: { STR: true },
-      parent: "Benny"
+      parent: "Benny",
     },
     Velouria: {
       base: "Wolfskin",
@@ -4028,7 +4036,7 @@ const fe14rev = {
       pairings: CQ_ACM,
       friends: ["Sophie", "Kana (F)", "Nina", "Selkie"],
       stat: { STR: true },
-      parent: "Keaton"
+      parent: "Keaton",
     },
     Percy: {
       base: "Wyvern Rider",
@@ -4036,7 +4044,7 @@ const fe14rev = {
       pairings: CQ_ACF,
       friends: ["Ignatius", "Dwyer", "Kana (M)", "Hisame"],
       stat: { STR: true },
-      parent: "Arthur"
+      parent: "Arthur",
     },
     Ophelia: {
       base: "Dark Mage",
@@ -4044,7 +4052,7 @@ const fe14rev = {
       pairings: CQ_ACM,
       friends: ["Midori", "Soleil", "Rhajat"],
       stat: { MAG: true },
-      parent: "Odin"
+      parent: "Odin",
     },
     Soleil: {
       base: "Mercenary",
@@ -4052,7 +4060,7 @@ const fe14rev = {
       pairings: CQ_ACM,
       friends: ["Ophelia", "Sophie", "Nina", "Mitama"],
       stat: { STR: true },
-      parent: "Laslow"
+      parent: "Laslow",
     },
     Nina: {
       base: "Outlaw",
@@ -4060,8 +4068,8 @@ const fe14rev = {
       pairings: CQ_ACM,
       friends: ["Soleil", "Velouria", "Caeldori"],
       stat: { STR: true },
-      parent: "Niles"
-    }
+      parent: "Niles",
+    },
   },
   classes: {
     ...FATES_CLASSES,
@@ -4069,9 +4077,9 @@ const fe14rev = {
       "Nohr Prince": {
         weapons: ["Sword", "Stone"],
         promo: ["Nohr Noble", "Hoshido Noble"],
-        stat: { STR: true, MAG: true }
-      }
-    }
+        stat: { STR: true, MAG: true },
+      },
+    },
   },
   free: [],
   avatar: "Corrin",
@@ -4081,18 +4089,18 @@ const fe14rev = {
     onlypairs: true,
     children: true,
     classes: true,
-    troll: true
-  }
+    troll: true,
+  },
 };
 
 const VALENTIA_CLASSES = {
   "Villager (M)": {
     weapons: ["Sword"],
-    promo: ["Mercenary", "Soldier", "Archer", "Cavalier", "Mage (M)"]
+    promo: ["Mercenary", "Soldier", "Archer", "Cavalier", "Mage (M)"],
   },
   "Villager (F)": {
     weapons: ["Sword"],
-    promo: ["Cavalier", "Pegasus Knight", "Cleric", "Mage (F)"]
+    promo: ["Cavalier", "Pegasus Knight", "Cleric", "Mage (F)"],
   },
   Cavalier: { weapons: ["Lance"], promo: ["Paladin"] },
   Paladin: { weapons: ["Lance"], promo: ["Gold Knight"] },
@@ -4116,7 +4124,7 @@ const VALENTIA_CLASSES = {
   Cleric: { weapons: ["Black Magic", "White Magic"], promo: ["Saint"] },
   Saint: { weapons: ["Black Magic", "White Magic"] },
   Priestess: { weapons: ["Sword", "Black Magic", "White Magic"] },
-  Princess: { weapons: ["Sword", "Black Magic", "White Magic"] }
+  Princess: { weapons: ["Sword", "Black Magic", "White Magic"] },
 };
 
 const fe15alm = {
@@ -4135,13 +4143,13 @@ const fe15alm = {
     Delthea: { class: "Mage (F)" },
     Python: { class: "Archer" },
     Zeke: { class: "Gold Knight" },
-    Forsyth: { class: "Soldier" }
+    Forsyth: { class: "Soldier" },
   },
   classes: VALENTIA_CLASSES,
   free: ["Alm"],
   flags: {},
   imgExtension: "jpg",
-  defaultPicks: 10
+  defaultPicks: 10,
 };
 
 const fe15celica = {
@@ -4163,13 +4171,13 @@ const fe15celica = {
     Atlas: { class: "Villager (M)" },
     Jesse: { class: "Mercenary" },
     Deen: { class: "Myrmidon", exclude: ["Sonya"] },
-    Nomah: { class: "Sage" }
+    Nomah: { class: "Sage" },
   },
   classes: VALENTIA_CLASSES,
   free: ["Celica"],
   flags: {},
   imgExtension: "jpg",
-  defaultPicks: 10
+  defaultPicks: 10,
 };
 
 export default {
@@ -4191,7 +4199,7 @@ export default {
     "Fates: Conquest",
     "Fates: Revelation",
     "Shadows of Valentia (Alm)",
-    "Shadows of Valentia (Celica)"
+    "Shadows of Valentia (Celica)",
   ],
 
   "Fire Emblem": fe1,
@@ -4211,5 +4219,5 @@ export default {
   "Fates: Conquest": fe14cq,
   "Fates: Revelation": fe14rev,
   "Shadows of Valentia (Alm)": fe15alm,
-  "Shadows of Valentia (Celica)": fe15celica
+  "Shadows of Valentia (Celica)": fe15celica,
 };

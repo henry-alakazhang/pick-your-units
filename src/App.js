@@ -24,10 +24,10 @@ class App extends Component {
         children: false,
         classes: true,
         balanced: false,
-        troll: false
+        troll: false,
       },
       picking: false,
-      picks: null
+      picks: null,
     };
 
     this.handleGamePick = this.handleGamePick.bind(this);
@@ -50,15 +50,15 @@ class App extends Component {
         children: false,
         classes: true,
         balanced: false,
-        troll: false
-      }
+        troll: false,
+      },
     });
   }
 
   handleOptionChange(e, opt) {
     const cascade = {
       pairings: ["onlypairs", "children"],
-      classes: ["troll"]
+      classes: ["troll"],
     };
     let options = this.state.options;
     options[opt] = e.target.checked;
@@ -83,7 +83,7 @@ class App extends Component {
     picker.generatePicks().then(res => {
       this.setState({
         picking: false,
-        picks: res
+        picks: res,
       });
     });
   }
@@ -92,14 +92,14 @@ class App extends Component {
     const styles = {
       container: {
         margin: "20px",
-        maxWidth: "900px"
+        maxWidth: "900px",
       },
       sidebar: {
-        textAlign: "left"
+        textAlign: "left",
       },
       sidebarSection: {
-        marginBottom: "8px"
-      }
+        marginBottom: "8px",
+      },
     };
 
     return (
