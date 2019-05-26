@@ -110,7 +110,12 @@ export default class Picker {
         }
 
         // loop and add characters
-        while (this.picks.characters.length < this.numPicks) {
+        while (
+          this.picks.characters.length < this.numPicks &&
+          // safety check for if someone puts more characters than are in the game
+          this.picks.characters.length <
+            Object.keys(this.game.characters).length
+        ) {
           this.makePick();
         }
 

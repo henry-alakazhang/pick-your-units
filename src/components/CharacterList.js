@@ -72,6 +72,7 @@ class CharacterList extends Component {
     ) {
       width = 120;
     }
+    const imgExtension = game.imgExtension || "png";
 
     let tableRows = [];
 
@@ -102,7 +103,8 @@ class CharacterList extends Component {
                   game.short +
                   "/" +
                   char2.name.toLowerCase() +
-                  ".png")}
+                  "." +
+                  imgExtension)}
                 alt={char2.name}
               />
             </td>
@@ -124,7 +126,7 @@ class CharacterList extends Component {
                   "/" +
                   char.name.toLowerCase() +
                   "." +
-                  game.imgExtension || "png")}
+                  imgExtension)}
                 alt={char.name}
               />
             </td>

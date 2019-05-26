@@ -41,7 +41,7 @@ class App extends Component {
     this.setState({
       game: e.target.value,
       // default to 12 for games without a setting
-      numPicks: Game[this.state.game].defaultPicks || 12,
+      numPicks: Game[e.target.value].defaultPicks || 12,
       picks: null,
       options: {
         pairings: false,
