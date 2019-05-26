@@ -4190,8 +4190,8 @@ export default {
     "Fates: Birthright",
     "Fates: Conquest",
     "Fates: Revelation",
-    "Shadows of Valentia (Alm's Route)",
-    "Shadows of Valentia (Celica's Route)"
+    "Shadows of Valentia (Alm)",
+    "Shadows of Valentia (Celica)"
   ],
 
   "Fire Emblem": fe1,
@@ -4210,6 +4210,6 @@ export default {
   "Fates: Birthright": fe14br,
   "Fates: Conquest": fe14cq,
   "Fates: Revelation": fe14rev,
-  "Shadows of Valentia (Alm's Route)": fe15alm,
-  "Shadows of Valentia (Celica's Route)": fe15celica
+  "Shadows of Valentia (Alm)": fe15alm,
+  "Shadows of Valentia (Celica)": fe15celica
 };

@@ -61,7 +61,8 @@ class CharacterList extends Component {
     } else if (
       game.short === "fe6" ||
       game.short === "fe7" ||
-      game.short === "fe8"
+      game.short === "fe8" ||
+      game.short === "fe15"
     ) {
       width = 100;
     } else if (
@@ -116,7 +117,6 @@ class CharacterList extends Component {
     } else {
       for (let i = 0; i < picks.length; i++) {
         const char = picks[i];
-        const displayName = this.getDisplayName(char);
         tableRows.push(
           <tr key={char.name}>
             <td width={width}>
@@ -130,7 +130,7 @@ class CharacterList extends Component {
                 alt={char.name}
               />
             </td>
-            <td>{displayName}</td>
+            {this.getDisplayName(char)}
             <td>{char.class}</td>
           </tr>
         );

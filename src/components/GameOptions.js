@@ -1,23 +1,10 @@
 import React, { Component } from "react";
-import {
-  Row,
-  Form,
-  FormGroup,
-  FormControl,
-  ControlLabel,
-  Checkbox
-} from "react-bootstrap";
+import { Row, Col, Form } from "react-bootstrap";
 
 import Game from "../Game";
 
 class GameOptions extends Component {
   render() {
-    const styles = {
-      spinner: {
-        width: 70
-      }
-    };
-
     const optionStuff = {
       pairings: {
         display: "Pick pairings",
@@ -49,47 +36,56 @@ class GameOptions extends Component {
       }
     };
 
+    const styles = {
+      spinner: {
+        width: 70
+      }
+    };
+
     return (
-      <Row>
-        <h3>Options</h3>
-        <form>
-          <FormGroup>
-            {Object.keys(Game[this.props.game].flags).map(flag => (
-              <Checkbox
-                disabled={optionStuff[flag].disabled}
-                checked={this.props.options[flag]}
-                key={flag}
+      <Row style={styles.container}>
+        <Col>
+          <h3>Options</h3>
+          <Form>
+            <Form.Group>
+              {Object.keys(Game[this.props.game].flags).map(flag => (
+                <Form.Check
+                  disabled={optionStuff[flag].disabled}
+                  checked={this.props.options[flag]}
+                  key={flag}
+                  onChange={e => {
+                    this.props.handleOptionChange(e, flag);
+                  }}
+                  id={flag}
+                  label={optionStuff[flag].display}
+                />
+              ))}
+              <Form.Check
+                checked={this.props.options["balanced"]}
                 onChange={e => {
-                  this.props.handleOptionChange(e, flag);
+                  this.props.handleOptionChange(e, "balanced");
                 }}
-              >
-                {optionStuff[flag].display}
-              </Checkbox>
-            ))}
-            <Checkbox
-              checked={this.props.options["balanced"]}
-              onChange={e => {
-                this.props.handleOptionChange(e, "balanced");
-              }}
-            >
-              {optionStuff["balanced"].display}
-            </Checkbox>
-          </FormGroup>
-        </form>
-        <Form inline>
-          <FormGroup>
-            <ControlLabel>Pick </ControlLabel>{" "}
-            <FormControl
-              style={styles.spinner}
-              type="number"
-              value={this.props.numPicks}
-              min={2}
-              max={22}
-              onChange={this.props.handleNumChange}
-            />{" "}
-            <ControlLabel> units</ControlLabel>
-          </FormGroup>
-        </Form>
+                id="balanced"
+                label={optionStuff["balanced"].display}
+              />
+            </Form.Group>
+          </Form>
+          <div>
+            <Form inline>
+              <Form.Group>
+                <Form.Label>Units to pick: </Form.Label>
+                <Form.Control
+                  style={styles.spinner}
+                  type="number"
+                  value={this.props.numPicks}
+                  min={2}
+                  max={22}
+                  onChange={this.props.handleNumChange}
+                />
+              </Form.Group>
+            </Form>
+          </div>
+        </Col>
       </Row>
     );
   }

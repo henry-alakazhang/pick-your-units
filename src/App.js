@@ -91,52 +91,69 @@ class App extends Component {
   render() {
     const styles = {
       container: {
-        margin: "auto",
-        width: "90%"
+        margin: "20px",
+        maxWidth: "900px"
+      },
+      sidebar: {
+        textAlign: "left"
+      },
+      sidebarSection: {
+        marginBottom: "8px"
       }
     };
 
     return (
-      <Row style={styles.container}>
+      <div>
         <center>
           <h1>Fire Emblem Pick-Your-Unit</h1>
-        </center>
-        <Col md={3}>
-          <GamePicker value={this.state.game} handler={this.handleGamePick} />
-          <GameOptions
-            game={this.state.game}
-            options={this.state.options}
-            handleOptionChange={this.handleOptionChange}
-            numPicks={this.state.numPicks}
-            handleNumChange={this.handleNumChange}
-          />
-          <Row>
-            <p />
-            {Game[this.state.game].disabled && (
-              <Col sm={10}>
-                <Alert bsStyle="danger">
-                  This game is not available yet. Reason cited:
-                  <br />
-                  <li>{Game[this.state.game].disabled}</li>
-                </Alert>
+          <div style={styles.container}>
+            <Row>
+              <Col md={4} style={styles.sidebar}>
+                <GamePicker
+                  value={this.state.game}
+                  handler={this.handleGamePick}
+                />
+                <div style={styles.sidebarSection}>
+                  <GameOptions
+                    game={this.state.game}
+                    options={this.state.options}
+                    handleOptionChange={this.handleOptionChange}
+                    numPicks={this.state.numPicks}
+                    handleNumChange={this.handleNumChange}
+                  />
+                </div>
+                <div>
+                  {Game[this.state.game].disabled && (
+                    <Col sm={10}>
+                      <Alert variant="danger">
+                        This game is not available yet. Reason cited:
+                        <br />
+                        <li>{Game[this.state.game].disabled}</li>
+                      </Alert>
+                    </Col>
+                  )}
+                  <Button
+                    size="large"
+                    variant="primary"
+                    disabled={Game[this.state.game].disabled !== undefined}
+                    onClick={this.handleStart}
+                  >
+                    Pick My Units!
+                  </Button>
+                </div>
               </Col>
-            )}
-            <Button
-              bsSize="large"
-              bsStyle="primary"
-              disabled={Game[this.state.game].disabled !== undefined}
-              onClick={this.handleStart}
-            >
-              Pick My Units!
-            </Button>
-          </Row>
-        </Col>
-        <Col md={9}>
-          {this.state.picks && (
-            <CharacterList picks={this.state.picks} game={this.state.game} />
-          )}
-        </Col>
-      </Row>
+              <Col md={8}>
+                {this.state.picks && (
+                  <CharacterList
+                    picks={this.state.picks}
+                    game={this.state.game}
+                  />
+                )}
+              </Col>
+            </Row>
+          </div>
+        </center>
+      </div>
     );
   }
 }

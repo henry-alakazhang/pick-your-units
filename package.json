@@ -4,16 +4,16 @@
   "private": true,
   "homepage": "http://henry-alakazhang.github.io/pick-your-units",
   "devDependencies": {
-    "react-scripts": "^3.0.1",
-    "prettier": "^1.17.1"
+    "prettier": "^1.17.1",
+    "typescript": "^3.4.5"
   },
   "dependencies": {
-    "create-react-app": "^3.0.1",
     "gh-pages": "^1.0.0",
-    "react": "^15.5.4",
-    "react-addons-css-transition-group": "^15.5.2",
-    "react-bootstrap": "^0.30.10",
-    "react-dom": "^15.5.4"
+    "react": "^16.8.6",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-bootstrap": "^1.0.0-beta.8",
+    "react-dom": "^16.8.6",
+    "react-scripts": "^3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

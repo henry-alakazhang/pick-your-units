@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, FormGroup, FormControl } from "react-bootstrap";
+import { Row, Col, Form } from "react-bootstrap";
 
 import Game from "../Game";
 
@@ -13,21 +13,23 @@ class GamePicker extends Component {
 
     return (
       <Row>
-        <h2> Pick your game </h2>
-        <form>
-          <FormGroup>
-            <FormControl
-              componentClass="select"
-              style={styles.gameInput}
-              value={this.props.game}
-              onChange={this.props.handler}
-            >
-              {Game.list.map(game => (
-                <option key={game}>{game}</option>
-              ))}
-            </FormControl>
-          </FormGroup>
-        </form>
+        <Col>
+          <h2>Pick your game</h2>
+          <Form>
+            <Form.Group>
+              <Form.Control
+                as="select"
+                style={styles.gameInput}
+                value={this.props.game}
+                onChange={this.props.handler}
+              >
+                {Game.list.map(game => (
+                  <option key={game}>{game}</option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+          </Form>
+        </Col>
       </Row>
     );
   }
