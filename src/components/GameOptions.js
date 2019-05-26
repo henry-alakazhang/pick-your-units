@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Form } from "react-bootstrap";
 
-import Game from "../Game";
+import Game from "../models/game-data.models";
 
 class GameOptions extends Component {
   render() {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Row, Table } from "react-bootstrap";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
-import Game from "../Game";
+import Game from "../models/game-data.models";
 
 class CharacterList extends Component {
   constructor(props) {

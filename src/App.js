@@ -7,7 +7,7 @@ import CharacterList from "./components/CharacterList";
 
 import Picker from "./Picker";
 
-import Game from "./Game";
+import Game from "./models/game-data.models";
 import "./App.css";
 
 class App extends Component {

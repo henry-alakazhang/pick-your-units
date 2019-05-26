@@ -1,4 +1,4 @@
-import Game from "./Game";
+import Game from "./models/game-data.models";
 
 function randIn(arr) {
   return Math.floor(Math.random() * arr.length);
