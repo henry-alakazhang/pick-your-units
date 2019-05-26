@@ -123,7 +123,8 @@ class CharacterList extends Component {
                   game.short +
                   "/" +
                   char.name.toLowerCase() +
-                  ".png")}
+                  "." +
+                  game.imgExtension || "png")}
                 alt={char.name}
               />
             </td>
