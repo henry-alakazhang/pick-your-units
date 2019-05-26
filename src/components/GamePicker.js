@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { Row, FormGroup, FormControl } from 'react-bootstrap';
+import React, { Component } from "react";
+import { Row, FormGroup, FormControl } from "react-bootstrap";
 
-import Game from '../Game';
+import Game from "../Game";
 
 class GamePicker extends Component {
   render() {
-    const styles =  {
+    const styles = {
       gameInput: {
-        width: 'auto'
+        width: "auto"
       }
-    }
+    };
 
     return (
       <Row>
@@ -17,15 +17,13 @@ class GamePicker extends Component {
         <form>
           <FormGroup>
             <FormControl
-              componentClass='select'
+              componentClass="select"
               style={styles.gameInput}
               value={this.props.game}
               onChange={this.props.handler}
             >
-              {Game.list.map((game) => (
-                <option key={game}>
-                  {game}
-                </option>
+              {Game.list.map(game => (
+                <option key={game}>{game}</option>
               ))}
             </FormControl>
           </FormGroup>

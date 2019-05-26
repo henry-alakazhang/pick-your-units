@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { Row, Col, Button, Alert } from 'react-bootstrap';
+import React, { Component } from "react";
+import { Row, Col, Button, Alert } from "react-bootstrap";
 
-import GamePicker from './components/GamePicker';
-import GameOptions from './components/GameOptions';
-import CharacterList from './components/CharacterList';
+import GamePicker from "./components/GamePicker";
+import GameOptions from "./components/GameOptions";
+import CharacterList from "./components/CharacterList";
 
-import Picker from './Picker';
+import Picker from "./Picker";
 
-import Game from './Game';
-import './App.css';
+import Game from "./Game";
+import "./App.css";
 
 class App extends Component {
   constructor(props) {
@@ -24,11 +24,11 @@ class App extends Component {
         children: false,
         classes: true,
         balanced: false,
-        troll: false,
+        troll: false
       },
       picking: false,
-      picks: null,
-    }
+      picks: null
+    };
 
     this.handleGamePick = this.handleGamePick.bind(this);
     this.handleOptionChange = this.handleOptionChange.bind(this);
@@ -49,34 +49,37 @@ class App extends Component {
         children: false,
         classes: true,
         balanced: false,
-        troll: false,
-      },
+        troll: false
+      }
     });
   }
 
   handleOptionChange(e, opt) {
     const cascade = {
-      pairings: ['onlypairs', 'children'],
-      classes: ['troll']
-    }
+      pairings: ["onlypairs", "children"],
+      classes: ["troll"]
+    };
     let options = this.state.options;
     options[opt] = e.target.checked;
     // cascade and remove invalid options
     if (!e.target.checked && cascade[opt]) {
-      for (const opt2 of cascade[opt])
-        options[opt2] = false;
+      for (const opt2 of cascade[opt]) options[opt2] = false;
     }
-    this.setState({options:options});
+    this.setState({ options: options });
   }
 
   handleNumChange(e) {
-    this.setState({numPicks: e.target.value});
+    this.setState({ numPicks: e.target.value });
   }
 
   handleStart() {
-    this.setState({picking: true, picks: null});
-    const picker = new Picker(this.state.game, this.state.numPicks, this.state.options);
-    picker.generatePicks().then((res) => {
+    this.setState({ picking: true, picks: null });
+    const picker = new Picker(
+      this.state.game,
+      this.state.numPicks,
+      this.state.options
+    );
+    picker.generatePicks().then(res => {
       this.setState({
         picking: false,
         picks: res
@@ -87,9 +90,9 @@ class App extends Component {
   render() {
     const styles = {
       container: {
-        margin: 'auto',
-        width: '90%'
-      },
+        margin: "auto",
+        width: "90%"
+      }
     };
 
     return (
@@ -98,10 +101,7 @@ class App extends Component {
           <h1>Fire Emblem Pick-Your-Unit</h1>
         </center>
         <Col md={3}>
-          <GamePicker
-            value={this.state.game}
-            handler={this.handleGamePick}
-          />
+          <GamePicker value={this.state.game} handler={this.handleGamePick} />
           <GameOptions
             game={this.state.game}
             options={this.state.options}
@@ -111,7 +111,7 @@ class App extends Component {
           />
           <Row>
             <p />
-            {Game[this.state.game].disabled &&
+            {Game[this.state.game].disabled && (
               <Col sm={10}>
                 <Alert bsStyle="danger">
                   This game is not available yet. Reason cited:
@@ -119,7 +119,7 @@ class App extends Component {
                   <li>{Game[this.state.game].disabled}</li>
                 </Alert>
               </Col>
-            }
+            )}
             <Button
               bsSize="large"
               bsStyle="primary"
@@ -131,9 +131,9 @@ class App extends Component {
           </Row>
         </Col>
         <Col md={9}>
-          {this.state.picks &&
+          {this.state.picks && (
             <CharacterList picks={this.state.picks} game={this.state.game} />
-          }
+          )}
         </Col>
       </Row>
     );

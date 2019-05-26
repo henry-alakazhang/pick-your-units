@@ -4,9 +4,11 @@
   "private": true,
   "homepage": "http://henry-alakazhang.github.io/pick-your-units",
   "devDependencies": {
-    "react-scripts": "0.9.5"
+    "react-scripts": "^3.0.1",
+    "prettier": "^1.17.1"
   },
   "dependencies": {
+    "create-react-app": "^3.0.1",
     "gh-pages": "^1.0.0",
     "react": "^15.5.4",
     "react-addons-css-transition-group": "^15.5.2",
@@ -18,7 +20,20 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "prettier": "prettier --write src/**/*.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
