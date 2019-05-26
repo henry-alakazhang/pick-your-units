@@ -4140,7 +4140,8 @@ const fe15alm = {
   classes: VALENTIA_CLASSES,
   free: ["Alm"],
   flags: {},
-  imgExtension: "jpg"
+  imgExtension: "jpg",
+  defaultPicks: 10
 };
 
 const fe15celica = {
@@ -4167,7 +4168,8 @@ const fe15celica = {
   classes: VALENTIA_CLASSES,
   free: ["Celica"],
   flags: {},
-  imgExtension: "jpg"
+  imgExtension: "jpg",
+  defaultPicks: 10
 };
 
 export default {
