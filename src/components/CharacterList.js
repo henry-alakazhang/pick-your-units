@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Row, Table } from "react-bootstrap";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
-import Game from "../models/game-data.models";
+import { games } from "../models/game-data.models";
 
 class CharacterList extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class CharacterList extends Component {
   }
 
   getDisplayName(char) {
-    const game = Game[this.props.game];
+    const game = games[this.props.game];
     const picks = this.props.picks;
 
     let name = "";
@@ -49,7 +49,7 @@ class CharacterList extends Component {
   }
 
   render() {
-    const game = Game[this.props.game];
+    const game = games[this.props.game];
     const picks = this.props.picks.characters;
 
     // portrait width:

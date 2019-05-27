@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Form } from "react-bootstrap";
 
-import Game from "../models/game-data.models";
+import { games } from "../models/game-data.models";
 
 class GameOptions extends Component {
   render() {
@@ -48,7 +48,7 @@ class GameOptions extends Component {
           <h3>Options</h3>
           <Form>
             <Form.Group>
-              {Object.keys(Game[this.props.game].flags).map(flag => (
+              {Object.keys(games[this.props.game].flags).map(flag => (
                 <Form.Check
                   disabled={optionStuff[flag].disabled}
                   checked={this.props.options[flag]}

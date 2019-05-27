@@ -1,6 +1,10 @@
-import Game from "./models/game-data.models";
+import {
+  Game,
+  ClassChangeGame,
+  gameSupportsClassChanges,
+} from "./models/game.models";
 
-function randIn(arr) {
+function randIn(arr: ReadonlyArray<any>): number {
   return Math.floor(Math.random() * arr.length);
 }
 
@@ -8,25 +12,47 @@ function randIn(arr) {
  * Returns either a string value or a random element in an array,
  * depending on the type of the passed element
  */
-function getOrRand(obj) {
-  if (typeof obj === "string") {
-    return obj;
-  } else {
+function getOrRand<T extends number | string>(obj: T | ReadonlyArray<T>): T {
+  if (typeof obj === "object") {
     return obj[randIn(obj)];
+  } else {
+    return obj;
   }
 }
 
-export default class Picker {
-  constructor(game, numPicks, options) {
+interface PickedCharacter<Ch extends string, Cl extends string> {
+  name: Ch;
+  class: Cl;
+  stats?: any;
+  showPair?: boolean;
+  showFriend?: boolean;
+}
+
+interface Picks<Ch extends string, Cl extends string> {
+  characters: PickedCharacter<Ch, Cl>[];
+  weapons: { [k: string]: number };
+  pairings: { [name in Ch]: Ch };
+  friends: any;
+  options: any;
+}
+
+export default class Picker<Ch extends string, Cl extends string> {
+  readonly game: Game<Ch, Cl> | ClassChangeGame<Ch, Cl>;
+  readonly numPicks: number;
+  readonly options: any;
+  readonly pool: Ch[];
+  readonly picks: Picks<Ch, Cl>;
+
+  constructor(game: Game<Ch, Cl>, numPicks: number, options: any) {
     console.log(game, numPicks, options);
-    this.game = Game[game];
+    this.game = game;
     this.numPicks = numPicks;
     this.options = options;
-    this.pool = Object.keys(this.game.characters);
+    this.pool = Object.keys(this.game.characters) as Ch[];
     this.picks = {
       characters: [],
       weapons: {},
-      pairings: {},
+      pairings: {} as any,
       friends: {},
       options: {
         friends: options["friends"],
@@ -40,107 +66,117 @@ export default class Picker {
    * Generates picks for the given settings
    * Returns a promise to return the picks (generates asynchronously)
    */
-  generatePicks() {
-    return new Promise(
-      function(resolve, reject) {
-        let avatar = null;
-        if (this.game.avatar) {
-          const gender = Math.random();
-          if (gender >= 0.5) {
-            avatar = this.game.avatar + " (F)";
-            this.pool.splice(this.pool.indexOf(this.game.avatar + " (M)"), 1);
-          } else {
-            avatar = this.game.avatar + " (M)";
-            this.pool.splice(this.pool.indexOf(this.game.avatar + " (F)"), 1);
-          }
-        }
+  generatePicks(): Picks<Ch, Cl> {
+    // cast to any here to avoid "used before defining"
+    let avatar: Ch = null as any;
+    if (this.game.avatar) {
+      const gender = Math.random();
+      if (gender >= 0.5) {
+        avatar = (this.game.avatar + " (F)") as Ch;
+        this.pool.splice(
+          this.pool.indexOf((this.game.avatar + " (M)") as Ch),
+          1
+        );
+      } else {
+        avatar = (this.game.avatar + " (M)") as Ch;
+        this.pool.splice(
+          this.pool.indexOf((this.game.avatar + " (F)") as Ch),
+          1
+        );
+      }
+    }
 
-        // set pairings
-        if (this.game.flags["pairings"] && this.options["pairings"]) {
-          // prioritise parents
-          for (const child in this.game.children) {
-            if (
-              this.pairUp(this.game.children[child].parent) &&
-              this.options["children"]
-            ) {
-              this.pool.push(child);
-            }
-          }
-          for (const other of this.pool) {
-            this.pairUp(other);
-          }
-        }
-
-        if (this.game.flags["friends"] && this.options["friends"]) {
-          for (const char in this.game.characters) {
-            if (this.game.characters[char].friends)
-              this.picks.friends[char] = getOrRand(
-                this.game.characters[char].friends
-              );
-          }
-          for (const child in this.game.children) {
-            if (this.game.children[child].friends)
-              this.picks.friends[child] = getOrRand(
-                this.game.children[child].friends
-              );
-          }
-        }
-
-        if (avatar) {
-          this.makePick(avatar);
-
-          // pick boon and bane stats for avatar
-          const stats = ["Str", "Mag", "Skl", "Spd", "Luk", "Def", "Res"];
-          this.picks.characters[0].stats = {
-            boon: null,
-            bane: null,
-          };
-          while (
-            this.picks.characters[0].stats.boon ===
-            this.picks.characters[0].stats.bane
+    // set pairings
+    if (
+      this.game.flags &&
+      this.game.flags["pairings"] &&
+      this.options["pairings"]
+    ) {
+      // prioritise parents
+      if (this.game.children) {
+        this.game.children.forEach(child => {
+          if (
+            // just cast it here, it's safe :)
+            this.pairUp(this.game.characters[child].parent as Ch) &&
+            this.options["children"]
           ) {
-            this.picks.characters[0].stats.boon = getOrRand(stats);
-            this.picks.characters[0].stats.bane = getOrRand(stats);
+            this.pool.push(child);
           }
-        }
+        });
+      }
+      for (const other of this.pool) {
+        this.pairUp(other);
+      }
+    }
 
-        // pick free characters
-        for (const forced of this.game.free) {
-          this.makePick(getOrRand(forced));
-        }
+    if (
+      this.game.flags &&
+      this.game.flags["friends"] &&
+      this.options["friends"]
+    ) {
+      for (const char in this.game.characters) {
+        const friends = this.game.characters[char].friends;
+        if (friends) this.picks.friends[char] = getOrRand(friends);
+      }
+      if (this.game.children) {
+        this.game.children.forEach(child => {
+          const friends = this.game.characters[child].friends;
+          if (friends) this.picks.friends[child] = getOrRand(friends);
+        });
+      }
+    }
 
-        // loop and add characters
-        while (
-          this.picks.characters.length < this.numPicks &&
-          // safety check for if someone puts more characters than are in the game
-          this.picks.characters.length <
-            Object.keys(this.game.characters).length
-        ) {
-          this.makePick();
-        }
+    if (this.game.avatar) {
+      this.makePick(avatar);
 
-        console.log(this.picks);
-        resolve(this.picks);
-      }.bind(this)
-    );
+      // pick boon and bane stats for avatar
+      const stats = ["Str", "Mag", "Skl", "Spd", "Luk", "Def", "Res"];
+      this.picks.characters[0].stats = {
+        boon: null,
+        bane: null,
+      };
+      while (
+        this.picks.characters[0].stats.boon ===
+        this.picks.characters[0].stats.bane
+      ) {
+        this.picks.characters[0].stats.boon = getOrRand(stats);
+        this.picks.characters[0].stats.bane = getOrRand(stats);
+      }
+    }
+
+    // pick free characters
+    this.game.free.forEach(char => this.makePick(char));
+
+    // loop and add characters
+    while (
+      this.picks.characters.length < this.numPicks &&
+      // safety check for if someone puts more characters than are in the game
+      this.picks.characters.length < Object.keys(this.game.characters).length
+    ) {
+      this.makePick();
+    }
+
+    return this.picks;
   }
 
   /*
    * Pairs an unpaired character with another unpaired character
    * Returns whether that character is paired
    */
-  pairUp(person) {
+  pairUp(person: Ch): boolean {
     // more than 1 waifu will ruin your laifu
     if (this.getPartner(person)) return true;
 
     // how do you pair that which does not exist?
-    if (this.pool.indexOf(person) === -1) return false;
+    if (!this.pool.includes(person)) return false;
 
-    const profile = this.game.characters[person] || this.game.children[person];
+    const profile = this.game.characters[person];
+    if (!profile.pairings) return false;
+
     const availables = profile.pairings.slice();
     let pair = randIn(availables);
     while (
-      (this.pool.indexOf(availables[pair]) === -1 ||
+      (!this.pool.includes(availables[pair]) ||
         this.getPartner(availables[pair])) &&
       availables.length > 0
     ) {
@@ -156,7 +192,7 @@ export default class Picker {
     return false;
   }
 
-  getPartner(person) {
+  getPartner(person: Ch): Ch {
     return this.picks.pairings[person];
   }
 
@@ -165,7 +201,7 @@ export default class Picker {
    * parameter 'pick' is an optional forced character pick
    * empty parameter results in a random pick
    */
-  makePick(force) {
+  makePick(force?: Ch) {
     let char = force;
     if (char === undefined) {
       char = this.pool[randIn(this.pool)];
@@ -182,15 +218,20 @@ export default class Picker {
     )
       return;
 
-    const character = this.game.characters[char] || this.game.children[char];
-    let pick = {
+    const character = this.game.characters[char];
+    let pick: PickedCharacter<Ch, Cl> = {
       name: char,
+      class: "" as any,
     };
 
     // set class
     // if there's only one option or the random classes is set, get a random one
     if (this.options["classes"] || !this.game.flags["classes"]) {
-      if (this.options["pairings"] && this.game.inheritClasses) {
+      if (
+        this.options["pairings"] &&
+        gameSupportsClassChanges(this.game) &&
+        this.game.inheritClasses
+      ) {
         // check for inheritance (from partners/friends/parents)
         const classPool = this.game.inheritClasses(this.game, this.picks, char);
         const classPick = randIn(classPool);
@@ -223,9 +264,11 @@ export default class Picker {
       } else {
         pick.class = getOrRand(character.class);
       }
-    } else {
+    } else if (gameSupportsClassChanges(this.game)) {
       // else use default
-      pick.class = character.class[0];
+      pick.class = this.game.characters[char].base;
+    } else {
+      pick.class = this.game.characters[char].class;
     }
 
     let promo = this.game.classes[pick.class].promo;
@@ -287,16 +330,13 @@ export default class Picker {
   /**
    * Returns whether a new pick would maintain weapon balance across the classes
    */
-  maintainsBalance(pick) {
-    let counts = Object.keys(this.game.classes).reduce(
-      function(acc, val) {
-        for (const weap of this.game.classes[val].weapons) {
-          acc[weap] = 0;
-        }
-        return acc;
-      }.bind(this),
-      {}
-    );
+  maintainsBalance(pick: PickedCharacter<Ch, Cl>): boolean {
+    let counts: { [k: string]: number } = {};
+    for (const cl in this.game.classes) {
+      for (const weap of this.game.classes[cl].weapons) {
+        counts[weap] = 0;
+      }
+    }
 
     for (const char of this.picks.characters) {
       for (const weap of this.game.classes[char.class].weapons) {
@@ -324,13 +364,24 @@ export default class Picker {
     return true;
   }
 
-  isTrollPick(pick) {
-    const pickChar =
-      this.game.characters[pick.name] || this.game.children[pick.name];
+  /**
+   * Returns whether a character is a "troll" pick
+   * ie. if it's a particularly non-optimal character.
+   *
+   * Currently only checks for classes which are bad for
+   * a given character's base stat disposition
+   */
+  isTrollPick(pick: PickedCharacter<Ch, Cl>): boolean {
+    // no picks are troll if you can't class change lol.
+    if (!gameSupportsClassChanges(this.game)) {
+      return false;
+    }
+
+    const pickChar = this.game.characters[pick.name];
     const pickClass = this.game.classes[pick.class];
 
     // games without class changes have no troll picks
-    if (!pickChar.stat) return false;
+    if (!pickChar.stat || !pickClass.stat) return false;
 
     // a 'troll' class is a STR-only class for a MAG-only character, or vice versa
     if (!pickChar.stat.STR && !pickClass.stat.MAG) {

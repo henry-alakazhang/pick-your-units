@@ -1,4 +1,4 @@
-import { Game, ClassChangeGame, GameName } from "../game.models";
+import { ClassChangeGame, GameName } from "../game.models";
 export type CharacterNameFE13 =
   | "Chrom"
   | "Robin (M)"
@@ -144,9 +144,9 @@ const FEMALE_CHILDREN: ReadonlyArray<CharacterNameFE13> = [
   "Nah",
 ];
 
-export function AWAKENING_inheritClasses(
+function AWAKENING_inheritClasses(
   game: ClassChangeGame<CharacterNameFE13, ClassNameFE13>,
-  picks: { pairings: { [name in CharacterNameFE13]: CharacterNameFE13 } },
+  picks: { pairings: { [name in CharacterNameFE13]?: CharacterNameFE13 } },
   to: CharacterNameFE13
 ): ReadonlyArray<ClassNameFE13> {
   const pairings = picks.pairings;
@@ -159,6 +159,10 @@ export function AWAKENING_inheritClasses(
 
   // only other parent, since base is included in class pool
   const from = pairings[parent];
+  if (!from) {
+    return game.characters[to].class;
+  }
+
   const ownClasses = game.characters[to].class.slice();
   const inheritedClasses = game.characters[from].class.slice().map(cl => {
     // replace wrong-gendered classes
@@ -505,6 +509,7 @@ export const fe13: ClassChangeGame<CharacterNameFE13, ClassNameFE13> = {
       base: "Tactician",
       stat: { STR: true, MAG: true },
       parent: "Robin (M)",
+      exclude: ["Morgan (M)"],
       pairings: MALE_CHILDREN,
     },
     "Morgan (M)": {
@@ -526,6 +531,7 @@ export const fe13: ClassChangeGame<CharacterNameFE13, ClassNameFE13> = {
       base: "Tactician",
       stat: { STR: true, MAG: true },
       parent: "Robin (F)",
+      exclude: ["Morgan (F)"],
       pairings: FEMALE_CHILDREN,
     },
     Yarne: {

@@ -13,7 +13,6 @@ import { fe12 } from "./game-data/fe12.models";
 import { fe13 } from "./game-data/fe13.models";
 import { fe14br, fe14cq, fe14rev } from "./game-data/fe14.models";
 import { fe15alm, fe15celica } from "./game-data/fe15.models";
-import { GameName, Game, ClassChangeGame } from "./game.models";
 
 export type GameFullName =
   | "Fire Emblem"

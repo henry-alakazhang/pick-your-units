@@ -7,7 +7,7 @@ import CharacterList from "./components/CharacterList";
 
 import Picker from "./Picker";
 
-import Game from "./models/game-data.models";
+import { list, games } from "./models/game-data.models";
 import "./App.css";
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      game: Game.list[0],
+      game: list[0],
       numPicks: 12,
       options: {
         pairings: false,
@@ -41,7 +41,7 @@ class App extends Component {
     this.setState({
       game: e.target.value,
       // default to 12 for games without a setting
-      numPicks: Game[e.target.value].defaultPicks || 12,
+      numPicks: games[e.target.value].defaultPicks || 12,
       picks: null,
       options: {
         pairings: false,
@@ -76,14 +76,15 @@ class App extends Component {
   handleStart() {
     this.setState({ picking: true, picks: null });
     const picker = new Picker(
-      this.state.game,
+      games[this.state.game],
       this.state.numPicks,
       this.state.options
     );
-    picker.generatePicks().then(res => {
+    const picks = picker.generatePicks();
+    Promise.resolve(picks).then(picks => {
       this.setState({
         picking: false,
-        picks: res,
+        picks,
       });
     });
   }
@@ -123,19 +124,19 @@ class App extends Component {
                   />
                 </div>
                 <div>
-                  {Game[this.state.game].disabled && (
+                  {games[this.state.game].disabled && (
                     <Col sm={10}>
                       <Alert variant="danger">
                         This game is not available yet. Reason cited:
                         <br />
-                        <li>{Game[this.state.game].disabled}</li>
+                        <li>{games[this.state.game].disabled}</li>
                       </Alert>
                     </Col>
                   )}
                   <Button
                     size="large"
                     variant="primary"
-                    disabled={Game[this.state.game].disabled !== undefined}
+                    disabled={games[this.state.game].disabled !== undefined}
                     onClick={this.handleStart}
                   >
                     Pick My Units!

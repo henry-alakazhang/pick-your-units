@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Form } from "react-bootstrap";
 
-import Game from "../models/game-data.models";
+import { list } from "../models/game-data.models";
 
 class GamePicker extends Component {
   render() {
@@ -23,7 +23,7 @@ class GamePicker extends Component {
                 value={this.props.game}
                 onChange={this.props.handler}
               >
-                {Game.list.map(game => (
+                {list.map(game => (
                   <option key={game}>{game}</option>
                 ))}
               </Form.Control>
