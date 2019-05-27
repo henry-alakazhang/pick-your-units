@@ -1,5 +1,97 @@
-export const fe6 = {
-  short: "fe6",
+import { Game, GameName } from "../game.models";
+
+export type CharacterNameFE6 =
+  | "Allen"
+  | "Astohl"
+  | "Barth"
+  | "Bartre"
+  | "Bors"
+  | "Cath"
+  | "Cecilia"
+  | "Chad"
+  | "Clarine"
+  | "Dayan"
+  | "Dieck"
+  | "Dorothy"
+  | "Douglas"
+  | "Echidna"
+  | "Ellen"
+  | "Elphin"
+  | "Fa"
+  | "Fir"
+  | "Garret"
+  | "Geese"
+  | "Gonzales"
+  | "Hugh"
+  | "Igrene"
+  | "Juno"
+  | "Klein"
+  | "Lalum"
+  | "Lance"
+  | "Lilina"
+  | "Lot"
+  | "Lugh"
+  | "Marcus"
+  | "Miledy"
+  | "Niime"
+  | "Noah"
+  | "Oujay"
+  | "Percival"
+  | "Raigh"
+  | "Roy"
+  | "Rutger"
+  | "Saul"
+  | "Shin"
+  | "Sophia"
+  | "Sue"
+  | "Tate"
+  | "Shanna"
+  | "Trec"
+  | "Wade"
+  | "Wendy"
+  | "Wolt"
+  | "Zealot"
+  | "Zeiss";
+export type ClassNameFE6 =
+  | "Lord"
+  | "Master Lord"
+  | "Mercenary"
+  | "Hero"
+  | "Myrmidon"
+  | "Swordmaster"
+  | "Thief"
+  | "Knight"
+  | "General"
+  | "Soldier"
+  | "Fighter"
+  | "Warrior"
+  | "Bandit"
+  | "Pirate"
+  | "Berserker"
+  | "Archer"
+  | "Sniper"
+  | "Nomad"
+  | "Nomad Trooper"
+  | "Cavalier"
+  | "Paladin"
+  | "Pegasus Knight"
+  | "Falcon Knight"
+  | "Wyvern Rider"
+  | "Wyvern Lord"
+  | "Priest"
+  | "Bishop"
+  | "Troubadour"
+  | "Valkyrie"
+  | "Mage"
+  | "Sage"
+  | "Shaman"
+  | "Druid"
+  | "Bard"
+  | "Dancer"
+  | "Manakete";
+
+export const fe6: Game<CharacterNameFE6, ClassNameFE6> = {
+  short: GameName.FE6,
   routes: [["A", "B"], ["Sacae", "Ilia"]],
   characters: {
     Allen: {
@@ -165,147 +257,127 @@ export const fe6 = {
   classes: {
     Lord: {
       weapons: ["Sword"],
-      promo: "Master Lord",
+      promo: ["Master Lord"],
     },
     "Master Lord": {
       weapons: ["Sword"],
-      promo: null,
     },
     Mercenary: {
       weapons: ["Sword"],
-      promo: "Hero",
+      promo: ["Hero"],
     },
     Hero: {
       weapons: ["Sword", "Axe"],
-      promo: null,
     },
     Myrmidon: {
       weapons: ["Sword"],
-      promo: "Swordmaster",
+      promo: ["Swordmaster"],
     },
     Swordmaster: {
       weapons: ["Sword"],
-      promo: null,
     },
     Thief: {
       weapons: ["Sword"],
-      promo: null,
     },
     Knight: {
       weapons: ["Lance"],
-      promo: "General",
+      promo: ["General"],
     },
     General: {
       weapons: ["Lance", "Axe"],
-      promo: null,
     },
     Soldier: {
       weapons: ["Lance"],
-      promo: null,
     },
     Fighter: {
       weapons: ["Axe"],
-      promo: "Warrior",
+      promo: ["Warrior"],
     },
     Warrior: {
       weapons: ["Axe", "Bow"],
-      promo: null,
     },
     Bandit: {
       weapons: ["Axe"],
-      promo: "Berserker",
+      promo: ["Berserker"],
     },
     Pirate: {
       weapons: ["Axe"],
-      promo: "Berserker",
+      promo: ["Berserker"],
     },
     Berserker: {
       weapons: ["Axe"],
-      promo: null,
     },
     Archer: {
       weapons: ["Bow"],
-      promo: "Sniper",
+      promo: ["Sniper"],
     },
     Sniper: {
       weapons: ["Bow"],
-      promo: null,
     },
     Nomad: {
       weapons: ["Bow"],
-      promo: "Nomad Trooper",
+      promo: ["Nomad Trooper"],
     },
     "Nomad Trooper": {
       weapons: ["Sword", "Bow"],
-      promo: null,
     },
     Cavalier: {
       weapons: ["Sword", "Lance"],
-      promo: "Paladin",
+      promo: ["Paladin"],
     },
     Paladin: {
       weapons: ["Sword", "Lance", "Axe"],
-      promo: null,
     },
     "Pegasus Knight": {
       weapons: ["Lance"],
-      promo: "Falcon Knight",
+      promo: ["Falcon Knight"],
     },
     "Falcon Knight": {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     "Wyvern Rider": {
       weapons: ["Lance"],
-      promo: "Wyvern Lord",
+      promo: ["Wyvern Lord"],
     },
     "Wyvern Lord": {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     Priest: {
       weapons: ["Staff"],
-      promo: "Bishop",
+      promo: ["Bishop"],
     },
     Bishop: {
       weapons: ["Staff", "Light"],
-      promo: null,
     },
     Troubadour: {
       weapons: ["Staff"],
-      promo: "Valkyrie",
+      promo: ["Valkyrie"],
     },
     Valkyrie: {
       weapons: ["Staff", "Anima"],
-      promo: null,
     },
     Mage: {
       weapons: ["Anima"],
-      promo: "Sage",
+      promo: ["Sage"],
     },
     Sage: {
       weapons: ["Staff", "Anima"],
-      promo: null,
     },
     Shaman: {
       weapons: ["Dark"],
-      promo: "Druid",
+      promo: ["Druid"],
     },
     Druid: {
       weapons: ["Staff", "Dark"],
-      promo: null,
     },
     Bard: {
       weapons: [],
-      promo: null,
     },
     Dancer: {
       weapons: [],
-      promo: null,
     },
     Manakete: {
       weapons: [],
-      promo: null,
     },
   },
   free: ["Roy"],

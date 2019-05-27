@@ -1,9 +1,9 @@
 import { GameName, Game } from "../game.models";
 
-export type CharacterNamesFE2 = "Alm";
-export type ClassNamesFE2 = "Mercenary";
+export type CharacterNameFE2 = "Alm";
+export type ClassNameFE2 = "Mercenary";
 
-export const fe2: Game<CharacterNamesFE2, ClassNamesFE2> = {
+export const fe2: Game<CharacterNameFE2, ClassNameFE2> = {
   short: GameName.FE2,
   disabled: "Nobody plays Gaiden",
   free: [],

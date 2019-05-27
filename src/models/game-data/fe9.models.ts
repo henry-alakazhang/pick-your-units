@@ -1,5 +1,98 @@
-export const fe9 = {
-  short: "fe9",
+import { Game, GameName } from "../game.models";
+
+export type CharacterNameFE9 =
+  | "Astrid"
+  | "Bastian"
+  | "Boyd"
+  | "Brom"
+  | "Calill"
+  | "Devdan"
+  | "Elincia"
+  | "Gatrie"
+  | "Geoffrey"
+  | "Haar"
+  | "Ike"
+  | "Ilyana"
+  | "Janaff"
+  | "Jill"
+  | "Kieran"
+  | "Largo"
+  | "Lethe"
+  | "Lucia"
+  | "Makalov"
+  | "Marcia"
+  | "Mia"
+  | "Mist"
+  | "Mordecai"
+  | "Muarim"
+  | "Nephenee"
+  | "Oscar"
+  | "Ranulf"
+  | "Reyson"
+  | "Rhys"
+  | "Rolf"
+  | "Shinon"
+  | "Soren"
+  | "Sothe"
+  | "Stefan"
+  | "Tanith"
+  | "Tauroneo"
+  | "Titania"
+  | "Tormod"
+  | "Ulki"
+  | "Volke"
+  | "Zihark";
+export type ClassNameFE9 =
+  | "Ranger"
+  | "Lord"
+  | "Hero"
+  | "Myrmidon"
+  | "Swordmaster"
+  | "Soldier"
+  | "Halberdier"
+  | "Fighter"
+  | "Warrior"
+  | "Archer"
+  | "Sniper"
+  | "Knight"
+  | "General"
+  | "Sword Knight"
+  | "Lance Knight"
+  | "Axe Knight"
+  | "Bow Knight"
+  | "Paladin (Sword/Lance)"
+  | "Paladin (Sword/Axe)"
+  | "Paladin (Sword/Bow)"
+  | "Paladin (Lance/Axe)"
+  | "Paladin (Lance/Bow)"
+  | "Paladin (Axe/Bow)"
+  | "Pegasus Knight"
+  | "Falcon Knight"
+  | "Princess Crimea"
+  | "Wyvern Rider"
+  | "Wyvern Lord"
+  | "Mage"
+  | "Sage"
+  | "Priest"
+  | "Bishop"
+  | "Cleric"
+  | "Valkyrie"
+  | "Thief"
+  | "Thief (Volke)"
+  | "Assassin"
+  | "Bandit"
+  | "Berserker"
+  | "Lion"
+  | "Tiger"
+  | "Red Dragon"
+  | "Dragon"
+  | "Cat"
+  | "Heron"
+  | "Hawk"
+  | "Raven";
+
+export const fe9: Game<CharacterNameFE9, ClassNameFE9> = {
+  short: GameName.FE9,
   characters: {
     Astrid: {
       class: "Bow Knight",
@@ -128,55 +221,48 @@ export const fe9 = {
   classes: {
     Ranger: {
       weapons: ["Sword"],
-      promo: "Lord",
+      promo: ["Lord"],
     },
     Lord: {
       weapons: ["Sword"],
-      promo: null,
     },
     Hero: {
       weapons: ["Sword", "Axe"],
-      promo: null,
     },
     Myrmidon: {
       weapons: ["Sword"],
-      promo: "Swordmaster",
+      promo: ["Swordmaster"],
     },
     Swordmaster: {
       weapons: ["Sword"],
-      promo: null,
     },
     Soldier: {
       weapons: ["Lance"],
-      promo: "Halberdier",
+      promo: ["Halberdier"],
     },
     Halberdier: {
       weapons: ["Lance"],
-      promo: null,
     },
     Fighter: {
       weapons: ["Axe"],
-      promo: "Warrior",
+      promo: ["Warrior"],
     },
     Warrior: {
       weapons: ["Axe", "Bow"],
-      promo: null,
     },
     Archer: {
       weapons: ["Bow"],
-      promo: "Sniper",
+      promo: ["Sniper"],
     },
     Sniper: {
       weapons: ["Bow"],
-      promo: null,
     },
     Knight: {
       weapons: ["Lance"],
-      promo: "General",
+      promo: ["General"],
     },
     General: {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     "Sword Knight": {
       weapons: ["Sword"],
@@ -212,123 +298,100 @@ export const fe9 = {
     },
     "Paladin (Sword/Lance)": {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     "Paladin (Sword/Axe)": {
       weapons: ["Sword", "Axe"],
-      promo: null,
     },
     "Paladin (Sword/Bow)": {
       weapons: ["Sword", "Bow"],
-      promo: null,
     },
     "Paladin (Lance/Axe)": {
       weapons: ["Lance", "Axe"],
-      promo: null,
     },
     "Paladin (Lance/Bow)": {
       weapons: ["Lance", "Bow"],
-      promo: null,
     },
     "Paladin (Axe/Bow)": {
       weapons: ["Axe", "Bow"],
-      promo: null,
     },
     "Pegasus Knight": {
       weapons: ["Lance"],
-      promo: "Falcon Knight",
+      promo: ["Falcon Knight"],
     },
     "Falcon Knight": {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     "Princess Crimea": {
       weapons: ["Sword", "Staff"],
-      promo: null,
     },
     "Wyvern Rider": {
       weapons: ["Lance"],
-      promo: "Wyvern Lord",
+      promo: ["Wyvern Lord"],
     },
     "Wyvern Lord": {
       weapons: ["Lance", "Axe"],
-      promo: null,
     },
     Mage: {
       weapons: ["Fire", "Thunder", "Wind"],
-      promo: "Sage",
+      promo: ["Sage"],
     },
     Sage: {
       weapons: ["Fire", "Thunder", "Wind", "Staff", "Knife"],
-      promo: null,
     },
     Priest: {
       weapons: ["Staff"],
-      promo: "Bishop",
+      promo: ["Bishop"],
     },
     Bishop: {
       weapons: ["Staff"],
-      promo: null,
     },
     Cleric: {
       weapons: ["Staff"],
-      promo: "Valkyrie",
+      promo: ["Valkyrie"],
     },
     Valkyrie: {
       weapons: ["Sword", "Staff"],
-      promo: null,
     },
     Thief: {
       weapons: ["Knife"],
-      promo: null,
     },
     "Thief (Volke)": {
       weapons: ["Knife"],
-      promo: "Assassin",
+      promo: ["Assassin"],
     },
     Assassin: {
       weapons: ["Knife"],
-      promo: null,
     },
     Bandit: {
       weapons: ["Axe"],
-      promo: "Berserker",
+      promo: ["Berserker"],
     },
     Berserker: {
       weapons: ["Axe"],
-      promo: null,
     },
     Lion: {
       weapons: [],
-      promo: null,
     },
     Tiger: {
       weapons: [],
-      promo: null,
     },
     "Red Dragon": {
       weapons: [],
-      promo: null,
     },
     Dragon: {
       weapons: [],
-      promo: null,
     },
     Cat: {
       weapons: [],
-      promo: null,
     },
     Heron: {
       weapons: [],
-      promo: null,
     },
     Hawk: {
       weapons: [],
-      promo: null,
     },
     Raven: {
       weapons: [],
-      promo: null,
     },
   },
   free: ["Ike"],

@@ -1,6 +1,6 @@
 import { Game, GameName } from "../game.models";
 
-export type CharacterNamesFE1 =
+export type CharacterNameFE1 =
   | "Abel"
   | "Arran"
   | "Astria"
@@ -47,7 +47,7 @@ export type CharacterNamesFE1 =
   | "Wendel"
   | "Wolf"
   | "Sedgar";
-export type ClassNamesFE1 =
+export type ClassNameFE1 =
   | "Lord"
   | "Mercenary"
   | "Hero"
@@ -71,7 +71,7 @@ export type ClassNamesFE1 =
   | "Bishop"
   | "Manakete";
 
-export const fe1: Game<CharacterNamesFE1, ClassNamesFE1> = {
+export const fe1: Game<CharacterNameFE1, ClassNameFE1> = {
   short: GameName.FE1,
   characters: {
     Abel: {
@@ -221,7 +221,7 @@ export const fe1: Game<CharacterNamesFE1, ClassNamesFE1> = {
     },
     Mercenary: {
       weapons: ["Sword"],
-      promo: "Hero",
+      promo: ["Hero"],
     },
     Hero: {
       weapons: ["Sword"],
@@ -240,21 +240,21 @@ export const fe1: Game<CharacterNamesFE1, ClassNamesFE1> = {
     },
     Archer: {
       weapons: ["Bow"],
-      promo: "Sniper",
+      promo: ["Sniper"],
     },
     Sniper: {
       weapons: ["Bow"],
     },
     Hunter: {
       weapons: ["Bow"],
-      promo: "Sniper",
+      promo: ["Sniper"],
     },
     "Bow Knight": {
       weapons: ["Bow"],
     },
     Cavalier: {
       weapons: ["Sword", "Lance"],
-      promo: "Paladin",
+      promo: ["Paladin"],
     },
     Paladin: {
       weapons: ["Sword", "Lance"],
@@ -267,7 +267,7 @@ export const fe1: Game<CharacterNamesFE1, ClassNamesFE1> = {
     },
     "Pegasus Knight": {
       weapons: ["Sword", "Lance"],
-      promo: "Dracoknight",
+      promo: ["Dracoknight"],
     },
     Dracoknight: {
       weapons: ["Sword", "Lance"],
@@ -277,11 +277,11 @@ export const fe1: Game<CharacterNamesFE1, ClassNamesFE1> = {
     },
     Mage: {
       weapons: ["Magic"],
-      promo: "Bishop",
+      promo: ["Bishop"],
     },
     Priest: {
       weapons: ["Staff"],
-      promo: "Bishop",
+      promo: ["Bishop"],
     },
     Bishop: {
       weapons: ["Magic", "Staff"],

@@ -1,31 +1,31 @@
 export enum GameName {
   FE1 = "fe1",
   FE2 = "fe2",
-  //   FE3,
-  //   FE4,
-  //   FE5,
-  //   FE6,
-  //   FE7,
-  //   FE8,
-  //   FE9,
-  //   FE10,
-  //   FE11,
-  //   FE12,
-  //   FE13,
-  //   FE14,
-  //   FE15,
+  FE3 = "fe3",
+  FE4 = "fe4",
+  FE5 = "fe5",
+  FE6 = "fe6",
+  FE7 = "fe7",
+  FE8 = "fe8",
+  FE9 = "fe9",
+  FE10 = "fe10",
+  FE11 = "fe11",
+  FE12 = "fe12",
+  FE13 = "fe13",
+  FE14 = "fe14",
+  FE15 = "fe15",
 }
 
-export interface Game<Ch extends string, Cl extends string> {
+export interface BaseGame<Ch extends string, Cl extends string> {
   readonly short: GameName;
-  readonly characters: { [name in Ch]: Character<Ch, Cl> };
   readonly classes: { [name in Cl]: Class<Cl> };
+  readonly children?: ReadonlyArray<Ch>;
   /** "Free" units that are always included */
   readonly free: ReadonlyArray<Ch>;
   /** Route splits */
   readonly routes?: ReadonlyArray<[string, string]>;
-  readonly avatar?: keyof Ch;
-  readonly flags?: {
+  readonly avatar?: string;
+  readonly flags: {
     readonly pairings?: true;
     readonly friends?: true;
     readonly onlypairs?: true;
@@ -33,23 +33,44 @@ export interface Game<Ch extends string, Cl extends string> {
     readonly classes?: true;
     readonly troll?: true;
   };
-  /** Determine which classes a unit can inherit from their parents */
-  readonly inheritClasses?: (
-    game: Game<Ch, Cl>,
-    picks: any,
-    to: Cl
-  ) => ReadonlyArray<Cl>;
   /** If the game is disabled, the reason */
   readonly disabled?: string;
 }
 
+export type Game<Ch extends string, Cl extends string> = BaseGame<Ch, Cl> & {
+  readonly characters: { [name in Ch]: NoClassChangeCharacter<Ch, Cl> };
+};
+
+export type ClassChangeGame<Ch extends string, Cl extends string> = BaseGame<
+  Ch,
+  Cl
+> & {
+  readonly characters: { [name in Ch]: ClassChangeCharacter<Ch, Cl> };
+  /** Determine which classes a unit can inherit from their parents */
+  readonly inheritClasses?: (
+    game: ClassChangeGame<Ch, Cl>,
+    picks: any,
+    to: Ch
+  ) => ReadonlyArray<Cl>;
+};
+
+/**
+ * Determines whether a game allows class changes or not
+ */
+export function gameSupportsClassChanges<Ch extends string, Cl extends string>(
+  e: Game<Ch, Cl> | ClassChangeGame<Ch, Cl>
+): e is ClassChangeGame<Ch, Cl> {
+  return e.flags.classes !== undefined;
+}
+
 interface BaseCharacter<Ch> {
+  readonly include?: ReadonlyArray<Ch>;
   readonly exclude?: ReadonlyArray<Ch>;
   readonly pairings?: ReadonlyArray<Ch>;
   readonly friends?: ReadonlyArray<Ch>;
   readonly stat?: {
-    STR: boolean;
-    MAG: boolean;
+    STR?: boolean;
+    MAG?: boolean;
   };
   readonly parent?: Ch;
 }
@@ -63,15 +84,11 @@ type ClassChangeCharacter<Ch, Cl> = {
   readonly base: Cl;
 } & BaseCharacter<Ch>;
 
-export type Character<Ch, Cl> =
-  | ClassChangeCharacter<Ch, Cl>
-  | NoClassChangeCharacter<Ch, Cl>;
-
 export interface Class<Cl> {
   readonly weapons: ReadonlyArray<string>;
-  readonly promo?: Cl | ReadonlyArray<Cl>;
+  readonly promo?: ReadonlyArray<Cl>;
   readonly stat?: {
-    STR: boolean;
-    MAG: boolean;
+    STR?: boolean;
+    MAG?: boolean;
   };
 }

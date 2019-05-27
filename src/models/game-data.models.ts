@@ -13,29 +13,50 @@ import { fe12 } from "./game-data/fe12.models";
 import { fe13 } from "./game-data/fe13.models";
 import { fe14br, fe14cq, fe14rev } from "./game-data/fe14.models";
 import { fe15alm, fe15celica } from "./game-data/fe15.models";
+import { GameName, Game, ClassChangeGame } from "./game.models";
 
-export default {
-  list: [
-    "Fire Emblem",
-    "Gaiden",
-    "Mystery of the Emblem",
-    "Genealogy of the Holy War",
-    "Thracia 776",
-    "The Binding Blade",
-    "The Blazing Blade",
-    "The Sacred Stones",
-    "Path of Radiance",
-    "Radiant Dawn",
-    "Shadow Dragon",
-    "New Mystery of the Emblem",
-    "Awakening",
-    "Fates: Birthright",
-    "Fates: Conquest",
-    "Fates: Revelation",
-    "Shadows of Valentia (Alm)",
-    "Shadows of Valentia (Celica)",
-  ],
+export type GameFullName =
+  | "Fire Emblem"
+  | "Gaiden"
+  | "Mystery of the Emblem"
+  | "Genealogy of the Holy War"
+  | "Thracia 776"
+  | "The Binding Blade"
+  | "The Blazing Blade"
+  | "The Sacred Stones"
+  | "Path of Radiance"
+  | "Radiant Dawn"
+  | "Shadow Dragon"
+  | "New Mystery of the Emblem"
+  | "Awakening"
+  | "Fates: Birthright"
+  | "Fates: Conquest"
+  | "Fates: Revelation"
+  | "Shadows of Valentia (Alm)"
+  | "Shadows of Valentia (Celica)";
 
+export const list: ReadonlyArray<GameFullName> = [
+  "Fire Emblem",
+  "Gaiden",
+  "Mystery of the Emblem",
+  "Genealogy of the Holy War",
+  "Thracia 776",
+  "The Binding Blade",
+  "The Blazing Blade",
+  "The Sacred Stones",
+  "Path of Radiance",
+  "Radiant Dawn",
+  "Shadow Dragon",
+  "New Mystery of the Emblem",
+  "Awakening",
+  "Fates: Birthright",
+  "Fates: Conquest",
+  "Fates: Revelation",
+  "Shadows of Valentia (Alm)",
+  "Shadows of Valentia (Celica)",
+];
+
+export const games = {
   "Fire Emblem": fe1,
   Gaiden: fe2,
   "Mystery of the Emblem": fe3,
