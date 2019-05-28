@@ -29,3 +29,4 @@ https://henry-alakazhang.github.io/pick-your-units/
   - FE1 to 14
   - Awakening to 14
   - Fates to 14
+- Reduced bundle size by minifying some sprites
