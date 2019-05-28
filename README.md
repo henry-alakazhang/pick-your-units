@@ -25,5 +25,6 @@ https://henry-alakazhang.github.io/pick-your-units/
 
 ### V1.2.0
 
+- Added Thracia 776 support
 - Improved table UI a bit so things don't line-break as much
 - Fixed a bug where A+ supports wouldn't be picked unless "Pick pairings" was also enabled
