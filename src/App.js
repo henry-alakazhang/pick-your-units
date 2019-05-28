@@ -124,13 +124,11 @@ class App extends Component {
                 </div>
                 <div>
                   {Game[this.state.game].disabled && (
-                    <Col sm={10}>
-                      <Alert variant="danger">
-                        This game is not available yet. Reason cited:
-                        <br />
-                        <li>{Game[this.state.game].disabled}</li>
-                      </Alert>
-                    </Col>
+                    <Alert variant="danger">
+                      This game is not available yet. Reason cited:
+                      <br />
+                      <li>{Game[this.state.game].disabled}</li>
+                    </Alert>
                   )}
                   <Button
                     size="large"

@@ -15,6 +15,7 @@ class CharacterList extends Component {
     const picks = this.props.picks;
 
     let name = "";
+    let pair = "";
     let extra = "";
     // ! notation for kids
     if (game.children && game.children[char.name]) {
@@ -30,9 +31,9 @@ class CharacterList extends Component {
       !picks.options["onlypairs"] &&
       char.showPair
     ) {
-      name += " (S " + this.props.picks.pairings[char.name] + ")";
+      pair = "(S " + this.props.picks.pairings[char.name] + ")";
     } else if (picks.options["friends"] && char.showFriend) {
-      name += " (A+ " + this.props.picks.friends[char.name] + ")";
+      pair = "(A+ " + this.props.picks.friends[char.name] + ")";
     }
 
     // boon/bane for avatar
@@ -42,7 +43,11 @@ class CharacterList extends Component {
 
     return (
       <td>
-        <p>{name}</p>
+        <p>
+          {name}
+          <br />
+          {pair}
+        </p>
         <p>{extra}</p>
       </td>
     );
@@ -84,9 +89,10 @@ class CharacterList extends Component {
         // const char1display ;
         // const char2display ;
         tableRows.push(
-          <tr key={char1.name}>
-            <td width={width}>
+          <tr style={{ fontSize: "14px" }} key={char1.name}>
+            <td width={80}>
               <img
+                width={80}
                 src={require("../../images/" +
                   game.short +
                   "/" +
@@ -97,9 +103,9 @@ class CharacterList extends Component {
             </td>
             {this.getDisplayName(char1)}
             <td>{char1.class}</td>
-            <td> S-rank </td>
-            <td width={width}>
+            <td width={80}>
               <img
+                width={80}
                 src={require("../../images/" +
                   game.short +
                   "/" +

@@ -22,3 +22,7 @@ https://henry-alakazhang.github.io/pick-your-units/
   - Fixed a bug where Chrom couldn't be paired with anyone except Sumia and Robin
   - Fixed a bug where Sumia couldn't be paired with Robin
   - Fixed a typo in Libra's class name
+
+### V1.2.0
+
+- Improved table UI a bit so things don't line-break as much
