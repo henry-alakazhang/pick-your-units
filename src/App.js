@@ -98,7 +98,10 @@ class App extends Component {
         textAlign: "left",
       },
       sidebarSection: {
-        marginBottom: "8px",
+        marginBottom: "12px",
+      },
+      credits: {
+        fontSize: "12px",
       },
     };
 
@@ -122,7 +125,7 @@ class App extends Component {
                     handleNumChange={this.handleNumChange}
                   />
                 </div>
-                <div>
+                <div style={styles.sidebarSection}>
                   {Game[this.state.game].disabled && (
                     <Alert variant="danger">
                       This game is not available yet. Reason cited:
@@ -138,6 +141,19 @@ class App extends Component {
                   >
                     Pick My Units!
                   </Button>
+                </div>
+                <div style={styles.credits}>
+                  Made with{" "}
+                  <span role="img" aria-label="boom">
+                    💥
+                  </span>{" "}
+                  by NinjaCaterpie.
+                  <br />
+                  Source available{" "}
+                  <a href="https://github.com/henry-alakazhang/pick-your-units">
+                    here
+                  </a>
+                  .
                 </div>
               </Col>
               <Col md={8}>
