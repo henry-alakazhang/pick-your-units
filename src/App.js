@@ -16,7 +16,7 @@ class App extends Component {
 
     this.state = {
       game: Game.list[0],
-      numPicks: 12,
+      numPicks: Game[Game.list[0]].defaultPicks || 12,
       options: {
         pairings: false,
         friends: false,

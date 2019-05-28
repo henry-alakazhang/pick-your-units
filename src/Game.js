@@ -234,6 +234,7 @@ const fe1 = {
   },
   free: ["Marth"],
   flags: {},
+  defaultPicks: 14,
 };
 
 const fe2 = {
@@ -2534,6 +2535,7 @@ const fe13 = {
     classes: true,
     troll: true,
   },
+  defaultPicks: 14,
 };
 
 // RX is royals since you can't pair them together.
@@ -3309,6 +3311,7 @@ const fe14br = {
     classes: true,
     troll: true,
   },
+  defaultPicks: 14,
 };
 
 const fe14cq = {
@@ -3681,6 +3684,7 @@ const fe14cq = {
     classes: true,
     troll: true,
   },
+  defaultPicks: 14,
 };
 
 const fe14rev = {
@@ -4236,6 +4240,7 @@ const fe14rev = {
     classes: true,
     troll: true,
   },
+  defaultPicks: 14,
 };
 
 const VALENTIA_CLASSES = {

@@ -28,3 +28,7 @@ https://henry-alakazhang.github.io/pick-your-units/
 - Added Thracia 776 support
 - Improved table UI a bit so things don't line-break as much
 - Fixed a bug where A+ supports wouldn't be picked unless "Pick pairings" was also enabled
+- Adjusted a few default pick counts to be more accurate to the games
+  - FE1 to 14
+  - Awakening to 14
+  - Fates to 14
