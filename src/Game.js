@@ -238,7 +238,7 @@ const fe1 = {
 
 const fe2 = {
   short: "fe2",
-  disabled: "Nobody plays Gaiden",
+  disabled: "Use the Shadows of Valentia pickers instead",
   free: ["Alm", "Celica"],
   characters: [],
   flags: {},
@@ -300,7 +300,7 @@ const fe3 = {
 
 const fe4 = {
   short: "fe4",
-  disabled: "Need to implement children",
+  disabled: "You can use everyone anyway",
   characters: [],
   free: ["Sigurd", "Seliph"],
   flags: {
