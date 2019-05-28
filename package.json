@@ -5,6 +5,7 @@
   "homepage": "http://henry-alakazhang.github.io/pick-your-units",
   "devDependencies": {
     "prettier": "^1.17.1",
+    "source-map-explorer": "^1.8.0",
     "typescript": "^3.4.5"
   },
   "dependencies": {
@@ -22,7 +23,8 @@
     "eject": "react-scripts eject",
     "prettier": "prettier --write src/**/*.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "analyse": "source-map-explorer 'build/static/js/*.js'"
   },
   "browserslist": {
     "production": [
