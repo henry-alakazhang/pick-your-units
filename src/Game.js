@@ -1848,7 +1848,7 @@ const fe13 = {
     Chrom: {
       class: ["Lord", "Cavalier", "Archer"],
       base: "Lord",
-      pairings: ["Sully", "Sumia", "Maribelle", "Olivia"],
+      pairings: ["Robin (F)", "Sully", "Sumia", "Maribelle", "Olivia"],
       stat: { STR: true },
     },
     Lissa: {
@@ -1860,13 +1860,13 @@ const fe13 = {
     Frederick: {
       class: ["Cavalier", "Knight", "Wyvern Rider"],
       base: "Great Knight",
-      pairings: AWAKE_F,
+      pairings: [...AWAKE_F, "Sumia"],
       stat: { STR: true },
     },
     Sully: {
       class: ["Cavalier", "Myrmidon", "Wyvern Rider"],
       base: "Cavalier",
-      pairings: AWAKE_M,
+      pairings: [...AWAKE_M, "Chrom"],
       stat: { STR: true },
     },
     Virion: {
@@ -1896,7 +1896,7 @@ const fe13 = {
     Sumia: {
       class: ["Pegasus Knight", "Knight", "Cleric"],
       base: "Pegasus Knight",
-      pairings: ["Chrom", "Frederick", "Gaius", "Henry"],
+      pairings: ["Robin (M)", "Chrom", "Frederick", "Gaius", "Henry"],
       stat: { STR: true },
     },
     Kellam: {
@@ -1926,7 +1926,7 @@ const fe13 = {
     Maribelle: {
       class: ["Troubadour", "Pegasus Knight", "Mage"],
       base: "Troubadour",
-      pairings: AWAKE_M,
+      pairings: [...AWAKE_M, "Chrom"],
       stat: { MAG: true },
     },
     Panne: {
@@ -1938,7 +1938,7 @@ const fe13 = {
     Gaius: {
       class: ["Thief", "Fighter", "Myrmidon"],
       base: "Thief",
-      pairings: AWAKE_F,
+      pairings: [...AWAKE_F, "Sumia"],
       stat: { STR: true },
     },
     Cordelia: {
@@ -1961,7 +1961,7 @@ const fe13 = {
     },
     Libra: {
       class: ["Priest", "Mage", "Dark Mage"],
-      base: "War Priest",
+      base: "War Monk",
       pairings: AWAKE_F,
       stat: { STR: true, MAG: true },
     },
@@ -1980,7 +1980,7 @@ const fe13 = {
     Olivia: {
       class: ["Dancer", "Myrmidon", "Pegasus Knight"],
       base: "Dancer",
-      pairings: AWAKE_M,
+      pairings: [...AWAKE_M, "Chrom"],
       stat: { STR: true },
     },
     Cherche: {
@@ -1992,7 +1992,7 @@ const fe13 = {
     Henry: {
       class: ["Dark Mage", "Barbarian", "Thief"],
       base: "Dark Mage",
-      pairings: AWAKE_F,
+      pairings: [...AWAKE_F, "Sumia"],
       stat: { STR: true, MAG: true },
     },
     "Say'ri": {
