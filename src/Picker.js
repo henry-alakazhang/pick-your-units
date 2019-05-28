@@ -190,7 +190,10 @@ export default class Picker {
     // set class
     // if there's only one option or the random classes is set, get a random one
     if (this.options["classes"] || !this.game.flags["classes"]) {
-      if (this.options["pairings"] && this.game.inheritClasses) {
+      if (
+        (this.options["pairings"] || this.options["friends"]) &&
+        this.game.inheritClasses
+      ) {
         // check for inheritance (from partners/friends/parents)
         const classPool = this.game.inheritClasses(this.game, this.picks, char);
         const classPick = randIn(classPool);
