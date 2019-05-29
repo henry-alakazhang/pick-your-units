@@ -30,3 +30,7 @@ https://henry-alakazhang.github.io/pick-your-units/
   - Awakening to 14
   - Fates to 14
 - Reduced bundle size by minifying some sprites
+
+#### V1.2.1
+
+- Fixed a bug where Eyrios wasn't counted as a Thracia Route A unit.
