@@ -79,7 +79,7 @@ class GameOptions extends Component {
                   type="number"
                   value={this.props.numPicks}
                   min={2}
-                  max={22}
+                  max={99}
                   onChange={this.props.handleNumChange}
                 />
               </Form.Group>
