@@ -154,6 +154,7 @@ const characters = {
   Edelgard: {
     class: ["Female", "Emperor"],
     defaultClass: "Emperor",
+    exclude: ["Dimitri", "Dedue", "Claude", "Hilda"],
     stat: { STR: true, MAG: true },
     weapons: {
       strengths: ["Sword", "Axe", /* budding */ "Reason", "Heavy Armour"],
@@ -226,6 +227,7 @@ const characters = {
   Dimitri: {
     class: ["Male", "Great Lord"],
     defaultClass: "Great Lord",
+    exclude: ["Claude", "Edelgard", "Hubert"],
     stat: { STR: true, MAG: false },
     weapons: {
       strengths: ["Sword", "Lance", /* budding */ "Riding"],
@@ -298,6 +300,7 @@ const characters = {
   Claude: {
     class: ["Male", "Barbarossa"],
     defaultClass: "Barbarossa",
+    exclude: ["Dimitri", "Dedue", "Edelgard", "Hubert"],
     stat: { STR: true, MAG: false },
     weapons: {
       strengths: ["Sword", /*budding */ "Axe", "Bow", "Flying"],
@@ -452,7 +455,7 @@ const characters = {
 
 export const fe16 = {
   short: "fe16",
-  free: ["Claude"],
+  free: [["Claude", "Dimitri", "Edelgard"]],
   avatar: "Byleth",
   classes,
   characters,
