@@ -1,4 +1,4 @@
-import Game from "./Game";
+import { Game } from "./Game";
 
 function randIn(arr) {
   return Math.floor(Math.random() * arr.length);
@@ -16,7 +16,7 @@ function getOrRand(obj) {
   }
 }
 
-export default class Picker {
+export class Picker {
   constructor(game, numPicks, options) {
     console.log(game, numPicks, options);
     this.game = Game[game];

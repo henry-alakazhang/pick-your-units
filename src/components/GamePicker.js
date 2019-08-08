@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Row, Col, Form } from "react-bootstrap";
 
-import Game from "../Game";
+import { gameList } from "../Game";
 
-class GamePicker extends Component {
+export class GamePicker extends Component {
   render() {
     const styles = {
       gameInput: {
@@ -23,7 +23,7 @@ class GamePicker extends Component {
                 value={this.props.game}
                 onChange={this.props.handler}
               >
-                {Game.list.map(game => (
+                {gameList.map(game => (
                   <option key={game}>{game}</option>
                 ))}
               </Form.Control>
@@ -34,5 +34,3 @@ class GamePicker extends Component {
     );
   }
 }
-
-export default GamePicker;

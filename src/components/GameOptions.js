@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Row, Col, Form } from "react-bootstrap";
 
-import Game from "../Game";
+import { Game } from "../Game";
 
-class GameOptions extends Component {
+export class GameOptions extends Component {
   render() {
     const optionStuff = {
       pairings: {
@@ -90,5 +90,3 @@ class GameOptions extends Component {
     );
   }
 }
-
-export default GameOptions;

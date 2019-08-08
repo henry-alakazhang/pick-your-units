@@ -1,22 +1,21 @@
 import React, { Component } from "react";
 import { Row, Col, Button, Alert } from "react-bootstrap";
 
-import GamePicker from "./components/GamePicker";
-import GameOptions from "./components/GameOptions";
-import CharacterList from "./components/CharacterList";
+import { GamePicker } from "./components/GamePicker";
+import { GameOptions } from "./components/GameOptions";
+import { CharacterList } from "./components/CharacterList";
 
-import Picker from "./Picker";
-
-import Game from "./Game";
+import { Picker } from "./Picker";
+import { gameList, Game } from "./Game";
 import "./App.css";
 
-class App extends Component {
+export class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      game: Game.list[0],
-      numPicks: Game[Game.list[0]].defaultPicks || 12,
+      game: gameList[0],
+      numPicks: Game[gameList[0]].defaultPicks || 12,
       options: {
         pairings: false,
         friends: false,
@@ -171,5 +170,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

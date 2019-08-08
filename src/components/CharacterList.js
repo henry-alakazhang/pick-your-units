@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Row, Table } from "react-bootstrap";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
-import Game from "../Game";
+import { Game } from "../Game";
 
-class CharacterList extends Component {
+export class CharacterList extends Component {
   constructor(props) {
     super(props);
     this.getDisplayName = this.getDisplayName.bind(this);
@@ -162,5 +162,3 @@ class CharacterList extends Component {
     );
   }
 }
-
-export default CharacterList;

@@ -6,28 +6,28 @@ import { fe13 } from "./data/awakening";
 import { fe14br, fe14cq, fe14rev } from "./data/fates";
 import { fe15alm, fe15celica } from "./data/valentia";
 
-export default {
-  list: [
-    "Fire Emblem",
-    "Gaiden",
-    "Mystery of the Emblem",
-    "Genealogy of the Holy War",
-    "Thracia 776",
-    "The Binding Blade",
-    "The Blazing Blade",
-    "The Sacred Stones",
-    "Path of Radiance",
-    "Radiant Dawn",
-    "Shadow Dragon",
-    "New Mystery of the Emblem",
-    "Awakening",
-    "Fates: Birthright",
-    "Fates: Conquest",
-    "Fates: Revelation",
-    "Shadows of Valentia (Alm)",
-    "Shadows of Valentia (Celica)",
-  ],
+export const gameList = [
+  "Fire Emblem",
+  "Gaiden",
+  "Mystery of the Emblem",
+  "Genealogy of the Holy War",
+  "Thracia 776",
+  "The Binding Blade",
+  "The Blazing Blade",
+  "The Sacred Stones",
+  "Path of Radiance",
+  "Radiant Dawn",
+  "Shadow Dragon",
+  "New Mystery of the Emblem",
+  "Awakening",
+  "Fates: Birthright",
+  "Fates: Conquest",
+  "Fates: Revelation",
+  "Shadows of Valentia (Alm)",
+  "Shadows of Valentia (Celica)",
+];
 
+export const Game = {
   "Fire Emblem": fe1,
   Gaiden: fe2,
   "Mystery of the Emblem": fe3,
