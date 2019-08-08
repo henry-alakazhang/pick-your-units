@@ -90,17 +90,20 @@ export class Picker {
           this.makePick(avatar);
 
           // pick boon and bane stats for avatar
-          const stats = ["Str", "Mag", "Skl", "Spd", "Luk", "Def", "Res"];
-          this.picks.characters[0].stats = {
-            boon: null,
-            bane: null,
-          };
-          while (
-            this.picks.characters[0].stats.boon ===
-            this.picks.characters[0].stats.bane
-          ) {
-            this.picks.characters[0].stats.boon = getOrRand(stats);
-            this.picks.characters[0].stats.bane = getOrRand(stats);
+          // doesn't apply to 3 houses
+          if (this.game.short !== "fe16") {
+            const stats = ["Str", "Mag", "Skl", "Spd", "Luk", "Def", "Res"];
+            this.picks.characters[0].stats = {
+              boon: null,
+              bane: null,
+            };
+            while (
+              this.picks.characters[0].stats.boon ===
+              this.picks.characters[0].stats.bane
+            ) {
+              this.picks.characters[0].stats.boon = getOrRand(stats);
+              this.picks.characters[0].stats.bane = getOrRand(stats);
+            }
           }
         }
 
@@ -224,15 +227,15 @@ export class Picker {
             pick.showFriend = true;
         }
       } else {
-        pick.class = getOrRand(character.class);
+        pick.class = character.defaultClass || getOrRand(character.class);
       }
     } else {
       // else use default
-      pick.class = character.class[0];
+      pick.class = character.defaultClass || character.class[0];
     }
 
     let promo = this.game.classes[pick.class].promo;
-    while (promo != null) {
+    while (promo !== null && promo !== undefined) {
       pick.class = getOrRand(promo);
       promo = this.game.classes[pick.class].promo;
     }
@@ -293,8 +296,10 @@ export class Picker {
   maintainsBalance(pick) {
     let counts = Object.keys(this.game.classes).reduce(
       function(acc, val) {
-        for (const weap of this.game.classes[val].weapons) {
-          acc[weap] = 0;
+        if (this.game.classes[val].weapons) {
+          for (const weap of this.game.classes[val].weapons) {
+            acc[weap] = 0;
+          }
         }
         return acc;
       }.bind(this),
@@ -332,15 +337,24 @@ export class Picker {
       this.game.characters[pick.name] || this.game.children[pick.name];
     const pickClass = this.game.classes[pick.class];
 
-    // games without class changes have no troll picks
-    if (!pickChar.stat) return false;
-
-    // a 'troll' class is a STR-only class for a MAG-only character, or vice versa
-    if (!pickChar.stat.STR && !pickClass.stat.MAG) {
-      return true;
+    if (pickChar.stat) {
+      // a 'troll' class is a STR-only class for a MAG-only character, or vice versa
+      if (!pickChar.stat.STR && !pickClass.stat.MAG) {
+        return true;
+      }
+      if (!pickChar.stat.MAG && !pickClass.stat.STR) {
+        return true;
+      }
     }
-    if (!pickChar.stat.MAG && !pickClass.stat.STR) {
-      return true;
+
+    // troll picks in 3H also include:
+    // - ones which require any of a unit's weaknesses
+    if (pickChar.weapons && pickClass.weapons) {
+      if (
+        pickClass.weapons.some(w => pickChar.weapons.weaknesses.includes(w))
+      ) {
+        return true;
+      }
     }
 
     // fates has e-rank hell, which counts as a troll pick
@@ -351,8 +365,8 @@ export class Picker {
         }
       }
       return true;
-    } else {
-      return false;
     }
+
+    return false;
   }
 }

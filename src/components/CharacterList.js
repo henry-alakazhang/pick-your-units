@@ -37,7 +37,7 @@ export class CharacterList extends Component {
     }
 
     // boon/bane for avatar
-    if (char.name.indexOf(game.avatar) !== -1) {
+    if (char.stats) {
       extra += "+" + char.stats.boon + " -" + char.stats.bane + " ";
     }
 

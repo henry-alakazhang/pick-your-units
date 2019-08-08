@@ -5,6 +5,38 @@ import { fe11, fe12 } from "./data/ds";
 import { fe13 } from "./data/awakening";
 import { fe14br, fe14cq, fe14rev } from "./data/fates";
 import { fe15alm, fe15celica } from "./data/valentia";
+import { fe16 } from "./data/3h.js";
+
+/**
+ * TS interface for personal reference
+ *
+ * TODO port some things to TS
+ *
+  export interface BaseGame {
+    // in the form fe1, fe2 etc.
+    readonly short: string;
+    readonly classes: { string: Class };
+    readonly children?: ReadonlyArray<string>;
+    readonly free: ReadonlyArray<string>;
+    readonly routes?: ReadonlyArray<[string, string]>;
+    readonly avatar?: string;
+    readonly flags: {
+      // whether pairings and inherited classes exist
+      readonly pairings?: true;
+      // whether friends and inherited classes exist (fates only)
+      readonly friends?: true;
+      // whether you can choose to only pick pairings
+      readonly onlypairs?: true;
+      // whether child units exist
+      readonly children?: true;
+      // whether class changing exists
+      readonly classes?: true;
+      // whether you can pick shit classes
+      readonly troll?: true;
+    };
+    readonly disabled?: string;
+  }
+ */
 
 export const gameList = [
   "Fire Emblem",
@@ -25,6 +57,7 @@ export const gameList = [
   "Fates: Revelation",
   "Shadows of Valentia (Alm)",
   "Shadows of Valentia (Celica)",
+  "Three Houses",
 ];
 
 export const Game = {
@@ -46,4 +79,5 @@ export const Game = {
   "Fates: Revelation": fe14rev,
   "Shadows of Valentia (Alm)": fe15alm,
   "Shadows of Valentia (Celica)": fe15celica,
+  "Three Houses": fe16,
 };
