@@ -227,7 +227,7 @@ export class Picker {
             pick.showFriend = true;
         }
       } else {
-        pick.class = character.defaultClass || getOrRand(character.class);
+        pick.class = getOrRand(character.class);
       }
     } else {
       // else use default
