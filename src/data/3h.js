@@ -130,7 +130,76 @@ const classes = {
   ...sharedClasses,
 };
 
-const characters = {
+const blackEaglesLockedCharacters = {
+  Edelgard: {
+    class: ["Female", "Emperor"],
+    defaultClass: "Emperor",
+    exclude: [
+      "Dimitri",
+      "Dedue",
+      "Claude",
+      "Hilda",
+      // the entire church lol
+      "Seteth",
+      "Flayn",
+      "Catherine",
+      "Alois",
+      "Gilbert",
+      "Shamir",
+    ],
+    stat: { STR: true, MAG: true },
+    weapons: {
+      strengths: ["Sword", "Axe", /* budding */ "Reason", "Heavy Armour"],
+      weaknesses: ["Bow", "Faith"],
+    },
+  },
+  Hubert: {
+    class: "Male",
+    defaultClass: "Dark Bishop",
+    stat: { STR: false, MAG: true },
+    weapons: {
+      strengths: [/* budding */ "Lance", "Bow", "Reason"],
+      weaknesses: ["Axe", "Faith", "Flying"],
+    },
+  },
+};
+
+const blueLionsLockedCharacters = {
+  Dimitri: {
+    class: ["Male", "Great Lord"],
+    defaultClass: "Great Lord",
+    exclude: ["Claude", "Edelgard", "Hubert"],
+    stat: { STR: true, MAG: false },
+    weapons: {
+      strengths: ["Sword", "Lance", /* budding */ "Riding"],
+      weaknesses: ["Axe", "Reason"],
+    },
+  },
+  Dedue: {
+    class: "Male",
+    defaultClass: "Fortress Knight",
+    stat: { STR: true, MAG: false },
+    weapons: {
+      strengths: ["Lance", "Axe", "Brawling", "Heavy Armour"],
+      weaknesses: ["Faith", "Riding", "Flying"],
+    },
+  },
+};
+
+const goldenDeerLockedCharacters = {
+  Claude: {
+    class: ["Male", "Barbarossa"],
+    defaultClass: "Barbarossa",
+    exclude: ["Dimitri", "Dedue", "Edelgard", "Hubert"],
+    stat: { STR: true, MAG: false },
+    weapons: {
+      strengths: ["Sword", /*budding */ "Axe", "Bow", "Flying"],
+      weaknesses: ["Lance", "Faith"],
+    },
+  },
+};
+
+const sharedCharacters = {
   "Byleth (M)": {
     // note: doing it like this will give a 50% chance of getting the special class
     // tbh i'm fine with that
@@ -149,25 +218,6 @@ const characters = {
     weapons: {
       strengths: ["Sword", "Brawling", "Faith"],
       weaknesses: [],
-    },
-  },
-  Edelgard: {
-    class: ["Female", "Emperor"],
-    defaultClass: "Emperor",
-    exclude: ["Dimitri", "Dedue", "Claude", "Hilda"],
-    stat: { STR: true, MAG: true },
-    weapons: {
-      strengths: ["Sword", "Axe", /* budding */ "Reason", "Heavy Armour"],
-      weaknesses: ["Bow", "Faith"],
-    },
-  },
-  Hubert: {
-    class: "Male",
-    defaultClass: "Dark Bishop",
-    stat: { STR: false, MAG: true },
-    weapons: {
-      strengths: [/* budding */ "Lance", "Bow", "Reason"],
-      weaknesses: ["Axe", "Faith", "Flying"],
     },
   },
   Dorothea: {
@@ -224,25 +274,6 @@ const characters = {
       weaknesses: ["Axe", "Brawling"],
     },
   },
-  Dimitri: {
-    class: ["Male", "Great Lord"],
-    defaultClass: "Great Lord",
-    exclude: ["Claude", "Edelgard", "Hubert"],
-    stat: { STR: true, MAG: false },
-    weapons: {
-      strengths: ["Sword", "Lance", /* budding */ "Riding"],
-      weaknesses: ["Axe", "Reason"],
-    },
-  },
-  Dedue: {
-    class: "Male",
-    defaultClass: "Fortress Knight",
-    stat: { STR: true, MAG: false },
-    weapons: {
-      strengths: ["Lance", "Axe", "Brawling", "Heavy Armour"],
-      weaknesses: ["Faith", "Riding", "Flying"],
-    },
-  },
   Felix: {
     class: "Male",
     defaultClass: "Swordmaster",
@@ -295,16 +326,6 @@ const characters = {
     weapons: {
       strengths: ["Sword", "Lance", "Riding", "Flying"],
       weaknesses: [],
-    },
-  },
-  Claude: {
-    class: ["Male", "Barbarossa"],
-    defaultClass: "Barbarossa",
-    exclude: ["Dimitri", "Dedue", "Edelgard", "Hubert"],
-    stat: { STR: true, MAG: false },
-    weapons: {
-      strengths: ["Sword", /*budding */ "Axe", "Bow", "Flying"],
-      weaknesses: ["Lance", "Faith"],
     },
   },
   Lorenz: {
@@ -453,16 +474,47 @@ const characters = {
   },
 };
 
-export const fe16 = {
+const fe16base = {
   short: "fe16",
-  free: [["Claude", "Dimitri", "Edelgard"]],
   avatar: "Byleth",
   classes,
-  characters,
   flags: {
     classes: true,
     troll: true,
   },
   defaultPicks: 12,
   imgExtension: "jpg",
+};
+
+export const fe16eagles = {
+  ...fe16base,
+  free: ["Edelgard"],
+  characters: {
+    ...sharedCharacters,
+    ...blackEaglesLockedCharacters,
+  },
+};
+
+export const fe16lions = {
+  ...fe16base,
+  free: ["Dimitri"],
+  characters: {
+    ...sharedCharacters,
+    ...blueLionsLockedCharacters,
+  },
+};
+
+export const fe16deer = {
+  ...fe16base,
+  free: ["Claude"],
+  characters: {
+    ...sharedCharacters,
+    ...goldenDeerLockedCharacters,
+  },
+};
+
+export const fe16church = {
+  ...fe16base,
+  free: [],
+  characters: sharedCharacters,
 };

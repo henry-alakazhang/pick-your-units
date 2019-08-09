@@ -5,7 +5,7 @@ import { fe11, fe12 } from "./data/ds";
 import { fe13 } from "./data/awakening";
 import { fe14br, fe14cq, fe14rev } from "./data/fates";
 import { fe15alm, fe15celica } from "./data/valentia";
-import { fe16 } from "./data/3h.js";
+import { fe16church, fe16deer, fe16lions, fe16eagles } from "./data/3h.js";
 
 /**
  * TS interface for personal reference
@@ -57,7 +57,10 @@ export const gameList = [
   "Fates: Revelation",
   "Shadows of Valentia (Alm)",
   "Shadows of Valentia (Celica)",
-  "Three Houses",
+  "Three Houses (Black Eagles)",
+  "Three Houses (Blue Lions)",
+  "Three Houses (Golden Deer)",
+  "Three Houses (Church of Seiros)",
 ];
 
 export const Game = {
@@ -79,5 +82,8 @@ export const Game = {
   "Fates: Revelation": fe14rev,
   "Shadows of Valentia (Alm)": fe15alm,
   "Shadows of Valentia (Celica)": fe15celica,
-  "Three Houses": fe16,
+  "Three Houses (Black Eagles)": fe16eagles,
+  "Three Houses (Blue Lions)": fe16lions,
+  "Three Houses (Golden Deer)": fe16deer,
+  "Three Houses (Church of Seiros)": fe16church,
 };
