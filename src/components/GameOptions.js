@@ -34,6 +34,10 @@ export class GameOptions extends Component {
         display: "Balance weapon types",
         disabled: false,
       },
+      factions: {
+        display: "Pick units from other factions",
+        disabled: false,
+      },
     };
 
     const styles = {

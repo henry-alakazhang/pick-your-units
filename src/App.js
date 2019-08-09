@@ -50,6 +50,7 @@ export class App extends Component {
         classes: true,
         balanced: false,
         troll: false,
+        factions: false,
       },
     });
   }

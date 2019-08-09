@@ -107,18 +107,27 @@ export class Picker {
           }
         }
 
+        // if not allowing other factions, shrink down the pool size.
+        if (this.game.flags["factions"] && !this.options["factions"]) {
+          this.pool = this.pool.filter(
+            unit =>
+              // include characters from faction
+              this.game.characters[unit].faction === this.game.faction ||
+              // and unaligned characters
+              !this.game.characters[unit].faction
+          );
+        }
+
+        // constrain total character count to the amount of characters available.
+        const maxPicks = Math.min(this.numPicks, this.pool.length);
+
         // pick free characters
         for (const forced of this.game.free) {
           this.makePick(getOrRand(forced));
         }
 
         // loop and add characters
-        while (
-          this.picks.characters.length < this.numPicks &&
-          // safety check for if someone puts more characters than are in the game
-          this.picks.characters.length <
-            Object.keys(this.game.characters).length
-        ) {
+        while (this.picks.characters.length < maxPicks) {
           this.makePick();
         }
 

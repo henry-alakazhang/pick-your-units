@@ -134,24 +134,12 @@ const blackEaglesLockedCharacters = {
   Edelgard: {
     class: ["Female", "Emperor"],
     defaultClass: "Emperor",
-    exclude: [
-      "Dimitri",
-      "Dedue",
-      "Claude",
-      "Hilda",
-      // the entire church lol
-      "Seteth",
-      "Flayn",
-      "Catherine",
-      "Alois",
-      "Gilbert",
-      "Shamir",
-    ],
     stat: { STR: true, MAG: true },
     weapons: {
       strengths: ["Sword", "Axe", /* budding */ "Reason", "Heavy Armour"],
       weaknesses: ["Bow", "Faith"],
     },
+    faction: "eagles",
   },
   Hubert: {
     class: "Male",
@@ -161,6 +149,7 @@ const blackEaglesLockedCharacters = {
       strengths: [/* budding */ "Lance", "Bow", "Reason"],
       weaknesses: ["Axe", "Faith", "Flying"],
     },
+    faction: "eagles",
   },
 };
 
@@ -168,7 +157,6 @@ const blueLionsLockedCharacters = {
   Dimitri: {
     class: ["Male", "Great Lord"],
     defaultClass: "Great Lord",
-    exclude: ["Claude", "Edelgard", "Hubert"],
     stat: { STR: true, MAG: false },
     weapons: {
       strengths: ["Sword", "Lance", /* budding */ "Riding"],
@@ -190,7 +178,6 @@ const goldenDeerLockedCharacters = {
   Claude: {
     class: ["Male", "Barbarossa"],
     defaultClass: "Barbarossa",
-    exclude: ["Dimitri", "Dedue", "Edelgard", "Hubert"],
     stat: { STR: true, MAG: false },
     weapons: {
       strengths: ["Sword", /*budding */ "Axe", "Bow", "Flying"],
@@ -228,6 +215,7 @@ const sharedCharacters = {
       strengths: ["Sword", "Reason", /* budding */ "Faith"],
       weaknesses: ["Riding", "Flying"],
     },
+    faction: "eagles",
   },
   Ferdinand: {
     class: "Male",
@@ -237,6 +225,7 @@ const sharedCharacters = {
       strengths: ["Sword", "Lance", "Axe", "Heavy Armour", "Riding"],
       weaknesses: [],
     },
+    faction: "eagles",
   },
   Bernadetta: {
     class: "Female",
@@ -246,6 +235,7 @@ const sharedCharacters = {
       strengths: ["Lance", "Bow", /* budding */ "Riding"],
       weaknesses: ["Sword", "Axe", "Brawling", "Heavy Armour"],
     },
+    faction: "eagles",
   },
   Caspar: {
     class: "Male",
@@ -255,6 +245,7 @@ const sharedCharacters = {
       strengths: ["Axe", "Brawling"],
       weaknesses: ["Bow", "Reason"],
     },
+    faction: "eagles",
   },
   Petra: {
     class: "Female",
@@ -264,6 +255,7 @@ const sharedCharacters = {
       strengths: ["Sword", "Axe", "Bow", "Flying"],
       weaknesses: ["Reason", "Faith"],
     },
+    faction: "eagles",
   },
   Linhardt: {
     class: "Male",
@@ -273,6 +265,7 @@ const sharedCharacters = {
       strengths: ["Reason", "Faith"],
       weaknesses: ["Axe", "Brawling"],
     },
+    faction: "eagles",
   },
   Felix: {
     class: "Male",
@@ -282,6 +275,7 @@ const sharedCharacters = {
       strengths: ["Sword", "Bow", "Brawling", "Reason"],
       weaknesses: [],
     },
+    faction: "lions",
   },
   Mercedes: {
     class: "Female",
@@ -291,6 +285,7 @@ const sharedCharacters = {
       strengths: [/* budding */ "Bow", "Reason", "Faith"],
       weaknesses: ["Sword", "Lance", "Axe", "Heavy Armour"],
     },
+    faction: "lions",
   },
   Ashe: {
     class: "Male",
@@ -300,6 +295,7 @@ const sharedCharacters = {
       strengths: [/* budding */ "Lance", "Axe", "Bow"],
       weaknesses: ["Reason"],
     },
+    faction: "lions",
   },
   Annette: {
     class: "Female",
@@ -309,6 +305,7 @@ const sharedCharacters = {
       strengths: ["Axe", "Reason"],
       weaknesses: ["Bow", "Heavy Armour"],
     },
+    faction: "lions",
   },
   Sylvain: {
     class: "Male",
@@ -318,6 +315,7 @@ const sharedCharacters = {
       strengths: ["Lance", "Axe", /* budding */ "Reason", "Riding"],
       weaknesses: ["Bow"],
     },
+    faction: "lions",
   },
   Ingrid: {
     class: "Female",
@@ -327,6 +325,7 @@ const sharedCharacters = {
       strengths: ["Sword", "Lance", "Riding", "Flying"],
       weaknesses: [],
     },
+    faction: "lions",
   },
   Lorenz: {
     class: "Male",
@@ -336,6 +335,7 @@ const sharedCharacters = {
       strengths: ["Lance", "Reason", "Riding"],
       weaknesses: ["Brawling"],
     },
+    faction: "deer",
   },
   Hilda: {
     class: "Female",
@@ -345,6 +345,7 @@ const sharedCharacters = {
       strengths: ["Lance", "Axe", /* budding */ "Heavy Armour"],
       weaknesses: ["Faith"],
     },
+    faction: "deer",
   },
   Raphael: {
     class: "Male",
@@ -354,6 +355,7 @@ const sharedCharacters = {
       strengths: ["Axe", "Brawling", "Heavy Armour"],
       weaknesses: ["Bow", "Reason", "Riding"],
     },
+    faction: "deer",
   },
   Lysithea: {
     class: "Female",
@@ -363,6 +365,7 @@ const sharedCharacters = {
       strengths: [/* budding */ "Sword", "Reason", "Faith"],
       weaknesses: ["Lance", "Axe", "Heavy Armour"],
     },
+    faction: "deer",
   },
   Ignatz: {
     class: "Male",
@@ -372,6 +375,7 @@ const sharedCharacters = {
       strengths: ["Sword", "Bow", /* budding */ "Reason"],
       weaknesses: ["Brawling", "Heavy Armour", "Flying"],
     },
+    faction: "deer",
   },
   Marianne: {
     class: "Female",
@@ -381,6 +385,7 @@ const sharedCharacters = {
       strengths: ["Sword", /* budding */ "Lance", "Faith", "Riding", "Flying"],
       weaknesses: ["Brawling", "Heavy Armour"],
     },
+    faction: "deer",
   },
   Leonie: {
     class: "Female",
@@ -390,6 +395,7 @@ const sharedCharacters = {
       strengths: ["Lance", "Bow", "Riding"],
       weaknesses: [],
     },
+    faction: "deer",
   },
   Manuela: {
     class: "Female",
@@ -409,6 +415,9 @@ const sharedCharacters = {
       weaknesses: ["Heavy Armour", "Flying"],
     },
   },
+};
+
+const churchCharacters = {
   Seteth: {
     class: "Male",
     defaultClass: "Wyvern Rider",
@@ -481,6 +490,7 @@ const fe16base = {
   flags: {
     classes: true,
     troll: true,
+    factions: true,
   },
   defaultPicks: 12,
   imgExtension: "jpg",
@@ -489,17 +499,22 @@ const fe16base = {
 export const fe16eagles = {
   ...fe16base,
   free: ["Edelgard"],
+  faction: "eagles",
   characters: {
     ...sharedCharacters,
     ...blackEaglesLockedCharacters,
   },
+  // without the church, there are only 10 characters lol
+  defaultPicks: 10,
 };
 
 export const fe16lions = {
   ...fe16base,
   free: ["Dimitri"],
+  faction: "lions",
   characters: {
     ...sharedCharacters,
+    ...churchCharacters,
     ...blueLionsLockedCharacters,
   },
 };
@@ -507,8 +522,10 @@ export const fe16lions = {
 export const fe16deer = {
   ...fe16base,
   free: ["Claude"],
+  faction: "deer",
   characters: {
     ...sharedCharacters,
+    ...churchCharacters,
     ...goldenDeerLockedCharacters,
   },
 };
@@ -516,5 +533,9 @@ export const fe16deer = {
 export const fe16church = {
   ...fe16base,
   free: [],
-  characters: sharedCharacters,
+  faction: "eagles",
+  characters: {
+    ...sharedCharacters,
+    ...churchCharacters,
+  },
 };
