@@ -265,7 +265,9 @@ export class Picker {
       !this.options["troll"] &&
       this.isTrollPick(pick)
     ) {
-      this.makePick(force);
+      if (force) {
+        this.makePick(force);
+      }
       return;
     }
 
@@ -273,9 +275,11 @@ export class Picker {
     if (
       this.options["balanced"] &&
       force === undefined &&
-      !this.maintainsBalance(pick)
+      !this.maintainsBalance(pick) &&
+      // don't repick if we're running low on characters
+      // else we might end up looping forever
+      this.pool.length > 3
     ) {
-      this.makePick();
       return;
     }
 
