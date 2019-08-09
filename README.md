@@ -5,6 +5,11 @@ An automatic Fire Emblem PMU picker by NinjaCaterpie.
 Access it via this link:
 https://henry-alakazhang.github.io/pick-your-units/
 
+## Local Development
+
+`npm install`  
+`npm start` to run the local server: access it at localhost:3000.
+
 ## Changelog
 
 ### V1.0 (May 2017)
@@ -34,3 +39,8 @@ https://henry-alakazhang.github.io/pick-your-units/
 #### V1.2.1
 
 - Fixed a bug where Eyrios wasn't counted as a Thracia Route A unit.
+
+### V1.3.0 (August 2019)
+
+- Added Three Houses support
+- Fixed a few potential crashes
