@@ -771,6 +771,10 @@ export const fe14br = {
     classes: true,
     troll: true,
   },
+  trollCriteria: [
+    "MAG classes for a STR-based character and vice versa.",
+    "Classes that require going through E-rank hell",
+  ],
   defaultPicks: 14,
 };
 
@@ -1144,6 +1148,10 @@ export const fe14cq = {
     classes: true,
     troll: true,
   },
+  trollCriteria: [
+    "MAG classes for a STR-based character and vice versa.",
+    "Classes that require going through E-rank hell",
+  ],
   defaultPicks: 14,
 };
 
@@ -1700,5 +1708,9 @@ export const fe14rev = {
     classes: true,
     troll: true,
   },
+  trollCriteria: [
+    "MAG classes for a STR-based character and vice versa.",
+    "Classes that require going through E-rank hell",
+  ],
   defaultPicks: 14,
 };

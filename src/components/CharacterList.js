@@ -77,7 +77,10 @@ export class CharacterList extends Component {
       game.short === "fe14"
     ) {
       width = 120;
+    } else if (game.short === "fe16") {
+      width = 125;
     }
+
     const imgExtension = game.imgExtension || "png";
 
     let tableRows = [];

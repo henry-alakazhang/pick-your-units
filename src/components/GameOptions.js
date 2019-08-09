@@ -61,7 +61,9 @@ export class GameOptions extends Component {
                     this.props.handleOptionChange(e, flag);
                   }}
                   id={flag}
-                  label={optionStuff[flag].display}
+                  label={`${optionStuff[flag].display}${
+                    flag === "troll" ? "*" : ""
+                  }`}
                 />
               ))}
               <Form.Check
@@ -74,6 +76,16 @@ export class GameOptions extends Component {
               />
             </Form.Group>
           </Form>
+          {Game[this.props.game].trollCriteria && (
+            <div>
+              * Criteria for a troll pick:
+              <ul>
+                {Game[this.props.game].trollCriteria.map(criteria => (
+                  <li>{criteria}</li>
+                ))}
+              </ul>
+            </div>
+          )}
           <div>
             <Form inline>
               <Form.Group>

@@ -709,5 +709,6 @@ export const fe13 = {
     classes: true,
     troll: true,
   },
+  trollCriteria: ["MAG classes for a STR-based character and vice versa."],
   defaultPicks: 14,
 };

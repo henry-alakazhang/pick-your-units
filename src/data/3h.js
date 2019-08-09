@@ -492,6 +492,10 @@ const fe16base = {
     troll: true,
     factions: true,
   },
+  trollCriteria: [
+    "MAG classes for a STR-based character and vice versa.",
+    "Classes that require a character's weaknesses",
+  ],
   defaultPicks: 12,
   imgExtension: "jpg",
 };
