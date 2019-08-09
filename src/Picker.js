@@ -48,10 +48,14 @@ export class Picker {
           const gender = Math.random();
           if (gender >= 0.5) {
             avatar = this.game.avatar + " (F)";
-            this.pool.splice(this.pool.indexOf(this.game.avatar + " (M)"), 1);
+            this.pool = this.pool.filter(
+              char => char !== this.game.avatar + " (M)"
+            );
           } else {
             avatar = this.game.avatar + " (M)";
-            this.pool.splice(this.pool.indexOf(this.game.avatar + " (F)"), 1);
+            this.pool = this.pool.filter(
+              char => char !== this.game.avatar + " (F)"
+            );
           }
         }
 
@@ -119,7 +123,10 @@ export class Picker {
         }
 
         // constrain total character count to the amount of characters available.
-        const maxPicks = Math.min(this.numPicks, this.pool.length);
+        this.numPicks = Math.min(
+          this.numPicks,
+          this.pool.length + this.picks.characters.length
+        );
 
         // pick free characters
         for (const forced of this.game.free) {
@@ -127,7 +134,10 @@ export class Picker {
         }
 
         // loop and add characters
-        while (this.picks.characters.length < maxPicks) {
+        while (
+          this.picks.characters.length < this.numPicks &&
+          this.pool.length > 0
+        ) {
           this.makePick();
         }
 
@@ -146,13 +156,13 @@ export class Picker {
     if (this.getPartner(person)) return true;
 
     // how do you pair that which does not exist?
-    if (this.pool.indexOf(person) === -1) return false;
+    if (!this.pool.includes(person)) return false;
 
     const profile = this.game.characters[person] || this.game.children[person];
     const availables = profile.pairings.slice();
     let pair = randIn(availables);
     while (
-      (this.pool.indexOf(availables[pair]) === -1 ||
+      (!this.pool.includes(availables[pair]) ||
         this.getPartner(availables[pair])) &&
       availables.length > 0
     ) {
@@ -184,7 +194,7 @@ export class Picker {
     }
 
     // can't pick someone twice.
-    if (this.pool.indexOf(char) === -1) return;
+    if (!this.pool.includes(char)) return;
 
     // only pick paired units for pairing runs
     if (
@@ -250,7 +260,11 @@ export class Picker {
     }
 
     // repick if troll characters not allowed
-    if (!this.options["troll"] && this.isTrollPick(pick)) {
+    if (
+      this.game.flags["troll"] &&
+      !this.options["troll"] &&
+      this.isTrollPick(pick)
+    ) {
       this.makePick(force);
       return;
     }
@@ -267,7 +281,7 @@ export class Picker {
 
     // add character to list
     this.picks.characters.push(pick);
-    this.pool.splice(this.pool.indexOf(pick.name), 1);
+    this.pool = this.pool.filter(char => char !== pick.name);
 
     // include must-haves and exclude exclusions
     if (character.include) {
@@ -279,16 +293,16 @@ export class Picker {
           return;
         }
         // if not already picked, pick them
-        if (this.pool.indexOf(char) !== -1) {
+        if (this.pool.includes(char)) {
           this.makePick(char);
         }
       }
     }
+
     if (character.exclude) {
-      for (const char of character.exclude) {
-        this.pool.splice(this.pool.indexOf(char), 1);
-      }
+      this.pool = this.pool.filter(char => !character.exclude.includes(char));
     }
+
     // add partner if pairing up
     if (
       this.game.flags["onlypairs"] &&
@@ -369,7 +383,7 @@ export class Picker {
     // fates has e-rank hell, which counts as a troll pick
     if (this.game.short === "fe14") {
       for (const weap of this.game.classes[pickChar.base].weapons) {
-        if (pickClass.weapons.indexOf(weap) !== -1) {
+        if (pickClass.weapons.includes(weap)) {
           return false;
         }
       }

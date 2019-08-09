@@ -61,7 +61,7 @@ const inheritClasses = function(game, picks, to) {
   let inherits = game.characters[from].class.slice();
   // replace wrong-gendered classes
   // girls:
-  if (AWAKE_CF.indexOf(to) !== -1) {
+  if (AWAKE_CF.includes(to)) {
     inherits[inherits.indexOf("Priest")] = "Cleric";
     if (from === "Vaike") {
       inherits[inherits.indexOf("Barbarian")] = "Knight";
@@ -82,7 +82,7 @@ const inheritClasses = function(game, picks, to) {
   // add the classes
   for (const i of inherits) {
     if (i === "Lord") continue;
-    if (classes.indexOf(i) === -1) {
+    if (!classes.includes(i)) {
       classes.push(i);
     }
   }

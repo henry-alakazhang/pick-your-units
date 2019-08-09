@@ -83,7 +83,7 @@ export class GameOptions extends Component {
                   type="number"
                   value={this.props.numPicks}
                   min={2}
-                  max={99}
+                  max={Object.keys(Game[this.props.game].characters).length}
                   onChange={this.props.handleNumChange}
                 />
               </Form.Group>
