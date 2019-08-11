@@ -259,7 +259,7 @@ const sharedCharacters = {
   },
   Petra: {
     class: "Female",
-    defaultClass: "Swordmaster",
+    defaultClass: "Assassin",
     stat: { STR: true, MAG: false },
     weapons: {
       strengths: ["Sword", "Axe", "Bow", "Flying"],
@@ -269,7 +269,7 @@ const sharedCharacters = {
   },
   Linhardt: {
     class: "Male",
-    defaultClass: "Warlock",
+    defaultClass: "Bishop",
     stat: { STR: false, MAG: true },
     weapons: {
       strengths: ["Reason", "Faith"],
@@ -369,7 +369,7 @@ const sharedCharacters = {
   },
   Ignatz: {
     class: "Male",
-    defaultClass: "Assassin",
+    defaultClass: "Sniper",
     stat: { STR: true, MAG: true },
     weapons: {
       strengths: ["Sword", "Bow", /* budding */ "Reason"],
