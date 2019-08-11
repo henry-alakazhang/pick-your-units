@@ -172,6 +172,16 @@ const blueLionsLockedCharacters = {
       weaknesses: ["Faith", "Riding", "Flying"],
     },
   },
+  // TODO: is Gilbert locked to Blue Lions, or just having Annette?
+  Gilbert: {
+    class: "Male",
+    defaultClass: "Fortress Knight",
+    stat: { STR: true, MAG: false },
+    weapons: {
+      strengths: ["Lance", "Axe", "Heavy Armour", "Riding"],
+      weaknesses: [],
+    },
+  },
 };
 
 const goldenDeerLockedCharacters = {
@@ -337,16 +347,6 @@ const sharedCharacters = {
     },
     faction: "deer",
   },
-  Hilda: {
-    class: "Female",
-    defaultClass: "Warrior",
-    stat: { STR: true, MAG: false },
-    weapons: {
-      strengths: ["Lance", "Axe", /* budding */ "Heavy Armour"],
-      weaknesses: ["Faith"],
-    },
-    faction: "deer",
-  },
   Raphael: {
     class: "Male",
     defaultClass: "Grappler",
@@ -415,9 +415,30 @@ const sharedCharacters = {
       weaknesses: ["Heavy Armour", "Flying"],
     },
   },
+  Alois: {
+    class: "Male",
+    defaultClass: "Warrior",
+    stat: { STR: true, MAG: false },
+    weapons: {
+      strengths: ["Axe", "Brawling", "Heavy Armour"],
+      weaknesses: ["Reason", "Flying"],
+    },
+  },
 };
 
 const churchCharacters = {
+  // slight hack: put Hilda in the church characters,
+  // because this is really a pool of "not Edelgard route" characters.
+  Hilda: {
+    class: "Female",
+    defaultClass: "Warrior",
+    stat: { STR: true, MAG: false },
+    weapons: {
+      strengths: ["Lance", "Axe", /* budding */ "Heavy Armour"],
+      weaknesses: ["Faith"],
+    },
+    faction: "deer",
+  },
   Seteth: {
     class: "Male",
     defaultClass: "Wyvern Rider",
@@ -452,24 +473,6 @@ const churchCharacters = {
     weapons: {
       strengths: ["Sword", "Brawling"],
       weaknesses: ["Reason"],
-    },
-  },
-  Alois: {
-    class: "Male",
-    defaultClass: "Warrior",
-    stat: { STR: true, MAG: false },
-    weapons: {
-      strengths: ["Axe", "Brawling", "Heavy Armour"],
-      weaknesses: ["Reason", "Flying"],
-    },
-  },
-  Gilbert: {
-    class: "Male",
-    defaultClass: "Fortress Knight",
-    stat: { STR: true, MAG: false },
-    weapons: {
-      strengths: ["Lance", "Axe", "Heavy Armour", "Riding"],
-      weaknesses: [],
     },
   },
   Shamir: {
