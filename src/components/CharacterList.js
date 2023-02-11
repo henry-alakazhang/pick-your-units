@@ -79,6 +79,8 @@ export class CharacterList extends Component {
       width = 120;
     } else if (game.short === "fe16") {
       width = 125;
+    } else if (game.short === "fe17") {
+      width = 0;
     }
 
     const imgExtension = game.imgExtension || "png";
@@ -130,12 +132,16 @@ export class CharacterList extends Component {
           <tr key={char.name}>
             <td width={width}>
               <img
-                src={require("../../images/" +
-                  game.short +
-                  "/" +
-                  char.name.toLowerCase() +
-                  "." +
-                  imgExtension)}
+                src={
+                  width !== 0
+                    ? require("../../images/" +
+                        game.short +
+                        "/" +
+                        char.name.toLowerCase() +
+                        "." +
+                        imgExtension)
+                    : ""
+                }
                 alt={char.name}
               />
             </td>

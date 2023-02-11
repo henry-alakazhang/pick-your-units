@@ -253,6 +253,7 @@ export class Picker {
       pick.class = character.defaultClass || character.class[0];
     }
 
+    console.log(this.game.classes, pick.class);
     let promo = this.game.classes[pick.class].promo;
     while (promo !== null && promo !== undefined) {
       pick.class = getOrRand(promo);

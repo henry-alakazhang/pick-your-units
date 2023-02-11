@@ -24,6 +24,7 @@ export class App extends Component {
         classes: true,
         balanced: false,
         troll: false,
+        emblems: false,
       },
       picking: false,
       picks: null,
@@ -51,6 +52,7 @@ export class App extends Component {
         balanced: false,
         troll: false,
         factions: false,
+        emblems: false,
       },
     });
   }

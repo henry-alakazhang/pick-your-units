@@ -6,6 +6,7 @@ import { fe13 } from "./data/awakening";
 import { fe14br, fe14cq, fe14rev } from "./data/fates";
 import { fe15alm, fe15celica } from "./data/valentia";
 import { fe16church, fe16deer, fe16lions, fe16eagles } from "./data/3h.js";
+import { fe17 } from "./data/engage";
 
 /**
  * TS interface for personal reference
@@ -33,6 +34,8 @@ import { fe16church, fe16deer, fe16lions, fe16eagles } from "./data/3h.js";
       readonly classes?: true;
       // whether you can pick shit classes
       readonly troll?: true;
+      // whether emblems exist or not
+      readonly emblems?: true;
     };
     readonly disabled?: string;
   }
@@ -61,6 +64,7 @@ export const gameList = [
   "Three Houses (Blue Lions)",
   "Three Houses (Golden Deer)",
   "Three Houses (Church of Seiros)",
+  "Engage",
 ];
 
 export const Game = {
@@ -86,4 +90,5 @@ export const Game = {
   "Three Houses (Blue Lions)": fe16lions,
   "Three Houses (Golden Deer)": fe16deer,
   "Three Houses (Church of Seiros)": fe16church,
+  "Engage": fe17,
 };

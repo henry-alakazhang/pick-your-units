@@ -38,6 +38,10 @@ export class GameOptions extends Component {
         display: "Pick units from other factions",
         disabled: false,
       },
+      emblems: {
+        display: "Pick Emblems for units (TODO)",
+        disabled: true,
+      },
     };
 
     const styles = {
