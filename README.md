@@ -12,6 +12,10 @@ https://henry-alakazhang.github.io/pick-your-units/
 
 ## Changelog
 
+### V1.4.0 (February 2022)
+
+- Added Engage support
+
 ### V1.3.0 (August 2019)
 
 - Added Three Houses support
