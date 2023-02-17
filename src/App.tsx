@@ -5,12 +5,15 @@ import { GamePicker } from "./components/GamePicker";
 import { GameOptions } from "./components/GameOptions";
 import { CharacterList } from "./components/CharacterList";
 
-import { Picker } from "./Picker";
+import { CompletedPicks, Picker } from "./Picker";
 import { gameList, Games } from "./Games";
 import "./App.css";
+import { Game } from "./data/data.types";
 
-export class App extends Component {
-  constructor(props) {
+export type PickerOptions = Game["flags"] & { factions?: boolean, balanced?: boolean }
+
+export class App extends Component<unknown, { game: string, numPicks: number, options: PickerOptions, picking: boolean, picks?: CompletedPicks}> {
+  constructor(props: unknown) {
     super(props);
 
     this.state = {
@@ -27,7 +30,7 @@ export class App extends Component {
         emblems: false,
       },
       picking: false,
-      picks: null,
+      picks: undefined,
     };
 
     this.handleGamePick = this.handleGamePick.bind(this);
@@ -42,7 +45,7 @@ export class App extends Component {
       game: e.target.value,
       // default to 12 for games without a setting
       numPicks: Games[e.target.value].defaultPicks || 12,
-      picks: null,
+      picks: undefined,
       options: {
         pairings: false,
         friends: false,
@@ -76,7 +79,7 @@ export class App extends Component {
   }
 
   handleStart() {
-    this.setState({ picking: true, picks: null });
+    this.setState({ picking: true, picks: undefined });
     const picker = new Picker(
       this.state.game,
       this.state.numPicks,
@@ -91,7 +94,7 @@ export class App extends Component {
   }
 
   render() {
-    const styles = {
+    const styles: { [k: string]: React.CSSProperties } = {
       container: {
         margin: "20px",
         maxWidth: "900px",
@@ -115,7 +118,7 @@ export class App extends Component {
             <Row>
               <Col md={4} style={styles.sidebar}>
                 <GamePicker
-                  value={this.state.game}
+                  game={this.state.game}
                   handler={this.handleGamePick}
                 />
                 <div style={styles.sidebarSection}>
@@ -136,7 +139,7 @@ export class App extends Component {
                     </Alert>
                   )}
                   <Button
-                    size="large"
+                    size="lg"
                     variant="primary"
                     disabled={Games[this.state.game].disabled !== undefined}
                     onClick={this.handleStart}

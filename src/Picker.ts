@@ -1,14 +1,15 @@
+import { Game } from "./data/data.types";
 import { Games } from "./Games";
 
-function randIn(arr) {
+function randIn(arr: readonly unknown[]): number {
   return Math.floor(Math.random() * arr.length);
 }
 
-/*
+/**
  * Returns either a string value or a random element in an array,
  * depending on the type of the passed element
  */
-function getOrRand(obj) {
+function getOrRand(obj: string | readonly string[]): string {
   if (typeof obj === "string") {
     return obj;
   } else {
@@ -16,9 +17,42 @@ function getOrRand(obj) {
   }
 }
 
+export interface CompletedPicks {
+  characters: CharacterPick[],
+  weapons: { [k: string]: number },
+  pairings: { [k: string]: string },
+  friends: { [k: string]: string },
+  options: {
+    friends?: boolean;
+    pairings?: boolean;
+    onlypairs?: boolean;
+  }
+}
+
+export interface CharacterPick {
+  name: string;
+  class: string;
+
+  /** Whether to show S support pair (if explicitly needed for class, or if specified) */
+  showPair?: boolean;
+  /** Whether to show A+ friend (if explicitly needed for class) */
+  showFriend?: boolean;
+
+  /** Stats for an avatar */
+  stats?: {
+    boon: string;
+    bane: string;
+  }
+}
+
 export class Picker {
-  constructor(game, numPicks, options) {
-    console.log(game, numPicks, options);
+  private game: Game;
+  private numPicks: number;
+  private options: {};
+  private pool: string[];
+  private picks: CompletedPicks;
+  
+  constructor(game: string, numPicks: number, options: { friends?: boolean, pairings?: boolean; onlypairs?: boolean }) {
     this.game = Games[game];
     this.numPicks = numPicks;
     this.options = options;
@@ -36,14 +70,14 @@ export class Picker {
     };
   }
 
-  /*
+  /**
    * Generates picks for the given settings
    * Returns a promise to return the picks (generates asynchronously)
    */
-  generatePicks() {
+  generatePicks(): Promise<CompletedPicks> {
     return new Promise(
-      function(resolve, reject) {
-        let avatar = null;
+      (resolve, reject) => {
+        let avatar: string | undefined = undefined;
         if (this.game.avatar) {
           const gender = Math.random();
           if (gender >= 0.5) {
@@ -79,13 +113,13 @@ export class Picker {
           for (const char in this.game.characters) {
             if (this.game.characters[char].friends)
               this.picks.friends[char] = getOrRand(
-                this.game.characters[char].friends
+                this.game.characters[char].friends!
               );
           }
           for (const child in this.game.children) {
             if (this.game.children[child].friends)
               this.picks.friends[child] = getOrRand(
-                this.game.children[child].friends
+                this.game.children[child].friends!
               );
           }
         }
@@ -93,21 +127,17 @@ export class Picker {
         if (avatar) {
           this.makePick(avatar);
 
+          // FIXME: add some kind of options for avatar setting or whatever and put Alear here too
           // pick boon and bane stats for avatar
           // doesn't apply to 3 houses
           if (this.game.short !== "fe16") {
             const stats = ["Str", "Mag", "Skl", "Spd", "Luk", "Def", "Res"];
+            const boon = getOrRand(stats);
+            const bane = getOrRand(stats.filter(stat => stat === boon))
             this.picks.characters[0].stats = {
-              boon: null,
-              bane: null,
+              boon,
+              bane,
             };
-            while (
-              this.picks.characters[0].stats.boon ===
-              this.picks.characters[0].stats.bane
-            ) {
-              this.picks.characters[0].stats.boon = getOrRand(stats);
-              this.picks.characters[0].stats.bane = getOrRand(stats);
-            }
           }
         }
 
@@ -143,11 +173,11 @@ export class Picker {
 
         console.log(this.picks);
         resolve(this.picks);
-      }.bind(this)
+      }
     );
   }
 
-  /*
+  /**
    * Pairs an unpaired character with another unpaired character
    * Returns whether that character is paired
    */
@@ -158,7 +188,9 @@ export class Picker {
     // how do you pair that which does not exist?
     if (!this.pool.includes(person)) return false;
 
-    const profile = this.game.characters[person] || this.game.children[person];
+    const profile = this.game.characters[person] || this.game.children?.[person];
+    if (!profile.pairings) { throw new Error('Tried to pair someone without pairings') }
+
     const availables = profile.pairings.slice();
     let pair = randIn(availables);
     while (
@@ -182,12 +214,12 @@ export class Picker {
     return this.picks.pairings[person];
   }
 
-  /*
+  /**
    * Makes a single pick and updates the pick list and pool
-   * parameter 'pick' is an optional forced character pick
+   * parameter `force` is an optional forced character name to pick
    * empty parameter results in a random pick
    */
-  makePick(force) {
+  makePick(force?: string) {
     let char = force;
     if (char === undefined) {
       char = this.pool[randIn(this.pool)];
@@ -204,10 +236,11 @@ export class Picker {
     )
       return;
 
-    const character = this.game.characters[char] || this.game.children[char];
-    let pick = {
-      name: char,
-    };
+    const character = this.game.characters[char] || this.game.children![char];
+    let pickName = char;
+    let pickClass: string;
+    let showPair: boolean | undefined = undefined;
+    let showFriend: boolean | undefined = undefined;
 
     // set class
     // if there's only one option or the random classes is set, get a random one
@@ -220,7 +253,7 @@ export class Picker {
         const classPool = this.game.inheritClasses(this.game, this.picks, char);
         const classPick = randIn(classPool);
         console.log(char, classPool);
-        pick.class = classPool[classPick];
+        pickClass = classPool[classPick];
 
         // only show pairing if class is inherited from them
         if (
@@ -229,9 +262,9 @@ export class Picker {
           this.picks.pairings[char]
         ) {
           // first added class is partner's
-          if (classPick === character.class.length) pick.showPair = true;
+          if (classPick === character.class.length) showPair = true;
           // for kids, it's the second because they inherit a class from a parent
-          if (classPick === character.class.length + 1) pick.showPair = true;
+          if (classPick === character.class.length + 1) showPair = true;
         }
 
         // only show friend if class is inherited from them
@@ -240,25 +273,32 @@ export class Picker {
           const add = this.picks.pairings[char] ? 1 : 0;
           // second class added is a friend's
           if (classPick === character.class.length + add)
-            pick.showFriend = true;
+            showFriend = true;
           // for kids, it's the third because they inherit a class from a parent
           if (classPick === character.class.length + add + 1)
-            pick.showFriend = true;
+            showFriend = true;
         }
       } else {
-        pick.class = getOrRand(character.class);
+        pickClass = getOrRand(character.class);
       }
     } else {
       // else use default
-      pick.class = character.defaultClass || character.class[0];
+      pickClass = character.defaultClass || character.class[0];
     }
 
-    console.log(this.game.classes, pick.class);
-    let promo = this.game.classes[pick.class].promo;
+    console.log(this.game.classes, pickClass);
+    let promo = this.game.classes[pickClass].promo;
     while (promo !== null && promo !== undefined) {
-      pick.class = getOrRand(promo);
-      promo = this.game.classes[pick.class].promo;
+      pickClass = getOrRand(promo);
+      promo = this.game.classes[pickClass].promo;
     }
+
+    const pick: CharacterPick = {
+      name: pickName,
+      class: pickClass,
+      showFriend,
+      showPair
+    };
 
     // repick if troll characters not allowed
     if (
@@ -305,7 +345,7 @@ export class Picker {
     }
 
     if (character.exclude) {
-      this.pool = this.pool.filter(char => !character.exclude.includes(char));
+      this.pool = this.pool.filter(char => !character.exclude!.includes(char));
     }
 
     // add partner if pairing up
@@ -321,16 +361,16 @@ export class Picker {
   /**
    * Returns whether a new pick would maintain weapon balance across the classes
    */
-  maintainsBalance(pick) {
+  maintainsBalance(pick: CharacterPick) {
     let counts = Object.keys(this.game.classes).reduce(
-      function(acc, val) {
+      (acc, val) => {
         if (this.game.classes[val].weapons) {
           for (const weap of this.game.classes[val].weapons) {
             acc[weap] = 0;
           }
         }
         return acc;
-      }.bind(this),
+      },
       {}
     );
 
@@ -360,12 +400,12 @@ export class Picker {
     return true;
   }
 
-  isTrollPick(pick) {
+  isTrollPick(pick: CharacterPick) {
     const pickChar =
-      this.game.characters[pick.name] || this.game.children[pick.name];
+      this.game.characters[pick.name] || this.game.children![pick.name];
     const pickClass = this.game.classes[pick.class];
 
-    if (pickChar.stat) {
+    if (pickChar.stat && pickClass.stat) {
       // a 'troll' class is a STR-only class for a MAG-only character, or vice versa
       if (!pickChar.stat.STR && !pickClass.stat.MAG) {
         return true;
@@ -379,7 +419,7 @@ export class Picker {
     // - ones which require any of a unit's weaknesses
     if (pickChar.weapons && pickClass.weapons) {
       if (
-        pickClass.weapons.some(w => pickChar.weapons.weaknesses.includes(w))
+        pickClass.weapons.some(w => pickChar.weapons!.weaknesses.includes(w))
       ) {
         return true;
       }
@@ -387,7 +427,7 @@ export class Picker {
 
     // fates has e-rank hell, which counts as a troll pick
     if (this.game.short === "fe14") {
-      for (const weap of this.game.classes[pickChar.defaultClass].weapons) {
+      for (const weap of this.game.classes[pickChar.defaultClass!].weapons) {
         if (pickClass.weapons.includes(weap)) {
           return false;
         }

@@ -3,14 +3,15 @@ import { Row, Table } from "react-bootstrap";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import { Games } from "../Games";
+import { CharacterPick, CompletedPicks } from "../Picker";
 
-export class CharacterList extends Component {
+export class CharacterList extends Component<{ game: string, picks: CompletedPicks },{}> {
   constructor(props) {
     super(props);
     this.getDisplayName = this.getDisplayName.bind(this);
   }
 
-  getDisplayName(char) {
+  getDisplayName(char: CharacterPick) {
     const game = Games[this.props.game];
     const picks = this.props.picks;
 
@@ -85,7 +86,7 @@ export class CharacterList extends Component {
 
     const imgExtension = game.imgExtension || "png";
 
-    let tableRows = [];
+    let tableRows: JSX.Element[] = [];
 
     if (this.props.picks.options["onlypairs"]) {
       for (let i = 0; i < picks.length; i += 2) {

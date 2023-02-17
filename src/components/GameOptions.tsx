@@ -1,9 +1,24 @@
-import React, { Component } from "react";
+import React, { ChangeEvent, Component } from "react";
 import { Row, Col, Form } from "react-bootstrap";
+import { Game } from "../data/data.types";
 
 import { Games } from "../Games";
 
-export class GameOptions extends Component {
+export type GameConfig = Game["flags"] & {
+  factions?: boolean;
+  balanced?: boolean;
+};
+
+export class GameOptions extends Component<
+  {
+    options: GameConfig;
+    game: string;
+    numPicks: number;
+    handleOptionChange: (event: any, value: string) => void;
+    handleNumChange: (event: any) => void;
+  },
+  {}
+> {
   render() {
     const optionStuff = {
       pairings: {
@@ -51,7 +66,7 @@ export class GameOptions extends Component {
     };
 
     return (
-      <Row style={styles.container}>
+      <Row>
         <Col>
           <h3>Options</h3>
           <Form>
@@ -84,14 +99,14 @@ export class GameOptions extends Component {
             <div>
               * Criteria for a troll pick:
               <ul>
-                {Games[this.props.game].trollCriteria.map(criteria => (
+                {Games[this.props.game].trollCriteria?.map(criteria => (
                   <li>{criteria}</li>
                 ))}
               </ul>
             </div>
           )}
           <div>
-            <Form inline>
+            <Form>
               <Form.Group>
                 <Form.Label>Units to pick: </Form.Label>
                 <Form.Control
