@@ -50,7 +50,11 @@ const AWAKE_CF = [
   "Nah",
 ];
 
-const inheritClasses = function (game: Game, picks: { pairings: any }, to: string) {
+const inheritClasses = function(
+  game: Game,
+  picks: { pairings: any },
+  to: string
+) {
   const pairings = picks.pairings;
 
   // only kids inherit in awakening

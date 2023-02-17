@@ -5,7 +5,10 @@ import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import { Games } from "../Games";
 import { CharacterPick, CompletedPicks } from "../Picker";
 
-export class CharacterList extends Component<{ game: string, picks: CompletedPicks },{}> {
+export class CharacterList extends Component<
+  { game: string; picks: CompletedPicks },
+  {}
+> {
   constructor(props) {
     super(props);
     this.getDisplayName = this.getDisplayName.bind(this);

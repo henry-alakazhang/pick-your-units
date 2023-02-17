@@ -4,7 +4,7 @@ export interface Class {
   /** Promotion (if applicable) */
   readonly promo?: string | readonly string[];
   /** Stats required for effective use */
-  readonly stat?: { STR?: boolean, MAG?: boolean};
+  readonly stat?: { STR?: boolean; MAG?: boolean };
 }
 
 export interface Character {
@@ -17,7 +17,7 @@ export interface Character {
    */
   readonly defaultClass?: string;
   /** Whether characters have good bases/growths for a stat */
-  readonly stat?: { STR?: boolean, MAG?: boolean };
+  readonly stat?: { STR?: boolean; MAG?: boolean };
   /** Other characters available for S-rank */
   readonly pairings?: string[];
   /** Other characters available for A+ rank */
@@ -38,12 +38,12 @@ export interface Character {
   readonly weapons?: {
     readonly strengths: readonly string[];
     readonly weaknesses: readonly string[];
-  }
+  };
 }
 
 export type ChildCharacter = Character & {
   readonly parent: string;
-}
+};
 
 export interface Game {
   /** Short name (fe1, fe2, etc) */
@@ -52,13 +52,17 @@ export interface Game {
   readonly classes: { [name: string]: Class };
   readonly characters: { [name: string]: Character };
   readonly children?: { [name: string]: ChildCharacter };
-  readonly inheritClasses?: ((game: Game, picks: { pairings: any }, to: string) => string[])
+  readonly inheritClasses?: (
+    game: Game,
+    picks: { pairings: any },
+    to: string
+  ) => string[];
   /** Free/force-deployed units (usually lords) */
   readonly free: ReadonlyArray<string>;
   readonly routes?: ReadonlyArray<[string, string]>;
   /**
    * The name of a customiseable avatar, if applicable
-   * Note: Alear (Engage) is not a classic avatar because you can't pick their boon/bane 
+   * Note: Alear (Engage) is not a classic avatar because you can't pick their boon/bane
    */
   readonly avatar?: string;
   /**

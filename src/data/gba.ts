@@ -3,7 +3,10 @@ import { Game } from "./data.types";
 export const fe6: Game = {
   short: "fe6",
   defaultPicks: 16,
-  routes: [["A", "B"], ["Sacae", "Ilia"]],
+  routes: [
+    ["A", "B"],
+    ["Sacae", "Ilia"],
+  ],
   characters: {
     Allen: {
       class: "Cavalier",

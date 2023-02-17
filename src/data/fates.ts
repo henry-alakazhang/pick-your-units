@@ -1,4 +1,4 @@
-import { Game } from './data.types';
+import { Game } from "./data.types";
 
 // RX is royals since you can't pair them together.
 const M = ["Jakob", "Silas", "Kaze", "Corrin (M)"];
@@ -32,7 +32,7 @@ const RV_ACF = [...BR_ACF, ...CQ_ACF];
 
 // inherits from one character to another's pool
 // TODO: fix genderlocked classes (Maid/Butler, Monk/Shrine Maiden)
-const _inheritClassesInternal = function (game, classes, from) {
+const _inheritClassesInternal = function(game, classes, from) {
   const parallel = {
     Cavalier: "Ninja",
     Knight: "Spear Fighter",
@@ -89,7 +89,7 @@ const _inheritClassesInternal = function (game, classes, from) {
   return classes;
 };
 
-const inheritClasses = function (game, picks, to) {
+const inheritClasses = function(game, picks, to) {
   const char = game.characters[to] || game.children[to];
   let classes = char.class.slice();
 

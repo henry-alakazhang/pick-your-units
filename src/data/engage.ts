@@ -1,4 +1,4 @@
-import { Game } from './data.types';
+import { Game } from "./data.types";
 
 // like Three Houses, everyone can be every class,
 // so we treat all characters as having the same base class

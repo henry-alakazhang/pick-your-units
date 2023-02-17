@@ -3,7 +3,10 @@ import { Row, Col, Form } from "react-bootstrap";
 
 import { gameList } from "../Games";
 
-export class GamePicker extends Component<{ game: string, handler: (event: any) => void }> {
+export class GamePicker extends Component<{
+  game: string;
+  handler: (event: any) => void;
+}> {
   render() {
     const styles = {
       gameInput: {
