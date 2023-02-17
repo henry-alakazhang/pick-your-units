@@ -1,6 +1,10 @@
 import { Game } from "./data.types";
 
-export const fe6: Game = {
+interface BindingBladeGame {
+  Pairings: false,
+}
+
+export const fe6: Game<BindingBladeGame> = {
   short: "fe6",
   defaultPicks: 16,
   routes: [
@@ -298,7 +302,11 @@ export const fe6: Game = {
   flags: {},
 };
 
-export const fe7: Game = {
+interface BlazingSwordGame {
+  Pairings: false,
+}
+
+export const fe7: Game<BlazingSwordGame> = {
   short: "fe7",
   defaultPicks: 15,
   characters: {
@@ -588,7 +596,11 @@ export const fe7: Game = {
   flags: {},
 };
 
-export const fe8: Game = {
+interface SacredStonesGame {
+  Pairings: false,
+}
+
+export const fe8: Game<SacredStonesGame> = {
   short: "fe8",
   defaultPicks: 12,
   routes: [["Eirika", "Ephraim"]],

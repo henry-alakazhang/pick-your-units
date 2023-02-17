@@ -1,5 +1,9 @@
 import { Game } from "./data.types";
 
+interface ShadowsOfValentiaGame {
+  Pairings: false,
+}
+
 const VALENTIA_CLASSES = {
   "Villager (M)": {
     weapons: ["Sword"],
@@ -34,7 +38,7 @@ const VALENTIA_CLASSES = {
   Princess: { weapons: ["Sword", "Black Magic", "White Magic"] },
 };
 
-export const fe15alm: Game = {
+export const fe15alm: Game<ShadowsOfValentiaGame> = {
   short: "fe15",
   characters: {
     Alm: { class: "Fighter" },
@@ -59,7 +63,7 @@ export const fe15alm: Game = {
   defaultPicks: 10,
 };
 
-export const fe15celica: Game = {
+export const fe15celica: Game<ShadowsOfValentiaGame> = {
   short: "fe15",
   characters: {
     Celica: { class: "Princess" },

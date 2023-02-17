@@ -1,5 +1,9 @@
 import { Game } from "./data.types";
 
+interface EngageGame {
+  Pairings: false;
+}
+
 // like Three Houses, everyone can be every class,
 // so we treat all characters as having the same base class
 // and we let them promote into literally any of the available classes
@@ -185,7 +189,7 @@ const uniqueClasses = {
   },
 };
 
-export const fe17: Game = {
+export const fe17: Game<EngageGame> = {
   short: "fe17",
   free: ["Alear"],
   flags: {

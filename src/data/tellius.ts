@@ -1,6 +1,10 @@
-import { Game } from "./data.types";
+import { Game, UnsupportedGame } from "./data.types";
 
-export const fe9: Game = {
+interface PathOfRadianceGame {
+  Pairings: false,
+}
+
+export const fe9: Game<PathOfRadianceGame> = {
   short: "fe9",
   defaultPicks: 13,
   characters: {
@@ -308,7 +312,7 @@ export const fe9: Game = {
   flags: {},
 };
 
-export const fe10: Game = {
+export const fe10: Game<UnsupportedGame> = {
   short: "fe10",
   defaultPicks: 0,
   free: ["Micaiah", "Ike"],

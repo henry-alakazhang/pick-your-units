@@ -1,5 +1,9 @@
 import { Game } from "./data.types";
 
+interface FatesGame {
+  Pairings: true,
+}
+
 // RX is royals since you can't pair them together.
 const M = ["Jakob", "Silas", "Kaze", "Corrin (M)"];
 const F = ["Felicia", "Azura", "Mozu", "Corrin (F)"];
@@ -364,7 +368,7 @@ const CLASSES = {
   },
 };
 
-export const fe14br: Game = {
+export const fe14br: Game<FatesGame> = {
   short: "fe14",
   inheritClasses: inheritClasses,
   characters: {
@@ -746,7 +750,7 @@ export const fe14br: Game = {
   defaultPicks: 14,
 };
 
-export const fe14cq: Game = {
+export const fe14cq: Game<FatesGame> = {
   short: "fe14",
   inheritClasses: inheritClasses,
   characters: {
@@ -1123,7 +1127,7 @@ export const fe14cq: Game = {
   defaultPicks: 14,
 };
 
-export const fe14rev: Game = {
+export const fe14rev: Game<FatesGame> = {
   short: "fe14",
   inheritClasses: inheritClasses,
   characters: {

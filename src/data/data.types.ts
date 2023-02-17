@@ -7,7 +7,7 @@ export interface Class {
   readonly stat?: { STR?: boolean; MAG?: boolean };
 }
 
-export interface Character {
+export type Character<G extends GameMetaType> = {
   /** Possible base classes */
   readonly class: string | readonly string[];
   /**
@@ -18,8 +18,6 @@ export interface Character {
   readonly defaultClass?: string;
   /** Whether characters have good bases/growths for a stat */
   readonly stat?: { STR?: boolean; MAG?: boolean };
-  /** Other characters available for S-rank */
-  readonly pairings?: string[];
   /** Other characters available for A+ rank */
   readonly friends?: string[];
   /** Required units to make a character recruitable */
@@ -39,21 +37,51 @@ export interface Character {
     readonly strengths: readonly string[];
     readonly weaknesses: readonly string[];
   };
-}
+} & (G["Pairings"] extends true ? {
+  /** Other characters available for S-rank */
+  readonly pairings: string[]
+} : {})
 
-export type ChildCharacter = Character & {
+export type ChildCharacter<G extends GameMetaType> = Character<G> & {
   readonly parent: string;
 };
 
-export interface Game {
+/**
+ * A template meta-type for game configuration.
+ * These "fields" are used as values by TypeScript to enforce conditions on Game objects.
+ * Each game should define its own Game with appropriate fields so types are extra-validated.
+ * 
+ * There are two main purposes for this:
+ * 
+ * The first is validation of key/value types, like character and class names.
+ * By assigning a type which contains all of the possible character/class/etc names, we can validate
+ * that all references (eg. promotion names, pairing names) have valid values,
+ * and that we haven't made any typos or mucked up the data anywhere.
+ * 
+ * The second is consistent validation of "optional" types in various fields.
+ * eg. `Character.pairings` is optional because not all games have pairings.
+ * However, games that have pairings should ALWAYS have `Character.pairings`.
+ * By setting `Pairings: true`, we can enforce all Characters for games with pairings... have pairings.
+ * This also has the side effect of making the types way smarter when using a generic `Game` object.
+ */
+export interface GameMetaType {
+  readonly Pairings: boolean;
+}
+
+/** A generically useable `GameMetaType` for unsupported games */
+export interface UnsupportedGame extends GameMetaType {
+  readonly Pairings: false;
+}
+
+export interface Game<G extends GameMetaType> {
   /** Short name (fe1, fe2, etc) */
   readonly short: string;
   readonly defaultPicks: number;
   readonly classes: { [name: string]: Class };
-  readonly characters: { [name: string]: Character };
-  readonly children?: { [name: string]: ChildCharacter };
+  readonly characters: { [name: string]: Character<G> };
+  readonly children?: { [name: string]: ChildCharacter<G> };
   readonly inheritClasses?: (
-    game: Game,
+    game: Game<G>,
     picks: { pairings: any },
     to: string
   ) => string[];
@@ -74,11 +102,11 @@ export interface Game {
   readonly imgExtension?: string;
   readonly flags: {
     /** Whether pairings and inherited classes exist */
-    readonly pairings?: boolean;
+    readonly pairings?: G["Pairings"] extends true ? boolean : never;
     /** Whether friends and inherited classes exist (fates only) */
     readonly friends?: boolean;
     /** Whether you can choose to only pick pairings */
-    readonly onlypairs?: boolean;
+    readonly onlypairs?: G["Pairings"] extends true ? boolean : never;
     /** Whether child units exist */
     readonly children?: boolean;
     /** Whether class changing exists */

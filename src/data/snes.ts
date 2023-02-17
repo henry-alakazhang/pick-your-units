@@ -1,6 +1,10 @@
-import { Game } from "./data.types";
+import { Game, UnsupportedGame } from "./data.types";
 
-export const fe1: Game = {
+interface ShadowDragonGame {
+  Pairings: false,
+}
+
+export const fe1: Game<ShadowDragonGame> = {
   short: "fe1",
   defaultPicks: 14,
   characters: {
@@ -224,7 +228,7 @@ export const fe1: Game = {
   flags: {},
 };
 
-export const fe2: Game = {
+export const fe2: Game<UnsupportedGame> = {
   short: "fe2",
   defaultPicks: 0,
   disabled: "Use the Shadows of Valentia pickers instead",
@@ -234,7 +238,7 @@ export const fe2: Game = {
   flags: {},
 };
 
-export const fe3: Game = {
+export const fe3: Game<UnsupportedGame> = {
   short: "fe3",
   defaultPicks: 0,
   disabled: "I'll get around to this eventually",
@@ -290,7 +294,11 @@ export const fe3: Game = {
   flags: {},
 };
 
-export const fe4: Game = {
+interface GenealogyGame {
+  Pairings: true,
+}
+
+export const fe4: Game<GenealogyGame> = {
   short: "fe4",
   defaultPicks: 0,
   disabled: "You can use everyone anyway",
@@ -303,7 +311,11 @@ export const fe4: Game = {
   },
 };
 
-export const fe5: Game = {
+interface ThraciaGame {
+  Pairings: false,
+}
+
+export const fe5: Game<ThraciaGame> = {
   short: "fe5",
   characters: {
     Leaf: { class: "Lord" },

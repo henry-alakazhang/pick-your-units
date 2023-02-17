@@ -1,4 +1,6 @@
-/**
+import { Game } from "./data.types";
+
+/*
  * A little note on Three Houses class changing
  *
  * Since every character can be every class, we don't need to
@@ -9,7 +11,9 @@
  * promote directly into their available advanced/master classe
  */
 
-import { Game } from "./data.types";
+interface ThreeHousesGame {
+  Pairings: false,
+}
 
 const femaleLockedClasses = {
   "Falcon Knight": {
@@ -507,7 +511,7 @@ const fe16base = {
   imgExtension: "jpg",
 };
 
-export const fe16eagles: Game = {
+export const fe16eagles: Game<ThreeHousesGame> = {
   ...fe16base,
   free: ["Edelgard"],
   faction: "eagles",
@@ -519,7 +523,7 @@ export const fe16eagles: Game = {
   defaultPicks: 10,
 };
 
-export const fe16lions: Game = {
+export const fe16lions: Game<ThreeHousesGame> = {
   ...fe16base,
   free: ["Dimitri"],
   faction: "lions",
@@ -530,7 +534,7 @@ export const fe16lions: Game = {
   },
 };
 
-export const fe16deer: Game = {
+export const fe16deer: Game<ThreeHousesGame> = {
   ...fe16base,
   free: ["Claude"],
   faction: "deer",
@@ -541,7 +545,7 @@ export const fe16deer: Game = {
   },
 };
 
-export const fe16church: Game = {
+export const fe16church: Game<ThreeHousesGame> = {
   ...fe16base,
   free: [],
   faction: "eagles",

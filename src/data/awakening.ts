@@ -2,6 +2,10 @@
 
 import { Game } from "./data.types";
 
+interface AwakeningGame {
+  Pairings: true;
+}
+
 // M is males, F is females, CX is children
 const AWAKE_M = [
   "Robin (M)",
@@ -51,7 +55,7 @@ const AWAKE_CF = [
 ];
 
 const inheritClasses = function(
-  game: Game,
+  game: Game<AwakeningGame>,
   picks: { pairings: any },
   to: string
 ) {
@@ -97,7 +101,7 @@ const inheritClasses = function(
   return classes;
 };
 
-export const fe13: Game = {
+export const fe13: Game<AwakeningGame> = {
   short: "fe13",
   inheritClasses: inheritClasses,
   characters: {
