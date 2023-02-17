@@ -1,8 +1,10 @@
 // lists for pairings
 
-import { Game } from "./data.types";
+import { Character, ChildCharacter, Game } from "./data.types";
 
 interface AwakeningGame {
+  CharacterName: keyof typeof characters
+  ChildCharacterName: keyof typeof children
   Pairings: true;
 }
 
@@ -21,7 +23,7 @@ const AWAKE_M = [
   "Gregor",
   "Libra",
   "Henry",
-];
+] as const;
 const AWAKE_F = [
   "Robin (F)",
   "Lissa",
@@ -34,7 +36,7 @@ const AWAKE_F = [
   "Tharja",
   "Olivia",
   "Cherche",
-];
+] as const;
 const AWAKE_CM = [
   "Owain",
   "Inigo",
@@ -43,7 +45,7 @@ const AWAKE_CM = [
   "Morgan (M)",
   "Yarne",
   "Laurent",
-];
+] as const;
 const AWAKE_CF = [
   "Lucina",
   "Kjelle",
@@ -52,12 +54,12 @@ const AWAKE_CF = [
   "Morgan (F)",
   "Noire",
   "Nah",
-];
+] as const;
 
-const inheritClasses = function(
+const inheritClasses = function (
   game: Game<AwakeningGame>,
   picks: { pairings: any },
-  to: string
+  to: AwakeningGame["CharacterName"] | AwakeningGame["ChildCharacterName"]
 ) {
   const pairings = picks.pairings;
 
@@ -73,7 +75,7 @@ const inheritClasses = function(
   let inherits = game.characters[from].class.slice() as string[];
   // replace wrong-gendered classes
   // girls:
-  if (AWAKE_CF.includes(to)) {
+  if ((AWAKE_CF as readonly string[]).includes(to)) {
     inherits[inherits.indexOf("Priest")] = "Cleric";
     if (from === "Vaike") {
       inherits[inherits.indexOf("Barbarian")] = "Knight";
@@ -101,370 +103,373 @@ const inheritClasses = function(
   return classes;
 };
 
+const characters = {
+  "Robin (M)": {
+    class: [
+      "Tactician",
+      "Cavalier",
+      "Knight",
+      "Myrmidon",
+      "Mercenary",
+      "Fighter",
+      "Barbarian",
+      "Archer",
+      "Thief",
+      "Wyvern Rider",
+      "Mage",
+      "Dark Mage",
+      "Priest",
+      "Cleric",
+    ],
+    defaultClass: "Tactician",
+    pairings: [
+      "Sumia",
+      "Lissa",
+      "Sully",
+      "Miriel",
+      "Maribelle",
+      "Panne",
+      "Cordelia",
+      "Nowi",
+      "Tharja",
+      "Olivia",
+      "Cherche",
+      "Say'ri",
+      "Flavia",
+      "Tiki",
+    ],
+    stat: { STR: true, MAG: true },
+  },
+  "Robin (F)": {
+    class: [
+      "Tactician",
+      "Cavalier",
+      "Knight",
+      "Myrmidon",
+      "Mercenary",
+      "Archer",
+      "Thief",
+      "Pegasus Knight",
+      "Wyvern Rider",
+      "Mage",
+      "Dark Mage",
+      "Priest",
+      "Cleric",
+      "Troubadour",
+    ],
+    defaultClass: "Tactician",
+    pairings: [
+      "Chrom",
+      "Frederick",
+      "Virion",
+      "Stahl",
+      "Vaike",
+      "Kellam",
+      "Donnel",
+      "Lon'qu",
+      "Ricken",
+      "Gaius",
+      "Gregor",
+      "Libra",
+      "Henry",
+      "Basilio",
+    ],
+    stat: { STR: true, MAG: true },
+  },
+  Chrom: {
+    class: ["Lord", "Cavalier", "Archer"],
+    defaultClass: "Lord",
+    pairings: ["Robin (F)", "Sully", "Sumia", "Maribelle", "Olivia"],
+    stat: { STR: true },
+  },
+  Lissa: {
+    class: ["Cleric", "Pegasus Knight", "Troubadour"],
+    defaultClass: "Cleric",
+    pairings: AWAKE_M,
+    stat: { MAG: true },
+  },
+  Frederick: {
+    class: ["Cavalier", "Knight", "Wyvern Rider"],
+    defaultClass: "Great Knight",
+    pairings: [...AWAKE_F, "Sumia"],
+    stat: { STR: true },
+  },
+  Sully: {
+    class: ["Cavalier", "Myrmidon", "Wyvern Rider"],
+    defaultClass: "Cavalier",
+    pairings: [...AWAKE_M, "Chrom"],
+    stat: { STR: true },
+  },
+  Virion: {
+    class: ["Archer", "Wyvern Rider", "Mage"],
+    defaultClass: "Archer",
+    pairings: AWAKE_F,
+    stat: { STR: true },
+  },
+  Stahl: {
+    class: ["Cavalier", "Archer", "Myrmidon"],
+    defaultClass: "Cavalier",
+    pairings: AWAKE_F,
+    stat: { STR: true },
+  },
+  Vaike: {
+    class: ["Fighter", "Thief", "Barbarian"],
+    defaultClass: "Fighter",
+    pairings: AWAKE_F,
+    stat: { STR: true },
+  },
+  Miriel: {
+    class: ["Mage", "Troubadour", "Dark Mage"],
+    defaultClass: "Mage",
+    pairings: AWAKE_M,
+    stat: { MAG: true },
+  },
+  Sumia: {
+    class: ["Pegasus Knight", "Knight", "Cleric"],
+    defaultClass: "Pegasus Knight",
+    pairings: ["Robin (M)", "Chrom", "Frederick", "Gaius", "Henry"],
+    stat: { STR: true },
+  },
+  Kellam: {
+    class: ["Knight", "Thief", "Priest"],
+    defaultClass: "Knight",
+    pairings: AWAKE_F,
+    stat: { STR: true },
+  },
+  Donnel: {
+    class: ["Villager", "Fighter", "Mercenary"],
+    defaultClass: "Hero", // hardcoded cos there's no troll Donnel
+    pairings: AWAKE_F,
+    stat: { STR: true },
+  },
+  "Lon'qu": {
+    class: ["Myrmidon", "Thief", "Wyvern Rider"],
+    defaultClass: "Myrmidon",
+    pairings: AWAKE_F,
+    stat: { STR: true },
+  },
+  Ricken: {
+    class: ["Mage", "Cavalier", "Archer"],
+    defaultClass: "Mage",
+    pairings: AWAKE_F,
+    stat: { MAG: true },
+  },
+  Maribelle: {
+    class: ["Troubadour", "Pegasus Knight", "Mage"],
+    defaultClass: "Troubadour",
+    pairings: [...AWAKE_M, "Chrom"],
+    stat: { MAG: true },
+  },
+  Panne: {
+    class: ["Taguel", "Thief", "Wyvern Rider"],
+    defaultClass: "Taguel",
+    pairings: AWAKE_M,
+    stat: { STR: true },
+  },
+  Gaius: {
+    class: ["Thief", "Fighter", "Myrmidon"],
+    defaultClass: "Thief",
+    pairings: [...AWAKE_F, "Sumia"],
+    stat: { STR: true },
+  },
+  Cordelia: {
+    class: ["Pegasus Knight", "Mercenary", "Dark Mage"],
+    defaultClass: "Pegasus Knight",
+    pairings: AWAKE_M,
+    stat: { STR: true },
+  },
+  Gregor: {
+    class: ["Mercenary", "Barbarian", "Myrmidon"],
+    defaultClass: "Mercenary",
+    pairings: AWAKE_F,
+    stat: { STR: true },
+  },
+  Nowi: {
+    class: ["Manakete", "Mage", "Wyvern Rider"],
+    defaultClass: "Manakete",
+    pairings: AWAKE_M,
+    stat: { STR: true, MAG: true },
+  },
+  Libra: {
+    class: ["Priest", "Mage", "Dark Mage"],
+    defaultClass: "War Monk",
+    pairings: AWAKE_F,
+    stat: { STR: true, MAG: true },
+  },
+  Tharja: {
+    class: ["Dark Mage", "Knight", "Archer"],
+    defaultClass: "Dark Mage",
+    pairings: AWAKE_M,
+    stat: { MAG: true },
+  },
+  Anna: {
+    class: ["Thief", "Archer", "Mage"],
+    defaultClass: "Trickster",
+    pairings: ["Robin (M)"],
+    stat: { STR: true, MAG: true },
+  },
+  Olivia: {
+    class: ["Dancer", "Myrmidon", "Pegasus Knight"],
+    defaultClass: "Dancer",
+    pairings: [...AWAKE_M, "Chrom"],
+    stat: { STR: true },
+  },
+  Cherche: {
+    class: ["Wyvern Rider", "Troubadour", "Cleric"],
+    defaultClass: "Wyvern Rider",
+    pairings: AWAKE_M,
+    stat: { STR: true },
+  },
+  Henry: {
+    class: ["Dark Mage", "Barbarian", "Thief"],
+    defaultClass: "Dark Mage",
+    pairings: [...AWAKE_F, "Sumia"],
+    stat: { STR: true, MAG: true },
+  },
+  "Say'ri": {
+    class: ["Myrmidon", "Pegasus Knight", "Wyvern Rider"],
+    defaultClass: "Swordmaster",
+    pairings: ["Robin (M)"],
+    stat: { STR: true },
+  },
+  Tiki: {
+    class: ["Manakete", "Wyvern Rider", "Mage"],
+    defaultClass: "Manakete",
+    pairings: ["Robin (M)"],
+    stat: { STR: true },
+  },
+  Basilio: {
+    class: ["Fighter", "Barbarian", "Knight"],
+    defaultClass: "Warrior",
+    pairings: ["Robin (F)"],
+    stat: { STR: true },
+  },
+  Flavia: {
+    class: ["Mercenary", "Thief", "Knight"],
+    defaultClass: "Hero",
+    pairings: ["Robin (M)"],
+    stat: { STR: true },
+  },
+} as const;
+const children = {
+  Lucina: {
+    class: ["Lord", "Cavalier", "Archer"],
+    stat: { STR: true },
+    pairings: AWAKE_CM,
+    parent: "Chrom",
+  },
+  Owain: {
+    class: ["Myrmidon", "Priest", "Barbarian"],
+    stat: { STR: true },
+    pairings: AWAKE_CF,
+    parent: "Lissa",
+  },
+  Inigo: {
+    class: ["Mercenary", "Myrmidon", "Barbarian"],
+    stat: { STR: true, MAG: true },
+    pairings: AWAKE_CF,
+    parent: "Olivia",
+  },
+  Brady: {
+    class: ["Priest", "Cavalier", "Mage"],
+    stat: { STR: true, MAG: true },
+    pairings: AWAKE_CF,
+    parent: "Maribelle",
+  },
+  Kjelle: {
+    class: ["Knight", "Myrmidon", "Cavalier", "Wyvern Rider"],
+    stat: { STR: true },
+    pairings: AWAKE_CM,
+    parent: "Sully",
+  },
+  Cynthia: {
+    class: ["Pegasus Knight", "Knight", "Cleric"],
+    stat: { STR: true },
+    pairings: AWAKE_CM,
+    parent: "Sumia",
+  },
+  Severa: {
+    class: ["Mercenary", "Pegasus Knight", "Dark Mage"],
+    stat: { STR: true },
+    pairings: AWAKE_CM,
+    parent: "Cordelia",
+  },
+  Gerome: {
+    class: ["Wyvern Rider", "Fighter", "Priest"],
+    stat: { STR: true },
+    pairings: AWAKE_CF,
+    parent: "Cherche",
+  },
+  "Morgan (F)": {
+    class: [
+      "Tactician",
+      "Cavalier",
+      "Knight",
+      "Myrmidon",
+      "Mercenary",
+      "Pegasus Knight",
+      "Archer",
+      "Thief",
+      "Wyvern Rider",
+      "Mage",
+      "Dark Mage",
+      "Cleric",
+    ],
+    stat: { STR: true, MAG: true },
+    parent: "Robin (M)",
+    pairings: AWAKE_CM,
+  },
+  "Morgan (M)": {
+    class: [
+      "Tactician",
+      "Cavalier",
+      "Knight",
+      "Myrmidon",
+      "Mercenary",
+      "Fighter",
+      "Barbarian",
+      "Archer",
+      "Thief",
+      "Wyvern Rider",
+      "Mage",
+      "Dark Mage",
+      "Priest",
+    ],
+    stat: { STR: true, MAG: true },
+    parent: "Robin (F)",
+    pairings: AWAKE_CF,
+  },
+  Yarne: {
+    class: ["Taguel", "Thief", "Barbarian"],
+    stat: { STR: true },
+    pairings: AWAKE_CF,
+    parent: "Panne",
+  },
+  Laurent: {
+    class: ["Mage", "Barbarian", "Dark Mage"],
+    stat: { MAG: true },
+    pairings: AWAKE_CF,
+    parent: "Miriel",
+  },
+  Noire: {
+    class: ["Archer", "Knight", "Dark Mage"],
+    stat: { STR: true, MAG: true },
+    pairings: AWAKE_CM,
+    parent: "Tharja",
+  },
+  Nah: {
+    class: ["Manakete", "Wyvern Rider", "Mage"],
+    stat: { STR: true, MAG: true },
+    pairings: AWAKE_CM,
+    parent: "Nowi",
+  },
+} as const;
+
 export const fe13: Game<AwakeningGame> = {
   short: "fe13",
   inheritClasses: inheritClasses,
-  characters: {
-    "Robin (M)": {
-      class: [
-        "Tactician",
-        "Cavalier",
-        "Knight",
-        "Myrmidon",
-        "Mercenary",
-        "Fighter",
-        "Barbarian",
-        "Archer",
-        "Thief",
-        "Wyvern Rider",
-        "Mage",
-        "Dark Mage",
-        "Priest",
-        "Cleric",
-      ],
-      defaultClass: "Tactician",
-      pairings: [
-        "Sumia",
-        "Lissa",
-        "Sully",
-        "Miriel",
-        "Maribelle",
-        "Panne",
-        "Cordelia",
-        "Nowi",
-        "Tharja",
-        "Olivia",
-        "Cherche",
-        "Say'ri",
-        "Flavia",
-        "Tiki",
-      ],
-      stat: { STR: true, MAG: true },
-    },
-    "Robin (F)": {
-      class: [
-        "Tactician",
-        "Cavalier",
-        "Knight",
-        "Myrmidon",
-        "Mercenary",
-        "Archer",
-        "Thief",
-        "Pegasus Knight",
-        "Wyvern Rider",
-        "Mage",
-        "Dark Mage",
-        "Priest",
-        "Cleric",
-        "Troubadour",
-      ],
-      defaultClass: "Tactician",
-      pairings: [
-        "Chrom",
-        "Frederick",
-        "Virion",
-        "Stahl",
-        "Vaike",
-        "Kellam",
-        "Donnel",
-        "Lon'qu",
-        "Ricken",
-        "Gaius",
-        "Gregor",
-        "Libra",
-        "Henry",
-        "Basilio",
-      ],
-      stat: { STR: true, MAG: true },
-    },
-    Chrom: {
-      class: ["Lord", "Cavalier", "Archer"],
-      defaultClass: "Lord",
-      pairings: ["Robin (F)", "Sully", "Sumia", "Maribelle", "Olivia"],
-      stat: { STR: true },
-    },
-    Lissa: {
-      class: ["Cleric", "Pegasus Knight", "Troubadour"],
-      defaultClass: "Cleric",
-      pairings: AWAKE_M,
-      stat: { MAG: true },
-    },
-    Frederick: {
-      class: ["Cavalier", "Knight", "Wyvern Rider"],
-      defaultClass: "Great Knight",
-      pairings: [...AWAKE_F, "Sumia"],
-      stat: { STR: true },
-    },
-    Sully: {
-      class: ["Cavalier", "Myrmidon", "Wyvern Rider"],
-      defaultClass: "Cavalier",
-      pairings: [...AWAKE_M, "Chrom"],
-      stat: { STR: true },
-    },
-    Virion: {
-      class: ["Archer", "Wyvern Rider", "Mage"],
-      defaultClass: "Archer",
-      pairings: AWAKE_F,
-      stat: { STR: true },
-    },
-    Stahl: {
-      class: ["Cavalier", "Archer", "Myrmidon"],
-      defaultClass: "Cavalier",
-      pairings: AWAKE_F,
-      stat: { STR: true },
-    },
-    Vaike: {
-      class: ["Fighter", "Thief", "Barbarian"],
-      defaultClass: "Fighter",
-      pairings: AWAKE_F,
-      stat: { STR: true },
-    },
-    Miriel: {
-      class: ["Mage", "Troubadour", "Dark Mage"],
-      defaultClass: "Mage",
-      pairings: AWAKE_M,
-      stat: { MAG: true },
-    },
-    Sumia: {
-      class: ["Pegasus Knight", "Knight", "Cleric"],
-      defaultClass: "Pegasus Knight",
-      pairings: ["Robin (M)", "Chrom", "Frederick", "Gaius", "Henry"],
-      stat: { STR: true },
-    },
-    Kellam: {
-      class: ["Knight", "Thief", "Priest"],
-      defaultClass: "Knight",
-      pairings: AWAKE_F,
-      stat: { STR: true },
-    },
-    Donnel: {
-      class: ["Villager", "Fighter", "Mercenary"],
-      defaultClass: "Hero", // hardcoded cos there's no troll Donnel
-      pairings: AWAKE_F,
-      stat: { STR: true },
-    },
-    "Lon'qu": {
-      class: ["Myrmidon", "Thief", "Wyvern Rider"],
-      defaultClass: "Myrmidon",
-      pairings: AWAKE_F,
-      stat: { STR: true },
-    },
-    Ricken: {
-      class: ["Mage", "Cavalier", "Archer"],
-      defaultClass: "Mage",
-      pairings: AWAKE_F,
-      stat: { MAG: true },
-    },
-    Maribelle: {
-      class: ["Troubadour", "Pegasus Knight", "Mage"],
-      defaultClass: "Troubadour",
-      pairings: [...AWAKE_M, "Chrom"],
-      stat: { MAG: true },
-    },
-    Panne: {
-      class: ["Taguel", "Thief", "Wyvern Rider"],
-      defaultClass: "Taguel",
-      pairings: AWAKE_M,
-      stat: { STR: true },
-    },
-    Gaius: {
-      class: ["Thief", "Fighter", "Myrmidon"],
-      defaultClass: "Thief",
-      pairings: [...AWAKE_F, "Sumia"],
-      stat: { STR: true },
-    },
-    Cordelia: {
-      class: ["Pegasus Knight", "Mercenary", "Dark Mage"],
-      defaultClass: "Pegasus Knight",
-      pairings: AWAKE_M,
-      stat: { STR: true },
-    },
-    Gregor: {
-      class: ["Mercenary", "Barbarian", "Myrmidon"],
-      defaultClass: "Mercenary",
-      pairings: AWAKE_F,
-      stat: { STR: true },
-    },
-    Nowi: {
-      class: ["Manakete", "Mage", "Wyvern Rider"],
-      defaultClass: "Manakete",
-      pairings: AWAKE_M,
-      stat: { STR: true, MAG: true },
-    },
-    Libra: {
-      class: ["Priest", "Mage", "Dark Mage"],
-      defaultClass: "War Monk",
-      pairings: AWAKE_F,
-      stat: { STR: true, MAG: true },
-    },
-    Tharja: {
-      class: ["Dark Mage", "Knight", "Archer"],
-      defaultClass: "Dark Mage",
-      pairings: AWAKE_M,
-      stat: { MAG: true },
-    },
-    Anna: {
-      class: ["Thief", "Archer", "Mage"],
-      defaultClass: "Trickster",
-      pairings: ["Robin (M)"],
-      stat: { STR: true, MAG: true },
-    },
-    Olivia: {
-      class: ["Dancer", "Myrmidon", "Pegasus Knight"],
-      defaultClass: "Dancer",
-      pairings: [...AWAKE_M, "Chrom"],
-      stat: { STR: true },
-    },
-    Cherche: {
-      class: ["Wyvern Rider", "Troubadour", "Cleric"],
-      defaultClass: "Wyvern Rider",
-      pairings: AWAKE_M,
-      stat: { STR: true },
-    },
-    Henry: {
-      class: ["Dark Mage", "Barbarian", "Thief"],
-      defaultClass: "Dark Mage",
-      pairings: [...AWAKE_F, "Sumia"],
-      stat: { STR: true, MAG: true },
-    },
-    "Say'ri": {
-      class: ["Myrmidon", "Pegasus Knight", "Wyvern Rider"],
-      defaultClass: "Swordmaster",
-      pairings: ["Robin (M)"],
-      stat: { STR: true },
-    },
-    Tiki: {
-      class: ["Manakete", "Wyvern Rider", "Mage"],
-      defaultClass: "Manakete",
-      pairings: ["Robin (M)"],
-      stat: { STR: true },
-    },
-    Basilio: {
-      class: ["Fighter", "Barbarian", "Knight"],
-      defaultClass: "Warrior",
-      pairings: ["Robin (F)"],
-      stat: { STR: true },
-    },
-    Flavia: {
-      class: ["Mercenary", "Thief", "Knight"],
-      defaultClass: "Hero",
-      pairings: ["Robin (M)"],
-      stat: { STR: true },
-    },
-  },
-  children: {
-    Lucina: {
-      class: ["Lord", "Cavalier", "Archer"],
-      stat: { STR: true },
-      pairings: AWAKE_CM,
-      parent: "Chrom",
-    },
-    Owain: {
-      class: ["Myrmidon", "Priest", "Barbarian"],
-      stat: { STR: true },
-      pairings: AWAKE_CF,
-      parent: "Lissa",
-    },
-    Inigo: {
-      class: ["Mercenary", "Myrmidon", "Barbarian"],
-      stat: { STR: true, MAG: true },
-      pairings: AWAKE_CF,
-      parent: "Olivia",
-    },
-    Brady: {
-      class: ["Priest", "Cavalier", "Mage"],
-      stat: { STR: true, MAG: true },
-      pairings: AWAKE_CF,
-      parent: "Maribelle",
-    },
-    Kjelle: {
-      class: ["Knight", "Myrmidon", "Cavalier", "Wyvern Rider"],
-      stat: { STR: true },
-      pairings: AWAKE_CM,
-      parent: "Sully",
-    },
-    Cynthia: {
-      class: ["Pegasus Knight", "Knight", "Cleric"],
-      stat: { STR: true },
-      pairings: AWAKE_CM,
-      parent: "Sumia",
-    },
-    Severa: {
-      class: ["Mercenary", "Pegasus Knight", "Dark Mage"],
-      stat: { STR: true },
-      pairings: AWAKE_CM,
-      parent: "Cordelia",
-    },
-    Gerome: {
-      class: ["Wyvern Rider", "Fighter", "Priest"],
-      stat: { STR: true },
-      pairings: AWAKE_CF,
-      parent: "Cherche",
-    },
-    "Morgan (F)": {
-      class: [
-        "Tactician",
-        "Cavalier",
-        "Knight",
-        "Myrmidon",
-        "Mercenary",
-        "Pegasus Knight",
-        "Archer",
-        "Thief",
-        "Wyvern Rider",
-        "Mage",
-        "Dark Mage",
-        "Cleric",
-      ],
-      stat: { STR: true, MAG: true },
-      parent: "Robin (M)",
-      pairings: AWAKE_CM,
-    },
-    "Morgan (M)": {
-      class: [
-        "Tactician",
-        "Cavalier",
-        "Knight",
-        "Myrmidon",
-        "Mercenary",
-        "Fighter",
-        "Barbarian",
-        "Archer",
-        "Thief",
-        "Wyvern Rider",
-        "Mage",
-        "Dark Mage",
-        "Priest",
-      ],
-      stat: { STR: true, MAG: true },
-      parent: "Robin (F)",
-      pairings: AWAKE_CF,
-    },
-    Yarne: {
-      class: ["Taguel", "Thief", "Barbarian"],
-      stat: { STR: true },
-      pairings: AWAKE_CF,
-      parent: "Panne",
-    },
-    Laurent: {
-      class: ["Mage", "Barbarian", "Dark Mage"],
-      stat: { MAG: true },
-      pairings: AWAKE_CF,
-      parent: "Miriel",
-    },
-    Noire: {
-      class: ["Archer", "Knight", "Dark Mage"],
-      stat: { STR: true, MAG: true },
-      pairings: AWAKE_CM,
-      parent: "Tharja",
-    },
-    Nah: {
-      class: ["Manakete", "Wyvern Rider", "Mage"],
-      stat: { STR: true, MAG: true },
-      pairings: AWAKE_CM,
-      parent: "Nowi",
-    },
-  },
+  characters,
+  children,
   classes: {
     Lord: {
       weapons: ["Sword"],

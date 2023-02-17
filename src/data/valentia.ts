@@ -1,6 +1,7 @@
 import { Game } from "./data.types";
 
 interface ShadowsOfValentiaGame {
+  ChildCharacterName: never,
   Pairings: false,
 }
 
@@ -38,24 +39,26 @@ const VALENTIA_CLASSES = {
   Princess: { weapons: ["Sword", "Black Magic", "White Magic"] },
 };
 
-export const fe15alm: Game<ShadowsOfValentiaGame> = {
+const almCharacters = {
+  Alm: { class: "Fighter" },
+  Gray: { class: "Villager (M)" },
+  Tobin: { class: "Villager (M)" },
+  Kliff: { class: "Villager (M)" },
+  Faye: { class: "Villager (F)" },
+  Lukas: { class: "Soldier" },
+  Silque: { class: "Cleric" },
+  Clive: { class: "Cavalier" },
+  Clair: { class: "Pegasus Knight" },
+  Luthier: { class: "Mage (M)" },
+  Delthea: { class: "Mage (F)" },
+  Python: { class: "Archer" },
+  Zeke: { class: "Gold Knight" },
+  Forsyth: { class: "Soldier" },
+} as const;
+
+export const fe15alm: Game<ShadowsOfValentiaGame & { CharacterName: keyof typeof almCharacters }> = {
   short: "fe15",
-  characters: {
-    Alm: { class: "Fighter" },
-    Gray: { class: "Villager (M)" },
-    Tobin: { class: "Villager (M)" },
-    Kliff: { class: "Villager (M)" },
-    Faye: { class: "Villager (F)" },
-    Lukas: { class: "Soldier" },
-    Silque: { class: "Cleric" },
-    Clive: { class: "Cavalier" },
-    Clair: { class: "Pegasus Knight" },
-    Luthier: { class: "Mage (M)" },
-    Delthea: { class: "Mage (F)" },
-    Python: { class: "Archer" },
-    Zeke: { class: "Gold Knight" },
-    Forsyth: { class: "Soldier" },
-  },
+  characters: almCharacters,
   classes: VALENTIA_CLASSES,
   free: ["Alm"],
   flags: {},
@@ -63,27 +66,29 @@ export const fe15alm: Game<ShadowsOfValentiaGame> = {
   defaultPicks: 10,
 };
 
-export const fe15celica: Game<ShadowsOfValentiaGame> = {
+const celicaCharacters = {
+  Celica: { class: "Princess" },
+  Mae: { class: "Mage (F)" },
+  Boey: { class: "Mage (M)" },
+  Genny: { class: "Cleric" },
+  Saber: { class: "Mercenary" },
+  Valbar: { class: "Knight" },
+  Leon: { class: "Archer" },
+  Kamui: { class: "Mercenary" },
+  Palla: { class: "Pegasus Knight" },
+  Catria: { class: "Pegasus Knight" },
+  Est: { class: "Pegasus Knight" },
+  Sonya: { class: "Mage (F)", exclude: ["Deen"] },
+  Conrad: { class: "Cavalier" },
+  Atlas: { class: "Villager (M)" },
+  Jesse: { class: "Mercenary" },
+  Deen: { class: "Myrmidon", exclude: ["Sonya"] },
+  Nomah: { class: "Sage" },
+} as const;
+
+export const fe15celica: Game<ShadowsOfValentiaGame & { CharacterName: keyof typeof celicaCharacters }> = {
   short: "fe15",
-  characters: {
-    Celica: { class: "Princess" },
-    Mae: { class: "Mage (F)" },
-    Boey: { class: "Mage (M)" },
-    Genny: { class: "Cleric" },
-    Saber: { class: "Mercenary" },
-    Valbar: { class: "Knight" },
-    Leon: { class: "Archer" },
-    Kamui: { class: "Mercenary" },
-    Palla: { class: "Pegasus Knight" },
-    Catria: { class: "Pegasus Knight" },
-    Est: { class: "Pegasus Knight" },
-    Sonya: { class: "Mage (F)" },
-    Conrad: { class: "Cavalier" },
-    Atlas: { class: "Villager (M)" },
-    Jesse: { class: "Mercenary" },
-    Deen: { class: "Myrmidon", exclude: ["Sonya"] },
-    Nomah: { class: "Sage" },
-  },
+  characters: celicaCharacters,
   classes: VALENTIA_CLASSES,
   free: ["Celica"],
   flags: {},

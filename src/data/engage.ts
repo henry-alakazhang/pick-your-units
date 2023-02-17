@@ -1,6 +1,8 @@
 import { Game } from "./data.types";
 
 interface EngageGame {
+  CharacterName: keyof typeof characters;
+  ChildCharacterName: never;
   Pairings: false;
 }
 
@@ -189,6 +191,189 @@ const uniqueClasses = {
   },
 };
 
+const characters = {
+  Alear: {
+    class: "Dragon Child",
+    defaultClass: "Divine Dragon",
+    stat: { STR: true },
+  },
+  Vander: {
+    class: "Base",
+    defaultClass: "Paladin (Any)",
+    stat: { STR: true },
+  },
+  Clanne: {
+    class: "Base",
+    defaultClass: "Mage Knight",
+    stat: { STR: true },
+  },
+  Framme: {
+    class: "Base",
+    defaultClass: "Martial Master",
+    stat: { STR: true, MAG: true },
+  },
+  Alfred: {
+    class: "Noble (Alfred)",
+    defaultClass: "Avenir",
+    stat: { STR: true },
+  },
+  Etie: {
+    class: "Base",
+    defaultClass: "Sniper",
+    stat: { STR: true },
+  },
+  Boucheron: {
+    class: "Base",
+    defaultClass: "Berserker",
+    stat: { STR: true },
+  },
+  Céline: {
+    class: "Noble (Céline)",
+    defaultClass: "Vidame",
+    stat: { STR: true, MAG: true },
+  },
+  Chloé: {
+    class: "Base",
+    defaultClass: "Griffin Knight (Any)",
+    stat: { STR: true, MAG: true },
+  },
+  Louis: {
+    class: "Base",
+    defaultClass: "General",
+    stat: { STR: true },
+  },
+  Yunaka: {
+    class: "Thief (Base)",
+    defaultClass: "Thief",
+    stat: { STR: true, MAG: true },
+  },
+  Alcryst: {
+    class: "Lord (Alcryst)",
+    defaultClass: "Tireur d'élite",
+    stat: { STR: true },
+  },
+  Citrinne: {
+    class: "Base",
+    defaultClass: "Sage",
+    stat: { MAG: true },
+  },
+  Lapis: {
+    class: "Base",
+    defaultClass: "Swordmaster",
+    stat: { STR: true, MAG: true },
+  },
+  Diamant: {
+    class: "Lord (Diamant)",
+    defaultClass: "Successeur",
+    stat: { STR: true },
+  },
+  Amber: {
+    class: "Base",
+    defaultClass: "Paladin (Any)",
+    stat: { STR: true },
+  },
+  Jade: {
+    class: "Base",
+    defaultClass: "General (Any)",
+    stat: { STR: true, MAG: true },
+  },
+  Ivy: {
+    class: "Wing Tamer (Ivy)",
+    defaultClass: "Lindwurm",
+    stat: { STR: true, MAG: true },
+  },
+  Kagetsu: {
+    class: "Base",
+    defaultClass: "Swordmaster",
+    stat: { STR: true },
+  },
+  Zelkov: {
+    class: "Thief (Base)",
+    defaultClass: "Thief",
+    stat: { STR: true },
+  },
+  Fogado: {
+    class: "Sentinel (Fogado)",
+    defaultClass: "Cupid",
+    stat: { STR: true, MAG: true },
+  },
+  Pandreo: {
+    class: "Base",
+    defaultClass: "High Priest",
+    stat: { MAG: true },
+  },
+  Bunet: {
+    class: "Base",
+    defaultClass: "Great Knight (Any)",
+    stat: { STR: true },
+  },
+  Timerra: {
+    class: "Sentinel (Timerra)",
+    defaultClass: "Picket",
+    stat: { STR: true, MAG: true },
+  },
+  Panette: {
+    class: "Base",
+    defaultClass: "Berserker",
+    stat: { STR: true },
+  },
+  Merrin: {
+    class: "Base",
+    defaultClass: "Wolf Knigh (Any)",
+    stat: { STR: true, MAG: true },
+  },
+  Hortensia: {
+    class: "Wing Tamer (Hortensia)",
+    defaultClass: "Sleipnir Rider",
+    stat: { STR: true, MAG: true },
+  },
+  Seadall: {
+    class: "Dancer (Base)",
+    defaultClass: "Dancer",
+    stat: { STR: true },
+  },
+  Rosado: {
+    class: "Base",
+    defaultClass: "Wyvern Knight (Any)",
+    stat: { STR: true },
+  },
+  Goldmary: {
+    class: "Base",
+    defaultClass: "Hero (Any)",
+    stat: { STR: true },
+  },
+  Lindon: {
+    class: "Base",
+    defaultClass: "Sage",
+    stat: { STR: true, MAG: true },
+  },
+  Saphir: {
+    class: "Base",
+    defaultClass: "Warrior",
+    stat: { STR: true },
+  },
+  Mauvier: {
+    class: "Base",
+    defaultClass: "Royal Knight",
+    stat: { STR: true },
+  },
+  Veyle: {
+    class: "Fell Child (Base)",
+    defaultClass: "Fell Child",
+    stat: { MAG: true },
+  },
+  Jean: {
+    class: "Base",
+    defaultClass: "Martial Monk",
+    stat: { MAG: true },
+  },
+  Anna: {
+    class: "Base",
+    defaultClass: "Axe Fighter",
+    stat: { STR: true, MAG: true },
+  },
+} as const;
+
 export const fe17: Game<EngageGame> = {
   short: "fe17",
   free: ["Alear"],
@@ -198,188 +383,7 @@ export const fe17: Game<EngageGame> = {
     troll: true,
   },
   classes: { ...promotedClasses, ...uniqueClasses },
-  characters: {
-    Alear: {
-      class: "Dragon Child",
-      defaultClass: "Divine Dragon",
-      stat: { STR: true },
-    },
-    Vander: {
-      class: "Base",
-      defaultClass: "Paladin (Any)",
-      stat: { STR: true },
-    },
-    Clanne: {
-      class: "Base",
-      defaultClass: "Mage Knight",
-      stat: { STR: true },
-    },
-    Framme: {
-      class: "Base",
-      defaultClass: "Martial Master",
-      stat: { STR: true, MAG: true },
-    },
-    Alfred: {
-      class: "Noble (Alfred)",
-      defaultClass: "Avenir",
-      stat: { STR: true },
-    },
-    Etie: {
-      class: "Base",
-      defaultClass: "Sniper",
-      stat: { STR: true },
-    },
-    Boucheron: {
-      class: "Base",
-      defaultClass: "Berserker",
-      stat: { STR: true },
-    },
-    Céline: {
-      class: "Noble (Céline)",
-      defaultClass: "Vidame",
-      stat: { STR: true, MAG: true },
-    },
-    Chloé: {
-      class: "Base",
-      defaultClass: "Griffin Knight (Any)",
-      stat: { STR: true, MAG: true },
-    },
-    Louis: {
-      class: "Base",
-      defaultClass: "General",
-      stat: { STR: true },
-    },
-    Yunaka: {
-      class: "Thief (Base)",
-      defaultClass: "Thief",
-      stat: { STR: true, MAG: true },
-    },
-    Alcryst: {
-      class: "Lord (Alcryst)",
-      defaultClass: "Tireur d'élite",
-      stat: { STR: true },
-    },
-    Citrinne: {
-      class: "Base",
-      defaultClass: "Sage",
-      stat: { MAG: true },
-    },
-    Lapis: {
-      class: "Base",
-      defaultClass: "Swordmaster",
-      stat: { STR: true, MAG: true },
-    },
-    Diamant: {
-      class: "Lord (Diamant)",
-      defaultClass: "Successeur",
-      stat: { STR: true },
-    },
-    Amber: {
-      class: "Base",
-      defaultClass: "Paladin (Any)",
-      stat: { STR: true },
-    },
-    Jade: {
-      class: "Base",
-      defaultClass: "General (Any)",
-      stat: { STR: true, MAG: true },
-    },
-    Ivy: {
-      class: "Wing Tamer (Ivy)",
-      defaultClass: "Lindwurm",
-      stat: { STR: true, MAG: true },
-    },
-    Kagetsu: {
-      class: "Base",
-      defaultClass: "Swordmaster",
-      stat: { STR: true },
-    },
-    Zelkov: {
-      class: "Thief (Base)",
-      defaultClass: "Thief",
-      stat: { STR: true },
-    },
-    Fogado: {
-      class: "Sentinel (Fogado)",
-      defaultClass: "Cupid",
-      stat: { STR: true, MAG: true },
-    },
-    Pandreo: {
-      class: "Base",
-      defaultClass: "High Priest",
-      stat: { MAG: true },
-    },
-    Bunet: {
-      class: "Base",
-      defaultClass: "Great Knight (Any)",
-      stat: { STR: true },
-    },
-    Timerra: {
-      class: "Sentinel (Timerra)",
-      defaultClass: "Picket",
-      stat: { STR: true, MAG: true },
-    },
-    Panette: {
-      class: "Base",
-      defaultClass: "Berserker",
-      stat: { STR: true },
-    },
-    Merrin: {
-      class: "Base",
-      defaultClass: "Wolf Knigh (Any)",
-      stat: { STR: true, MAG: true },
-    },
-    Hortensia: {
-      class: "Wing Tamer (Hortensia)",
-      defaultClass: "Sleipnir Rider",
-      stat: { STR: true, MAG: true },
-    },
-    Seadall: {
-      class: "Dancer (Base)",
-      defaultClass: "Dancer",
-      stat: { STR: true },
-    },
-    Rosado: {
-      class: "Base",
-      defaultClass: "Wyvern Knight (Any)",
-      stat: { STR: true },
-    },
-    Goldmary: {
-      class: "Base",
-      defaultClass: "Hero (Any)",
-      stat: { STR: true },
-    },
-    Lindon: {
-      class: "Base",
-      defaultClass: "Sage",
-      stat: { STR: true, MAG: true },
-    },
-    Saphir: {
-      class: "Base",
-      defaultClass: "Warrior",
-      stat: { STR: true },
-    },
-    Mauvier: {
-      class: "Base",
-      defaultClass: "Royal Knight",
-      stat: { STR: true },
-    },
-    Veyle: {
-      class: "Fell Child (Base)",
-      defaultClass: "Fell Child",
-      stat: { MAG: true },
-    },
-    Jean: {
-      class: "Base",
-      defaultClass: "Martial Monk",
-      stat: { MAG: true },
-    },
-    Anna: {
-      class: "Base",
-      defaultClass: "Axe Fighter",
-      stat: { STR: true, MAG: true },
-    },
-  },
+  characters,
   trollCriteria: ["MAG classes for a STR-based character and vice versa."],
   defaultPicks: 14,
 };

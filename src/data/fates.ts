@@ -1,6 +1,9 @@
 import { Game } from "./data.types";
 
 interface FatesGame {
+  // FIXME: properly type this mess
+  CharacterName: string,
+  ChildCharacterName: string,
   Pairings: true,
 }
 

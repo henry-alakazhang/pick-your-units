@@ -4,7 +4,7 @@ import { Game } from "../data/data.types";
 
 import { Games } from "../Games";
 
-export type GameConfig = Game["flags"] & {
+export type GameConfig = Game<any>["flags"] & {
   factions?: boolean;
   balanced?: boolean;
 };

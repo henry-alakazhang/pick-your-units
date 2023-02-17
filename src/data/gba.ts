@@ -1,8 +1,172 @@
 import { Game } from "./data.types";
 
 interface BindingBladeGame {
+  CharacterName: keyof typeof fe6characters,
+  ChildCharacterName: never,
   Pairings: false,
 }
+
+const fe6characters = {
+  Allen: {
+    class: "Cavalier",
+  },
+  Astohl: {
+    class: "Thief",
+  },
+  Barth: {
+    class: "Knight",
+  },
+  Bartre: {
+    class: "Warrior",
+    exclude: ["Lalum", "Echidna"],
+  },
+  Bors: {
+    class: "Knight",
+  },
+  Cath: {
+    class: "Thief",
+  },
+  Cecilia: {
+    class: "Valkyrie",
+  },
+  Chad: {
+    class: "Thief",
+  },
+  Clarine: {
+    class: "Troubadour",
+  },
+  Dayan: {
+    class: "Nomad Trooper",
+    exclude: ["Juno"],
+  },
+  Dieck: {
+    class: "Mercenary",
+  },
+  Dorothy: {
+    class: "Archer",
+  },
+  Douglas: {
+    class: "General",
+  },
+  Echidna: {
+    class: "Hero",
+    exclude: ["Elphin", "Bartre"],
+  },
+  Ellen: {
+    class: "Priest",
+  },
+  Elphin: {
+    class: "Bard",
+    exclude: ["Lalum", "Echidna"],
+  },
+  Fa: {
+    class: "Manakete",
+  },
+  Fir: {
+    class: "Myrmidon",
+  },
+  Garret: {
+    class: "Berserker",
+  },
+  Geese: {
+    class: "Pirate",
+  },
+  Gonzales: {
+    class: "Bandit",
+  },
+  Hugh: {
+    class: "Mage",
+  },
+  Igrene: {
+    class: "Sniper",
+  },
+  Juno: {
+    class: "Falcon Knight",
+    exclude: ["Dayan"],
+  },
+  Klein: {
+    class: "Archer",
+  },
+  Lalum: {
+    class: "Dancer",
+    exclude: ["Elphin", "Bartre"],
+  },
+  Lance: {
+    class: "Cavalier",
+  },
+  Lilina: {
+    class: "Mage",
+  },
+  Lot: {
+    class: "Fighter",
+  },
+  Lugh: {
+    class: "Mage",
+  },
+  Marcus: {
+    class: "Paladin",
+  },
+  Miledy: {
+    class: "Wyvern Rider",
+  },
+  Niime: {
+    class: "Druid",
+  },
+  Noah: {
+    class: "Cavalier",
+  },
+  Oujay: {
+    class: "Mercenary",
+  },
+  Percival: {
+    class: "Paladin",
+  },
+  Raigh: {
+    class: "Shaman",
+  },
+  Roy: {
+    class: "Lord",
+  },
+  Rutger: {
+    class: "Myrmidon",
+  },
+  Saul: {
+    class: "Priest",
+  },
+  Shin: {
+    class: "Nomad",
+  },
+  Sophia: {
+    class: "Shaman",
+  },
+  Sue: {
+    class: "Nomad",
+  },
+  Tate: {
+    class: "Pegasus Knight",
+  },
+  Shanna: {
+    class: "Pegasus Knight",
+  },
+  Trec: {
+    class: "Cavalier",
+  },
+  Wade: {
+    class: "Fighter",
+  },
+  Wendy: {
+    class: "Knight",
+  },
+  Wolt: {
+    class: "Archer",
+  },
+  Zealot: {
+    class: "Paladin",
+  },
+  Zeiss: {
+    class: "Wyvern Rider",
+  },
+} as const;
 
 export const fe6: Game<BindingBladeGame> = {
   short: "fe6",
@@ -11,167 +175,7 @@ export const fe6: Game<BindingBladeGame> = {
     ["A", "B"],
     ["Sacae", "Ilia"],
   ],
-  characters: {
-    Allen: {
-      class: "Cavalier",
-    },
-    Astohl: {
-      class: "Thief",
-    },
-    Barth: {
-      class: "Knight",
-    },
-    Bartre: {
-      class: "Warrior",
-      exclude: ["Lalum", "Echidna"],
-    },
-    Bors: {
-      class: "Knight",
-    },
-    Cath: {
-      class: "Thief",
-    },
-    Cecilia: {
-      class: "Valkyrie",
-    },
-    Chad: {
-      class: "Thief",
-    },
-    Clarine: {
-      class: "Troubadour",
-    },
-    Dayan: {
-      class: "Nomad Trooper",
-      exclude: ["Juno"],
-    },
-    Dieck: {
-      class: "Mercenary",
-    },
-    Dorothy: {
-      class: "Archer",
-    },
-    Douglas: {
-      class: "General",
-    },
-    Echidna: {
-      class: "Hero",
-      exclude: ["Elphin", "Bartre"],
-    },
-    Ellen: {
-      class: "Priest",
-    },
-    Elphin: {
-      class: "Bard",
-      exclude: ["Lalum", "Echidna"],
-    },
-    Fa: {
-      class: "Manakete",
-    },
-    Fir: {
-      class: "Myrmidon",
-    },
-    Garret: {
-      class: "Berserker",
-    },
-    Geese: {
-      class: "Pirate",
-    },
-    Gonzales: {
-      class: "Bandit",
-    },
-    Hugh: {
-      class: "Mage",
-    },
-    Igrene: {
-      class: "Sniper",
-    },
-    Juno: {
-      class: "Falcon Knight",
-      exclude: ["Dayan"],
-    },
-    Klein: {
-      class: "Archer",
-    },
-    Lalum: {
-      class: "Dancer",
-      exclude: ["Elphin", "Bartre"],
-    },
-    Lance: {
-      class: "Cavalier",
-    },
-    Lilina: {
-      class: "Mage",
-    },
-    Lot: {
-      class: "Fighter",
-    },
-    Lugh: {
-      class: "Mage",
-    },
-    Marcus: {
-      class: "Paladin",
-    },
-    Miledy: {
-      class: "Wyvern Rider",
-    },
-    Niime: {
-      class: "Druid",
-    },
-    Noah: {
-      class: "Cavalier",
-    },
-    Oujay: {
-      class: "Mercenary",
-    },
-    Percival: {
-      class: "Paladin",
-    },
-    Raigh: {
-      class: "Shaman",
-    },
-    Roy: {
-      class: "Lord",
-    },
-    Rutger: {
-      class: "Myrmidon",
-    },
-    Saul: {
-      class: "Priest",
-    },
-    Shin: {
-      class: "Nomad",
-    },
-    Sophia: {
-      class: "Shaman",
-    },
-    Sue: {
-      class: "Nomad",
-    },
-    Tate: {
-      class: "Pegasus Knight",
-    },
-    Shanna: {
-      class: "Pegasus Knight",
-    },
-    Trec: {
-      class: "Cavalier",
-    },
-    Wade: {
-      class: "Fighter",
-    },
-    Wendy: {
-      class: "Knight",
-    },
-    Wolt: {
-      class: "Archer",
-    },
-    Zealot: {
-      class: "Paladin",
-    },
-    Zeiss: {
-      class: "Wyvern Rider",
-    },
-  },
+  characters: fe6characters,
   classes: {
     Lord: {
       weapons: ["Sword"],
@@ -303,144 +307,148 @@ export const fe6: Game<BindingBladeGame> = {
 };
 
 interface BlazingSwordGame {
+  CharacterName: keyof typeof fe7characters,
+  ChildCharacterName: never,
   Pairings: false,
 }
+
+const fe7characters = {
+  Bartre: {
+    class: "Fighter",
+  },
+  Canas: {
+    class: "Shaman",
+  },
+  Dart: {
+    class: "Pirate",
+  },
+  Dorcas: {
+    class: "Fighter",
+  },
+  Eliwood: {
+    class: "Lord (Eliwood)",
+  },
+  Erk: {
+    class: "Mage",
+  },
+  Farina: {
+    class: "Pegasus Knight",
+  },
+  Fiora: {
+    class: "Pegasus Knight",
+  },
+  Florina: {
+    class: "Pegasus Knight",
+  },
+  Geitz: {
+    class: "Warrior",
+    exclude: ["Wallace"],
+  },
+  Guy: {
+    class: "Myrmidon",
+  },
+  Harken: {
+    class: "Hero",
+    exclude: ["Karel"],
+  },
+  Hawkeye: {
+    class: "Berserker",
+  },
+  Heath: {
+    class: "Wyvern Rider",
+  },
+  Hector: {
+    class: "Lord (Hector)",
+  },
+  Isadora: {
+    class: "Paladin",
+  },
+  Jaffar: {
+    class: "Assassin",
+  },
+  Karel: {
+    class: "Swordmaster",
+    exclude: ["Harken"],
+  },
+  Karla: {
+    class: "Swordmaster",
+    include: ["Bartre"],
+  },
+  Kent: {
+    class: "Cavalier",
+  },
+  Legault: {
+    class: "Thief",
+    exclude: ["Matthew"],
+  },
+  Louise: {
+    class: "Sniper",
+  },
+  Lowen: {
+    class: "Cavalier",
+  },
+  Lucius: {
+    class: "Monk",
+  },
+  Lyn: {
+    class: "Lord (Lyn)",
+  },
+  Marcus: {
+    class: "Paladin",
+  },
+  Matthew: {
+    class: "Thief",
+    exclude: ["Legault"], // cos we can't have two assassins
+  },
+  Ninian: {
+    class: "Dancer",
+  },
+  Nino: {
+    class: "Mage",
+  },
+  Oswin: {
+    class: "Knight",
+  },
+  Pent: {
+    class: "Sage",
+  },
+  Priscilla: {
+    class: "Troubadour",
+  },
+  Rath: {
+    class: "Nomad",
+  },
+  Raven: {
+    class: "Mercenary",
+  },
+  Rebecca: {
+    class: "Archer",
+  },
+  Renault: {
+    class: "Bishop",
+  },
+  Sain: {
+    class: "Cavalier",
+  },
+  Serra: {
+    class: "Cleric",
+  },
+  Vaida: {
+    class: "Wyvern Lord",
+  },
+  Wallace: {
+    class: "General",
+    exclude: ["Geitz"],
+  },
+  Wil: {
+    class: "Archer",
+  },
+} as const;
 
 export const fe7: Game<BlazingSwordGame> = {
   short: "fe7",
   defaultPicks: 15,
-  characters: {
-    Bartre: {
-      class: "Fighter",
-    },
-    Canas: {
-      class: "Shaman",
-    },
-    Dart: {
-      class: "Pirate",
-    },
-    Dorcas: {
-      class: "Fighter",
-    },
-    Eliwood: {
-      class: "Lord (Eliwood)",
-    },
-    Erk: {
-      class: "Mage",
-    },
-    Farina: {
-      class: "Pegasus Knight",
-    },
-    Fiora: {
-      class: "Pegasus Knight",
-    },
-    Florina: {
-      class: "Pegasus Knight",
-    },
-    Geitz: {
-      class: "Warrior",
-      exclude: ["Wallace"],
-    },
-    Guy: {
-      class: "Myrmidon",
-    },
-    Harken: {
-      class: "Hero",
-      exclude: ["Karel"],
-    },
-    Hawkeye: {
-      class: "Berserker",
-    },
-    Heath: {
-      class: "Wyvern Rider",
-    },
-    Hector: {
-      class: "Lord (Hector)",
-    },
-    Isadora: {
-      class: "Paladin",
-    },
-    Jaffar: {
-      class: "Assassin",
-    },
-    Karel: {
-      class: "Swordmaster",
-      exclude: ["Harken"],
-    },
-    Karla: {
-      class: "Swordmaster",
-      include: ["Bartre"],
-    },
-    Kent: {
-      class: "Cavalier",
-    },
-    Legault: {
-      class: "Thief",
-      exclude: ["Matthew"],
-    },
-    Louise: {
-      class: "Sniper",
-    },
-    Lowen: {
-      class: "Cavalier",
-    },
-    Lucius: {
-      class: "Monk",
-    },
-    Lyn: {
-      class: "Lord (Lyn)",
-    },
-    Marcus: {
-      class: "Paladin",
-    },
-    Matthew: {
-      class: "Thief",
-      exclude: ["Legault"], // cos we can't have two assassins
-    },
-    Ninian: {
-      class: "Dancer",
-    },
-    Nino: {
-      class: "Mage",
-    },
-    Oswin: {
-      class: "Knight",
-    },
-    Pent: {
-      class: "Sage",
-    },
-    Priscilla: {
-      class: "Troubadour",
-    },
-    Rath: {
-      class: "Nomad",
-    },
-    Raven: {
-      class: "Mercenary",
-    },
-    Rebecca: {
-      class: "Archer",
-    },
-    Renault: {
-      class: "Bishop",
-    },
-    Sain: {
-      class: "Cavalier",
-    },
-    Serra: {
-      class: "Cleric",
-    },
-    Vaida: {
-      class: "Wyvern Lord",
-    },
-    Wallace: {
-      class: "General",
-      exclude: ["Geitz"],
-    },
-    Wil: {
-      class: "Archer",
-    },
-  },
+  characters: fe7characters,
   classes: {
     "Lord (Lyn)": {
       weapons: ["Sword"],
@@ -597,114 +605,118 @@ export const fe7: Game<BlazingSwordGame> = {
 };
 
 interface SacredStonesGame {
+  CharacterName: keyof typeof fe8characters,
+  ChildCharacterName: never,
   Pairings: false,
 }
+
+const fe8characters = {
+  Amelia: {
+    class: "Recruit",
+  },
+  Artur: {
+    class: "Monk",
+  },
+  Colm: {
+    class: "Thief",
+  },
+  Cormag: {
+    class: "Wyvern Rider",
+  },
+  Dozla: {
+    class: "Berserker",
+  },
+  Duessel: {
+    class: "Great Knight",
+  },
+  Eirika: {
+    class: "Lord (Eirika)",
+  },
+  Ephraim: {
+    class: "Lord (Ephraim)",
+  },
+  Ewan: {
+    class: "Pupil",
+  },
+  Forde: {
+    class: "Cavalier",
+  },
+  Franz: {
+    class: "Cavalier",
+  },
+  Garcia: {
+    class: "Fighter",
+  },
+  Gerik: {
+    class: "Mercenary",
+  },
+  Gilliam: {
+    class: "Knight",
+  },
+  Innes: {
+    class: "Sniper",
+  },
+  Joshua: {
+    class: "Myrmidon",
+  },
+  Knoll: {
+    class: "Shaman",
+  },
+  Kyle: {
+    class: "Cavalier",
+  },
+  "L'Arachel": {
+    class: "Troubadour",
+  },
+  Lute: {
+    class: "Mage",
+  },
+  Marisa: {
+    class: "Myrmidon",
+  },
+  Moulder: {
+    class: "Priest",
+  },
+  Myrrh: {
+    class: "Manakete",
+  },
+  Natasha: {
+    class: "Cleric",
+  },
+  Neimi: {
+    class: "Archer",
+  },
+  Rennac: {
+    class: "Rogue",
+  },
+  Ross: {
+    class: "Journeyman",
+  },
+  Saleh: {
+    class: "Sage",
+  },
+  Seth: {
+    class: "Paladin",
+  },
+  Syrene: {
+    class: "Falcon Knight",
+  },
+  Tana: {
+    class: "Pegasus Knight",
+  },
+  Tethys: {
+    class: "Dancer",
+  },
+  Vanessa: {
+    class: "Pegasus Knight",
+  },
+} as const;
 
 export const fe8: Game<SacredStonesGame> = {
   short: "fe8",
   defaultPicks: 12,
   routes: [["Eirika", "Ephraim"]],
-  characters: {
-    Amelia: {
-      class: "Recruit",
-    },
-    Artur: {
-      class: "Monk",
-    },
-    Colm: {
-      class: "Thief",
-    },
-    Cormag: {
-      class: "Wyvern Rider",
-    },
-    Dozla: {
-      class: "Berserker",
-    },
-    Duessel: {
-      class: "Great Knight",
-    },
-    Eirika: {
-      class: "Lord (Eirika)",
-    },
-    Ephraim: {
-      class: "Lord (Ephraim)",
-    },
-    Ewan: {
-      class: "Pupil",
-    },
-    Forde: {
-      class: "Cavalier",
-    },
-    Franz: {
-      class: "Cavalier",
-    },
-    Garcia: {
-      class: "Fighter",
-    },
-    Gerik: {
-      class: "Mercenary",
-    },
-    Gilliam: {
-      class: "Knight",
-    },
-    Innes: {
-      class: "Sniper",
-    },
-    Joshua: {
-      class: "Myrmidon",
-    },
-    Knoll: {
-      class: "Shaman",
-    },
-    Kyle: {
-      class: "Cavalier",
-    },
-    "L'Arachel": {
-      class: "Troubadour",
-    },
-    Lute: {
-      class: "Mage",
-    },
-    Marisa: {
-      class: "Myrmidon",
-    },
-    Moulder: {
-      class: "Priest",
-    },
-    Myrrh: {
-      class: "Manakete",
-    },
-    Natasha: {
-      class: "Cleric",
-    },
-    Neimi: {
-      class: "Archer",
-    },
-    Rennac: {
-      class: "Rogue",
-    },
-    Ross: {
-      class: "Journeyman",
-    },
-    Saleh: {
-      class: "Sage",
-    },
-    Seth: {
-      class: "Paladin",
-    },
-    Syrene: {
-      class: "Falcon Knight",
-    },
-    Tana: {
-      class: "Pegasus Knight",
-    },
-    Tethys: {
-      class: "Dancer",
-    },
-    Vanessa: {
-      class: "Pegasus Knight",
-    },
-  },
+  characters: fe8characters,
   classes: {
     "Lord (Eirika)": {
       weapons: ["Sword"],

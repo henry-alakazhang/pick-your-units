@@ -1,4 +1,4 @@
-import { Game } from "./data/data.types";
+import { Game, GameMetaType } from "./data/data.types";
 import { Games } from "./Games";
 
 function randIn(arr: readonly unknown[]): number {
@@ -45,8 +45,8 @@ export interface CharacterPick {
   }
 }
 
-export class Picker {
-  private game: Game;
+export class Picker<G extends GameMetaType> {
+  private game: Game<G>;
   private numPicks: number;
   private options: {};
   private pool: string[];

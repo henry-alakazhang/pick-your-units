@@ -1,154 +1,158 @@
 import { Game, UnsupportedGame } from "./data.types";
 
 interface ShadowDragonGame {
+  CharacterName: keyof typeof fe1characters,
+  ChildCharacterName: never,
   Pairings: false,
 }
+
+const fe1characters = {
+  Abel: {
+    class: "Cavalier",
+  },
+  Arran: {
+    class: "Paladin",
+    exclude: ["Samson"],
+  },
+  Astria: {
+    class: "Hero",
+  },
+  Bantu: {
+    class: "Manakete",
+  },
+  Barst: {
+    class: "Fighter",
+  },
+  Vyland: {
+    class: "Cavalier",
+  },
+  Boa: {
+    class: "Bishop",
+  },
+  Caesar: {
+    class: "Mercenary",
+  },
+  Xane: {
+    class: "Commando",
+  },
+  Tiki: {
+    class: "Manakete",
+  },
+  Draug: {
+    class: "Knight",
+  },
+  Elice: {
+    class: "Priest",
+  },
+  Est: {
+    class: "Pegasus Knight",
+  },
+  Jeorge: {
+    class: "Sniper",
+  },
+  Gordon: {
+    class: "Archer",
+  },
+  Hardin: {
+    class: "Cavalier",
+  },
+  jagen: {
+    class: "Paladin",
+  },
+  Julian: {
+    class: "Thief",
+  },
+  Cain: {
+    class: "Cavalier",
+  },
+  Castor: {
+    class: "Archer",
+  },
+  Catria: {
+    class: "Pegasus Knight",
+  },
+  Lorenze: {
+    class: "General",
+  },
+  Linde: {
+    class: "Mage",
+  },
+  Matthis: {
+    class: "Cavalier",
+  },
+  Bord: {
+    class: "Fighter",
+  },
+  Maria: {
+    class: "Priest",
+  },
+  Merric: {
+    class: "Mage",
+  },
+  Marth: {
+    class: "Lord",
+  },
+  Midia: {
+    class: "Paladin",
+  },
+  Minerva: {
+    class: "Dracoknight",
+  },
+  Macellan: {
+    class: "Knight",
+  },
+  Nabarl: {
+    class: "Mercenary",
+  },
+  Ogma: {
+    class: "Mercenary",
+  },
+  Palla: {
+    class: "Pegasus Knight",
+  },
+  Radd: {
+    class: "Mercenary",
+  },
+  Lena: {
+    class: "Priest",
+  },
+  Rickard: {
+    class: "Thief",
+  },
+  Roshea: {
+    class: "Cavalier",
+  },
+  Cord: {
+    class: "Fighter",
+  },
+  Samson: {
+    class: "Hero",
+    exclude: ["Arran"],
+  },
+  Caeda: {
+    class: "Pegasus Knight",
+  },
+  Tomas: {
+    class: "Archer",
+  },
+  Dolph: {
+    class: "Knight",
+  },
+  Wendel: {
+    class: "Bishop",
+  },
+  Wolf: {
+    class: "Bow Knight",
+  },
+  Sedgar: {
+    class: "Bow Knight",
+  }
+} as const;
 
 export const fe1: Game<ShadowDragonGame> = {
   short: "fe1",
   defaultPicks: 14,
-  characters: {
-    Abel: {
-      class: "Cavalier",
-    },
-    Arran: {
-      class: "Paladin",
-      exclude: ["Samson"],
-    },
-    Astria: {
-      class: "Hero",
-    },
-    Bantu: {
-      class: "Manakete",
-    },
-    Barst: {
-      class: "Fighter",
-    },
-    Vyland: {
-      class: "Cavalier",
-    },
-    Boa: {
-      class: "Bishop",
-    },
-    Caesar: {
-      class: "Mercenary",
-    },
-    Xane: {
-      class: "Commando",
-    },
-    Tiki: {
-      class: "Manakete",
-    },
-    Draug: {
-      class: "Knight",
-    },
-    Elice: {
-      class: "Priest",
-    },
-    Est: {
-      class: "Pegasus Knight",
-    },
-    Jeorge: {
-      class: "Sniper",
-    },
-    Gordon: {
-      class: "Archer",
-    },
-    Hardin: {
-      class: "Cavalier",
-    },
-    jagen: {
-      class: "Paladin",
-    },
-    Julian: {
-      class: "Thief",
-    },
-    Cain: {
-      class: "Cavalier",
-    },
-    Castor: {
-      class: "Archer",
-    },
-    Catria: {
-      class: "Pegasus Knight",
-    },
-    Lorenze: {
-      class: "General",
-    },
-    Linde: {
-      class: "Mage",
-    },
-    Matthis: {
-      class: "Cavalier",
-    },
-    Bord: {
-      class: "Fighter",
-    },
-    Maria: {
-      class: "Priest",
-    },
-    Merric: {
-      class: "Mage",
-    },
-    Marth: {
-      class: "Lord",
-    },
-    Midia: {
-      class: "Paladin",
-    },
-    Minerva: {
-      class: "Dracoknight",
-    },
-    Macellan: {
-      class: "Knight",
-    },
-    Nabarl: {
-      class: "Mercenary",
-    },
-    Ogma: {
-      class: "Mercenary",
-    },
-    Palla: {
-      class: "Pegasus Knight",
-    },
-    Radd: {
-      class: "Mercenary",
-    },
-    Lena: {
-      class: "Priest",
-    },
-    Rickard: {
-      class: "Thief",
-    },
-    Roshea: {
-      class: "Cavalier",
-    },
-    Cord: {
-      class: "Fighter",
-    },
-    Samson: {
-      class: "Hero",
-      exclude: ["Arran"],
-    },
-    Caeda: {
-      class: "Pegasus Knight",
-    },
-    Tomas: {
-      class: "Archer",
-    },
-    Dolph: {
-      class: "Knight",
-    },
-    Wendel: {
-      class: "Bishop",
-    },
-    Wolf: {
-      class: "Bow Knight",
-    },
-    Sedgar: {
-      class: "Bow Knight",
-    },
-  },
+  characters: fe1characters,
   classes: {
     Lord: {
       weapons: ["Sword"],
@@ -294,11 +298,7 @@ export const fe3: Game<UnsupportedGame> = {
   flags: {},
 };
 
-interface GenealogyGame {
-  Pairings: true,
-}
-
-export const fe4: Game<GenealogyGame> = {
+export const fe4: Game<UnsupportedGame> = {
   short: "fe4",
   defaultPicks: 0,
   disabled: "You can use everyone anyway",
@@ -306,86 +306,90 @@ export const fe4: Game<GenealogyGame> = {
   classes: {},
   free: ["Sigurd", "Seliph"],
   flags: {
-    pairings: true,
-    children: true,
+    // pairings: true,
+    // children: true,
   },
 };
 
 interface ThraciaGame {
+  CharacterName: keyof typeof fe5characters
+  ChildCharacterName: never,
   Pairings: false,
 }
 
+const fe5characters = {
+  Leaf: { class: "Lord" },
+  Fin: { class: "Lance Knight" },
+  Othin: { class: "Axe Fighter" },
+  Halvan: { class: "Axe Fighter" },
+  Evayle: { class: "Swordmaster" },
+  Dagda: { class: "Warrior" },
+  Tania: { class: "Bow Fighter" },
+  Marty: { class: "Mountain Thief" },
+  Ronan: { class: "Bow Fighter" },
+  Safy: { class: "Priest" },
+  Rifis: { class: "Thief" },
+  Machua: { class: "Swordfighter (Machua)" },
+  Brighton: { class: "Axe Knight" },
+  Lara: { class: "Thief (Lara)" },
+  Felgus: { class: "Free Knight" },
+  Karin: { class: "Pegasus Rider" },
+  Dalsin: { class: "Axe Armour" },
+  Asvel: { class: "Mage (Asvel)" },
+  Nanna: { class: "Troubadour" },
+  Hicks: { class: "Axe Knight" },
+  Shiva: { class: "Swordfighter" },
+  Carrion: { class: "Social Knight" },
+  Selphina: { class: "Arch Knight" },
+  Kein: { class: "Lance Knight" },
+  Alva: { class: "Lance Knight" },
+  Robert: { class: "Arch Knight" },
+  Fred: { class: "Paladin (M)" },
+  Olwen: { class: "Mage Knight", exclude: ["Eyrios"] },
+  Mareeta: { class: "Swordfighter" },
+  Salem: { class: "Loputo Mage" },
+  Pahn: { class: "Thief Fighter" },
+  Trewd: { class: "Swordfighter" },
+  Tina: { class: "Priest" },
+  Glade: { class: "Duke Knight" },
+  Dean: { class: "Dragon Knight" },
+  Eda: { class: "Dragon Rider" },
+  Homeros: { class: "Bard" },
+  Linoan: { class: "Sister" },
+  Ralph: { class: "Mercenary" },
+  Eyrios: {
+    class: "Mage Knight",
+    exclude: ["Olwen", "Miranda", "Shanam", "Conomore"],
+  },
+  Sleuf: { class: "Priest", exclude: ["Miranda", "Shanam", "Conomore"] },
+  Misha: {
+    class: "Pegasus Knight",
+    exclude: ["Miranda", "Shanam", "Conomore"],
+  },
+  Sara: { class: "Sister" },
+  Shanam: {
+    class: "Swordmaster",
+    exclude: ["Sleuf", "Misha", "Amalda", "Eyrios"],
+  },
+  Miranda: { class: "Mage", exclude: ["Sleuf", "Misha", "Amalda", "Eyrios"] },
+  Xavier: { class: "General" },
+  Amalda: {
+    class: "Paladin (F)",
+    exclude: ["Miranda", "Shanam", "Conomore"],
+  },
+  Conomore: {
+    class: "Paladin (M)",
+    exclude: ["Sleuf", "Misha", "Amalda", "Eyrios"],
+  },
+  Delmud: { class: "Forrest Knight" },
+  Cyas: { class: "High Priest", exclude: ["Sety"] },
+  Sety: { class: "Sage", exclude: ["Cyas"] },
+  Galzus: { class: "Mercenary" },
+} as const;
+
 export const fe5: Game<ThraciaGame> = {
   short: "fe5",
-  characters: {
-    Leaf: { class: "Lord" },
-    Fin: { class: "Lance Knight" },
-    Othin: { class: "Axe Fighter" },
-    Halvan: { class: "Axe Fighter" },
-    Evayle: { class: "Swordmaster" },
-    Dagda: { class: "Warrior" },
-    Tania: { class: "Bow Fighter" },
-    Marty: { class: "Mountain Thief" },
-    Ronan: { class: "Bow Fighter" },
-    Safy: { class: "Priest" },
-    Rifis: { class: "Thief" },
-    Machua: { class: "Swordfighter (Machua)" },
-    Brighton: { class: "Axe Knight" },
-    Lara: { class: "Thief (Lara)" },
-    Felgus: { class: "Free Knight" },
-    Karin: { class: "Pegasus Rider" },
-    Dalsin: { class: "Axe Armour" },
-    Asvel: { class: "Mage (Asvel)" },
-    Nanna: { class: "Troubadour" },
-    Hicks: { class: "Axe Knight" },
-    Shiva: { class: "Swordfighter" },
-    Carrion: { class: "Social Knight" },
-    Selphina: { class: "Arch Knight" },
-    Kein: { class: "Lance Knight" },
-    Alva: { class: "Lance Knight" },
-    Robert: { class: "Arch Knight" },
-    Fred: { class: "Paladin (M)" },
-    Olwen: { class: "Mage Knight", exclude: ["Eyrios"] },
-    Mareeta: { class: "Swordfighter" },
-    Salem: { class: "Loputo Mage" },
-    Pahn: { class: "Thief Fighter" },
-    Trewd: { class: "Swordfighter" },
-    Tina: { class: "Priest" },
-    Glade: { class: "Duke Knight" },
-    Dean: { class: "Dragon Knight" },
-    Eda: { class: "Dragon Rider" },
-    Homeros: { class: "Bard" },
-    Linoan: { class: "Sister" },
-    Ralph: { class: "Mercenary" },
-    Eyrios: {
-      class: "Mage Knight",
-      exclude: ["Olwen", "Miranda", "Shanam", "Conomore"],
-    },
-    Sleuf: { class: "Priest", exclude: ["Miranda", "Shanam", "Conomore"] },
-    Misha: {
-      class: "Pegasus Knight",
-      exclude: ["Miranda", "Shanam", "Conomore"],
-    },
-    Sara: { class: "Sister" },
-    Shanam: {
-      class: "Swordmaster",
-      exclude: ["Sleuf", "Misha", "Amalda", "Eyrios"],
-    },
-    Miranda: { class: "Mage", exclude: ["Sleuf", "Misha", "Amalda", "Eyrios"] },
-    Xavier: { class: "General" },
-    Amalda: {
-      class: "Paladin (F)",
-      exclude: ["Miranda", "Shanam", "Conomore"],
-    },
-    Conomore: {
-      class: "Paladin (M)",
-      exclude: ["Sleuf", "Misha", "Amalda", "Eyrios"],
-    },
-    Delmud: { class: "Forrest Knight" },
-    Cyas: { class: "High Priest", exclude: ["Sety"] },
-    Sety: { class: "Sage", exclude: ["Cyas"] },
-    Galzus: { class: "Mercenary" },
-  },
+  characters: fe5characters,
   classes: {
     Lord: { weapons: ["Sword"], promo: "Prince" },
     Prince: { weapons: ["Sword"] },

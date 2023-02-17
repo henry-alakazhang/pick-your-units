@@ -68,7 +68,7 @@ export const gameList = [
   "Engage",
 ];
 
-export const Games: { [fullName: string]: Game } = {
+export const Games = {
   "Fire Emblem": fe1,
   Gaiden: fe2,
   "Mystery of the Emblem": fe3,

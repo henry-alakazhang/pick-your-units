@@ -12,6 +12,7 @@ import { Game } from "./data.types";
  */
 
 interface ThreeHousesGame {
+  ChildCharacterName: never,
   Pairings: false,
 }
 
@@ -511,7 +512,8 @@ const fe16base = {
   imgExtension: "jpg",
 };
 
-export const fe16eagles: Game<ThreeHousesGame> = {
+type BlackEaglesCharacter = keyof typeof blackEaglesLockedCharacters | keyof typeof sharedCharacters;
+export const fe16eagles: Game<ThreeHousesGame & { CharacterName: BlackEaglesCharacter }> = {
   ...fe16base,
   free: ["Edelgard"],
   faction: "eagles",
@@ -523,7 +525,8 @@ export const fe16eagles: Game<ThreeHousesGame> = {
   defaultPicks: 10,
 };
 
-export const fe16lions: Game<ThreeHousesGame> = {
+type BlueLionsCharacter = keyof typeof blueLionsLockedCharacters | keyof typeof churchCharacters | keyof typeof sharedCharacters;
+export const fe16lions: Game<ThreeHousesGame & { CharacterName: BlueLionsCharacter }> = {
   ...fe16base,
   free: ["Dimitri"],
   faction: "lions",
@@ -534,7 +537,8 @@ export const fe16lions: Game<ThreeHousesGame> = {
   },
 };
 
-export const fe16deer: Game<ThreeHousesGame> = {
+type GoldenDeerCharacters = keyof typeof goldenDeerLockedCharacters | keyof typeof churchCharacters | keyof typeof sharedCharacters;
+export const fe16deer: Game<ThreeHousesGame & { CharacterName: GoldenDeerCharacters }> = {
   ...fe16base,
   free: ["Claude"],
   faction: "deer",
@@ -545,7 +549,8 @@ export const fe16deer: Game<ThreeHousesGame> = {
   },
 };
 
-export const fe16church: Game<ThreeHousesGame> = {
+type SilverSnowCharacters = keyof typeof churchCharacters | keyof typeof sharedCharacters;
+export const fe16church: Game<ThreeHousesGame & { CharacterName: SilverSnowCharacters }> = {
   ...fe16base,
   free: [],
   faction: "eagles",

@@ -1,137 +1,141 @@
 import { Game, UnsupportedGame } from "./data.types";
 
 interface PathOfRadianceGame {
+  CharacterName: keyof typeof characters,
+  ChildCharacterName: never,
   Pairings: false,
 }
+
+const characters = {
+  Astrid: {
+    class: "Bow Knight",
+  },
+  Bastian: {
+    class: "Sage",
+  },
+  Boyd: {
+    class: "Fighter",
+  },
+  Brom: {
+    class: "Knight",
+  },
+  Calill: {
+    class: "Sage",
+  },
+  Devdan: {
+    class: "Halberdier",
+  },
+  Elincia: {
+    class: "Princess Crimea",
+  },
+  Gatrie: {
+    class: "Knight",
+  },
+  Geoffrey: {
+    class: "Paladin (Sword/Lance)",
+  },
+  Haar: {
+    class: "Wyvern Lord",
+  },
+  Ike: {
+    class: "Ranger",
+  },
+  Ilyana: {
+    class: "Mage",
+  },
+  Janaff: {
+    class: "Hawk",
+  },
+  Jill: {
+    class: "Wyvern Rider",
+  },
+  Kieran: {
+    class: "Axe Knight",
+  },
+  Largo: {
+    class: "Berserker",
+  },
+  Lethe: {
+    class: "Cat",
+  },
+  Lucia: {
+    class: "Swordmaster",
+  },
+  Makalov: {
+    class: "Sword Knight",
+  },
+  Marcia: {
+    class: "Pegasus Knight",
+  },
+  Mia: {
+    class: "Myrmidon",
+  },
+  Mist: {
+    class: "Cleric",
+  },
+  Mordecai: {
+    class: "Tiger",
+  },
+  Muarim: {
+    class: "Tiger",
+  },
+  Nephenee: {
+    class: "Soldier",
+  },
+  Oscar: {
+    class: "Lance Knight",
+  },
+  Ranulf: {
+    class: "Cat",
+  },
+  Reyson: {
+    class: "Heron",
+  },
+  Rhys: {
+    class: "Priest",
+  },
+  Rolf: {
+    class: "Archer",
+  },
+  Shinon: {
+    class: "Sniper",
+  },
+  Soren: {
+    class: "Mage",
+  },
+  Sothe: {
+    class: "Thief",
+  },
+  Stefan: {
+    class: "Swordmaster",
+  },
+  Tanith: {
+    class: "Falcon Knight",
+  },
+  Tauroneo: {
+    class: "General",
+  },
+  Titania: {
+    class: "Paladin (Lance/Axe)",
+  },
+  Tormod: {
+    class: "Mage",
+  },
+  Ulki: {
+    class: "Hawk",
+  },
+  Volke: {
+    class: "Thief (Volke)",
+  },
+  Zihark: {
+    class: "Myrmidon",
+  }
+} as const;
 
 export const fe9: Game<PathOfRadianceGame> = {
   short: "fe9",
   defaultPicks: 13,
-  characters: {
-    Astrid: {
-      class: "Bow Knight",
-    },
-    Bastian: {
-      class: "Sage",
-    },
-    Boyd: {
-      class: "Fighter",
-    },
-    Brom: {
-      class: "Knight",
-    },
-    Calill: {
-      class: "Sage",
-    },
-    Devdan: {
-      class: "Halberdier",
-    },
-    Elincia: {
-      class: "Princess Crimea",
-    },
-    Gatrie: {
-      class: "Knight",
-    },
-    Geoffrey: {
-      class: "Paladin (Sword/Lance)",
-    },
-    Haar: {
-      class: "Wyvern Lord",
-    },
-    Ike: {
-      class: "Ranger",
-    },
-    Ilyana: {
-      class: "Mage",
-    },
-    Janaff: {
-      class: "Hawk",
-    },
-    Jill: {
-      class: "Wyvern Rider",
-    },
-    Kieran: {
-      class: "Axe Knight",
-    },
-    Largo: {
-      class: "Berserker",
-    },
-    Lethe: {
-      class: "Cat",
-    },
-    Lucia: {
-      class: "Swordmaster",
-    },
-    Makalov: {
-      class: "Sword Knight",
-    },
-    Marcia: {
-      class: "Pegasus Knight",
-    },
-    Mia: {
-      class: "Myrmidon",
-    },
-    Mist: {
-      class: "Cleric",
-    },
-    Mordecai: {
-      class: "Tiger",
-    },
-    Muarim: {
-      class: "Tiger",
-    },
-    Nephenee: {
-      class: "Soldier",
-    },
-    Oscar: {
-      class: "Lance Knight",
-    },
-    Ranulf: {
-      class: "Cat",
-    },
-    Reyson: {
-      class: "Heron",
-    },
-    Rhys: {
-      class: "Priest",
-    },
-    Rolf: {
-      class: "Archer",
-    },
-    Shinon: {
-      class: "Sniper",
-    },
-    Soren: {
-      class: "Mage",
-    },
-    Sothe: {
-      class: "Thief",
-    },
-    Stefan: {
-      class: "Swordmaster",
-    },
-    Tanith: {
-      class: "Falcon Knight",
-    },
-    Tauroneo: {
-      class: "General",
-    },
-    Titania: {
-      class: "Paladin (Lance/Axe)",
-    },
-    Tormod: {
-      class: "Mage",
-    },
-    Ulki: {
-      class: "Hawk",
-    },
-    Volke: {
-      class: "Thief (Volke)",
-    },
-    Zihark: {
-      class: "Myrmidon",
-    },
-  },
+  characters,
   classes: {
     Ranger: {
       weapons: ["Sword"],
