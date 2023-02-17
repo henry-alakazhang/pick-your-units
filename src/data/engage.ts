@@ -1,6 +1,11 @@
 import { typedObjectKeys } from "../util";
 import { Game } from "./data.types";
 
+// TODO: Implement saying "fire emblem engage" and engaging all over those guys
+// TODO: Pick weapons for classes which support it, without biasing towards them
+//       (if i just made them separate classes, there would be 2/3x chance of hitting one,
+//        compared to a class with one set of weapons)
+
 interface EngageGame {
   ClassName: keyof typeof promotedClasses | keyof typeof uniqueClasses;
   CharacterName: keyof typeof characters;
