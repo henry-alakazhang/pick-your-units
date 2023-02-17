@@ -15,9 +15,9 @@ https://henry-alakazhang.github.io/pick-your-units/
 ### V2.0.0 (February 2022)
 
 - Massive internal overhaul (migration to TypeScript), including several bugfixes:
- - Fixed a number of (possible crash-causing?) incorrect base classes for Engage:
-  - Clanne, Louis, Fogado, Merrin, Jean, Anna
- - 
+  - Fixed a number of (possible crash-causing?) incorrect base classes for Engage:
+    - Clanne, Louis, Fogado, Merrin, Jean, Anna
+  - 
 
 ### V1.4.0 (February 2022)
 
