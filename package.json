@@ -12,12 +12,12 @@
     "@types/node": "^18.13.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "gh-pages": "^1.0.0",
-    "react": "^16.8.6",
+    "gh-pages": "^5.0.0",
+    "react": "^18.2.0",
     "react-addons-css-transition-group": "^15.6.2",
-    "react-bootstrap": "^1.0.0-beta.8",
-    "react-dom": "^16.8.6",
-    "react-scripts": "^3.0.1"
+    "react-bootstrap": "^2.7.2",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
