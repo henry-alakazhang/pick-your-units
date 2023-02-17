@@ -441,6 +441,15 @@ const sharedCharacters = {
       weaknesses: ["Reason", "Flying"],
     },
   },
+  Shamir: {
+    class: "Female",
+    defaultClass: "Sniper",
+    stat: { STR: true, MAG: false },
+    weapons: {
+      strengths: ["Lance", "Bow"],
+      weaknesses: ["Faith"],
+    },
+  },
 } as const;
 
 const churchCharacters = {
@@ -492,15 +501,6 @@ const churchCharacters = {
       weaknesses: ["Reason"],
     },
   },
-  Shamir: {
-    class: "Female",
-    defaultClass: "Sniper",
-    stat: { STR: true, MAG: false },
-    weapons: {
-      strengths: ["Lance", "Bow"],
-      weaknesses: ["Faith"],
-    },
-  },
 } as const;
 
 const fe16base = {
@@ -533,8 +533,7 @@ export const fe16eagles: Game<ThreeHousesGame & {
     ...sharedCharacters,
     ...blackEaglesLockedCharacters,
   },
-  // without the church, there are only 10 characters lol
-  defaultPicks: 10,
+  defaultPicks: 11,
 };
 
 type BlueLionsCharacter =

@@ -699,5 +699,5 @@ export const fe13: Game<AwakeningGame> = {
     troll: true,
   },
   trollCriteria: ["MAG classes for a STR-based character and vice versa."],
-  defaultPicks: 14,
+  defaultPicks: 15,
 };

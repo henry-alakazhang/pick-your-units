@@ -16,8 +16,9 @@ https://henry-alakazhang.github.io/pick-your-units/
 
 - Massive internal overhaul (migration to TypeScript), including several bugfixes:
   - Fixed a number of (possible crash-causing?) incorrect base classes for Engage:
-    - Clanne, Louis, Fogado, Merrin, Jean, Anna
-  - 
+    - Fixed Clanne, Louis, Fogado, Merrin, Jean, Anna
+  - Adjusted the default picks for a number of games to be more accurate to endgame deploy limits\
+    - Fixed Shamir to be recruitable in Crimson Flower
 
 ### V1.4.0 (February 2022)
 
