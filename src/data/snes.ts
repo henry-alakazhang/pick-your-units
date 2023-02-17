@@ -1,9 +1,10 @@
 import { Game, UnsupportedGame } from "./data.types";
 
 interface ShadowDragonGame {
-  CharacterName: keyof typeof fe1characters,
-  ChildCharacterName: never,
-  Pairings: false,
+  ClassName: keyof typeof fe1classes;
+  CharacterName: keyof typeof fe1characters;
+  ChildCharacterName: never;
+  Pairings: false;
 }
 
 const fe1characters = {
@@ -146,88 +147,90 @@ const fe1characters = {
   },
   Sedgar: {
     class: "Bow Knight",
-  }
+  },
+} as const;
+
+const fe1classes = {
+  Lord: {
+    weapons: ["Sword"],
+  },
+  Mercenary: {
+    weapons: ["Sword"],
+    promo: "Hero",
+  },
+  Hero: {
+    weapons: ["Sword"],
+  },
+  Thief: {
+    weapons: ["Sword"],
+  },
+  Commando: {
+    weapons: ["Sword"],
+  },
+  Fighter: {
+    weapons: ["Axe"],
+  },
+  Pirate: {
+    weapons: ["Axe"],
+  },
+  Archer: {
+    weapons: ["Bow"],
+    promo: "Sniper",
+  },
+  Sniper: {
+    weapons: ["Bow"],
+  },
+  Hunter: {
+    weapons: ["Bow"],
+    promo: "Sniper",
+  },
+  "Bow Knight": {
+    weapons: ["Bow"],
+  },
+  Cavalier: {
+    weapons: ["Sword", "Lance"],
+    promo: "Paladin",
+  },
+  Paladin: {
+    weapons: ["Sword", "Lance"],
+  },
+  Knight: {
+    weapons: ["Sword", "Lance"],
+  },
+  General: {
+    weapons: ["Sword"],
+  },
+  "Pegasus Knight": {
+    weapons: ["Sword", "Lance"],
+    promo: "Dracoknight",
+  },
+  Dracoknight: {
+    weapons: ["Sword", "Lance"],
+  },
+  Shooter: {
+    weapons: ["Firearm"],
+  },
+  Mage: {
+    weapons: ["Magic"],
+    promo: "Bishop",
+  },
+  Priest: {
+    weapons: ["Staff"],
+    promo: "Bishop",
+  },
+  Bishop: {
+    weapons: ["Magic", "Staff"],
+  },
+  Manakete: {
+    weapons: ["Dragonstone"],
+  },
 } as const;
 
 export const fe1: Game<ShadowDragonGame> = {
   short: "fe1",
   defaultPicks: 14,
   characters: fe1characters,
-  classes: {
-    Lord: {
-      weapons: ["Sword"],
-    },
-    Mercenary: {
-      weapons: ["Sword"],
-      promo: "Hero",
-    },
-    Hero: {
-      weapons: ["Sword"],
-    },
-    Thief: {
-      weapons: ["Sword"],
-    },
-    Commando: {
-      weapons: ["Sword"],
-    },
-    Fighter: {
-      weapons: ["Axe"],
-    },
-    Pirate: {
-      weapons: ["Axe"],
-    },
-    Archer: {
-      weapons: ["Bow"],
-      promo: "Sniper",
-    },
-    Sniper: {
-      weapons: ["Bow"],
-    },
-    Hunter: {
-      weapons: ["Bow"],
-      promo: "Sniper",
-    },
-    "Bow Knight": {
-      weapons: ["Bow"],
-    },
-    Cavalier: {
-      weapons: ["Sword", "Lance"],
-      promo: "Paladin",
-    },
-    Paladin: {
-      weapons: ["Sword", "Lance"],
-    },
-    Knight: {
-      weapons: ["Sword", "Lance"],
-    },
-    General: {
-      weapons: ["Sword"],
-    },
-    "Pegasus Knight": {
-      weapons: ["Sword", "Lance"],
-      promo: "Dracoknight",
-    },
-    Dracoknight: {
-      weapons: ["Sword", "Lance"],
-    },
-    Shooter: {
-      weapons: ["Firearm"],
-    },
-    Mage: {
-      weapons: ["Magic"],
-      promo: "Bishop",
-    },
-    Priest: {
-      weapons: ["Staff"],
-      promo: "Bishop",
-    },
-    Bishop: {
-      weapons: ["Magic", "Staff"],
-    },
-    Manakete: {
-      weapons: ["Dragonstone"],
-    },
-  },
+  classes: fe1classes,
   free: ["Marth"],
   flags: {},
 };
@@ -236,7 +239,7 @@ export const fe2: Game<UnsupportedGame> = {
   short: "fe2",
   defaultPicks: 0,
   disabled: "Use the Shadows of Valentia pickers instead",
-  free: ["Alm", "Celica"],
+  free: [],
   characters: {},
   classes: {},
   flags: {},
@@ -294,7 +297,7 @@ export const fe3: Game<UnsupportedGame> = {
     // "Yumina",
   },
   classes: {},
-  free: ["Marth"],
+  free: [],
   flags: {},
 };
 
@@ -304,7 +307,7 @@ export const fe4: Game<UnsupportedGame> = {
   disabled: "You can use everyone anyway",
   characters: {},
   classes: {},
-  free: ["Sigurd", "Seliph"],
+  free: [],
   flags: {
     // pairings: true,
     // children: true,
@@ -312,9 +315,10 @@ export const fe4: Game<UnsupportedGame> = {
 };
 
 interface ThraciaGame {
-  CharacterName: keyof typeof fe5characters
-  ChildCharacterName: never,
-  Pairings: false,
+  ClassName: keyof typeof fe5classes;
+  CharacterName: keyof typeof fe5characters;
+  ChildCharacterName: never;
+  Pairings: false;
 }
 
 const fe5characters = {
@@ -387,91 +391,93 @@ const fe5characters = {
   Galzus: { class: "Mercenary" },
 } as const;
 
+const fe5classes = {
+  Lord: { weapons: ["Sword"], promo: "Prince" },
+  Prince: { weapons: ["Sword"] },
+  Swordfighter: { weapons: ["Sword"], promo: "Swordmaster" },
+  "Swordfighter (Machua)": { weapons: ["Sword"], promo: "Mercenary" },
+  Swordmaster: { weapons: ["Sword"] },
+  Thief: { weapons: ["Sword"], promo: "Thief Fighter" },
+  "Thief (Lara)": { weapons: ["Sword"], promo: "Dancer" },
+  "Thief Fighter": { weapons: ["Sword"] },
+  Dancer: { weapons: ["Sword"] },
+  Soldier: { weapons: ["Lance"] },
+  "Axe Fighter": { weapons: ["Axe"], promo: "Mercenary" },
+  Mercenary: { weapons: ["Sword", "Axe"] },
+  "Mountain Thief": { weapons: ["Axe"], promo: "Warrior" },
+  Warrior: { weapons: ["Axe", "Bow"] },
+  Pirate: { weapons: ["Axe"] },
+  Berserker: { weapons: ["Axe"] },
+  "Bow Fighter": { weapons: ["Bow"], promo: "Sniper" },
+  Sniper: { weapons: ["Bow"] },
+  "Social Knight": { weapons: ["Sword", "Lance"], promo: "Paladin (M)" },
+  "Paladin (M)": { weapons: ["Sword", "Lance"] },
+  Troubadour: { weapons: ["Sword", "Staff"], promo: "Paladin (F)" },
+  "Paladin (F)": { weapons: ["Sword", "Staff"] },
+  "Free Knight": { weapons: ["Sword"], promo: "Forrest Knight" },
+  "Forrest Knight": { weapons: ["Sword"] },
+  "Lance Knight": { weapons: ["Lance"], promo: "Duke Knight" },
+  "Duke Knight": { weapons: ["Lance"] },
+  "Axe Knight": { weapons: ["Axe"], promo: "Great Knight" },
+  "Great Knight": { weapons: ["Axe"] },
+  "Arch Knight": { weapons: ["Bow"], promo: "Bow Knight" },
+  "Bow Knight": { weapons: ["Bow"] },
+  "Axe Armour": { weapons: ["Axe"], promo: "General" },
+  "Bow Armour": { weapons: ["Bow"] },
+  General: { weapons: ["Sword", "Lance", "Axe", "Bow"] },
+  Baron: {
+    weapons: [
+      "Sword",
+      "Lance",
+      "Axe",
+      "Bow",
+      "Staff",
+      "Fire",
+      "Thunder",
+      "Wind",
+    ],
+  },
+  "Pegasus Rider": {
+    weapons: ["Lance"],
+    promo: "Pegasus Knight",
+  },
+  "Pegasus Knight": { weapons: ["Lance"] },
+  "Dragon Rider": {
+    weapons: ["Lance"],
+    promo: "Dragon Knight",
+  },
+  "Dragon Knight": { weapons: ["Lance"] },
+  "Long Arch": { weapons: ["Bow"] },
+  "Iron Arch": { weapons: ["Bow"] },
+  "Poison Arch": { weapons: ["Bow"] },
+  Mage: { weapons: ["Fire", "Thunder", "Wind"], promo: "Mage Knight" },
+  "Mage (Asvel)": { weapons: ["Fire", "Thunder", "Wind"], promo: "Sage" },
+  "Mage Knight": {
+    weapons: ["Sword", "Fire", "Thunder", "Wind"],
+  },
+  Bard: { weapons: ["Fire", "Thunder", "Wind", "Light"], promo: "Sage" },
+  Sister: {
+    weapons: ["Staff", "Fire", "Thunder", "Wind", "Light"],
+    promo: "Sage",
+  },
+  Sage: {
+    weapons: ["Staff", "Fire", "Thunder", "Wind", "Light"],
+  },
+  Priest: { weapons: ["Staff"], promo: "High Priest" },
+  "High Priest": { weapons: ["Staff", "Light"] },
+  "Loputo Mage": {
+    weapons: ["Staff", "Fire", "Thunder", "Wind", "Dark"],
+    promo: "Dark Mage",
+  },
+  "Dark Mage": {
+    weapons: ["Staff", "Fire", "Thunder", "Wind", "Dark"],
+  },
+} as const;
+
 export const fe5: Game<ThraciaGame> = {
   short: "fe5",
   characters: fe5characters,
-  classes: {
-    Lord: { weapons: ["Sword"], promo: "Prince" },
-    Prince: { weapons: ["Sword"] },
-    Swordfighter: { weapons: ["Sword"], promo: "Swordmaster" },
-    "Swordfighter (Machua)": { weapons: ["Sword"], promo: "Mercenary" },
-    Swordmaster: { weapons: ["Sword"] },
-    Thief: { weapons: ["Sword"], promo: "Thief Fighter" },
-    "Thief (Lara)": { weapons: ["Sword"], promo: "Dancer" },
-    "Thief Fighter": { weapons: ["Sword"] },
-    Dancer: { weapons: ["Sword"] },
-    Soldier: { weapons: ["Lance"] },
-    "Axe Fighter": { weapons: ["Axe"], promo: "Mercenary" },
-    Mercenary: { weapons: ["Sword", "Axe"] },
-    "Mountain Thief": { weapons: ["Axe"], promo: "Warrior" },
-    Warrior: { weapons: ["Axe", "Bow"] },
-    Pirate: { weapons: ["Axe"] },
-    Berserker: { weapons: ["Axe"] },
-    "Bow Fighter": { weapons: ["Bow"], promo: "Sniper" },
-    Sniper: { weapons: ["Bow"] },
-    "Social Knight": { weapons: ["Sword", "Lance"], promo: "Paladin (M)" },
-    "Paladin (M)": { weapons: ["Sword", "Lance"] },
-    Troubadour: { weapons: ["Sword", "Staff"], promo: "Paladin (F)" },
-    "Paladin (F)": { weapons: ["Sword", "Staff"] },
-    "Free Knight": { weapons: ["Sword"], promo: "Forrest Knight" },
-    "Forrest Knight": { weapons: ["Sword"] },
-    "Lance Knight": { weapons: ["Lance"], promo: "Duke Knight" },
-    "Duke Knight": { weapons: ["Lance"] },
-    "Axe Knight": { weapons: ["Axe"], promo: "Great Knight" },
-    "Great Knight": { weapons: ["Axe"] },
-    "Arch Knight": { weapons: ["Bow"], promo: "Bow Knight" },
-    "Bow Knight": { weapons: ["Bow"] },
-    "Axe Armour": { weapons: ["Axe"], promo: "General" },
-    "Bow Armour": { weapons: ["Bow"] },
-    General: { weapons: ["Sword", "Lance", "Axe", "Bow"] },
-    Baron: {
-      weapons: [
-        "Sword",
-        "Lance",
-        "Axe",
-        "Bow",
-        "Staff",
-        "Fire",
-        "Thunder",
-        "Wind",
-      ],
-    },
-    "Pegasus Rider": {
-      weapons: ["Lance"],
-      promo: "Pegasus Knight",
-    },
-    "Pegasus Knight": { weapons: ["Lance"] },
-    "Dragon Rider": {
-      weapons: ["Lance"],
-      promo: "Dragon Knight",
-    },
-    "Dragon Knight": { weapons: ["Lance"] },
-    "Long Arch": { weapons: ["Bow"] },
-    "Iron Arch": { weapons: ["Bow"] },
-    "Poison Arch": { weapons: ["Bow"] },
-    Mage: { weapons: ["Fire", "Thunder", "Wind"], promo: "Mage Knight" },
-    "Mage (Asvel)": { weapons: ["Fire", "Thunder", "Wind"], promo: "Sage" },
-    "Mage Knight": {
-      weapons: ["Sword", "Fire", "Thunder", "Wind"],
-    },
-    Bard: { weapons: ["Fire", "Thunder", "Wind", "Light"], promo: "Sage" },
-    Sister: {
-      weapons: ["Staff", "Fire", "Thunder", "Wind", "Light"],
-      promo: "Sage",
-    },
-    Sage: {
-      weapons: ["Staff", "Fire", "Thunder", "Wind", "Light"],
-    },
-    Priest: { weapons: ["Staff"], promo: "High Priest" },
-    "High Priest": { weapons: ["Staff", "Light"] },
-    "Loputo Mage": {
-      weapons: ["Staff", "Fire", "Thunder", "Wind", "Dark"],
-      promo: "Dark Mage",
-    },
-    "Dark Mage": {
-      weapons: ["Staff", "Fire", "Thunder", "Wind", "Dark"],
-    },
-  },
+  classes: fe5classes,
   free: ["Leaf"],
   flags: {},
   // slightly higher because of fatigue + weird character joining/leaving shenanigans

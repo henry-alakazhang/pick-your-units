@@ -1,10 +1,11 @@
 import { Game } from "./data.types";
 
 interface FatesGame {
+  ClassName: keyof typeof CLASSES;
   // FIXME: properly type this mess
-  CharacterName: string,
-  ChildCharacterName: string,
-  Pairings: true,
+  CharacterName: string;
+  ChildCharacterName: string;
+  Pairings: true;
 }
 
 // RX is royals since you can't pair them together.
@@ -369,7 +370,22 @@ const CLASSES = {
     weapons: ["Stone"],
     stat: { STR: true },
   },
-};
+  "Nohr Prince (Nohr)": {
+    weapons: ["Sword", "Stone"],
+    promo: ["Nohr Noble"],
+    stat: { STR: true, MAG: true },
+  },
+  "Nohr Prince (Hoshido)": {
+    weapons: ["Sword", "Stone"],
+    promo: ["Hoshido Noble"],
+    stat: { STR: true, MAG: true },
+  },
+  "Nohr Prince (Smash Bros)": {
+    weapons: ["Sword", "Stone"],
+    promo: ["Nohr Noble", "Hoshido Noble"],
+    stat: { STR: true, MAG: true },
+  },
+} as const;
 
 export const fe14br: Game<FatesGame> = {
   short: "fe14",
@@ -377,7 +393,7 @@ export const fe14br: Game<FatesGame> = {
   characters: {
     "Corrin (M)": {
       class: [
-        "Nohr Prince",
+        "Nohr Prince (Hoshido)",
         "Samurai",
         "Villager",
         "Apothecary",
@@ -397,13 +413,13 @@ export const fe14br: Game<FatesGame> = {
         "Dark Mage",
         "Troubadour (M)",
       ],
-      defaultClass: "Nohr Prince",
+      defaultClass: "Nohr Prince (Hoshido)",
       pairings: [...BR_AF, "Scarlet", "Reina"],
       stat: { STR: true, MAG: true },
     },
     "Corrin (F)": {
       class: [
-        "Nohr Prince",
+        "Nohr Prince (Hoshido)",
         "Samurai",
         "Villager",
         "Apothecary",
@@ -423,7 +439,7 @@ export const fe14br: Game<FatesGame> = {
         "Dark Mage",
         "Troubadour (F)",
       ],
-      defaultClass: "Nohr Prince",
+      defaultClass: "Nohr Prince (Hoshido)",
       pairings: [...BR_AM, "Yukimura", "Shura", "Izana"],
       stat: { STR: true, MAG: true },
     },
@@ -614,16 +630,16 @@ export const fe14br: Game<FatesGame> = {
   },
   children: {
     "Kana (M)": {
-      defaultClass: "Nohr Prince",
-      class: ["Nohr Prince"],
+      defaultClass: "Nohr Prince (Hoshido)",
+      class: ["Nohr Prince (Hoshido)"],
       pairings: BR_ACF,
       friends: ["Shiro"],
       stat: { STR: true, MAG: true },
       parent: "Corrin (F)",
     },
     "Kana (F)": {
-      defaultClass: "Nohr Prince",
-      class: ["Nohr Prince"],
+      defaultClass: "Nohr Prince (Hoshido)",
+      class: ["Nohr Prince (Hoshido)"],
       pairings: BR_ACM,
       friends: ["Midori", "Mitama", "Selkie"],
       stat: { STR: true, MAG: true },
@@ -726,16 +742,7 @@ export const fe14br: Game<FatesGame> = {
       parent: "Hayato",
     },
   },
-  classes: {
-    ...CLASSES,
-    ...{
-      "Nohr Prince": {
-        weapons: ["Sword", "Stone"],
-        promo: ["Hoshido Noble"],
-        stat: { STR: true, MAG: true },
-      },
-    },
-  },
+  classes: CLASSES,
   free: [],
   avatar: "Corrin",
   flags: {
@@ -759,7 +766,7 @@ export const fe14cq: Game<FatesGame> = {
   characters: {
     "Corrin (M)": {
       class: [
-        "Nohr Prince",
+        "Nohr Prince (Nohr)",
         "Samurai",
         "Villager",
         "Apothecary",
@@ -779,13 +786,13 @@ export const fe14cq: Game<FatesGame> = {
         "Dark Mage",
         "Troubadour (M)",
       ],
-      defaultClass: "Nohr Prince",
+      defaultClass: "Nohr Prince (Nohr)",
       pairings: [...CQ_AF, "Niles", "Flora"],
       stat: { STR: true, MAG: true },
     },
     "Corrin (F)": {
       class: [
-        "Nohr Prince",
+        "Nohr Prince (Nohr)",
         "Samurai",
         "Villager",
         "Apothecary",
@@ -805,7 +812,7 @@ export const fe14cq: Game<FatesGame> = {
         "Dark Mage",
         "Troubadour (F)",
       ],
-      defaultClass: "Nohr Prince",
+      defaultClass: "Nohr Prince (Nohr)",
       pairings: [...CQ_AM, "Gunter", "Shura", "Izana"],
       stat: { STR: true, MAG: true },
     },
@@ -991,16 +998,16 @@ export const fe14cq: Game<FatesGame> = {
   },
   children: {
     "Kana (M)": {
-      defaultClass: "Nohr Prince",
-      class: ["Nohr Prince"],
+      defaultClass: "Nohr Prince (Nohr)",
+      class: ["Nohr Prince (Nohr)"],
       pairings: CQ_ACF,
       friends: ["Siegbert", "Percy"],
       stat: { STR: true, MAG: true },
       parent: "Corrin (F)",
     },
     "Kana (F)": {
-      defaultClass: "Nohr Prince",
-      class: ["Nohr Prince"],
+      defaultClass: "Nohr Prince (Nohr)",
+      class: ["Nohr Prince (Nohr)"],
       pairings: CQ_ACM,
       friends: ["Midori", "Velouria"],
       stat: { STR: true, MAG: true },
@@ -1103,16 +1110,7 @@ export const fe14cq: Game<FatesGame> = {
       parent: "Niles",
     },
   },
-  classes: {
-    ...CLASSES,
-    ...{
-      "Nohr Prince": {
-        weapons: ["Sword", "Stone"],
-        promo: ["Nohr Noble"],
-        stat: { STR: true, MAG: true },
-      },
-    },
-  },
+  classes: CLASSES,
   free: [],
   avatar: "Corrin",
   flags: {
@@ -1136,7 +1134,7 @@ export const fe14rev: Game<FatesGame> = {
   characters: {
     "Corrin (M)": {
       class: [
-        "Nohr Prince",
+        "Nohr Prince (Smash Bros)",
         "Samurai",
         "Villager",
         "Apothecary",
@@ -1156,13 +1154,13 @@ export const fe14rev: Game<FatesGame> = {
         "Dark Mage",
         "Troubadour (M)",
       ],
-      defaultClass: "Nohr Prince",
+      defaultClass: "Nohr Prince (Smash Bros)",
       pairings: [...RV_AF, "Niles", "Reina", "Flora"],
       stat: { STR: true, MAG: true },
     },
     "Corrin (F)": {
       class: [
-        "Nohr Prince",
+        "Nohr Prince (Smash Bros)",
         "Samurai",
         "Villager",
         "Apothecary",
@@ -1182,7 +1180,7 @@ export const fe14rev: Game<FatesGame> = {
         "Dark Mage",
         "Troubadour (F)",
       ],
-      defaultClass: "Nohr Prince",
+      defaultClass: "Nohr Prince (Smash Bros)",
       pairings: [...RV_AM, "Shura", "Fuga"],
       stat: { STR: true, MAG: true },
     },
@@ -1487,16 +1485,16 @@ export const fe14rev: Game<FatesGame> = {
   },
   children: {
     "Kana (M)": {
-      defaultClass: "Nohr Prince",
-      class: ["Nohr Prince"],
+      defaultClass: "Nohr Prince (Smash Bros)",
+      class: ["Nohr Prince (Smash Bros)"],
       pairings: RV_ACF,
       friends: ["Shiro", "Siegbert", "Percy"],
       stat: { STR: true, MAG: true },
       parent: "Corrin (F)",
     },
     "Kana (F)": {
-      defaultClass: "Nohr Prince",
-      class: ["Nohr Prince"],
+      defaultClass: "Nohr Prince (Smash Bros)",
+      class: ["Nohr Prince (Smash Bros)"],
       pairings: RV_ACM,
       friends: ["Midori", "Mitama", "Selkie", "Velouria"],
       stat: { STR: true, MAG: true },
@@ -1663,16 +1661,7 @@ export const fe14rev: Game<FatesGame> = {
       parent: "Niles",
     },
   },
-  classes: {
-    ...CLASSES,
-    ...{
-      "Nohr Prince": {
-        weapons: ["Sword", "Stone"],
-        promo: ["Nohr Noble", "Hoshido Noble"],
-        stat: { STR: true, MAG: true },
-      },
-    },
-  },
+  classes: CLASSES,
   free: [],
   avatar: "Corrin",
   flags: {

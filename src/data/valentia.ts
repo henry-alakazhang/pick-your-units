@@ -1,8 +1,9 @@
 import { Game } from "./data.types";
 
 interface ShadowsOfValentiaGame {
-  ChildCharacterName: never,
-  Pairings: false,
+  ClassName: keyof typeof VALENTIA_CLASSES;
+  ChildCharacterName: never;
+  Pairings: false;
 }
 
 const VALENTIA_CLASSES = {
@@ -37,7 +38,7 @@ const VALENTIA_CLASSES = {
   Saint: { weapons: ["Black Magic", "White Magic"] },
   Priestess: { weapons: ["Sword", "Black Magic", "White Magic"] },
   Princess: { weapons: ["Sword", "Black Magic", "White Magic"] },
-};
+} as const;
 
 const almCharacters = {
   Alm: { class: "Fighter" },
@@ -56,7 +57,9 @@ const almCharacters = {
   Forsyth: { class: "Soldier" },
 } as const;
 
-export const fe15alm: Game<ShadowsOfValentiaGame & { CharacterName: keyof typeof almCharacters }> = {
+export const fe15alm: Game<ShadowsOfValentiaGame & {
+  CharacterName: keyof typeof almCharacters;
+}> = {
   short: "fe15",
   characters: almCharacters,
   classes: VALENTIA_CLASSES,
@@ -86,7 +89,9 @@ const celicaCharacters = {
   Nomah: { class: "Sage" },
 } as const;
 
-export const fe15celica: Game<ShadowsOfValentiaGame & { CharacterName: keyof typeof celicaCharacters }> = {
+export const fe15celica: Game<ShadowsOfValentiaGame & {
+  CharacterName: keyof typeof celicaCharacters;
+}> = {
   short: "fe15",
   characters: celicaCharacters,
   classes: VALENTIA_CLASSES,

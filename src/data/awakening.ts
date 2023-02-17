@@ -3,8 +3,9 @@
 import { Character, ChildCharacter, Game } from "./data.types";
 
 interface AwakeningGame {
-  CharacterName: keyof typeof characters
-  ChildCharacterName: keyof typeof children
+  ClassName: keyof typeof classes;
+  CharacterName: keyof typeof characters;
+  ChildCharacterName: keyof typeof children;
   Pairings: true;
 }
 
@@ -56,7 +57,7 @@ const AWAKE_CF = [
   "Nah",
 ] as const;
 
-const inheritClasses = function (
+const inheritClasses = function(
   game: Game<AwakeningGame>,
   picks: { pairings: any },
   to: AwakeningGame["CharacterName"] | AwakeningGame["ChildCharacterName"]
@@ -465,227 +466,229 @@ const children = {
   },
 } as const;
 
+const classes = {
+  Lord: {
+    weapons: ["Sword"],
+    promo: ["Great Lord"],
+    stat: { STR: true },
+  },
+  "Great Lord": {
+    weapons: ["Sword", "Lance"],
+    stat: { STR: true },
+  },
+  Tactician: {
+    weapons: ["Sword", "Tome"],
+    promo: ["Grandmaster"],
+    stat: { STR: true, MAG: true },
+  },
+  Grandmaster: {
+    weapons: ["Sword", "Tome"],
+    stat: { STR: true, MAG: true },
+  },
+  Cavalier: {
+    weapons: ["Sword", "Lance"],
+    promo: ["Paladin", "Great Knight"],
+    stat: { STR: true },
+  },
+  Paladin: {
+    weapons: ["Sword", "Lance"],
+    stat: { STR: true },
+  },
+  "Great Knight": {
+    weapons: ["Sword", "Lance", "Axe"],
+    stat: { STR: true },
+  },
+  Knight: {
+    weapons: ["Lance"],
+    promo: ["Great Knight", "General"],
+    stat: { STR: true },
+  },
+  General: {
+    weapons: ["Lance", "Axe"],
+    stat: { STR: true },
+  },
+  Myrmidon: {
+    weapons: ["Sword"],
+    promo: ["Swordmaster", "Assassin"],
+    stat: { STR: true },
+  },
+  Swordmaster: {
+    weapons: ["Sword"],
+    stat: { STR: true },
+  },
+  Mercenary: {
+    weapons: ["Sword"],
+    promo: ["Hero", "Bow Knight"],
+    stat: { STR: true },
+  },
+  Hero: {
+    weapons: ["Sword", "Axe"],
+    stat: { STR: true },
+  },
+  Fighter: {
+    weapons: ["Axe"],
+    promo: ["Hero", "Warrior"],
+    stat: { STR: true },
+  },
+  Warrior: {
+    weapons: ["Axe", "Bow"],
+    stat: { STR: true },
+  },
+  Barbarian: {
+    weapons: ["Axe"],
+    promo: ["Berserker", "Warrior"],
+    stat: { STR: true },
+  },
+  Berserker: {
+    weapons: ["Axe"],
+    stat: { STR: true },
+  },
+  Archer: {
+    weapons: ["Bow"],
+    promo: ["Sniper", "Bow Knight"],
+    stat: { STR: true },
+  },
+  Sniper: {
+    weapons: ["Bow"],
+    stat: { STR: true },
+  },
+  "Bow Knight": {
+    weapons: ["Sword", "Bow"],
+    stat: { STR: true },
+  },
+  Thief: {
+    weapons: ["Sword"],
+    promo: ["Assassin", "Trickster"],
+    stat: { STR: true },
+  },
+  Assassin: {
+    weapons: ["Sword", "Bow"],
+    stat: { STR: true },
+  },
+  Trickster: {
+    weapons: ["Sword", "Staff"],
+    stat: { STR: true },
+  },
+  "Pegasus Knight": {
+    weapons: ["Lance"],
+    promo: ["Falcon Knight", "Dark Flier"],
+    stat: { STR: true },
+  },
+  "Falcon Knight": {
+    weapons: ["Lance", "Staff"],
+    stat: { STR: true },
+  },
+  "Dark Flier": {
+    weapons: ["Lance", "Tome"],
+    stat: { STR: true, MAG: true },
+  },
+  "Wyvern Rider": {
+    weapons: ["Axe"],
+    promo: ["Wyvern Lord", "Griffon Rider"],
+    stat: { STR: true },
+  },
+  "Wyvern Lord": {
+    weapons: ["Lance", "Axe"],
+    stat: { STR: true },
+  },
+  "Griffon Rider": {
+    weapons: ["Axe"],
+    stat: { STR: true },
+  },
+  Mage: {
+    weapons: ["Tome"],
+    promo: ["Sage", "Dark Knight"],
+    stat: { MAG: true },
+  },
+  Sage: {
+    weapons: ["Tome", "Staff"],
+    stat: { MAG: true },
+  },
+  "Dark Mage": {
+    weapons: ["Tome"],
+    promo: ["Sorcerer", "Dark Knight"],
+    stat: { MAG: true },
+  },
+  Sorcerer: {
+    weapons: ["Tome"],
+    stat: { MAG: true },
+  },
+  "Dark Knight": {
+    weapons: ["Sword", "Tome"],
+    stat: { STR: true, MAG: true },
+  },
+  Priest: {
+    weapons: ["Staff"],
+    promo: ["War Monk", "Sage"],
+    stat: { MAG: true },
+  },
+  Cleric: {
+    weapons: ["Staff"],
+    promo: ["War Cleric", "Sage"],
+    stat: { MAG: true },
+  },
+  "War Monk": {
+    weapons: ["Axe", "Staff"],
+    stat: { STR: true, MAG: true },
+  },
+  "War Cleric": {
+    weapons: ["Axe", "Staff"],
+    stat: { STR: true, MAG: true },
+  },
+  Troubadour: {
+    weapons: ["Staff"],
+    promo: ["War Cleric", "Valkyrie"],
+    stat: { MAG: true },
+  },
+  Valkyrie: {
+    weapons: ["Tome", "Staff"],
+    stat: { MAG: true },
+  },
+  Villager: {
+    weapons: ["Lance"],
+    promo: ["Fighter", "Mercenary"],
+    stat: { STR: true },
+  },
+  Dancer: {
+    weapons: ["Sword"],
+    stat: { STR: true },
+  },
+  Taguel: {
+    weapons: ["Stone"],
+    stat: { STR: true },
+  },
+  Manakete: {
+    weapons: ["Stone"],
+    stat: { STR: true },
+  },
+  Lodestar: {
+    weapons: ["Sword"],
+    stat: { STR: true },
+  },
+  "Dread Fighter": {
+    weapons: ["Sword", "Axe", "Tome"],
+    stat: { STR: true, MAG: true },
+  },
+  Bride: {
+    weapons: ["Lance", "Bow", "Staff"],
+    stat: { STR: true },
+  },
+  Soldier: {
+    weapons: ["Lance"],
+    stat: { STR: true },
+  },
+  Merchant: {
+    weapons: ["Lance"],
+    stat: { STR: true },
+  },
+} as const;
+
 export const fe13: Game<AwakeningGame> = {
   short: "fe13",
   inheritClasses: inheritClasses,
   characters,
   children,
-  classes: {
-    Lord: {
-      weapons: ["Sword"],
-      promo: ["Great Lord"],
-      stat: { STR: true },
-    },
-    "Great Lord": {
-      weapons: ["Sword", "Lance"],
-      stat: { STR: true },
-    },
-    Tactician: {
-      weapons: ["Sword", "Tome"],
-      promo: ["Grandmaster"],
-      stat: { STR: true, MAG: true },
-    },
-    Grandmaster: {
-      weapons: ["Sword", "Tome"],
-      stat: { STR: true, MAG: true },
-    },
-    Cavalier: {
-      weapons: ["Sword", "Lance"],
-      promo: ["Paladin", "Great Knight"],
-      stat: { STR: true },
-    },
-    Paladin: {
-      weapons: ["Sword", "Lance"],
-      stat: { STR: true },
-    },
-    "Great Knight": {
-      weapons: ["Sword", "Lance", "Axe"],
-      stat: { STR: true },
-    },
-    Knight: {
-      weapons: ["Lance"],
-      promo: ["Great Knight", "General"],
-      stat: { STR: true },
-    },
-    General: {
-      weapons: ["Lance", "Axe"],
-      stat: { STR: true },
-    },
-    Myrmidon: {
-      weapons: ["Sword"],
-      promo: ["Swordmaster", "Assassin"],
-      stat: { STR: true },
-    },
-    Swordmaster: {
-      weapons: ["Sword"],
-      stat: { STR: true },
-    },
-    Mercenary: {
-      weapons: ["Sword"],
-      promo: ["Hero", "Bow Knight"],
-      stat: { STR: true },
-    },
-    Hero: {
-      weapons: ["Sword", "Axe"],
-      stat: { STR: true },
-    },
-    Fighter: {
-      weapons: ["Axe"],
-      promo: ["Hero", "Warrior"],
-      stat: { STR: true },
-    },
-    Warrior: {
-      weapons: ["Axe", "Bow"],
-      stat: { STR: true },
-    },
-    Barbarian: {
-      weapons: ["Axe"],
-      promo: ["Berserker", "Warrior"],
-      stat: { STR: true },
-    },
-    Berserker: {
-      weapons: ["Axe"],
-      stat: { STR: true },
-    },
-    Archer: {
-      weapons: ["Bow"],
-      promo: ["Sniper", "Bow Knight"],
-      stat: { STR: true },
-    },
-    Sniper: {
-      weapons: ["Bow"],
-      stat: { STR: true },
-    },
-    "Bow Knight": {
-      weapons: ["Sword", "Bow"],
-      stat: { STR: true },
-    },
-    Thief: {
-      weapons: ["Sword"],
-      promo: ["Assassin", "Trickster"],
-      stat: { STR: true },
-    },
-    Assassin: {
-      weapons: ["Sword", "Bow"],
-      stat: { STR: true },
-    },
-    Trickster: {
-      weapons: ["Sword", "Staff"],
-      stat: { STR: true },
-    },
-    "Pegasus Knight": {
-      weapons: ["Lance"],
-      promo: ["Falcon Knight", "Dark Flier"],
-      stat: { STR: true },
-    },
-    "Falcon Knight": {
-      weapons: ["Lance", "Staff"],
-      stat: { STR: true },
-    },
-    "Dark Flier": {
-      weapons: ["Lance", "Tome"],
-      stat: { STR: true, MAG: true },
-    },
-    "Wyvern Rider": {
-      weapons: ["Axe"],
-      promo: ["Wyvern Lord", "Griffon Rider"],
-      stat: { STR: true },
-    },
-    "Wyvern Lord": {
-      weapons: ["Lance", "Axe"],
-      stat: { STR: true },
-    },
-    "Griffon Rider": {
-      weapons: ["Axe"],
-      stat: { STR: true },
-    },
-    Mage: {
-      weapons: ["Tome"],
-      promo: ["Sage", "Dark Knight"],
-      stat: { MAG: true },
-    },
-    Sage: {
-      weapons: ["Tome", "Staff"],
-      stat: { MAG: true },
-    },
-    "Dark Mage": {
-      weapons: ["Tome"],
-      promo: ["Sorcerer", "Dark Knight"],
-      stat: { MAG: true },
-    },
-    Sorcerer: {
-      weapons: ["Tome"],
-      stat: { MAG: true },
-    },
-    "Dark Knight": {
-      weapons: ["Sword", "Tome"],
-      stat: { STR: true, MAG: true },
-    },
-    Priest: {
-      weapons: ["Staff"],
-      promo: ["War Monk", "Sage"],
-      stat: { MAG: true },
-    },
-    Cleric: {
-      weapons: ["Staff"],
-      promo: ["War Cleric", "Sage"],
-      stat: { MAG: true },
-    },
-    "War Monk": {
-      weapons: ["Axe", "Staff"],
-      stat: { STR: true, MAG: true },
-    },
-    "War Cleric": {
-      weapons: ["Axe", "Staff"],
-      stat: { STR: true, MAG: true },
-    },
-    Troubadour: {
-      weapons: ["Staff"],
-      promo: ["War Cleric", "Valkyrie"],
-      stat: { MAG: true },
-    },
-    Valkyrie: {
-      weapons: ["Tome", "Staff"],
-      stat: { MAG: true },
-    },
-    Villager: {
-      weapons: ["Lance"],
-      promo: ["Fighter", "Mercenary"],
-      stat: { STR: true },
-    },
-    Dancer: {
-      weapons: ["Sword"],
-      stat: { STR: true },
-    },
-    Taguel: {
-      weapons: ["Stone"],
-      stat: { STR: true },
-    },
-    Manakete: {
-      weapons: ["Stone"],
-      stat: { STR: true },
-    },
-    Lodestar: {
-      weapons: ["Sword"],
-      stat: { STR: true },
-    },
-    "Dread Fighter": {
-      weapons: ["Sword", "Axe", "Tome"],
-      stat: { STR: true, MAG: true },
-    },
-    Bride: {
-      weapons: ["Lance", "Bow", "Staff"],
-      stat: { STR: true },
-    },
-    Soldier: {
-      weapons: ["Lance"],
-      stat: { STR: true },
-    },
-    Merchant: {
-      weapons: ["Lance"],
-      stat: { STR: true },
-    },
-  },
+  classes,
   free: ["Chrom"],
   avatar: "Robin",
   flags: {

@@ -1,6 +1,8 @@
+import { typedObjectKeys } from "../util";
 import { Game } from "./data.types";
 
 interface EngageGame {
+  ClassName: keyof typeof promotedClasses | keyof typeof uniqueClasses;
   CharacterName: keyof typeof characters;
   ChildCharacterName: never;
   Pairings: false;
@@ -83,9 +85,9 @@ const promotedClasses = {
     weapons: ["Sword", "Lance", "Axe"],
     stat: { STR: true, MAG: false },
   },
-};
+} as const;
 
-const promotedClassNames = Object.keys(promotedClasses);
+const promotedClassNames = typedObjectKeys(promotedClasses);
 
 const uniqueClasses = {
   "Dragon Child": {
@@ -189,7 +191,7 @@ const uniqueClasses = {
     weapons: [],
     promo: [...promotedClassNames],
   },
-};
+} as const;
 
 const characters = {
   Alear: {
@@ -204,7 +206,7 @@ const characters = {
   },
   Clanne: {
     class: "Base",
-    defaultClass: "Mage Knight",
+    defaultClass: "Mage Knight (Any)",
     stat: { STR: true },
   },
   Framme: {
@@ -239,7 +241,7 @@ const characters = {
   },
   Louis: {
     class: "Base",
-    defaultClass: "General",
+    defaultClass: "General (Any)",
     stat: { STR: true },
   },
   Yunaka: {
@@ -294,7 +296,7 @@ const characters = {
   },
   Fogado: {
     class: "Sentinel (Fogado)",
-    defaultClass: "Cupid",
+    defaultClass: "Cupido",
     stat: { STR: true, MAG: true },
   },
   Pandreo: {
@@ -319,7 +321,7 @@ const characters = {
   },
   Merrin: {
     class: "Base",
-    defaultClass: "Wolf Knigh (Any)",
+    defaultClass: "Wolf Knight (Any)",
     stat: { STR: true, MAG: true },
   },
   Hortensia: {
@@ -364,12 +366,12 @@ const characters = {
   },
   Jean: {
     class: "Base",
-    defaultClass: "Martial Monk",
+    defaultClass: "Martial Master",
     stat: { MAG: true },
   },
   Anna: {
     class: "Base",
-    defaultClass: "Axe Fighter",
+    defaultClass: "Mage Knight (Any)",
     stat: { STR: true, MAG: true },
   },
 } as const;

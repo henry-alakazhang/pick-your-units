@@ -6,7 +6,7 @@ export const fe11: Game<UnsupportedGame> = {
   defaultPicks: 0,
   characters: {},
   classes: {},
-  free: ["Marth"],
+  free: [],
   flags: {
     classes: true,
     troll: true,
@@ -19,7 +19,7 @@ export const fe12: Game<UnsupportedGame> = {
   defaultPicks: 0,
   characters: {},
   classes: {},
-  free: ["Marth", "Kris"],
+  free: [],
   flags: {
     classes: true,
     troll: true,

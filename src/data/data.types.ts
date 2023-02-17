@@ -1,21 +1,21 @@
-export interface Class {
+export interface Class<G extends GameMetaType> {
   /** Available weapons */
-  readonly weapons: string[];
+  readonly weapons: readonly string[];
   /** Promotion (if applicable) */
-  readonly promo?: string | readonly string[];
+  readonly promo?: G["ClassName"] | readonly G["ClassName"][];
   /** Stats required for effective use */
   readonly stat?: { STR?: boolean; MAG?: boolean };
 }
 
 export type Character<G extends GameMetaType> = {
   /** Possible base classes */
-  readonly class: string | readonly string[];
+  readonly class: G["ClassName"] | readonly G["ClassName"][];
   /**
    * Default class for no-class-change runs.
    * Only needed for reclass-heavy games where everyone can be everything (eg. 3H, Engage),
    * because of the dodgy way in which they are implemented (one root class)
    */
-  readonly defaultClass?: string;
+  readonly defaultClass?: G["ClassName"];
   /** Whether characters have good bases/growths for a stat */
   readonly stat?: { STR?: boolean; MAG?: boolean };
   /** Other characters available for A+ rank */
@@ -37,31 +37,31 @@ export type Character<G extends GameMetaType> = {
     readonly strengths: readonly string[];
     readonly weaknesses: readonly string[];
   };
-}
+};
 
 // separate type for this so that ChildCharacter can have a different pairings type.
 export type PairableCharacter<G extends GameMetaType> = Character<G> & {
   /** Other characters available for S-rank */
-  readonly pairings: readonly G["CharacterName"][]
-}
+  readonly pairings: readonly G["CharacterName"][];
+};
 
 export type ChildCharacter<G extends GameMetaType> = Character<G> & {
   readonly parent: G["CharacterName"];
   readonly pairings: readonly G["ChildCharacterName"][];
-}
+};
 
 /**
  * A template meta-type for game configuration.
  * These "fields" are used as values by TypeScript to enforce conditions on Game objects.
  * Each game should define its own Game with appropriate fields so types are extra-validated.
- * 
+ *
  * There are two main purposes for this:
- * 
+ *
  * The first is validation of key/value types, like character and class names.
  * By assigning a type which contains all of the possible character/class/etc names, we can validate
  * that all references (eg. promotion names, pairing names) have valid values,
  * and that we haven't made any typos or mucked up the data anywhere.
- * 
+ *
  * The second is consistent validation of "optional" types in various fields.
  * eg. `Character.pairings` is optional because not all games have pairings.
  * However, games that have pairings should ALWAYS have `Character.pairings`.
@@ -69,6 +69,7 @@ export type ChildCharacter<G extends GameMetaType> = Character<G> & {
  * This also has the side effect of making the types way smarter when using a generic `Game` object.
  */
 export interface GameMetaType {
+  readonly ClassName: string;
   readonly CharacterName: string;
   readonly ChildCharacterName: string;
   readonly Pairings: boolean;
@@ -76,8 +77,9 @@ export interface GameMetaType {
 
 /** A generically useable `GameMetaType` for unsupported games */
 export interface UnsupportedGame extends GameMetaType {
-  readonly CharacterName: string;
-  readonly ChildCharacterName: string;
+  readonly ClassName: never;
+  readonly CharacterName: never;
+  readonly ChildCharacterName: never;
   readonly Pairings: false;
 }
 
@@ -85,8 +87,12 @@ export interface Game<G extends GameMetaType> {
   /** Short name (fe1, fe2, etc) */
   readonly short: string;
   readonly defaultPicks: number;
-  readonly classes: { [name: string]: Class };
-  readonly characters: { [name in G["CharacterName"]]: G["Pairings"] extends true ? PairableCharacter<G> : Character<G> };
+  readonly classes: { [name in G["ClassName"]]: Class<G> };
+  readonly characters: {
+    [name in G["CharacterName"]]: G["Pairings"] extends true
+      ? PairableCharacter<G>
+      : Character<G>;
+  };
   readonly children?: { [name in G["ChildCharacterName"]]: ChildCharacter<G> };
   readonly inheritClasses?: (
     game: Game<G>,
@@ -101,7 +107,7 @@ export interface Game<G extends GameMetaType> {
    * Note: Alear (Engage) is not a classic avatar because you can't pick their boon/bane
    */
   readonly avatar?: string;
-  /** 
+  /**
    * Base faction for the game (when faction-only is on, will only pick units that match).
    * 3H only
    */
@@ -116,7 +122,9 @@ export interface Game<G extends GameMetaType> {
     /** Whether you can choose to only pick pairings */
     readonly onlypairs?: G["Pairings"] extends true ? boolean : never;
     /** Whether child units exist */
-    readonly children?: G["ChildCharacterName"] extends string ? boolean : never;
+    readonly children?: G["ChildCharacterName"] extends string
+      ? boolean
+      : never;
     /** Whether class changing exists */
     readonly classes?: boolean;
     /** Whether you can pick shit classes */

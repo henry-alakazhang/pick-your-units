@@ -1,9 +1,10 @@
 import { Game, UnsupportedGame } from "./data.types";
 
 interface PathOfRadianceGame {
-  CharacterName: keyof typeof characters,
-  ChildCharacterName: never,
-  Pairings: false,
+  ClassName: keyof typeof classes;
+  CharacterName: keyof typeof characters;
+  ChildCharacterName: never;
+  Pairings: false;
 }
 
 const characters = {
@@ -129,189 +130,183 @@ const characters = {
   },
   Zihark: {
     class: "Myrmidon",
-  }
+  },
+} as const;
+
+const classes = {
+  Ranger: {
+    weapons: ["Sword"],
+    promo: "Lord",
+  },
+  Lord: {
+    weapons: ["Sword"],
+  },
+  Hero: {
+    weapons: ["Sword", "Axe"],
+  },
+  Myrmidon: {
+    weapons: ["Sword"],
+    promo: "Swordmaster",
+  },
+  Swordmaster: {
+    weapons: ["Sword"],
+  },
+  Soldier: {
+    weapons: ["Lance"],
+    promo: "Halberdier",
+  },
+  Halberdier: {
+    weapons: ["Lance"],
+  },
+  Fighter: {
+    weapons: ["Axe"],
+    promo: "Warrior",
+  },
+  Warrior: {
+    weapons: ["Axe", "Bow"],
+  },
+  Archer: {
+    weapons: ["Bow"],
+    promo: "Sniper",
+  },
+  Sniper: {
+    weapons: ["Bow"],
+  },
+  Knight: {
+    weapons: ["Lance"],
+    promo: "General",
+  },
+  General: {
+    weapons: ["Sword", "Lance"],
+  },
+  "Sword Knight": {
+    weapons: ["Sword"],
+    promo: [
+      "Paladin (Sword/Lance)",
+      "Paladin (Sword/Axe)",
+      "Paladin (Sword/Bow)",
+    ],
+  },
+  "Lance Knight": {
+    weapons: ["Lance"],
+    promo: [
+      "Paladin (Sword/Lance)",
+      "Paladin (Lance/Axe)",
+      "Paladin (Lance/Bow)",
+    ],
+  },
+  "Axe Knight": {
+    weapons: ["Axe"],
+    promo: ["Paladin (Sword/Axe)", "Paladin (Lance/Axe)", "Paladin (Axe/Bow)"],
+  },
+  "Bow Knight": {
+    weapons: ["Bow"],
+    promo: ["Paladin (Sword/Bow)", "Paladin (Lance/Bow)", "Paladin (Axe/Bow)"],
+  },
+  "Paladin (Sword/Lance)": {
+    weapons: ["Sword", "Lance"],
+  },
+  "Paladin (Sword/Axe)": {
+    weapons: ["Sword", "Axe"],
+  },
+  "Paladin (Sword/Bow)": {
+    weapons: ["Sword", "Bow"],
+  },
+  "Paladin (Lance/Axe)": {
+    weapons: ["Lance", "Axe"],
+  },
+  "Paladin (Lance/Bow)": {
+    weapons: ["Lance", "Bow"],
+  },
+  "Paladin (Axe/Bow)": {
+    weapons: ["Axe", "Bow"],
+  },
+  "Pegasus Knight": {
+    weapons: ["Lance"],
+    promo: "Falcon Knight",
+  },
+  "Falcon Knight": {
+    weapons: ["Sword", "Lance"],
+  },
+  "Princess Crimea": {
+    weapons: ["Sword", "Staff"],
+  },
+  "Wyvern Rider": {
+    weapons: ["Lance"],
+    promo: "Wyvern Lord",
+  },
+  "Wyvern Lord": {
+    weapons: ["Lance", "Axe"],
+  },
+  Mage: {
+    weapons: ["Fire", "Thunder", "Wind"],
+    promo: "Sage",
+  },
+  Sage: {
+    weapons: ["Fire", "Thunder", "Wind", "Staff", "Knife"],
+  },
+  Priest: {
+    weapons: ["Staff"],
+    promo: "Bishop",
+  },
+  Bishop: {
+    weapons: ["Staff"],
+  },
+  Cleric: {
+    weapons: ["Staff"],
+    promo: "Valkyrie",
+  },
+  Valkyrie: {
+    weapons: ["Sword", "Staff"],
+  },
+  Thief: {
+    weapons: ["Knife"],
+  },
+  "Thief (Volke)": {
+    weapons: ["Knife"],
+    promo: "Assassin",
+  },
+  Assassin: {
+    weapons: ["Knife"],
+  },
+  Bandit: {
+    weapons: ["Axe"],
+    promo: "Berserker",
+  },
+  Berserker: {
+    weapons: ["Axe"],
+  },
+  Lion: {
+    weapons: [],
+  },
+  Tiger: {
+    weapons: [],
+  },
+  "Red Dragon": {
+    weapons: [],
+  },
+  Dragon: {
+    weapons: [],
+  },
+  Cat: {
+    weapons: [],
+  },
+  Heron: {
+    weapons: [],
+  },
+  Hawk: {
+    weapons: [],
+  },
+  Raven: {
+    weapons: [],
+  },
 } as const;
 
 export const fe9: Game<PathOfRadianceGame> = {
   short: "fe9",
   defaultPicks: 13,
   characters,
-  classes: {
-    Ranger: {
-      weapons: ["Sword"],
-      promo: "Lord",
-    },
-    Lord: {
-      weapons: ["Sword"],
-    },
-    Hero: {
-      weapons: ["Sword", "Axe"],
-    },
-    Myrmidon: {
-      weapons: ["Sword"],
-      promo: "Swordmaster",
-    },
-    Swordmaster: {
-      weapons: ["Sword"],
-    },
-    Soldier: {
-      weapons: ["Lance"],
-      promo: "Halberdier",
-    },
-    Halberdier: {
-      weapons: ["Lance"],
-    },
-    Fighter: {
-      weapons: ["Axe"],
-      promo: "Warrior",
-    },
-    Warrior: {
-      weapons: ["Axe", "Bow"],
-    },
-    Archer: {
-      weapons: ["Bow"],
-      promo: "Sniper",
-    },
-    Sniper: {
-      weapons: ["Bow"],
-    },
-    Knight: {
-      weapons: ["Lance"],
-      promo: "General",
-    },
-    General: {
-      weapons: ["Sword", "Lance"],
-    },
-    "Sword Knight": {
-      weapons: ["Sword"],
-      promo: [
-        "Paladin (Sword/Lance)",
-        "Paladin (Sword/Axe)",
-        "Paladin (Sword/Bow)",
-      ],
-    },
-    "Lance Knight": {
-      weapons: ["Lance"],
-      promo: [
-        "Paladin (Sword/Lance)",
-        "Paladin (Lance/Axe)",
-        "Paladin (Lance/Bow)",
-      ],
-    },
-    "Axe Knight": {
-      weapons: ["Axe"],
-      promo: [
-        "Paladin (Sword/Axe)",
-        "Paladin (Lance/Axe)",
-        "Paladin (Axe/Bow)",
-      ],
-    },
-    "Bow Knight": {
-      weapons: ["Bow"],
-      promo: [
-        "Paladin (Sword/Bow)",
-        "Paladin (Lance/Bow)",
-        "Paladin (Axe/Bow)",
-      ],
-    },
-    "Paladin (Sword/Lance)": {
-      weapons: ["Sword", "Lance"],
-    },
-    "Paladin (Sword/Axe)": {
-      weapons: ["Sword", "Axe"],
-    },
-    "Paladin (Sword/Bow)": {
-      weapons: ["Sword", "Bow"],
-    },
-    "Paladin (Lance/Axe)": {
-      weapons: ["Lance", "Axe"],
-    },
-    "Paladin (Lance/Bow)": {
-      weapons: ["Lance", "Bow"],
-    },
-    "Paladin (Axe/Bow)": {
-      weapons: ["Axe", "Bow"],
-    },
-    "Pegasus Knight": {
-      weapons: ["Lance"],
-      promo: "Falcon Knight",
-    },
-    "Falcon Knight": {
-      weapons: ["Sword", "Lance"],
-    },
-    "Princess Crimea": {
-      weapons: ["Sword", "Staff"],
-    },
-    "Wyvern Rider": {
-      weapons: ["Lance"],
-      promo: "Wyvern Lord",
-    },
-    "Wyvern Lord": {
-      weapons: ["Lance", "Axe"],
-    },
-    Mage: {
-      weapons: ["Fire", "Thunder", "Wind"],
-      promo: "Sage",
-    },
-    Sage: {
-      weapons: ["Fire", "Thunder", "Wind", "Staff", "Knife"],
-    },
-    Priest: {
-      weapons: ["Staff"],
-      promo: "Bishop",
-    },
-    Bishop: {
-      weapons: ["Staff"],
-    },
-    Cleric: {
-      weapons: ["Staff"],
-      promo: "Valkyrie",
-    },
-    Valkyrie: {
-      weapons: ["Sword", "Staff"],
-    },
-    Thief: {
-      weapons: ["Knife"],
-    },
-    "Thief (Volke)": {
-      weapons: ["Knife"],
-      promo: "Assassin",
-    },
-    Assassin: {
-      weapons: ["Knife"],
-    },
-    Bandit: {
-      weapons: ["Axe"],
-      promo: "Berserker",
-    },
-    Berserker: {
-      weapons: ["Axe"],
-    },
-    Lion: {
-      weapons: [],
-    },
-    Tiger: {
-      weapons: [],
-    },
-    "Red Dragon": {
-      weapons: [],
-    },
-    Dragon: {
-      weapons: [],
-    },
-    Cat: {
-      weapons: [],
-    },
-    Heron: {
-      weapons: [],
-    },
-    Hawk: {
-      weapons: [],
-    },
-    Raven: {
-      weapons: [],
-    },
-  },
+  classes,
   free: ["Ike"],
   flags: {},
 };
@@ -319,7 +314,7 @@ export const fe9: Game<PathOfRadianceGame> = {
 export const fe10: Game<UnsupportedGame> = {
   short: "fe10",
   defaultPicks: 0,
-  free: ["Micaiah", "Ike"],
+  free: [],
   disabled: "Need to figure out how these routes work",
   characters: {
     // "Aran",
