@@ -1,5 +1,8 @@
-export const fe1 = {
+import { Game } from "./data.types";
+
+export const fe1: Game = {
   short: "fe1",
+  defaultPicks: 14,
   characters: {
     Abel: {
       class: "Cavalier",
@@ -145,7 +148,6 @@ export const fe1 = {
   classes: {
     Lord: {
       weapons: ["Sword"],
-      promo: null,
     },
     Mercenary: {
       weapons: ["Sword"],
@@ -153,23 +155,18 @@ export const fe1 = {
     },
     Hero: {
       weapons: ["Sword"],
-      promo: null,
     },
     Thief: {
       weapons: ["Sword"],
-      promo: null,
     },
     Commando: {
       weapons: ["Sword"],
-      promo: null,
     },
     Fighter: {
       weapons: ["Axe"],
-      promo: null,
     },
     Pirate: {
       weapons: ["Axe"],
-      promo: null,
     },
     Archer: {
       weapons: ["Bow"],
@@ -177,7 +174,6 @@ export const fe1 = {
     },
     Sniper: {
       weapons: ["Bow"],
-      promo: null,
     },
     Hunter: {
       weapons: ["Bow"],
@@ -185,7 +181,6 @@ export const fe1 = {
     },
     "Bow Knight": {
       weapons: ["Bow"],
-      promo: null,
     },
     Cavalier: {
       weapons: ["Sword", "Lance"],
@@ -193,15 +188,12 @@ export const fe1 = {
     },
     Paladin: {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     Knight: {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     General: {
       weapons: ["Sword"],
-      promo: null,
     },
     "Pegasus Knight": {
       weapons: ["Sword", "Lance"],
@@ -209,11 +201,9 @@ export const fe1 = {
     },
     Dracoknight: {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     Shooter: {
       weapons: ["Firearm"],
-      promo: null,
     },
     Mage: {
       weapons: ["Magic"],
@@ -225,84 +215,87 @@ export const fe1 = {
     },
     Bishop: {
       weapons: ["Magic", "Staff"],
-      promo: null,
     },
     Manakete: {
       weapons: ["Dragonstone"],
-      promo: null,
     },
   },
   free: ["Marth"],
   flags: {},
-  defaultPicks: 14,
 };
 
-export const fe2 = {
+export const fe2: Game = {
   short: "fe2",
+  defaultPicks: 0,
   disabled: "Use the Shadows of Valentia pickers instead",
   free: ["Alm", "Celica"],
-  characters: [],
+  characters: {},
+  classes: {},
   flags: {},
 };
 
-export const fe3 = {
+export const fe3: Game = {
   short: "fe3",
+  defaultPicks: 0,
   disabled: "I'll get around to this eventually",
-  characters: [
-    "Marth",
-    "Abel",
-    "Arran",
-    "Astria",
-    "Bantu",
-    "Cecil",
-    "Xane",
-    "Tiki",
-    "Draug",
-    "Ellerean",
-    "Elice",
-    "Est",
-    "Feena",
-    "Jeorge",
-    "Gordon",
-    "Julian",
-    "Cain",
-    "Castor",
-    "Catria",
-    "Linde",
-    "Luke",
-    "Matthis",
-    "Malliesia",
-    "Maria",
-    "Merric",
-    "Midia",
-    "Minerva",
-    "Nabarl",
-    "Nina",
-    "Ogma",
-    "Palla",
-    "Lena",
-    "Rickard",
-    "Rody",
-    "Roshea",
-    "Ryan",
-    "Samson",
-    "Samto",
-    "Sheeda",
-    "Sheema",
-    "Sirius",
-    "Warren",
-    "Wendel",
-    "Yubello",
-    "Yumina",
-  ],
+  characters: {
+    // "Marth",
+    // "Abel",
+    // "Arran",
+    // "Astria",
+    // "Bantu",
+    // "Cecil",
+    // "Xane",
+    // "Tiki",
+    // "Draug",
+    // "Ellerean",
+    // "Elice",
+    // "Est",
+    // "Feena",
+    // "Jeorge",
+    // "Gordon",
+    // "Julian",
+    // "Cain",
+    // "Castor",
+    // "Catria",
+    // "Linde",
+    // "Luke",
+    // "Matthis",
+    // "Malliesia",
+    // "Maria",
+    // "Merric",
+    // "Midia",
+    // "Minerva",
+    // "Nabarl",
+    // "Nina",
+    // "Ogma",
+    // "Palla",
+    // "Lena",
+    // "Rickard",
+    // "Rody",
+    // "Roshea",
+    // "Ryan",
+    // "Samson",
+    // "Samto",
+    // "Sheeda",
+    // "Sheema",
+    // "Sirius",
+    // "Warren",
+    // "Wendel",
+    // "Yubello",
+    // "Yumina",
+  },
+  classes: {},
   free: ["Marth"],
   flags: {},
 };
 
-export const fe4 = {
+export const fe4: Game = {
   short: "fe4",
+  defaultPicks: 0,
   disabled: "You can use everyone anyway",
-  characters: [],
+  characters: {},
+  classes: {},
   free: ["Sigurd", "Seliph"],
   flags: {
     pairings: true,
@@ -310,7 +303,7 @@ export const fe4 = {
   },
 };
 
-export const fe5 = {
+export const fe5: Game = {
   short: "fe5",
   characters: {
     Leaf: { class: "Lord" },
@@ -383,38 +376,38 @@ export const fe5 = {
   },
   classes: {
     Lord: { weapons: ["Sword"], promo: "Prince" },
-    Prince: { weapons: ["Sword"], promo: null },
+    Prince: { weapons: ["Sword"], },
     Swordfighter: { weapons: ["Sword"], promo: "Swordmaster" },
     "Swordfighter (Machua)": { weapons: ["Sword"], promo: "Mercenary" },
-    Swordmaster: { weapons: ["Sword"], promo: null },
+    Swordmaster: { weapons: ["Sword"], },
     Thief: { weapons: ["Sword"], promo: "Thief Fighter" },
     "Thief (Lara)": { weapons: ["Sword"], promo: "Dancer" },
-    "Thief Fighter": { weapons: ["Sword"], promo: null },
-    Dancer: { weapons: ["Sword"], promo: null },
-    Soldier: { weapons: ["Lance"], promo: null },
+    "Thief Fighter": { weapons: ["Sword"], },
+    Dancer: { weapons: ["Sword"], },
+    Soldier: { weapons: ["Lance"], },
     "Axe Fighter": { weapons: ["Axe"], promo: "Mercenary" },
-    Mercenary: { weapons: ["Sword", "Axe"], promo: null },
+    Mercenary: { weapons: ["Sword", "Axe"], },
     "Mountain Thief": { weapons: ["Axe"], promo: "Warrior" },
-    Warrior: { weapons: ["Axe", "Bow"], promo: null },
-    Pirate: { weapons: ["Axe"], promo: null },
-    Berserker: { weapons: ["Axe"], promo: null },
+    Warrior: { weapons: ["Axe", "Bow"], },
+    Pirate: { weapons: ["Axe"], },
+    Berserker: { weapons: ["Axe"], },
     "Bow Fighter": { weapons: ["Bow"], promo: "Sniper" },
-    Sniper: { weapons: ["Bow"], promo: null },
+    Sniper: { weapons: ["Bow"], },
     "Social Knight": { weapons: ["Sword", "Lance"], promo: "Paladin (M)" },
-    "Paladin (M)": { weapons: ["Sword", "Lance"], promo: null },
+    "Paladin (M)": { weapons: ["Sword", "Lance"], },
     Troubadour: { weapons: ["Sword", "Staff"], promo: "Paladin (F)" },
-    "Paladin (F)": { weapons: ["Sword", "Staff"], promo: null },
+    "Paladin (F)": { weapons: ["Sword", "Staff"], },
     "Free Knight": { weapons: ["Sword"], promo: "Forrest Knight" },
-    "Forrest Knight": { weapons: ["Sword"], promo: null },
+    "Forrest Knight": { weapons: ["Sword"], },
     "Lance Knight": { weapons: ["Lance"], promo: "Duke Knight" },
-    "Duke Knight": { weapons: ["Lance"], promo: null },
+    "Duke Knight": { weapons: ["Lance"], },
     "Axe Knight": { weapons: ["Axe"], promo: "Great Knight" },
-    "Great Knight": { weapons: ["Axe"], promo: null },
+    "Great Knight": { weapons: ["Axe"], },
     "Arch Knight": { weapons: ["Bow"], promo: "Bow Knight" },
-    "Bow Knight": { weapons: ["Bow"], promo: null },
+    "Bow Knight": { weapons: ["Bow"], },
     "Axe Armour": { weapons: ["Axe"], promo: "General" },
-    "Bow Armour": { weapons: ["Bow"], promo: null },
-    General: { weapons: ["Sword", "Lance", "Axe", "Bow"], promo: null },
+    "Bow Armour": { weapons: ["Bow"], },
+    General: { weapons: ["Sword", "Lance", "Axe", "Bow"], },
     Baron: {
       weapons: [
         "Sword",
@@ -426,26 +419,24 @@ export const fe5 = {
         "Thunder",
         "Wind",
       ],
-      promo: null,
     },
     "Pegasus Rider": {
       weapons: ["Lance"],
       promo: "Pegasus Knight",
     },
-    "Pegasus Knight": { weapons: ["Lance"], promo: null },
+    "Pegasus Knight": { weapons: ["Lance"], },
     "Dragon Rider": {
       weapons: ["Lance"],
       promo: "Dragon Knight",
     },
-    "Dragon Knight": { weapons: ["Lance"], promo: null },
-    "Long Arch": { weapons: ["Bow"], promo: null },
-    "Iron Arch": { weapons: ["Bow"], promo: null },
-    "Poison Arch": { weapons: ["Bow"], promo: null },
+    "Dragon Knight": { weapons: ["Lance"], },
+    "Long Arch": { weapons: ["Bow"], },
+    "Iron Arch": { weapons: ["Bow"], },
+    "Poison Arch": { weapons: ["Bow"], },
     Mage: { weapons: ["Fire", "Thunder", "Wind"], promo: "Mage Knight" },
     "Mage (Asvel)": { weapons: ["Fire", "Thunder", "Wind"], promo: "Sage" },
     "Mage Knight": {
       weapons: ["Sword", "Fire", "Thunder", "Wind"],
-      promo: null,
     },
     Bard: { weapons: ["Fire", "Thunder", "Wind", "Light"], promo: "Sage" },
     Sister: {
@@ -454,17 +445,15 @@ export const fe5 = {
     },
     Sage: {
       weapons: ["Staff", "Fire", "Thunder", "Wind", "Light"],
-      promo: null,
     },
     Priest: { weapons: ["Staff"], promo: "High Priest" },
-    "High Priest": { weapons: ["Staff", "Light"], promo: null },
+    "High Priest": { weapons: ["Staff", "Light"], },
     "Loputo Mage": {
       weapons: ["Staff", "Fire", "Thunder", "Wind", "Dark"],
       promo: "Dark Mage",
     },
     "Dark Mage": {
       weapons: ["Staff", "Fire", "Thunder", "Wind", "Dark"],
-      promo: null,
     },
   },
   free: ["Leaf"],

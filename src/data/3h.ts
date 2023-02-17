@@ -9,6 +9,8 @@
  * promote directly into their available advanced/master classe
  */
 
+import { Game } from "./data.types";
+
 const femaleLockedClasses = {
   "Falcon Knight": {
     stat: { STR: true, MAG: false },
@@ -120,9 +122,11 @@ const classes = {
     weapons: ["Sword", "Brawling", "Faith"],
   },
   Female: {
+    weapons: [],
     promo: [...Object.keys(femaleLockedClasses), ...Object.keys(sharedClasses)],
   },
   Male: {
+    weapons: [],
     promo: [...Object.keys(maleLockedClasses), ...Object.keys(sharedClasses)],
   },
   ...femaleLockedClasses,
@@ -503,7 +507,7 @@ const fe16base = {
   imgExtension: "jpg",
 };
 
-export const fe16eagles = {
+export const fe16eagles: Game = {
   ...fe16base,
   free: ["Edelgard"],
   faction: "eagles",
@@ -515,7 +519,7 @@ export const fe16eagles = {
   defaultPicks: 10,
 };
 
-export const fe16lions = {
+export const fe16lions: Game = {
   ...fe16base,
   free: ["Dimitri"],
   faction: "lions",
@@ -526,7 +530,7 @@ export const fe16lions = {
   },
 };
 
-export const fe16deer = {
+export const fe16deer: Game = {
   ...fe16base,
   free: ["Claude"],
   faction: "deer",
@@ -537,7 +541,7 @@ export const fe16deer = {
   },
 };
 
-export const fe16church = {
+export const fe16church: Game = {
   ...fe16base,
   free: [],
   faction: "eagles",

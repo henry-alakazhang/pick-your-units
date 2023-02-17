@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Form } from "react-bootstrap";
 
-import { gameList } from "../Game";
+import { gameList } from "../Games";
 
 export class GamePicker extends Component {
   render() {

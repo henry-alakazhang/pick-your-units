@@ -5,8 +5,9 @@ import { fe11, fe12 } from "./data/ds";
 import { fe13 } from "./data/awakening";
 import { fe14br, fe14cq, fe14rev } from "./data/fates";
 import { fe15alm, fe15celica } from "./data/valentia";
-import { fe16church, fe16deer, fe16lions, fe16eagles } from "./data/3h.js";
+import { fe16church, fe16deer, fe16lions, fe16eagles } from "./data/3h";
 import { fe17 } from "./data/engage";
+import { Game } from "./data/data.types";
 
 /**
  * TS interface for personal reference
@@ -67,7 +68,7 @@ export const gameList = [
   "Engage",
 ];
 
-export const Game = {
+export const Games: { [fullName: string]: Game } = {
   "Fire Emblem": fe1,
   Gaiden: fe2,
   "Mystery of the Emblem": fe3,

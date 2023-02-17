@@ -1,7 +1,11 @@
-export const fe11 = {
+import { Game } from './data.types';
+
+export const fe11: Game = {
   short: "fe11",
   disabled: "Need to implement class changes",
-  characters: [],
+  defaultPicks: 0,
+  characters: {},
+  classes: {},
   free: ["Marth"],
   flags: {
     classes: true,
@@ -9,10 +13,12 @@ export const fe11 = {
   },
 };
 
-export const fe12 = {
+export const fe12: Game = {
   short: "fe12",
   disabled: "Need to implement class changes",
-  characters: [],
+  defaultPicks: 0,
+  characters: {},
+  classes: {},
   free: ["Marth", "Kris"],
   flags: {
     classes: true,

@@ -1,5 +1,8 @@
-export const fe9 = {
+import { Game } from "./data.types";
+
+export const fe9: Game = {
   short: "fe9",
+  defaultPicks: 13,
   characters: {
     Astrid: {
       class: "Bow Knight",
@@ -132,11 +135,9 @@ export const fe9 = {
     },
     Lord: {
       weapons: ["Sword"],
-      promo: null,
     },
     Hero: {
       weapons: ["Sword", "Axe"],
-      promo: null,
     },
     Myrmidon: {
       weapons: ["Sword"],
@@ -144,7 +145,6 @@ export const fe9 = {
     },
     Swordmaster: {
       weapons: ["Sword"],
-      promo: null,
     },
     Soldier: {
       weapons: ["Lance"],
@@ -152,7 +152,6 @@ export const fe9 = {
     },
     Halberdier: {
       weapons: ["Lance"],
-      promo: null,
     },
     Fighter: {
       weapons: ["Axe"],
@@ -160,7 +159,6 @@ export const fe9 = {
     },
     Warrior: {
       weapons: ["Axe", "Bow"],
-      promo: null,
     },
     Archer: {
       weapons: ["Bow"],
@@ -168,7 +166,6 @@ export const fe9 = {
     },
     Sniper: {
       weapons: ["Bow"],
-      promo: null,
     },
     Knight: {
       weapons: ["Lance"],
@@ -176,7 +173,6 @@ export const fe9 = {
     },
     General: {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     "Sword Knight": {
       weapons: ["Sword"],
@@ -212,27 +208,21 @@ export const fe9 = {
     },
     "Paladin (Sword/Lance)": {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     "Paladin (Sword/Axe)": {
       weapons: ["Sword", "Axe"],
-      promo: null,
     },
     "Paladin (Sword/Bow)": {
       weapons: ["Sword", "Bow"],
-      promo: null,
     },
     "Paladin (Lance/Axe)": {
       weapons: ["Lance", "Axe"],
-      promo: null,
     },
     "Paladin (Lance/Bow)": {
       weapons: ["Lance", "Bow"],
-      promo: null,
     },
     "Paladin (Axe/Bow)": {
       weapons: ["Axe", "Bow"],
-      promo: null,
     },
     "Pegasus Knight": {
       weapons: ["Lance"],
@@ -240,11 +230,9 @@ export const fe9 = {
     },
     "Falcon Knight": {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     "Princess Crimea": {
       weapons: ["Sword", "Staff"],
-      promo: null,
     },
     "Wyvern Rider": {
       weapons: ["Lance"],
@@ -252,7 +240,6 @@ export const fe9 = {
     },
     "Wyvern Lord": {
       weapons: ["Lance", "Axe"],
-      promo: null,
     },
     Mage: {
       weapons: ["Fire", "Thunder", "Wind"],
@@ -260,7 +247,6 @@ export const fe9 = {
     },
     Sage: {
       weapons: ["Fire", "Thunder", "Wind", "Staff", "Knife"],
-      promo: null,
     },
     Priest: {
       weapons: ["Staff"],
@@ -268,7 +254,6 @@ export const fe9 = {
     },
     Bishop: {
       weapons: ["Staff"],
-      promo: null,
     },
     Cleric: {
       weapons: ["Staff"],
@@ -276,11 +261,9 @@ export const fe9 = {
     },
     Valkyrie: {
       weapons: ["Sword", "Staff"],
-      promo: null,
     },
     Thief: {
       weapons: ["Knife"],
-      promo: null,
     },
     "Thief (Volke)": {
       weapons: ["Knife"],
@@ -288,7 +271,6 @@ export const fe9 = {
     },
     Assassin: {
       weapons: ["Knife"],
-      promo: null,
     },
     Bandit: {
       weapons: ["Axe"],
@@ -296,118 +278,112 @@ export const fe9 = {
     },
     Berserker: {
       weapons: ["Axe"],
-      promo: null,
     },
     Lion: {
       weapons: [],
-      promo: null,
     },
     Tiger: {
       weapons: [],
-      promo: null,
     },
     "Red Dragon": {
       weapons: [],
-      promo: null,
     },
     Dragon: {
       weapons: [],
-      promo: null,
     },
     Cat: {
       weapons: [],
-      promo: null,
     },
     Heron: {
       weapons: [],
-      promo: null,
     },
     Hawk: {
       weapons: [],
-      promo: null,
     },
     Raven: {
       weapons: [],
-      promo: null,
     },
   },
   free: ["Ike"],
   flags: {},
 };
 
-export const fe10 = {
+export const fe10: Game = {
   short: "fe10",
+  defaultPicks: 0,
+  free: ["Micaiah", "Ike"],
   disabled: "Need to figure out how these routes work",
-  characters: [
-    "Aran",
-    "Astrid",
-    "Bastian",
-    "Boyd",
-    "Brom",
-    "Caineghis",
-    "Calill",
-    "Danved",
-    "Edward",
-    "Elincia",
-    "Ena",
-    "Fiona",
-    "Gareth",
-    "Gatrie",
-    "Geoffrey",
-    "Giffca",
-    "Haar",
-    "Heather",
-    "Ike",
-    "Ilyana",
-    "Janaff",
-    "Jill",
-    "Kieran",
-    "Kurthnaga",
-    "Kyza",
-    "Laura",
-    "Leanne",
-    "Leonardo",
-    "Lethe",
-    "Lucia",
-    "Lyre",
-    "Makalov",
-    "Marcia",
-    "Meg",
-    "Mia",
-    "Micaiah",
-    "Mist",
-    "Mordecai",
-    "Muarim",
-    "Naesala",
-    "Nailah",
-    "Nasir",
-    "Nealuchi",
-    "Nephenee",
-    "Nolan",
-    "Oscar",
-    "Pelleas",
-    "Rafiel",
-    "Ranulf",
-    "Reyson",
-    "Rhys",
-    "Rolf",
-    "Sanaki",
-    "Shinon",
-    "Sigrun",
-    "Skrimir",
-    "Soren",
-    "Sothe",
-    "Stefan",
-    "Tanith",
-    "Tauroneo",
-    "Tibarn",
-    "Titania",
-    "Tormod",
-    "Ulki",
-    "Vika",
-    "Volke",
-    "Volug",
-    "Zihark",
-  ],
+  characters: {
+    // "Aran",
+    // "Astrid",
+    // "Bastian",
+    // "Boyd",
+    // "Brom",
+    // "Caineghis",
+    // "Calill",
+    // "Danved",
+    // "Edward",
+    // "Elincia",
+    // "Ena",
+    // "Fiona",
+    // "Gareth",
+    // "Gatrie",
+    // "Geoffrey",
+    // "Giffca",
+    // "Haar",
+    // "Heather",
+    // "Ike",
+    // "Ilyana",
+    // "Janaff",
+    // "Jill",
+    // "Kieran",
+    // "Kurthnaga",
+    // "Kyza",
+    // "Laura",
+    // "Leanne",
+    // "Leonardo",
+    // "Lethe",
+    // "Lucia",
+    // "Lyre",
+    // "Makalov",
+    // "Marcia",
+    // "Meg",
+    // "Mia",
+    // "Micaiah",
+    // "Mist",
+    // "Mordecai",
+    // "Muarim",
+    // "Naesala",
+    // "Nailah",
+    // "Nasir",
+    // "Nealuchi",
+    // "Nephenee",
+    // "Nolan",
+    // "Oscar",
+    // "Pelleas",
+    // "Rafiel",
+    // "Ranulf",
+    // "Reyson",
+    // "Rhys",
+    // "Rolf",
+    // "Sanaki",
+    // "Shinon",
+    // "Sigrun",
+    // "Skrimir",
+    // "Soren",
+    // "Sothe",
+    // "Stefan",
+    // "Tanith",
+    // "Tauroneo",
+    // "Tibarn",
+    // "Titania",
+    // "Tormod",
+    // "Ulki",
+    // "Vika",
+    // "Volke",
+    // "Volug",
+    // "Zihark",
+  },
+  classes: {},
   flags: {},
 };

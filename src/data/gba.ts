@@ -1,5 +1,8 @@
-export const fe6 = {
+import { Game } from "./data.types";
+
+export const fe6: Game = {
   short: "fe6",
+  defaultPicks: 16,
   routes: [["A", "B"], ["Sacae", "Ilia"]],
   characters: {
     Allen: {
@@ -169,7 +172,6 @@ export const fe6 = {
     },
     "Master Lord": {
       weapons: ["Sword"],
-      promo: null,
     },
     Mercenary: {
       weapons: ["Sword"],
@@ -177,7 +179,6 @@ export const fe6 = {
     },
     Hero: {
       weapons: ["Sword", "Axe"],
-      promo: null,
     },
     Myrmidon: {
       weapons: ["Sword"],
@@ -185,11 +186,9 @@ export const fe6 = {
     },
     Swordmaster: {
       weapons: ["Sword"],
-      promo: null,
     },
     Thief: {
       weapons: ["Sword"],
-      promo: null,
     },
     Knight: {
       weapons: ["Lance"],
@@ -197,11 +196,9 @@ export const fe6 = {
     },
     General: {
       weapons: ["Lance", "Axe"],
-      promo: null,
     },
     Soldier: {
       weapons: ["Lance"],
-      promo: null,
     },
     Fighter: {
       weapons: ["Axe"],
@@ -209,7 +206,6 @@ export const fe6 = {
     },
     Warrior: {
       weapons: ["Axe", "Bow"],
-      promo: null,
     },
     Bandit: {
       weapons: ["Axe"],
@@ -221,7 +217,6 @@ export const fe6 = {
     },
     Berserker: {
       weapons: ["Axe"],
-      promo: null,
     },
     Archer: {
       weapons: ["Bow"],
@@ -229,7 +224,6 @@ export const fe6 = {
     },
     Sniper: {
       weapons: ["Bow"],
-      promo: null,
     },
     Nomad: {
       weapons: ["Bow"],
@@ -237,7 +231,6 @@ export const fe6 = {
     },
     "Nomad Trooper": {
       weapons: ["Sword", "Bow"],
-      promo: null,
     },
     Cavalier: {
       weapons: ["Sword", "Lance"],
@@ -245,7 +238,6 @@ export const fe6 = {
     },
     Paladin: {
       weapons: ["Sword", "Lance", "Axe"],
-      promo: null,
     },
     "Pegasus Knight": {
       weapons: ["Lance"],
@@ -253,7 +245,6 @@ export const fe6 = {
     },
     "Falcon Knight": {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     "Wyvern Rider": {
       weapons: ["Lance"],
@@ -261,7 +252,6 @@ export const fe6 = {
     },
     "Wyvern Lord": {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     Priest: {
       weapons: ["Staff"],
@@ -269,7 +259,6 @@ export const fe6 = {
     },
     Bishop: {
       weapons: ["Staff", "Light"],
-      promo: null,
     },
     Troubadour: {
       weapons: ["Staff"],
@@ -277,7 +266,6 @@ export const fe6 = {
     },
     Valkyrie: {
       weapons: ["Staff", "Anima"],
-      promo: null,
     },
     Mage: {
       weapons: ["Anima"],
@@ -285,7 +273,6 @@ export const fe6 = {
     },
     Sage: {
       weapons: ["Staff", "Anima"],
-      promo: null,
     },
     Shaman: {
       weapons: ["Dark"],
@@ -293,27 +280,24 @@ export const fe6 = {
     },
     Druid: {
       weapons: ["Staff", "Dark"],
-      promo: null,
     },
     Bard: {
       weapons: [],
-      promo: null,
     },
     Dancer: {
       weapons: [],
-      promo: null,
     },
     Manakete: {
       weapons: [],
-      promo: null,
     },
   },
   free: ["Roy"],
   flags: {},
 };
 
-export const fe7 = {
+export const fe7: Game = {
   short: "fe7",
+  defaultPicks: 15,
   characters: {
     Bartre: {
       class: "Fighter",
@@ -453,7 +437,6 @@ export const fe7 = {
     },
     "Blade Lord": {
       weapons: ["Sword", "Bow"],
-      promo: null,
     },
     "Lord (Eliwood)": {
       weapons: ["Sword"],
@@ -461,7 +444,6 @@ export const fe7 = {
     },
     "Knight Lord": {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     "Lord (Hector)": {
       weapons: ["Axe"],
@@ -469,7 +451,6 @@ export const fe7 = {
     },
     "Great Lord": {
       weapons: ["Sword", "Axe"],
-      promo: null,
     },
     Mercenary: {
       weapons: ["Sword"],
@@ -477,7 +458,6 @@ export const fe7 = {
     },
     Hero: {
       weapons: ["Sword", "Axe"],
-      promo: null,
     },
     Myrmidon: {
       weapons: ["Sword"],
@@ -485,7 +465,6 @@ export const fe7 = {
     },
     Swordmaster: {
       weapons: ["Sword"],
-      promo: null,
     },
     Thief: {
       weapons: ["Sword"],
@@ -493,7 +472,6 @@ export const fe7 = {
     },
     Assassin: {
       weapons: ["Sword"],
-      promo: null,
     },
     Knight: {
       weapons: ["Lance"],
@@ -501,11 +479,9 @@ export const fe7 = {
     },
     General: {
       weapons: ["Lance", "Axe"],
-      promo: null,
     },
     Soldier: {
       weapons: ["Lance"],
-      promo: null,
     },
     Fighter: {
       weapons: ["Axe"],
@@ -513,7 +489,6 @@ export const fe7 = {
     },
     Warrior: {
       weapons: ["Axe", "Bow"],
-      promo: null,
     },
     Bandit: {
       weapons: ["Axe"],
@@ -525,11 +500,9 @@ export const fe7 = {
     },
     Corsair: {
       weapons: ["Axe"],
-      promo: null,
     },
     Berserker: {
       weapons: ["Axe"],
-      promo: null,
     },
     Archer: {
       weapons: ["Bow"],
@@ -537,7 +510,6 @@ export const fe7 = {
     },
     Sniper: {
       weapons: ["Bow"],
-      promo: null,
     },
     Nomad: {
       weapons: ["Bow"],
@@ -545,7 +517,6 @@ export const fe7 = {
     },
     "Nomad Trooper": {
       weapons: ["Sword", "Bow"],
-      promo: null,
     },
     Cavalier: {
       weapons: ["Sword", "Lance"],
@@ -553,7 +524,6 @@ export const fe7 = {
     },
     Paladin: {
       weapons: ["Sword", "Lance", "Axe"],
-      promo: null,
     },
     "Pegasus Knight": {
       weapons: ["Lance"],
@@ -561,7 +531,6 @@ export const fe7 = {
     },
     "Falcon Knight": {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     "Wyvern Rider": {
       weapons: ["Lance"],
@@ -569,7 +538,6 @@ export const fe7 = {
     },
     "Wyvern Lord": {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     Monk: {
       weapons: ["Light"],
@@ -581,7 +549,6 @@ export const fe7 = {
     },
     Bishop: {
       weapons: ["Staff", "Light"],
-      promo: null,
     },
     Troubadour: {
       weapons: ["Staff"],
@@ -589,7 +556,6 @@ export const fe7 = {
     },
     Valkyrie: {
       weapons: ["Staff", "Anima"],
-      promo: null,
     },
     Mage: {
       weapons: ["Anima"],
@@ -597,11 +563,9 @@ export const fe7 = {
     },
     Sage: {
       weapons: ["Staff", "Anima"],
-      promo: null,
     },
     ArchSage: {
       weapons: ["Staff", "Anima", "Light", "Dark"],
-      promo: null,
     },
     Shaman: {
       weapons: ["Dark"],
@@ -609,23 +573,21 @@ export const fe7 = {
     },
     Druid: {
       weapons: ["Staff", "Dark"],
-      promo: null,
     },
     "Dark Druid": {
       weapons: ["Staff", "Anima", "Light", "Dark"],
-      promo: null,
     },
     Dancer: {
       weapons: [],
-      promo: null,
     },
   },
   free: ["Eliwood"],
   flags: {},
 };
 
-export const fe8 = {
+export const fe8: Game = {
   short: "fe8",
+  defaultPicks: 12,
   routes: [["Eirika", "Ephraim"]],
   characters: {
     Amelia: {
@@ -735,7 +697,6 @@ export const fe8 = {
     },
     "Great Lord (Eirika)": {
       weapons: ["Sword"],
-      promo: null,
     },
     "Lord (Ephraim)": {
       weapons: ["Lance"],
@@ -743,7 +704,6 @@ export const fe8 = {
     },
     "Great Lord (Ephraim)": {
       weapons: ["Lance"],
-      promo: null,
     },
     Mercenary: {
       weapons: ["Sword"],
@@ -751,7 +711,6 @@ export const fe8 = {
     },
     Hero: {
       weapons: ["Sword", "Axe"],
-      promo: null,
     },
     Myrmidon: {
       weapons: ["Sword"],
@@ -759,7 +718,6 @@ export const fe8 = {
     },
     Swordmaster: {
       weapons: ["Sword"],
-      promo: null,
     },
     Thief: {
       weapons: ["Sword"],
@@ -767,11 +725,9 @@ export const fe8 = {
     },
     Assassin: {
       weapons: ["Sword"],
-      promo: null,
     },
     Rogue: {
       weapons: ["Sword"],
-      promo: null,
     },
     Knight: {
       weapons: ["Lance"],
@@ -779,11 +735,9 @@ export const fe8 = {
     },
     General: {
       weapons: ["Lance", "Axe", "Sword"],
-      promo: null,
     },
     Soldier: {
       weapons: ["Lance"],
-      promo: null,
     },
     Fighter: {
       weapons: ["Axe"],
@@ -791,7 +745,6 @@ export const fe8 = {
     },
     Warrior: {
       weapons: ["Axe", "Bow"],
-      promo: null,
     },
     Bandit: {
       weapons: ["Axe"],
@@ -803,7 +756,6 @@ export const fe8 = {
     },
     Berserker: {
       weapons: ["Axe"],
-      promo: null,
     },
     Archer: {
       weapons: ["Bow"],
@@ -811,11 +763,9 @@ export const fe8 = {
     },
     Sniper: {
       weapons: ["Bow"],
-      promo: null,
     },
     "Bow Knight": {
       weapons: ["Sword", "Bow"],
-      promo: null,
     },
     Cavalier: {
       weapons: ["Sword", "Lance"],
@@ -823,11 +773,9 @@ export const fe8 = {
     },
     Paladin: {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     "Great Knight": {
       weapons: ["Sword", "Lance", "Axe"],
-      promo: null,
     },
     "Pegasus Knight": {
       weapons: ["Lance"],
@@ -835,7 +783,6 @@ export const fe8 = {
     },
     "Falcon Knight": {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     "Wyvern Rider": {
       weapons: ["Lance"],
@@ -843,11 +790,9 @@ export const fe8 = {
     },
     "Wyvern Lord": {
       weapons: ["Sword", "Lance"],
-      promo: null,
     },
     "Wyvern Knight": {
       weapons: ["Lance"],
-      promo: null,
     },
     Monk: {
       weapons: ["Light"],
@@ -863,7 +808,6 @@ export const fe8 = {
     },
     Bishop: {
       weapons: ["Staff", "Light"],
-      promo: null,
     },
     Troubadour: {
       weapons: ["Staff"],
@@ -871,7 +815,6 @@ export const fe8 = {
     },
     Valkyrie: {
       weapons: ["Staff", "Light"],
-      promo: null,
     },
     Mage: {
       weapons: ["Anima"],
@@ -879,11 +822,9 @@ export const fe8 = {
     },
     "Mage Knight": {
       weapons: ["Staff", "Anima"],
-      promo: null,
     },
     Sage: {
       weapons: ["Staff", "Anima", "Light"],
-      promo: null,
     },
     Shaman: {
       weapons: ["Dark"],
@@ -891,15 +832,12 @@ export const fe8 = {
     },
     Summoner: {
       weapons: ["Staff", "Dark"],
-      promo: null,
     },
     Druid: {
       weapons: ["Staff", "Anima", "Dark"],
-      promo: null,
     },
     Dancer: {
       weapons: [],
-      promo: null,
     },
     Journeyman: {
       weapons: ["Axe"],
@@ -915,7 +853,6 @@ export const fe8 = {
     },
     Manakete: {
       weapons: [],
-      promo: null,
     },
   },
   free: ["Eirika", "Ephraim"],

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Form } from "react-bootstrap";
 
-import { Game } from "../Game";
+import { Games } from "../Games";
 
 export class GameOptions extends Component {
   render() {
@@ -56,7 +56,7 @@ export class GameOptions extends Component {
           <h3>Options</h3>
           <Form>
             <Form.Group>
-              {Object.keys(Game[this.props.game].flags).map(flag => (
+              {Object.keys(Games[this.props.game].flags).map(flag => (
                 <Form.Check
                   disabled={optionStuff[flag].disabled}
                   checked={this.props.options[flag]}
@@ -80,11 +80,11 @@ export class GameOptions extends Component {
               />
             </Form.Group>
           </Form>
-          {Game[this.props.game].trollCriteria && (
+          {Games[this.props.game].trollCriteria && (
             <div>
               * Criteria for a troll pick:
               <ul>
-                {Game[this.props.game].trollCriteria.map(criteria => (
+                {Games[this.props.game].trollCriteria.map(criteria => (
                   <li>{criteria}</li>
                 ))}
               </ul>
@@ -99,7 +99,7 @@ export class GameOptions extends Component {
                   type="number"
                   value={this.props.numPicks}
                   min={2}
-                  max={Object.keys(Game[this.props.game].characters).length}
+                  max={Object.keys(Games[this.props.game].characters).length}
                   onChange={this.props.handleNumChange}
                 />
               </Form.Group>

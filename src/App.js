@@ -6,7 +6,7 @@ import { GameOptions } from "./components/GameOptions";
 import { CharacterList } from "./components/CharacterList";
 
 import { Picker } from "./Picker";
-import { gameList, Game } from "./Game";
+import { gameList, Games } from "./Games";
 import "./App.css";
 
 export class App extends Component {
@@ -15,7 +15,7 @@ export class App extends Component {
 
     this.state = {
       game: gameList[0],
-      numPicks: Game[gameList[0]].defaultPicks || 12,
+      numPicks: Games[gameList[0]].defaultPicks || 12,
       options: {
         pairings: false,
         friends: false,
@@ -41,7 +41,7 @@ export class App extends Component {
     this.setState({
       game: e.target.value,
       // default to 12 for games without a setting
-      numPicks: Game[e.target.value].defaultPicks || 12,
+      numPicks: Games[e.target.value].defaultPicks || 12,
       picks: null,
       options: {
         pairings: false,
@@ -128,17 +128,17 @@ export class App extends Component {
                   />
                 </div>
                 <div style={styles.sidebarSection}>
-                  {Game[this.state.game].disabled && (
+                  {Games[this.state.game].disabled && (
                     <Alert variant="danger">
                       This game is not available yet. Reason cited:
                       <br />
-                      <li>{Game[this.state.game].disabled}</li>
+                      <li>{Games[this.state.game].disabled}</li>
                     </Alert>
                   )}
                   <Button
                     size="large"
                     variant="primary"
-                    disabled={Game[this.state.game].disabled !== undefined}
+                    disabled={Games[this.state.game].disabled !== undefined}
                     onClick={this.handleStart}
                   >
                     Pick My Units!

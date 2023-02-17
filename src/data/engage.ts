@@ -1,3 +1,5 @@
+import { Game } from './data.types';
+
 // like Three Houses, everyone can be every class,
 // so we treat all characters as having the same base class
 // and we let them promote into literally any of the available classes
@@ -5,92 +7,74 @@
 const promotedClasses = {
   Swordmaster: {
     weapons: ["Sword"],
-    promo: null,
     stat: { STR: true, MAG: false },
   },
   "Hero (Any)": {
     weapons: ["Sword", "Axe", "Lance"],
-    promo: null,
     stat: { STR: true, MAG: false },
   },
   Halberdier: {
     weapons: ["Lance"],
-    promo: null,
     stat: { STR: true, MAG: false },
   },
   "Royal Knight": {
     weapons: ["Lance", " Staff"],
-    promo: null,
     stat: { STR: true, MAG: false },
   },
   Berserker: {
     weapons: ["Axe"],
-    promo: null,
     stat: { STR: true, MAG: false },
   },
   Warrior: {
     weapons: ["Axe", "Bow"],
-    promo: null,
     stat: { STR: true, MAG: false },
   },
   Sniper: {
     weapons: ["Bow"],
-    promo: null,
     stat: { STR: true, MAG: false },
   },
   "Bow Knight (Any)": {
     weapons: ["Bow", "Sword", "Lance", "Axe"],
-    promo: null,
     stat: { STR: true, MAG: false },
   },
   "General (Any)": {
     weapons: ["Sword", "Lance", "Axe"],
-    promo: null,
     stat: { STR: true, MAG: false },
   },
   "Great Knight (Any)": {
     weapons: ["Sword", "Lance", "Axe"],
-    promo: null,
     stat: { STR: true, MAG: false },
   },
   "Paladin (Any)": {
     weapons: ["Sword", "Lance", "Axe"],
-    promo: null,
     stat: { STR: true, MAG: false },
   },
   "Wolf Knight (Any)": {
     weapons: ["Knife", "Sword", "Lance", "Axe"],
-    promo: null,
     stat: { STR: true, MAG: false },
   },
   Sage: {
     weapons: ["Tome", "Staff"],
-    promo: null,
     stat: { STR: false, MAG: true },
   },
   "Mage Knight (Any)": {
     weapons: ["Tome", "Sword", "Lance", "Axe"],
-    promo: null,
     stat: { STR: true, MAG: true },
   },
   "Martial Master": {
     weapons: ["Staff", "Arts"],
-    promo: null,
     stat: { STR: true, MAG: true },
   },
   "High Priest": {
     weapons: ["Tome", "Staff", "Arts"],
-    promo: null,
     stat: { STR: false, MAG: true },
   },
   "Griffin Knight (Any)": {
     weapons: ["Staff", "Sword", "Lance", "Axe"],
-    promo: null,
     stat: { STR: true, MAG: false },
   },
   "Wyvern Knight (Any)": {
     weapons: ["Sword", "Lance", "Axe"],
-    promo: null,
     stat: { STR: true, MAG: false },
   },
 };
@@ -105,7 +89,6 @@ const uniqueClasses = {
   "Divine Dragon": {
     weapons: ["Sword", "Arts"],
     stat: { STR: true, MAG: false },
-    promo: null,
   },
   "Fell Child (Base)": {
     weapons: ["Knife", "Tome"],
@@ -115,7 +98,6 @@ const uniqueClasses = {
   "Fell Child": {
     weapons: ["Knife", "Tome"],
     stat: { STR: false, MAG: true },
-    promo: null,
   },
   "Noble (Alfred)": {
     weapons: ["Lance"],
@@ -124,7 +106,6 @@ const uniqueClasses = {
   Avenir: {
     weapons: ["Sword", "Lance"],
     stat: { STR: true, MAG: false },
-    promo: null,
   },
   "Noble (Céline)": {
     weapons: ["Sword", "Tome"],
@@ -133,7 +114,6 @@ const uniqueClasses = {
   Vidame: {
     weapons: ["Sword", "Tome", "Staff"],
     stat: { STR: true, MAG: true },
-    promo: null,
   },
   "Lord (Diamant)": {
     weapons: ["Sword"],
@@ -142,7 +122,6 @@ const uniqueClasses = {
   Successeur: {
     weapons: ["Sword", "Axe"],
     stat: { STR: true, MAG: false },
-    promo: null,
   },
   "Lord (Alcryst)": {
     weapons: ["Bow"],
@@ -151,7 +130,6 @@ const uniqueClasses = {
   "Tireur d'élite": {
     weapons: ["Bow"],
     stat: { STR: true, MAG: false },
-    promo: null,
   },
   "Wing Tamer (Ivy)": {
     weapons: ["Tome", "Staff"],
@@ -160,7 +138,6 @@ const uniqueClasses = {
   Lindwurm: {
     weapons: ["Tome", "Staff"],
     stat: { STR: false, MAG: true },
-    promo: null,
   },
   "Wing Tamer (Hortensia)": {
     weapons: ["Tome", "Staff"],
@@ -169,7 +146,6 @@ const uniqueClasses = {
   "Sleipnir Rider": {
     weapons: ["Tome", "Staff"],
     stat: { STR: false, MAG: true },
-    promo: null,
   },
   "Sentinel (Timerra)": {
     weapons: ["Lance"],
@@ -178,7 +154,6 @@ const uniqueClasses = {
   Picket: {
     weapons: ["Lance"],
     stat: { STR: true, MAG: false },
-    promo: null,
   },
   "Sentinel (Fogado)": {
     weapons: ["Bow"],
@@ -187,7 +162,6 @@ const uniqueClasses = {
   Cupido: {
     weapons: ["Sword", "Bow"],
     stat: { STR: true, MAG: false },
-    promo: null,
   },
   "Thief (Base)": {
     weapons: ["Knife"],
@@ -196,7 +170,6 @@ const uniqueClasses = {
   Thief: {
     weapons: ["Knife"],
     stat: { STR: true, MAG: false },
-    promo: null,
   },
   "Dancer (Base)": {
     weapons: ["Arts"],
@@ -205,7 +178,6 @@ const uniqueClasses = {
   Dancer: {
     weapons: ["Arts"],
     stat: { STR: true, MAG: false },
-    promo: null,
   },
   Base: {
     weapons: [],
@@ -213,7 +185,7 @@ const uniqueClasses = {
   },
 };
 
-export const fe17 = {
+export const fe17: Game = {
   short: "fe17",
   free: ["Alear"],
   flags: {

@@ -1,4 +1,7 @@
 // lists for pairings
+
+import { Game } from "./data.types";
+
 // M is males, F is females, CX is children
 const AWAKE_M = [
   "Robin (M)",
@@ -47,18 +50,19 @@ const AWAKE_CF = [
   "Nah",
 ];
 
-const inheritClasses = function(game, picks, to) {
+const inheritClasses = function (game: Game, picks: { pairings: any }, to: string) {
   const pairings = picks.pairings;
 
   // only kids inherit in awakening
-  if (!game.children[to]) {
-    return game.characters[to].class;
+  if (!game.children || !game.children[to]) {
+    return game.characters[to].class as string[];
   }
 
   // only other parent, since base is included in class pool
   const from = pairings[game.children[to].parent];
-  let classes = game.children[to].class.slice();
-  let inherits = game.characters[from].class.slice();
+  // FIXME: cast types because awakening has array Classes
+  let classes = game.children[to].class.slice() as string[];
+  let inherits = game.characters[from].class.slice() as string[];
   // replace wrong-gendered classes
   // girls:
   if (AWAKE_CF.includes(to)) {
@@ -89,7 +93,7 @@ const inheritClasses = function(game, picks, to) {
   return classes;
 };
 
-export const fe13 = {
+export const fe13: Game = {
   short: "fe13",
   inheritClasses: inheritClasses,
   characters: {
@@ -110,7 +114,7 @@ export const fe13 = {
         "Priest",
         "Cleric",
       ],
-      base: "Tactician",
+      defaultClass: "Tactician",
       pairings: [
         "Sumia",
         "Lissa",
@@ -146,7 +150,7 @@ export const fe13 = {
         "Cleric",
         "Troubadour",
       ],
-      base: "Tactician",
+      defaultClass: "Tactician",
       pairings: [
         "Chrom",
         "Frederick",
@@ -167,175 +171,175 @@ export const fe13 = {
     },
     Chrom: {
       class: ["Lord", "Cavalier", "Archer"],
-      base: "Lord",
+      defaultClass: "Lord",
       pairings: ["Robin (F)", "Sully", "Sumia", "Maribelle", "Olivia"],
       stat: { STR: true },
     },
     Lissa: {
       class: ["Cleric", "Pegasus Knight", "Troubadour"],
-      base: "Cleric",
+      defaultClass: "Cleric",
       pairings: AWAKE_M,
       stat: { MAG: true },
     },
     Frederick: {
       class: ["Cavalier", "Knight", "Wyvern Rider"],
-      base: "Great Knight",
+      defaultClass: "Great Knight",
       pairings: [...AWAKE_F, "Sumia"],
       stat: { STR: true },
     },
     Sully: {
       class: ["Cavalier", "Myrmidon", "Wyvern Rider"],
-      base: "Cavalier",
+      defaultClass: "Cavalier",
       pairings: [...AWAKE_M, "Chrom"],
       stat: { STR: true },
     },
     Virion: {
       class: ["Archer", "Wyvern Rider", "Mage"],
-      base: "Archer",
+      defaultClass: "Archer",
       pairings: AWAKE_F,
       stat: { STR: true },
     },
     Stahl: {
       class: ["Cavalier", "Archer", "Myrmidon"],
-      base: "Cavalier",
+      defaultClass: "Cavalier",
       pairings: AWAKE_F,
       stat: { STR: true },
     },
     Vaike: {
       class: ["Fighter", "Thief", "Barbarian"],
-      base: "Fighter",
+      defaultClass: "Fighter",
       pairings: AWAKE_F,
       stat: { STR: true },
     },
     Miriel: {
       class: ["Mage", "Troubadour", "Dark Mage"],
-      base: "Mage",
+      defaultClass: "Mage",
       pairings: AWAKE_M,
       stat: { MAG: true },
     },
     Sumia: {
       class: ["Pegasus Knight", "Knight", "Cleric"],
-      base: "Pegasus Knight",
+      defaultClass: "Pegasus Knight",
       pairings: ["Robin (M)", "Chrom", "Frederick", "Gaius", "Henry"],
       stat: { STR: true },
     },
     Kellam: {
       class: ["Knight", "Thief", "Priest"],
-      base: "Knight",
+      defaultClass: "Knight",
       pairings: AWAKE_F,
       stat: { STR: true },
     },
     Donnel: {
       class: ["Villager", "Fighter", "Mercenary"],
-      base: "Hero", // hardcoded cos there's no troll Donnel
+      defaultClass: "Hero", // hardcoded cos there's no troll Donnel
       pairings: AWAKE_F,
       stat: { STR: true },
     },
     "Lon'qu": {
       class: ["Myrmidon", "Thief", "Wyvern Rider"],
-      base: "Myrmidon",
+      defaultClass: "Myrmidon",
       pairings: AWAKE_F,
       stat: { STR: true },
     },
     Ricken: {
       class: ["Mage", "Cavalier", "Archer"],
-      base: "Mage",
+      defaultClass: "Mage",
       pairings: AWAKE_F,
       stat: { MAG: true },
     },
     Maribelle: {
       class: ["Troubadour", "Pegasus Knight", "Mage"],
-      base: "Troubadour",
+      defaultClass: "Troubadour",
       pairings: [...AWAKE_M, "Chrom"],
       stat: { MAG: true },
     },
     Panne: {
       class: ["Taguel", "Thief", "Wyvern Rider"],
-      base: "Taguel",
+      defaultClass: "Taguel",
       pairings: AWAKE_M,
       stat: { STR: true },
     },
     Gaius: {
       class: ["Thief", "Fighter", "Myrmidon"],
-      base: "Thief",
+      defaultClass: "Thief",
       pairings: [...AWAKE_F, "Sumia"],
       stat: { STR: true },
     },
     Cordelia: {
       class: ["Pegasus Knight", "Mercenary", "Dark Mage"],
-      base: "Pegasus Knight",
+      defaultClass: "Pegasus Knight",
       pairings: AWAKE_M,
       stat: { STR: true },
     },
     Gregor: {
       class: ["Mercenary", "Barbarian", "Myrmidon"],
-      base: "Mercenary",
+      defaultClass: "Mercenary",
       pairings: AWAKE_F,
       stat: { STR: true },
     },
     Nowi: {
       class: ["Manakete", "Mage", "Wyvern Rider"],
-      base: "Manakete",
+      defaultClass: "Manakete",
       pairings: AWAKE_M,
       stat: { STR: true, MAG: true },
     },
     Libra: {
       class: ["Priest", "Mage", "Dark Mage"],
-      base: "War Monk",
+      defaultClass: "War Monk",
       pairings: AWAKE_F,
       stat: { STR: true, MAG: true },
     },
     Tharja: {
       class: ["Dark Mage", "Knight", "Archer"],
-      base: "Dark Mage",
+      defaultClass: "Dark Mage",
       pairings: AWAKE_M,
       stat: { MAG: true },
     },
     Anna: {
       class: ["Thief", "Archer", "Mage"],
-      base: "Trickster",
+      defaultClass: "Trickster",
       pairings: ["Robin (M)"],
       stat: { STR: true, MAG: true },
     },
     Olivia: {
       class: ["Dancer", "Myrmidon", "Pegasus Knight"],
-      base: "Dancer",
+      defaultClass: "Dancer",
       pairings: [...AWAKE_M, "Chrom"],
       stat: { STR: true },
     },
     Cherche: {
       class: ["Wyvern Rider", "Troubadour", "Cleric"],
-      base: "Wyvern Rider",
+      defaultClass: "Wyvern Rider",
       pairings: AWAKE_M,
       stat: { STR: true },
     },
     Henry: {
       class: ["Dark Mage", "Barbarian", "Thief"],
-      base: "Dark Mage",
+      defaultClass: "Dark Mage",
       pairings: [...AWAKE_F, "Sumia"],
       stat: { STR: true, MAG: true },
     },
     "Say'ri": {
       class: ["Myrmidon", "Pegasus Knight", "Wyvern Rider"],
-      base: "Swordmaster",
+      defaultClass: "Swordmaster",
       pairings: ["Robin (M)"],
       stat: { STR: true },
     },
     Tiki: {
       class: ["Manakete", "Wyvern Rider", "Mage"],
-      base: "Manakete",
+      defaultClass: "Manakete",
       pairings: ["Robin (M)"],
       stat: { STR: true },
     },
     Basilio: {
       class: ["Fighter", "Barbarian", "Knight"],
-      base: "Warrior",
+      defaultClass: "Warrior",
       pairings: ["Robin (F)"],
       stat: { STR: true },
     },
     Flavia: {
       class: ["Mercenary", "Thief", "Knight"],
-      base: "Hero",
+      defaultClass: "Hero",
       pairings: ["Robin (M)"],
       stat: { STR: true },
     },
@@ -461,7 +465,6 @@ export const fe13 = {
     },
     "Great Lord": {
       weapons: ["Sword", "Lance"],
-      promo: null,
       stat: { STR: true },
     },
     Tactician: {
@@ -471,7 +474,6 @@ export const fe13 = {
     },
     Grandmaster: {
       weapons: ["Sword", "Tome"],
-      promo: null,
       stat: { STR: true, MAG: true },
     },
     Cavalier: {
@@ -481,12 +483,10 @@ export const fe13 = {
     },
     Paladin: {
       weapons: ["Sword", "Lance"],
-      promo: null,
       stat: { STR: true },
     },
     "Great Knight": {
       weapons: ["Sword", "Lance", "Axe"],
-      promo: null,
       stat: { STR: true },
     },
     Knight: {
@@ -496,7 +496,6 @@ export const fe13 = {
     },
     General: {
       weapons: ["Lance", "Axe"],
-      promo: null,
       stat: { STR: true },
     },
     Myrmidon: {
@@ -506,7 +505,6 @@ export const fe13 = {
     },
     Swordmaster: {
       weapons: ["Sword"],
-      promo: null,
       stat: { STR: true },
     },
     Mercenary: {
@@ -516,7 +514,6 @@ export const fe13 = {
     },
     Hero: {
       weapons: ["Sword", "Axe"],
-      promo: null,
       stat: { STR: true },
     },
     Fighter: {
@@ -526,7 +523,6 @@ export const fe13 = {
     },
     Warrior: {
       weapons: ["Axe", "Bow"],
-      promo: null,
       stat: { STR: true },
     },
     Barbarian: {
@@ -536,7 +532,6 @@ export const fe13 = {
     },
     Berserker: {
       weapons: ["Axe"],
-      promo: null,
       stat: { STR: true },
     },
     Archer: {
@@ -546,12 +541,10 @@ export const fe13 = {
     },
     Sniper: {
       weapons: ["Bow"],
-      promo: null,
       stat: { STR: true },
     },
     "Bow Knight": {
       weapons: ["Sword", "Bow"],
-      promo: null,
       stat: { STR: true },
     },
     Thief: {
@@ -561,12 +554,10 @@ export const fe13 = {
     },
     Assassin: {
       weapons: ["Sword", "Bow"],
-      promo: null,
       stat: { STR: true },
     },
     Trickster: {
       weapons: ["Sword", "Staff"],
-      promo: null,
       stat: { STR: true },
     },
     "Pegasus Knight": {
@@ -576,12 +567,10 @@ export const fe13 = {
     },
     "Falcon Knight": {
       weapons: ["Lance", "Staff"],
-      promo: null,
       stat: { STR: true },
     },
     "Dark Flier": {
       weapons: ["Lance", "Tome"],
-      promo: null,
       stat: { STR: true, MAG: true },
     },
     "Wyvern Rider": {
@@ -591,12 +580,10 @@ export const fe13 = {
     },
     "Wyvern Lord": {
       weapons: ["Lance", "Axe"],
-      promo: null,
       stat: { STR: true },
     },
     "Griffon Rider": {
       weapons: ["Axe"],
-      promo: null,
       stat: { STR: true },
     },
     Mage: {
@@ -606,7 +593,6 @@ export const fe13 = {
     },
     Sage: {
       weapons: ["Tome", "Staff"],
-      promo: null,
       stat: { MAG: true },
     },
     "Dark Mage": {
@@ -616,12 +602,10 @@ export const fe13 = {
     },
     Sorcerer: {
       weapons: ["Tome"],
-      promo: null,
       stat: { MAG: true },
     },
     "Dark Knight": {
       weapons: ["Sword", "Tome"],
-      promo: null,
       stat: { STR: true, MAG: true },
     },
     Priest: {
@@ -636,12 +620,10 @@ export const fe13 = {
     },
     "War Monk": {
       weapons: ["Axe", "Staff"],
-      promo: null,
       stat: { STR: true, MAG: true },
     },
     "War Cleric": {
       weapons: ["Axe", "Staff"],
-      promo: null,
       stat: { STR: true, MAG: true },
     },
     Troubadour: {
@@ -651,7 +633,6 @@ export const fe13 = {
     },
     Valkyrie: {
       weapons: ["Tome", "Staff"],
-      promo: null,
       stat: { MAG: true },
     },
     Villager: {
@@ -661,42 +642,34 @@ export const fe13 = {
     },
     Dancer: {
       weapons: ["Sword"],
-      promo: null,
       stat: { STR: true },
     },
     Taguel: {
       weapons: ["Stone"],
-      promo: null,
       stat: { STR: true },
     },
     Manakete: {
       weapons: ["Stone"],
-      promo: null,
       stat: { STR: true },
     },
     Lodestar: {
       weapons: ["Sword"],
-      promo: null,
       stat: { STR: true },
     },
     "Dread Fighter": {
       weapons: ["Sword", "Axe", "Tome"],
-      promo: null,
       stat: { STR: true, MAG: true },
     },
     Bride: {
       weapons: ["Lance", "Bow", "Staff"],
-      promo: null,
       stat: { STR: true },
     },
     Soldier: {
       weapons: ["Lance"],
-      promo: null,
       stat: { STR: true },
     },
     Merchant: {
       weapons: ["Lance"],
-      promo: null,
       stat: { STR: true },
     },
   },

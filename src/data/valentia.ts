@@ -1,3 +1,5 @@
+import { Game } from "./data.types";
+
 const VALENTIA_CLASSES = {
   "Villager (M)": {
     weapons: ["Sword"],
@@ -32,7 +34,7 @@ const VALENTIA_CLASSES = {
   Princess: { weapons: ["Sword", "Black Magic", "White Magic"] },
 };
 
-export const fe15alm = {
+export const fe15alm: Game = {
   short: "fe15",
   characters: {
     Alm: { class: "Fighter" },
@@ -57,7 +59,7 @@ export const fe15alm = {
   defaultPicks: 10,
 };
 
-export const fe15celica = {
+export const fe15celica: Game = {
   short: "fe15",
   characters: {
     Celica: { class: "Princess" },

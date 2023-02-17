@@ -1,4 +1,4 @@
-import { Game } from "./Game";
+import { Games } from "./Games";
 
 function randIn(arr) {
   return Math.floor(Math.random() * arr.length);
@@ -19,7 +19,7 @@ function getOrRand(obj) {
 export class Picker {
   constructor(game, numPicks, options) {
     console.log(game, numPicks, options);
-    this.game = Game[game];
+    this.game = Games[game];
     this.numPicks = numPicks;
     this.options = options;
     this.pool = Object.keys(this.game.characters);
@@ -387,7 +387,7 @@ export class Picker {
 
     // fates has e-rank hell, which counts as a troll pick
     if (this.game.short === "fe14") {
-      for (const weap of this.game.classes[pickChar.base].weapons) {
+      for (const weap of this.game.classes[pickChar.defaultClass].weapons) {
         if (pickClass.weapons.includes(weap)) {
           return false;
         }
