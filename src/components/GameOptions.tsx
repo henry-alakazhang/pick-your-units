@@ -3,9 +3,9 @@ import { Row, Col, Form } from "react-bootstrap";
 import { Game } from "../data/data.types";
 
 import { Games } from "../Games";
+import { typedObjectKeys } from "../util";
 
 export type GameConfig = Game<any>["flags"] & {
-  factions?: boolean;
   balanced?: boolean;
 };
 
@@ -20,7 +20,9 @@ export class GameOptions extends Component<
   {}
 > {
   render() {
-    const optionStuff = {
+    const optionStuff: {
+      [k in keyof GameConfig]: { display: string; disabled: boolean };
+    } = {
       pairings: {
         display: "Pick pairings",
         disabled: false,
@@ -41,9 +43,14 @@ export class GameOptions extends Component<
         display: "Pick classes",
         disabled: false,
       },
+      emblems: {
+        display: "Pick Emblems",
+        disabled: false,
+      },
       troll: {
         display: "Allow 'troll' classes",
-        disabled: !this.props.options["classes"],
+        disabled:
+          !this.props.options["classes"] && !this.props.options["emblems"],
       },
       balanced: {
         display: "Balance weapon types",
@@ -53,11 +60,12 @@ export class GameOptions extends Component<
         display: "Pick units from other factions",
         disabled: false,
       },
-      emblems: {
-        display: "Pick Emblems for units (TODO)",
-        disabled: true,
-      },
     };
+
+    const availableOptions = typedObjectKeys(optionStuff).filter(
+      // `balanced` is not a flag on a game - it can always be set
+      o => o === "balanced" || !!Games[this.props.game].flags[o]
+    );
 
     const styles = {
       spinner: {
@@ -71,28 +79,20 @@ export class GameOptions extends Component<
           <h3>Options</h3>
           <Form>
             <Form.Group>
-              {Object.keys(Games[this.props.game].flags).map(flag => (
+              {availableOptions.map(flag => (
                 <Form.Check
-                  disabled={optionStuff[flag].disabled}
+                  disabled={optionStuff[flag]?.disabled}
                   checked={this.props.options[flag]}
                   key={flag}
                   onChange={e => {
                     this.props.handleOptionChange(e, flag);
                   }}
                   id={flag}
-                  label={`${optionStuff[flag].display}${
+                  label={`${optionStuff[flag]?.display}${
                     flag === "troll" ? "*" : ""
                   }`}
                 />
               ))}
-              <Form.Check
-                checked={this.props.options["balanced"]}
-                onChange={e => {
-                  this.props.handleOptionChange(e, "balanced");
-                }}
-                id="balanced"
-                label={optionStuff["balanced"].display}
-              />
             </Form.Group>
           </Form>
           {Games[this.props.game].trollCriteria && (

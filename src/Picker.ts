@@ -1,5 +1,19 @@
+import { GameConfig } from "./components/GameOptions";
 import { Game, GameMetaType } from "./data/data.types";
 import { Games } from "./Games";
+
+/**
+ * Return a shuffled copy of an array using a Durstenfield I copied off Stack Overflow
+ * https://stackoverflow.com/a/12646864
+ */
+function shuffle<T>(original: readonly T[]): T[] {
+  const arr = [...original];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
 
 function randIn(arr: readonly unknown[]): number {
   return Math.floor(Math.random() * arr.length);
@@ -22,11 +36,9 @@ export interface CompletedPicks {
   weapons: { [k: string]: number },
   pairings: { [k: string]: string },
   friends: { [k: string]: string },
-  options: {
-    friends?: boolean;
-    pairings?: boolean;
-    onlypairs?: boolean;
-  }
+  // can be undefined because there aren't enough base game emblems for all picks
+  emblems: { [k: string]: string | undefined },
+  options: GameConfig,
 }
 
 export interface CharacterPick {
@@ -48,11 +60,11 @@ export interface CharacterPick {
 export class Picker<G extends GameMetaType> {
   private game: Game<G>;
   private numPicks: number;
-  private options: {};
+  private options: GameConfig;
   private pool: string[];
   private picks: CompletedPicks;
-  
-  constructor(game: string, numPicks: number, options: { friends?: boolean, pairings?: boolean; onlypairs?: boolean }) {
+
+  constructor(game: string, numPicks: number, options: GameConfig) {
     this.game = Games[game];
     this.numPicks = numPicks;
     this.options = options;
@@ -62,11 +74,8 @@ export class Picker<G extends GameMetaType> {
       weapons: {},
       pairings: {},
       friends: {},
-      options: {
-        friends: options["friends"],
-        pairings: options["pairings"],
-        onlypairs: options["onlypairs"],
-      },
+      emblems: {},
+      options: { ...options },
     };
   }
 
@@ -169,6 +178,61 @@ export class Picker<G extends GameMetaType> {
           this.pool.length > 0
         ) {
           this.makePick();
+        }
+
+        if (this.game.flags["emblems"] && this.game.emblems) {
+          let remainingEmblems = { ... this.game.emblems };
+
+          // if allowed to troll, we can just assign emblems at complete random
+          if (this.options.troll) {
+            // shuffle the list and assign one by one.
+            const shuffledEmblems = shuffle(Object.keys(remainingEmblems));
+            this.picks.characters.forEach(char => {
+              this.picks.emblems[char.name] = shuffledEmblems.pop();
+            });
+          } else {
+            // otherwise, we have to put some thought into this.
+            // FIXME: I didn't put enough thought into this
+            // base-game/no-dlc, celica and micaiah regularly end up on awful units
+            // first pass: pick non-troll emblems for everyone
+            this.picks.characters.forEach(char => {
+              const charData = this.game.characters[char.name as G["CharacterName"]];
+              const classData = this.game.classes[char.class as G["ClassName"]];
+
+            // compute all the non-troll emblems for a character
+              const availables = Object.keys(remainingEmblems).filter(
+                emblem => {
+                  // if the emblem has no stat restrictions, anyone can use it
+                  if (!remainingEmblems[emblem].stat) {
+                    return true;
+                  }
+
+                  // if the emblem has stat restrictions, it needs to match both the character AND the class
+                  // eg. a MAG character with a MAG/STR class should only use MAG-able emblems
+                  // eg. a MAG/STR character in a STR class should not use MAG-only emblems
+                  // this does mess up some specific edge cases, eg. Mage Knight Clamme
+                  // can't use MAG-based emblems because he has terrible MAG growth, but w/e
+                  return (remainingEmblems[emblem].stat?.MAG && charData.stat?.MAG && classData.stat?.MAG) ||
+                    (remainingEmblems[emblem].stat?.STR && charData.stat?.STR && classData.stat?.STR)
+                }
+              );
+              // viable emblems that we haven't picked yet
+              // if there are non-troll ones left, leave this blank for now 
+              const pickedEmblem = availables.length > 0 ? getOrRand(availables) : undefined;
+              this.picks.emblems[char.name] = pickedEmblem;
+              if (pickedEmblem) {
+                delete remainingEmblems[pickedEmblem];
+              }
+            });
+            // second pass: fill out the rest (if anyone's left, they only have troll emblems)
+            // just shuffle the remaining emblems and hand them out.
+            const shuffledEmblems = shuffle(Object.keys(remainingEmblems));
+            this.picks.characters.forEach(char => {
+              if (!this.picks.emblems[char.name]) {
+                this.picks.emblems[char.name] = shuffledEmblems.pop();
+              }
+            });
+          }
         }
 
         console.log(this.picks);

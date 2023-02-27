@@ -50,6 +50,11 @@ export type ChildCharacter<G extends GameMetaType> = Character<G> & {
   readonly pairings: readonly G["ChildCharacterName"][];
 };
 
+export type Emblem = {
+  readonly stat?: { STR: boolean; MAG: boolean };
+  readonly dlc?: boolean;
+};
+
 /**
  * A template meta-type for game configuration.
  * These "fields" are used as values by TypeScript to enforce conditions on Game objects.
@@ -99,6 +104,7 @@ export interface Game<G extends GameMetaType> {
     picks: { pairings: any },
     to: G["CharacterName"] | G["ChildCharacterName"]
   ) => string[];
+  readonly emblems?: { [name: string]: Emblem };
   /** Free/force-deployed units (usually lords) */
   readonly free: ReadonlyArray<G["CharacterName"]>;
   readonly routes?: ReadonlyArray<[string, string]>;
@@ -129,6 +135,8 @@ export interface Game<G extends GameMetaType> {
     readonly classes?: boolean;
     /** Whether you can pick shit classes */
     readonly troll?: boolean;
+    /** Whether to pick units from other factions. 3h only */
+    readonly factions?: boolean;
     /** Whether emblems exist or not */
     readonly emblems?: boolean;
   };

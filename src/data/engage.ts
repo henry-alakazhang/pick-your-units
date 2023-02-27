@@ -5,6 +5,7 @@ import { Game } from "./data.types";
 // TODO: Pick weapons for classes which support it, without biasing towards them
 //       (if i just made them separate classes, there would be 2/3x chance of hitting one,
 //        compared to a class with one set of weapons)
+//       As-is, mixed-weapon classes are also heavily overrepresented in "balanced weapon type" picks
 
 interface EngageGame {
   ClassName: keyof typeof promotedClasses | keyof typeof uniqueClasses;
@@ -32,7 +33,7 @@ const promotedClasses = {
   },
   "Royal Knight": {
     weapons: ["Lance", " Staff"],
-    stat: { STR: true, MAG: false },
+    stat: { STR: true, MAG: true },
   },
   Berserker: {
     weapons: ["Axe"],
@@ -381,6 +382,26 @@ const characters = {
   },
 } as const;
 
+const emblems = {
+  Marth: {},
+  Sigurd: {},
+  Celica: { stat: { STR: false, MAG: true } },
+  Micaiah: { stat: { STR: false, MAG: true } },
+  Roy: {},
+  Leif: { stat: { STR: true, MAG: false } },
+  Lucina: {},
+  Lyn: {},
+  Ike: { stat: { STR: true, MAG: false } },
+  Byleth: {},
+  Corrin: {},
+  Eirika: {},
+  // Edelgard: { stat: { STR: true, MAG: false }, dlc: true },
+  // Tiki: { dlc: true },
+  // Hector: { stat: { STR: true, MAG: false }, dlc: true },
+  // Soren: { stat: { STR: false, MAG: true }, dlc: true },
+  // Camilla: { dlc: true },
+} as const;
+
 export const fe17: Game<EngageGame> = {
   short: "fe17",
   free: ["Alear"],
@@ -391,6 +412,7 @@ export const fe17: Game<EngageGame> = {
   },
   classes: { ...promotedClasses, ...uniqueClasses },
   characters,
+  emblems,
   trollCriteria: ["MAG classes for a STR-based character and vice versa."],
   defaultPicks: 14,
 };

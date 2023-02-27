@@ -89,45 +89,68 @@ export class CharacterList extends Component<
 
     const imgExtension = game.imgExtension || "png";
 
+    const createDoubleRow = (
+      char1: CharacterPick,
+      char2: CharacterPick
+    ): JSX.Element => {
+      return (
+        <tr style={{ fontSize: "14px" }} key={char1.name}>
+          <td width={80}>
+            <img
+              width={80}
+              src={
+                width !== 0
+                  ? require("../../images/" +
+                      game.short +
+                      "/" +
+                      char1.name.toLowerCase() +
+                      ".png")
+                  : 0
+              }
+              alt={char1.name}
+            />
+          </td>
+          {this.getDisplayName(char1)}
+          <td>{char1.class}</td>
+          <td width={80}>
+            <img
+              width={80}
+              src={
+                width !== 0
+                  ? require("../../images/" +
+                      game.short +
+                      "/" +
+                      char2.name.toLowerCase() +
+                      "." +
+                      imgExtension)
+                  : 0
+              }
+              alt={char2.name}
+            />
+          </td>
+          {this.getDisplayName(char2)}
+          <td>{char2.class}</td>
+        </tr>
+      );
+    };
+
     let tableRows: JSX.Element[] = [];
 
     if (this.props.picks.options["onlypairs"]) {
       for (let i = 0; i < picks.length; i += 2) {
-        const char1 = picks[i];
-        const char2 = picks[i + 1];
-        // const char1display ;
-        // const char2display ;
-        tableRows.push(
-          <tr style={{ fontSize: "14px" }} key={char1.name}>
-            <td width={80}>
-              <img
-                width={80}
-                src={require("../../images/" +
-                  game.short +
-                  "/" +
-                  char1.name.toLowerCase() +
-                  ".png")}
-                alt={char1.name}
-              />
-            </td>
-            {this.getDisplayName(char1)}
-            <td>{char1.class}</td>
-            <td width={80}>
-              <img
-                width={80}
-                src={require("../../images/" +
-                  game.short +
-                  "/" +
-                  char2.name.toLowerCase() +
-                  "." +
-                  imgExtension)}
-                alt={char2.name}
-              />
-            </td>
-            {this.getDisplayName(char2)}
-            <td>{char2.class}</td>
-          </tr>
-        );
+        tableRows.push(createDoubleRow(picks[i], picks[i + 1]));
+      }
+    } else if (this.props.picks.options["emblems"]) {
+      for (let i = 0; i < picks.length; i++) {
+        const char = picks[i];
+        const emblemName = this.props.picks.emblems[char.name];
+        // treat each characters emblems as their pair for display purposes
+        // i'm going to regret this when they add pairings AND emblems (holy blood) to fire emblem: shadows of jugdral pt 1: genealogy of the holy war.
+        const emblem: CharacterPick = {
+          name: emblemName ?? "No Emblem",
+          class: emblemName ? "Emblem" : "",
+        };
+        tableRows.push(createDoubleRow(char, emblem));
       }
     } else {
       for (let i = 0; i < picks.length; i++) {
