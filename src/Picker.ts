@@ -32,13 +32,13 @@ function getOrRand(obj: string | readonly string[]): string {
 }
 
 export interface CompletedPicks {
-  characters: CharacterPick[],
-  weapons: { [k: string]: number },
-  pairings: { [k: string]: string },
-  friends: { [k: string]: string },
+  characters: CharacterPick[];
+  weapons: { [k: string]: number };
+  pairings: { [k: string]: string };
+  friends: { [k: string]: string };
   // can be undefined because there aren't enough base game emblems for all picks
-  emblems: { [k: string]: string | undefined },
-  options: GameConfig,
+  emblems: { [k: string]: string | undefined };
+  options: GameConfig;
 }
 
 export interface CharacterPick {
@@ -54,7 +54,7 @@ export interface CharacterPick {
   stats?: {
     boon: string;
     bane: string;
-  }
+  };
 }
 
 export class Picker<G extends GameMetaType> {
@@ -84,125 +84,134 @@ export class Picker<G extends GameMetaType> {
    * Returns a promise to return the picks (generates asynchronously)
    */
   generatePicks(): Promise<CompletedPicks> {
-    return new Promise(
-      (resolve, reject) => {
-        let avatar: string | undefined = undefined;
-        if (this.game.avatar) {
-          const gender = Math.random();
-          if (gender >= 0.5) {
-            avatar = this.game.avatar + " (F)";
-            this.pool = this.pool.filter(
-              char => char !== this.game.avatar + " (M)"
-            );
-          } else {
-            avatar = this.game.avatar + " (M)";
-            this.pool = this.pool.filter(
-              char => char !== this.game.avatar + " (F)"
-            );
-          }
-        }
-
-        // set pairings
-        if (this.game.flags["pairings"] && this.options["pairings"]) {
-          // prioritise parents
-          for (const child in this.game.children) {
-            if (
-              this.pairUp(this.game.children[child].parent) &&
-              this.options["children"]
-            ) {
-              this.pool.push(child);
-            }
-          }
-          for (const other of this.pool) {
-            this.pairUp(other);
-          }
-        }
-
-        if (this.game.flags["friends"] && this.options["friends"]) {
-          for (const char in this.game.characters) {
-            if (this.game.characters[char].friends)
-              this.picks.friends[char] = getOrRand(
-                this.game.characters[char].friends!
-              );
-          }
-          for (const child in this.game.children) {
-            if (this.game.children[child].friends)
-              this.picks.friends[child] = getOrRand(
-                this.game.children[child].friends!
-              );
-          }
-        }
-
-        if (avatar) {
-          this.makePick(avatar);
-
-          // FIXME: add some kind of options for avatar setting or whatever and put Alear here too
-          // pick boon and bane stats for avatar
-          // doesn't apply to 3 houses
-          if (this.game.short !== "fe16") {
-            const stats = ["Str", "Mag", "Skl", "Spd", "Luk", "Def", "Res"];
-            const boon = getOrRand(stats);
-            const bane = getOrRand(stats.filter(stat => stat === boon))
-            this.picks.characters[0].stats = {
-              boon,
-              bane,
-            };
-          }
-        }
-
-        // if not allowing other factions, shrink down the pool size.
-        if (this.game.flags["factions"] && !this.options["factions"]) {
+    return new Promise((resolve, reject) => {
+      let avatar: string | undefined = undefined;
+      if (this.game.avatar) {
+        const gender = Math.random();
+        if (gender >= 0.5) {
+          avatar = this.game.avatar + " (F)";
           this.pool = this.pool.filter(
-            unit =>
-              // include characters from faction
-              this.game.characters[unit].faction === this.game.faction ||
-              // and unaligned characters
-              !this.game.characters[unit].faction
+            char => char !== this.game.avatar + " (M)"
+          );
+        } else {
+          avatar = this.game.avatar + " (M)";
+          this.pool = this.pool.filter(
+            char => char !== this.game.avatar + " (F)"
           );
         }
+      }
 
-        // constrain total character count to the amount of characters available.
-        this.numPicks = Math.min(
-          this.numPicks,
-          this.pool.length + this.picks.characters.length
+      // set pairings
+      if (this.game.flags["pairings"] && this.options["pairings"]) {
+        // prioritise parents
+        for (const child in this.game.children) {
+          if (
+            this.pairUp(this.game.children[child].parent) &&
+            this.options["children"]
+          ) {
+            this.pool.push(child);
+          }
+        }
+        for (const other of this.pool) {
+          this.pairUp(other);
+        }
+      }
+
+      if (this.game.flags["friends"] && this.options["friends"]) {
+        for (const char in this.game.characters) {
+          if (this.game.characters[char].friends)
+            this.picks.friends[char] = getOrRand(
+              this.game.characters[char].friends!
+            );
+        }
+        for (const child in this.game.children) {
+          if (this.game.children[child].friends)
+            this.picks.friends[child] = getOrRand(
+              this.game.children[child].friends!
+            );
+        }
+      }
+
+      if (avatar) {
+        this.makePick(avatar);
+
+        // FIXME: add some kind of options for avatar setting or whatever and put Alear here too
+        // pick boon and bane stats for avatar
+        // doesn't apply to 3 houses
+        if (this.game.short !== "fe16") {
+          const stats = ["Str", "Mag", "Skl", "Spd", "Luk", "Def", "Res"];
+          const boon = getOrRand(stats);
+          const bane = getOrRand(stats.filter(stat => stat === boon));
+          this.picks.characters[0].stats = {
+            boon,
+            bane,
+          };
+        }
+      }
+
+      // if not allowing other factions, shrink down the pool size.
+      if (this.game.flags["factions"] && !this.options["factions"]) {
+        this.pool = this.pool.filter(
+          unit =>
+            // include characters from faction
+            this.game.characters[unit].faction === this.game.faction ||
+            // and unaligned characters
+            !this.game.characters[unit].faction
+        );
+      }
+
+      // constrain total character count to the amount of characters available.
+      this.numPicks = Math.min(
+        this.numPicks,
+        this.pool.length + this.picks.characters.length
+      );
+
+      // pick free characters
+      for (const forced of this.game.free) {
+        this.makePick(getOrRand(forced));
+      }
+
+      // loop and add characters
+      while (
+        this.picks.characters.length < this.numPicks &&
+        this.pool.length > 0
+      ) {
+        this.makePick();
+      }
+
+      if (this.game.flags["emblems"] && this.game.emblems) {
+        // randomly pick N emblems to use.
+        const pickedEmblems = shuffle(Object.keys(this.game.emblems)).slice(
+          0,
+          this.picks.characters.length
         );
 
-        // pick free characters
-        for (const forced of this.game.free) {
-          this.makePick(getOrRand(forced));
-        }
+        // if allowed to troll, we can just assign emblems at complete random
+        if (this.options.troll) {
+          // shuffle the list and assign one by one.
+          this.picks.characters.forEach(char => {
+            this.picks.emblems[char.name] = pickedEmblems.pop();
+          });
+        } else {
+          const remainingCharacters = Object.fromEntries(
+            this.picks.characters.map(c => [c.name, true])
+          );
 
-        // loop and add characters
-        while (
-          this.picks.characters.length < this.numPicks &&
-          this.pool.length > 0
-        ) {
-          this.makePick();
-        }
-
-        if (this.game.flags["emblems"] && this.game.emblems) {
-          // randomly pick N emblems to use.
-          const pickedEmblems = shuffle(Object.keys(this.game.emblems)).slice(0, this.picks.characters.length);
-
-          // if allowed to troll, we can just assign emblems at complete random
-          if (this.options.troll) {
-            // shuffle the list and assign one by one.
-            this.picks.characters.forEach(char => {
-              this.picks.emblems[char.name] = pickedEmblems.pop();
-            });
-          } else {
-            const remainingCharacters = Object.fromEntries(this.picks.characters.map(c => ([c.name, true])));
-
-            // otherwise, we have to put some thought into this.
-            // sort the emblems in "amount of viable units" order and assign them in that order.
-            const emblemsAndViableChars = pickedEmblems.map(emblem => {
+          // otherwise, we have to put some thought into this.
+          // sort the emblems in "amount of viable units" order and assign them in that order.
+          const emblemsAndViableChars = pickedEmblems
+            .map(emblem => {
               // no stat requirements: anyone can use.
               if (!this.game.emblems?.[emblem].stat) {
                 return { emblem, chars: this.picks.characters };
               }
               const chars = this.picks.characters.filter(char => {
-                const charData = this.game.characters[char.name as G["CharacterName"]];
-                const classData = this.game.classes[char.class as G["ClassName"]];
+                const charData = this.game.characters[
+                  char.name as G["CharacterName"]
+                ];
+                const classData = this.game.classes[
+                  char.class as G["ClassName"]
+                ];
 
                 // if the emblem has stat restrictions, it needs to match either the character or the class
                 // eg. a MAG character with a MAG/STR class can use any emblems, because hopefully
@@ -210,37 +219,42 @@ export class Picker<G extends GameMetaType> {
                 // eg. a MAG/STR character with a MAG class can still use STR emblems, likewise because
                 // their bases and growths should give them the stats to use STR emblems
                 // this makes things a LITTLE weird because eg. Wolf Knight Merrin can use Celica, but it's probably OK?
-                return (this.game.emblems?.[emblem].stat?.MAG && (charData.stat?.MAG || classData.stat?.MAG)) ||
-                    (this.game.emblems?.[emblem].stat?.STR && (charData.stat?.STR || classData.stat?.STR))
+                return (
+                  (this.game.emblems?.[emblem].stat?.MAG &&
+                    (charData.stat?.MAG || classData.stat?.MAG)) ||
+                  (this.game.emblems?.[emblem].stat?.STR &&
+                    (charData.stat?.STR || classData.stat?.STR))
+                );
               });
               return { emblem, chars };
-            }).sort(
-              ({ chars: charsA }, { chars: charsB }) => charsA.length - charsB.length
+            })
+            .sort(
+              ({ chars: charsA }, { chars: charsB }) =>
+                charsA.length - charsB.length
             );
 
-            console.log(emblemsAndViableChars);
+          console.log(emblemsAndViableChars);
 
-            emblemsAndViableChars.forEach(
-              ({ emblem, chars: viableChars }) => {
-                // get viable characters and filter for unpicked ones
-                let available = viableChars.map(c => c.name).filter(c => remainingCharacters[c]);
-                if (available.length === 0) {
-                  console.log('Ran out of good units to put with emblem:', emblem);
-                  // if none left, just assign to any remaining character at random.
-                  available = Object.keys(remainingCharacters);
-                }
-                const matchedChar = getOrRand(available);
-                this.picks.emblems[matchedChar] = emblem;
-                delete remainingCharacters[matchedChar];
-              }
-            )
-          }
+          emblemsAndViableChars.forEach(({ emblem, chars: viableChars }) => {
+            // get viable characters and filter for unpicked ones
+            let available = viableChars
+              .map(c => c.name)
+              .filter(c => remainingCharacters[c]);
+            if (available.length === 0) {
+              console.log("Ran out of good units to put with emblem:", emblem);
+              // if none left, just assign to any remaining character at random.
+              available = Object.keys(remainingCharacters);
+            }
+            const matchedChar = getOrRand(available);
+            this.picks.emblems[matchedChar] = emblem;
+            delete remainingCharacters[matchedChar];
+          });
         }
-
-        console.log(this.picks);
-        resolve(this.picks);
       }
-    );
+
+      console.log(this.picks);
+      resolve(this.picks);
+    });
   }
 
   /**
@@ -254,8 +268,11 @@ export class Picker<G extends GameMetaType> {
     // how do you pair that which does not exist?
     if (!this.pool.includes(person)) return false;
 
-    const profile = this.game.characters[person] || this.game.children?.[person];
-    if (!profile.pairings) { throw new Error('Tried to pair someone without pairings') }
+    const profile =
+      this.game.characters[person] || this.game.children?.[person];
+    if (!profile.pairings) {
+      throw new Error("Tried to pair someone without pairings");
+    }
 
     const availables = profile.pairings.slice();
     let pair = randIn(availables);
@@ -338,11 +355,9 @@ export class Picker<G extends GameMetaType> {
           // skip over a class if paired
           const add = this.picks.pairings[char] ? 1 : 0;
           // second class added is a friend's
-          if (classPick === character.class.length + add)
-            showFriend = true;
+          if (classPick === character.class.length + add) showFriend = true;
           // for kids, it's the third because they inherit a class from a parent
-          if (classPick === character.class.length + add + 1)
-            showFriend = true;
+          if (classPick === character.class.length + add + 1) showFriend = true;
         }
       } else {
         pickClass = getOrRand(character.class);
@@ -363,7 +378,7 @@ export class Picker<G extends GameMetaType> {
       name: pickName,
       class: pickClass,
       showFriend,
-      showPair
+      showPair,
     };
 
     // repick if troll characters not allowed
@@ -428,17 +443,14 @@ export class Picker<G extends GameMetaType> {
    * Returns whether a new pick would maintain weapon balance across the classes
    */
   maintainsBalance(pick: CharacterPick) {
-    let counts = Object.keys(this.game.classes).reduce(
-      (acc, val) => {
-        if (this.game.classes[val].weapons) {
-          for (const weap of this.game.classes[val].weapons) {
-            acc[weap] = 0;
-          }
+    let counts = Object.keys(this.game.classes).reduce((acc, val) => {
+      if (this.game.classes[val].weapons) {
+        for (const weap of this.game.classes[val].weapons) {
+          acc[weap] = 0;
         }
-        return acc;
-      },
-      {}
-    );
+      }
+      return acc;
+    }, {});
 
     for (const char of this.picks.characters) {
       for (const weap of this.game.classes[char.class].weapons) {

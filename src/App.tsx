@@ -10,9 +10,21 @@ import { gameList, Games } from "./Games";
 import "./App.css";
 import { Game } from "./data/data.types";
 
-export type PickerOptions = Game<any>["flags"] & { factions?: boolean, balanced?: boolean }
+export type PickerOptions = Game<any>["flags"] & {
+  factions?: boolean;
+  balanced?: boolean;
+};
 
-export class App extends Component<unknown, { game: string, numPicks: number, options: PickerOptions, picking: boolean, picks?: CompletedPicks}> {
+export class App extends Component<
+  unknown,
+  {
+    game: string;
+    numPicks: number;
+    options: PickerOptions;
+    picking: boolean;
+    picks?: CompletedPicks;
+  }
+> {
   constructor(props: unknown) {
     super(props);
 
