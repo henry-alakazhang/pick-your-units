@@ -418,6 +418,6 @@ export const fe17: Game<EngageGame> = {
   classes: { ...promotedClasses, ...uniqueClasses },
   characters,
   emblems,
-  trollCriteria: ["MAG classes for a STR-based character and vice versa."],
+  trollCriteria: ["MAG classes for a STR-based character and vice versa.", "Emblems that don't match the stats of the character/class"],
   defaultPicks: 14,
 };

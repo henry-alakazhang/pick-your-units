@@ -10,6 +10,10 @@ https://henry-alakazhang.github.io/pick-your-units/
 `npm install`  
 `npm start` to run the local server: access it at localhost:3000.
 
+## Feature Backlog
+- Explicitly include or exclude certain units or emblems
+- Add a toggle for DLC
+
 ## Changelog
 
 ### V2.1.0 (March 20223)
