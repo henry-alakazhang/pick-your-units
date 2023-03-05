@@ -61,32 +61,6 @@ export class CharacterList extends Component<
     const game = Games[this.props.game];
     const picks = this.props.picks.characters;
 
-    // portrait width:
-    let width = 0;
-    if (game.short === "fe1" || game.short === "fe2" || game.short === "fe3") {
-      width = 50;
-    } else if (game.short === "fe4" || game.short === "fe5") {
-      width = 75;
-    } else if (
-      game.short === "fe6" ||
-      game.short === "fe7" ||
-      game.short === "fe8" ||
-      game.short === "fe15"
-    ) {
-      width = 100;
-    } else if (
-      game.short === "fe9" ||
-      game.short === "fe10" ||
-      game.short === "fe13" ||
-      game.short === "fe14"
-    ) {
-      width = 120;
-    } else if (game.short === "fe16") {
-      width = 125;
-    } else if (game.short === "fe17") {
-      width = 0;
-    }
-
     const imgExtension = game.imgExtension || "png";
 
     const createDoubleRow = (
@@ -97,37 +71,29 @@ export class CharacterList extends Component<
         <tr style={{ fontSize: "14px" }} key={char1.name}>
           <td width={80}>
             <img
-              width={80}
-              src={
-                width !== 0
-                  ? require("../../images/" +
-                      game.short +
-                      "/" +
-                      char1.name.toLowerCase() +
-                      ".png")
-                  : 0
-              }
+              src={require("../../images/" +
+                game.short +
+                "/" +
+                char1.name.toLowerCase() +
+                ".png")}
               alt={char1.name}
             />
           </td>
           {this.getDisplayName(char1)}
           <td>{char1.class}</td>
-          <td width={80}>
-            <img
-              width={80}
-              src={
-                width !== 0
-                  ? require("../../images/" +
-                      game.short +
-                      "/" +
-                      char2.name.toLowerCase() +
-                      "." +
-                      imgExtension)
-                  : 0
-              }
-              alt={char2.name}
-            />
-          </td>
+          {char2.name && (
+            <td width={80}>
+              <img
+                src={require("../../images/" +
+                  game.short +
+                  "/" +
+                  char2.name.toLowerCase() +
+                  "." +
+                  imgExtension)}
+                alt={char2.name}
+              />
+            </td>
+          )}
           {this.getDisplayName(char2)}
           <td>{char2.class}</td>
         </tr>
@@ -147,8 +113,8 @@ export class CharacterList extends Component<
         // treat each characters emblems as their pair for display purposes
         // i'm going to regret this when they add pairings AND emblems (holy blood) to fire emblem: shadows of jugdral pt 1: genealogy of the holy war.
         const emblem: CharacterPick = {
-          name: emblemName ?? "No Emblem",
-          class: emblemName ? "Emblem" : "",
+          name: emblemName ?? "", // no emblem is left empty so it doesn't try to `require()` the image.
+          class: emblemName ? "" : "(no emblem)",
         };
         tableRows.push(createDoubleRow(char, emblem));
       }
@@ -157,18 +123,15 @@ export class CharacterList extends Component<
         const char = picks[i];
         tableRows.push(
           <tr key={char.name}>
-            <td width={width}>
+            {/* Setting low width here push the name flush with the portrait */}
+            <td width={1}>
               <img
-                src={
-                  width !== 0
-                    ? require("../../images/" +
-                        game.short +
-                        "/" +
-                        char.name.toLowerCase() +
-                        "." +
-                        imgExtension)
-                    : ""
-                }
+                src={require("../../images/" +
+                  game.short +
+                  "/" +
+                  char.name.toLowerCase() +
+                  "." +
+                  imgExtension)}
                 alt={char.name}
               />
             </td>
