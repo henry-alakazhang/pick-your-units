@@ -12,6 +12,14 @@ https://henry-alakazhang.github.io/pick-your-units/
 
 ## Changelog
 
+### V2.1.0 (March 20223)
+
+- Implemented Emblem picking for Emblems
+
+#### V2.1.1
+
+- Adjusted algorithm for picking emblems to be smarter
+
 ### V2.0.0 (February 2022)
 
 - Massive internal overhaul (migration to TypeScript), including several bugfixes:

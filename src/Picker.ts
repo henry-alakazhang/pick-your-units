@@ -181,57 +181,59 @@ export class Picker<G extends GameMetaType> {
         }
 
         if (this.game.flags["emblems"] && this.game.emblems) {
-          let remainingEmblems = { ... this.game.emblems };
+          // randomly pick N emblems to use.
+          const pickedEmblems = shuffle(Object.keys(this.game.emblems)).slice(0, this.picks.characters.length);
 
           // if allowed to troll, we can just assign emblems at complete random
           if (this.options.troll) {
             // shuffle the list and assign one by one.
-            const shuffledEmblems = shuffle(Object.keys(remainingEmblems));
             this.picks.characters.forEach(char => {
-              this.picks.emblems[char.name] = shuffledEmblems.pop();
+              this.picks.emblems[char.name] = pickedEmblems.pop();
             });
           } else {
+            const remainingCharacters = Object.fromEntries(this.picks.characters.map(c => ([c.name, true])));
+
             // otherwise, we have to put some thought into this.
-            // FIXME: I didn't put enough thought into this
-            // base-game/no-dlc, celica and micaiah regularly end up on awful units
-            // first pass: pick non-troll emblems for everyone
-            this.picks.characters.forEach(char => {
-              const charData = this.game.characters[char.name as G["CharacterName"]];
-              const classData = this.game.classes[char.class as G["ClassName"]];
+            // sort the emblems in "amount of viable units" order and assign them in that order.
+            const emblemsAndViableChars = pickedEmblems.map(emblem => {
+              // no stat requirements: anyone can use.
+              if (!this.game.emblems?.[emblem].stat) {
+                return { emblem, chars: this.picks.characters };
+              }
+              const chars = this.picks.characters.filter(char => {
+                const charData = this.game.characters[char.name as G["CharacterName"]];
+                const classData = this.game.classes[char.class as G["ClassName"]];
 
-            // compute all the non-troll emblems for a character
-              const availables = Object.keys(remainingEmblems).filter(
-                emblem => {
-                  // if the emblem has no stat restrictions, anyone can use it
-                  if (!remainingEmblems[emblem].stat) {
-                    return true;
-                  }
+                // if the emblem has stat restrictions, it needs to match either the character or the class
+                // eg. a MAG character with a MAG/STR class can use any emblems, because hopefully
+                // their class gives them the base stats to be functional with STR emblems
+                // eg. a MAG/STR character with a MAG class can still use STR emblems, likewise because
+                // their bases and growths should give them the stats to use STR emblems
+                // this makes things a LITTLE weird because eg. Wolf Knight Merrin can use Celica, but it's probably OK?
+                return (this.game.emblems?.[emblem].stat?.MAG && (charData.stat?.MAG || classData.stat?.MAG)) ||
+                    (this.game.emblems?.[emblem].stat?.STR && (charData.stat?.STR || classData.stat?.STR))
+              });
+              return { emblem, chars };
+            }).sort(
+              ({ chars: charsA }, { chars: charsB }) => charsA.length - charsB.length
+            );
 
-                  // if the emblem has stat restrictions, it needs to match both the character AND the class
-                  // eg. a MAG character with a MAG/STR class should only use MAG-able emblems
-                  // eg. a MAG/STR character in a STR class should not use MAG-only emblems
-                  // this does mess up some specific edge cases, eg. Mage Knight Clamme
-                  // can't use MAG-based emblems because he has terrible MAG growth, but w/e
-                  return (remainingEmblems[emblem].stat?.MAG && charData.stat?.MAG && classData.stat?.MAG) ||
-                    (remainingEmblems[emblem].stat?.STR && charData.stat?.STR && classData.stat?.STR)
+            console.log(emblemsAndViableChars);
+
+            emblemsAndViableChars.forEach(
+              ({ emblem, chars: viableChars }) => {
+                // get viable characters and filter for unpicked ones
+                let available = viableChars.map(c => c.name).filter(c => remainingCharacters[c]);
+                if (available.length === 0) {
+                  console.log('Ran out of good units to put with emblem:', emblem);
+                  // if none left, just assign to any remaining character at random.
+                  available = Object.keys(remainingCharacters);
                 }
-              );
-              // viable emblems that we haven't picked yet
-              // if there are non-troll ones left, leave this blank for now 
-              const pickedEmblem = availables.length > 0 ? getOrRand(availables) : undefined;
-              this.picks.emblems[char.name] = pickedEmblem;
-              if (pickedEmblem) {
-                delete remainingEmblems[pickedEmblem];
+                const matchedChar = getOrRand(available);
+                this.picks.emblems[matchedChar] = emblem;
+                delete remainingCharacters[matchedChar];
               }
-            });
-            // second pass: fill out the rest (if anyone's left, they only have troll emblems)
-            // just shuffle the remaining emblems and hand them out.
-            const shuffledEmblems = shuffle(Object.keys(remainingEmblems));
-            this.picks.characters.forEach(char => {
-              if (!this.picks.emblems[char.name]) {
-                this.picks.emblems[char.name] = shuffledEmblems.pop();
-              }
-            });
+            )
           }
         }
 
