@@ -343,7 +343,9 @@ const characters = {
   Rosado: {
     class: "Base",
     defaultClass: "Wyvern Knight (Any)",
-    stat: { STR: true },
+    // may seem weird, but rosado's personal bases at 40 are 16.5 / 12
+    // this is a similar ratio to Celine, who can definitely be a mage.
+    stat: { STR: true, MAG: true },
   },
   Goldmary: {
     class: "Base",
@@ -353,6 +355,7 @@ const characters = {
   Lindon: {
     class: "Base",
     defaultClass: "Sage",
+    // old mate starts as a sage, but has 8 personal base STR and 10 personal base MAG
     stat: { STR: true, MAG: true },
   },
   Saphir: {
@@ -363,22 +366,24 @@ const characters = {
   Mauvier: {
     class: "Base",
     defaultClass: "Royal Knight",
-    stat: { STR: true },
+    stat: { STR: true, MAG: true },
   },
   Veyle: {
     class: "Fell Child (Base)",
     defaultClass: "Fell Child",
+    // this (generally) keeps Veyle a mage so she can use at least her personal tome
+    // TODO: make this support more specifics so she can be a knife class too without trolling
     stat: { MAG: true },
   },
   Jean: {
     class: "Base",
     defaultClass: "Martial Master",
-    stat: { MAG: true },
+    stat: { STR: true, MAG: true },
   },
   Anna: {
     class: "Base",
     defaultClass: "Mage Knight (Any)",
-    stat: { STR: true, MAG: true },
+    stat: { MAG: true },
   },
 } as const;
 

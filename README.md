@@ -19,6 +19,7 @@ https://henry-alakazhang.github.io/pick-your-units/
 #### V2.1.1
 
 - Adjusted algorithm for picking emblems to be smarter
+- Adjusted some STR/MAG splits for Engage characters using actual statistics
 
 ### V2.0.0 (February 2022)
 
