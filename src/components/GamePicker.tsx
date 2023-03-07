@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Row, Col, Form } from "react-bootstrap";
+import { Component } from "react";
+import { Col, Form, Row } from "react-bootstrap";
 
 import { gameList } from "../Games";
 
@@ -8,12 +8,6 @@ export class GamePicker extends Component<{
   handler: (event: any) => void;
 }> {
   render() {
-    const styles = {
-      gameInput: {
-        width: "auto",
-      },
-    };
-
     return (
       <Row>
         <Col>
@@ -22,7 +16,6 @@ export class GamePicker extends Component<{
             <Form.Group>
               <Form.Control
                 as="select"
-                style={styles.gameInput}
                 value={this.props.game}
                 onChange={this.props.handler}
               >

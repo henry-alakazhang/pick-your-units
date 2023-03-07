@@ -12,10 +12,14 @@ https://henry-alakazhang.github.io/pick-your-units/
 
 ## Feature Backlog
 
-- Explicitly include or exclude certain units or emblems
+- Explicitly exclude certain units or emblems
 - Add a toggle for DLC
 
 ## Changelog
+
+### V2.2.0 (March 2023)
+
+- Added a selector for forcing certain units
 
 ### V2.1.0 (March 20223)
 

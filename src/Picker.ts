@@ -63,8 +63,9 @@ export class Picker<G extends GameMetaType> {
   private options: GameConfig;
   private pool: string[];
   private picks: CompletedPicks;
+  private include: string[];
 
-  constructor(game: string, numPicks: number, options: GameConfig) {
+  constructor(game: string, numPicks: number, options: GameConfig, include?: string[]) {
     this.game = Games[game];
     this.numPicks = numPicks;
     this.options = options;
@@ -77,6 +78,7 @@ export class Picker<G extends GameMetaType> {
       emblems: {},
       options: { ...options },
     };
+    this.include = include ?? [];
   }
 
   /**
@@ -166,8 +168,8 @@ export class Picker<G extends GameMetaType> {
         this.pool.length + this.picks.characters.length
       );
 
-      // pick free characters
-      for (const forced of this.game.free) {
+      // pick free and force-included characters
+      for (const forced of [...this.game.free, ...this.include]) {
         this.makePick(getOrRand(forced));
       }
 

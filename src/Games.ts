@@ -1,13 +1,13 @@
-import { fe1, fe2, fe3, fe4, fe5 } from "./data/snes";
-import { fe6, fe7, fe8 } from "./data/gba";
-import { fe9, fe10 } from "./data/tellius";
-import { fe11, fe12 } from "./data/ds";
+import { fe16church, fe16deer, fe16eagles, fe16lions } from "./data/3h";
 import { fe13 } from "./data/awakening";
-import { fe14br, fe14cq, fe14rev } from "./data/fates";
-import { fe15alm, fe15celica } from "./data/valentia";
-import { fe16church, fe16deer, fe16lions, fe16eagles } from "./data/3h";
-import { fe17 } from "./data/engage";
 import { Game } from "./data/data.types";
+import { fe11, fe12 } from "./data/ds";
+import { fe17 } from "./data/engage";
+import { fe14br, fe14cq, fe14rev } from "./data/fates";
+import { fe6, fe7, fe8 } from "./data/gba";
+import { fe1, fe2, fe3, fe4, fe5 } from "./data/snes";
+import { fe10, fe9 } from "./data/tellius";
+import { fe15alm, fe15celica } from "./data/valentia";
 
 /**
  * TS interface for personal reference
@@ -68,7 +68,7 @@ export const gameList = [
   "Engage",
 ];
 
-export const Games = {
+export const Games: { [k: string]: Game<any> } = {
   "Fire Emblem": fe1,
   Gaiden: fe2,
   "Mystery of the Emblem": fe3,

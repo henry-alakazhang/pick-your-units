@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Row, Table } from "react-bootstrap";
+import { Component } from "react";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+import { Row, Table } from "react-bootstrap";
 
 import { Games } from "../Games";
 import { CharacterPick, CompletedPicks } from "../Picker";

@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { Row, Col, Button, Alert } from "react-bootstrap";
+import { Alert, Button, Col, Row } from "react-bootstrap";
 
-import { GamePicker } from "./components/GamePicker";
-import { GameOptions } from "./components/GameOptions";
 import { CharacterList } from "./components/CharacterList";
+import { GameOptions } from "./components/GameOptions";
+import { GamePicker } from "./components/GamePicker";
 
-import { CompletedPicks, Picker } from "./Picker";
-import { gameList, Games } from "./Games";
 import "./App.css";
 import { Game } from "./data/data.types";
+import { gameList, Games } from "./Games";
+import { CompletedPicks, Picker } from "./Picker";
 
 export type PickerOptions = Game<any>["flags"] & {
   factions?: boolean;
@@ -20,6 +20,7 @@ export class App extends Component<
   {
     game: string;
     numPicks: number;
+    included: string[];
     options: PickerOptions;
     picking: boolean;
     picks?: CompletedPicks;
@@ -31,6 +32,7 @@ export class App extends Component<
     this.state = {
       game: gameList[0],
       numPicks: Games[gameList[0]].defaultPicks || 12,
+      included: [],
       options: {
         pairings: false,
         friends: false,
@@ -44,11 +46,6 @@ export class App extends Component<
       picking: false,
       picks: undefined,
     };
-
-    this.handleGamePick = this.handleGamePick.bind(this);
-    this.handleOptionChange = this.handleOptionChange.bind(this);
-    this.handleNumChange = this.handleNumChange.bind(this);
-    this.handleStart = this.handleStart.bind(this);
   }
 
   handleGamePick(e) {
@@ -57,6 +54,7 @@ export class App extends Component<
       game: e.target.value,
       // default to 12 for games without a setting
       numPicks: Games[e.target.value].defaultPicks || 12,
+      included: [],
       picks: undefined,
       options: {
         pairings: false,
@@ -72,22 +70,27 @@ export class App extends Component<
     });
   }
 
-  handleOptionChange(e, opt) {
+  handleOptionChange(opt: string, set: boolean) {
+    console.log(opt, set);
     const cascade = {
       pairings: ["onlypairs", "children"],
       classes: ["troll"],
     };
     let options = this.state.options;
-    options[opt] = e.target.checked;
+    options[opt] = set;
     // cascade and remove invalid options
-    if (!e.target.checked && cascade[opt]) {
+    if (!set && cascade[opt]) {
       for (const opt2 of cascade[opt]) options[opt2] = false;
     }
     this.setState({ options: options });
   }
 
-  handleNumChange(e) {
-    this.setState({ numPicks: e.target.value });
+  handleNumChange(numPicks: number) {
+    this.setState({ numPicks });
+  }
+
+  handleIncludeChange(included: string[]) {
+    this.setState({ included });
   }
 
   handleStart() {
@@ -95,7 +98,8 @@ export class App extends Component<
     const picker = new Picker(
       this.state.game,
       this.state.numPicks,
-      this.state.options
+      this.state.options,
+      this.state.included
     );
     picker.generatePicks().then(res => {
       this.setState({
@@ -109,7 +113,11 @@ export class App extends Component<
     const styles: { [k: string]: React.CSSProperties } = {
       container: {
         margin: "20px",
-        maxWidth: "900px",
+        maxWidth: "1080px",
+      },
+      listContainer: {
+        maxHeight: "calc(100vh - 100px)",
+        overflowY: "auto",
       },
       sidebar: {
         textAlign: "left",
@@ -128,18 +136,24 @@ export class App extends Component<
           <h1>Fire Emblem Pick-Your-Unit</h1>
           <div style={styles.container}>
             <Row>
-              <Col md={4} style={styles.sidebar}>
-                <GamePicker
-                  game={this.state.game}
-                  handler={this.handleGamePick}
-                />
+              <Col md={3} style={styles.sidebar}>
+                <div style={styles.sidebarSection}>
+                  <GamePicker
+                    game={this.state.game}
+                    handler={g => this.handleGamePick(g)}
+                  />
+                </div>
                 <div style={styles.sidebarSection}>
                   <GameOptions
                     game={this.state.game}
                     options={this.state.options}
-                    handleOptionChange={this.handleOptionChange}
                     numPicks={this.state.numPicks}
-                    handleNumChange={this.handleNumChange}
+                    included={this.state.included}
+                    handleOptionChange={(opt, val) =>
+                      this.handleOptionChange(opt, val)
+                    }
+                    handleNumChange={n => this.handleNumChange(n)}
+                    handleIncludeChange={inc => this.handleIncludeChange(inc)}
                   />
                 </div>
                 <div style={styles.sidebarSection}>
@@ -154,7 +168,7 @@ export class App extends Component<
                     size="lg"
                     variant="primary"
                     disabled={Games[this.state.game].disabled !== undefined}
-                    onClick={this.handleStart}
+                    onClick={() => this.handleStart()}
                   >
                     Pick My Units!
                   </Button>
@@ -173,7 +187,7 @@ export class App extends Component<
                   .
                 </div>
               </Col>
-              <Col md={8}>
+              <Col md={9} style={styles.listContainer}>
                 {this.state.picks && (
                   <CharacterList
                     picks={this.state.picks}
