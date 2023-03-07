@@ -5,7 +5,7 @@
   "homepage": "http://henry-alakazhang.github.io/pick-your-units",
   "devDependencies": {
     "prettier": "^1.19.1",
-    "source-map-explorer": "^1.8.0",
+    "source-map-explorer": "^2.5.3",
     "typescript": "^4.9.5"
   },
   "dependencies": {
