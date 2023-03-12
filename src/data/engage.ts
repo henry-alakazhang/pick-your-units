@@ -405,6 +405,8 @@ const emblems = {
   // Hector: { stat: { STR: true, MAG: false }, dlc: true },
   // Soren: { stat: { STR: false, MAG: true }, dlc: true },
   // Camilla: { dlc: true },
+  // Veronica: { stat: { STR: false, MAG: true }, dlc: true },
+  // Chrom: { dlc: true }
 } as const;
 
 export const fe17: Game<EngageGame> = {
