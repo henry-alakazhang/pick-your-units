@@ -1,11 +1,20 @@
-export interface Class<G extends GameMetaType> {
-  /** Available weapons */
-  readonly weapons: readonly string[];
+export type Class<G extends GameMetaType> = {
   /** Promotion (if applicable) */
   readonly promo?: G["ClassName"] | readonly G["ClassName"][];
   /** Stats required for effective use */
   readonly stat?: { STR?: boolean; MAG?: boolean };
-}
+} & (
+  | {
+      /** Available weapons */
+      readonly weapons: readonly string[];
+    }
+  | {
+      /** Available pools of weapons */
+      readonly weaponPools: readonly (readonly string[])[];
+      /** Which weapons to use to describe the class (eg. General (Sword)) */
+      readonly subtitleWeapon?: "last" | "all";
+    }
+);
 
 export type Character<G extends GameMetaType> = {
   /** Possible base classes */
@@ -16,6 +25,10 @@ export type Character<G extends GameMetaType> = {
    * because of the dodgy way in which they are implemented (one root class)
    */
   readonly defaultClass?: G["ClassName"];
+  /**
+   * Default weapon pool for a weapon-pool default class
+   */
+  readonly defaultClassDefaultWeapon?: readonly string[];
   /** Whether characters have good bases/growths for a stat */
   readonly stat?: { STR?: boolean; MAG?: boolean };
   /** Other characters available for A+ rank */
@@ -79,6 +92,12 @@ export interface GameMetaType {
   readonly ChildCharacterName: string;
   readonly Pairings: boolean;
 }
+
+/**
+ * Use the above type as a "generic" GameMetaType where it could be any
+ * The types are all effectively just become strings
+ */
+export type AnyGame = GameMetaType;
 
 /** A generically useable `GameMetaType` for unsupported games */
 export interface UnsupportedGame extends GameMetaType {

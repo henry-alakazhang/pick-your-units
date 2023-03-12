@@ -1,12 +1,13 @@
 import { Component } from "react";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import { Row, Table } from "react-bootstrap";
+import { AnyGame } from "../data/data.types";
 
 import { Games } from "../Games";
 import { CharacterPick, CompletedPicks } from "../Picker";
 
 export class CharacterList extends Component<
-  { game: string; picks: CompletedPicks },
+  { game: string; picks: CompletedPicks<any> },
   {}
 > {
   constructor(props) {
@@ -14,7 +15,7 @@ export class CharacterList extends Component<
     this.getDisplayName = this.getDisplayName.bind(this);
   }
 
-  getDisplayName(char: CharacterPick) {
+  getDisplayName(char: CharacterPick<AnyGame>) {
     const game = Games[this.props.game];
     const picks = this.props.picks;
 
@@ -57,6 +58,32 @@ export class CharacterList extends Component<
     );
   }
 
+  getClassDisplay(char: CharacterPick<AnyGame>) {
+    const game = Games[this.props.game];
+    const charClass = game.classes[char.class];
+
+    let classSubtitle = "";
+    if (char.classWeaponPool !== undefined && "weaponPools" in charClass) {
+      if (charClass.subtitleWeapon === "last") {
+        // just use the last one
+        classSubtitle =
+          charClass.weaponPools[char.classWeaponPool][
+            charClass.weaponPools[char.classWeaponPool].length - 1
+          ];
+      } else {
+        // use all of them (also default)
+        classSubtitle = charClass.weaponPools[char.classWeaponPool].join("/");
+      }
+      classSubtitle = `(${classSubtitle})`;
+    }
+
+    return (
+      <td>
+        {char.class} {classSubtitle}
+      </td>
+    );
+  }
+
   render() {
     const game = Games[this.props.game];
     const picks = this.props.picks.characters;
@@ -64,8 +91,8 @@ export class CharacterList extends Component<
     const imgExtension = game.imgExtension || "png";
 
     const createDoubleRow = (
-      char1: CharacterPick,
-      char2: CharacterPick
+      char1: CharacterPick<AnyGame>,
+      char2: CharacterPick<AnyGame>
     ): JSX.Element => {
       return (
         <tr style={{ fontSize: "14px" }} key={char1.name}>
@@ -80,7 +107,7 @@ export class CharacterList extends Component<
             />
           </td>
           {this.getDisplayName(char1)}
-          <td>{char1.class}</td>
+          {this.getClassDisplay(char1)}
           {char2.name && (
             <td width={80}>
               <img
@@ -95,7 +122,7 @@ export class CharacterList extends Component<
             </td>
           )}
           {this.getDisplayName(char2)}
-          <td>{char2.class}</td>
+          {this.getClassDisplay(char2)}
         </tr>
       );
     };
@@ -112,7 +139,7 @@ export class CharacterList extends Component<
         const emblemName = this.props.picks.emblems[char.name];
         // treat each characters emblems as their pair for display purposes
         // i'm going to regret this when they add pairings AND emblems (holy blood) to fire emblem: shadows of jugdral pt 1: genealogy of the holy war.
-        const emblem: CharacterPick = {
+        const emblem: CharacterPick<AnyGame> = {
           name: emblemName ?? "", // no emblem is left empty so it doesn't try to `require()` the image.
           class: emblemName ? "" : "(no emblem)",
         };
@@ -136,7 +163,7 @@ export class CharacterList extends Component<
               />
             </td>
             {this.getDisplayName(char)}
-            <td>{char.class}</td>
+            {this.getClassDisplay(char)}
           </tr>
         );
       }

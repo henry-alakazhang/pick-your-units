@@ -6,7 +6,7 @@ import { GameOptions } from "./components/GameOptions";
 import { GamePicker } from "./components/GamePicker";
 
 import "./App.css";
-import { Game } from "./data/data.types";
+import { AnyGame, Game } from "./data/data.types";
 import { gameList, Games } from "./Games";
 import { CompletedPicks, Picker } from "./Picker";
 
@@ -23,7 +23,7 @@ export class App extends Component<
     included: string[];
     options: PickerOptions;
     picking: boolean;
-    picks?: CompletedPicks;
+    picks?: CompletedPicks<AnyGame>;
   }
 > {
   constructor(props: unknown) {

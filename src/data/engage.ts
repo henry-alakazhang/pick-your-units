@@ -23,8 +23,12 @@ const promotedClasses = {
     weapons: ["Sword"],
     stat: { STR: true, MAG: false },
   },
-  "Hero (Any)": {
-    weapons: ["Sword", "Axe", "Lance"],
+  Hero: {
+    weaponPools: [
+      ["Sword", "Axe"],
+      ["Sword", "Lance"],
+    ],
+    subtitleWeapon: "last",
     stat: { STR: true, MAG: false },
   },
   Halberdier: {
@@ -47,32 +51,54 @@ const promotedClasses = {
     weapons: ["Bow"],
     stat: { STR: true, MAG: false },
   },
-  "Bow Knight (Any)": {
-    weapons: ["Bow", "Sword", "Lance", "Axe"],
+  "Bow Knight": {
+    weaponPools: [
+      ["Bow", "Sword"],
+      ["Bow", "Lance"],
+      ["Bow", "Axe"],
+    ],
+    subtitleWeapon: "last",
     stat: { STR: true, MAG: false },
   },
-  "General (Any)": {
-    weapons: ["Sword", "Lance", "Axe"],
+  General: {
+    weaponPools: [["Sword"], ["Lance"], ["Axe"]],
+    subtitleWeapon: "all",
     stat: { STR: true, MAG: false },
   },
-  "Great Knight (Any)": {
-    weapons: ["Sword", "Lance", "Axe"],
+  "Great Knight": {
+    weaponPools: [
+      ["Sword", "Lance"],
+      ["Sword", "Axe"],
+      ["Lance", "Axe"],
+    ],
+    subtitleWeapon: "all",
     stat: { STR: true, MAG: false },
   },
-  "Paladin (Any)": {
-    weapons: ["Sword", "Lance", "Axe"],
+  Paladin: {
+    weaponPools: [["Sword"], ["Lance"], ["Axe"]],
+    subtitleWeapon: "all",
     stat: { STR: true, MAG: false },
   },
-  "Wolf Knight (Any)": {
-    weapons: ["Knife", "Sword", "Lance", "Axe"],
+  "Wolf Knight": {
+    weaponPools: [
+      ["Knife", "Sword"],
+      ["Knife", "Lance"],
+      ["Knife", "Axe"],
+    ],
+    subtitleWeapon: "last",
     stat: { STR: true, MAG: false },
   },
   Sage: {
     weapons: ["Tome", "Staff"],
     stat: { STR: false, MAG: true },
   },
-  "Mage Knight (Any)": {
-    weapons: ["Tome", "Sword", "Lance", "Axe"],
+  "Mage Knight": {
+    weaponPools: [
+      ["Tome", "Sword"],
+      ["Tome", "Lance"],
+      ["Tome", "Axe"],
+    ],
+    subtitleWeapon: "last",
     stat: { STR: true, MAG: true },
   },
   "Martial Master": {
@@ -83,12 +109,22 @@ const promotedClasses = {
     weapons: ["Tome", "Staff", "Arts"],
     stat: { STR: false, MAG: true },
   },
-  "Griffin Knight (Any)": {
-    weapons: ["Staff", "Sword", "Lance", "Axe"],
+  "Griffin Knight": {
+    weaponPools: [
+      ["Staff", "Sword"],
+      ["Staff", "Lance"],
+      ["Staff", "Axe"],
+    ],
+    subtitleWeapon: "last",
     stat: { STR: true, MAG: false },
   },
-  "Wyvern Knight (Any)": {
-    weapons: ["Sword", "Lance", "Axe"],
+  "Wyvern Knight": {
+    weaponPools: [
+      ["Sword", "Lance"],
+      ["Sword", "Axe"],
+      ["Lance", "Axe"],
+    ],
+    subtitleWeapon: "all",
     stat: { STR: true, MAG: false },
   },
 } as const;
@@ -207,12 +243,14 @@ const characters = {
   },
   Vander: {
     class: "Base",
-    defaultClass: "Paladin (Any)",
+    defaultClass: "Paladin",
+    defaultClassDefaultWeapon: ["Axe"],
     stat: { STR: true },
   },
   Clanne: {
     class: "Base",
-    defaultClass: "Mage Knight (Any)",
+    defaultClass: "Mage Knight",
+    defaultClassDefaultWeapon: ["Tome", "Sword"],
     stat: { STR: true },
   },
   Framme: {
@@ -242,12 +280,14 @@ const characters = {
   },
   Chloé: {
     class: "Base",
-    defaultClass: "Griffin Knight (Any)",
+    defaultClass: "Griffin Knight",
+    defaultClassDefaultWeapon: ["Staff", "Lance"],
     stat: { STR: true, MAG: true },
   },
   Louis: {
     class: "Base",
-    defaultClass: "General (Any)",
+    defaultClass: "General",
+    defaultClassDefaultWeapon: ["Lance"],
     stat: { STR: true },
   },
   Yunaka: {
@@ -277,12 +317,14 @@ const characters = {
   },
   Amber: {
     class: "Base",
-    defaultClass: "Paladin (Any)",
+    defaultClass: "Paladin",
+    defaultClassDefaultWeapon: ["Lance"],
     stat: { STR: true },
   },
   Jade: {
     class: "Base",
-    defaultClass: "General (Any)",
+    defaultClass: "General",
+    defaultClassDefaultWeapon: ["Axe"],
     stat: { STR: true, MAG: true },
   },
   Ivy: {
@@ -312,7 +354,8 @@ const characters = {
   },
   Bunet: {
     class: "Base",
-    defaultClass: "Great Knight (Any)",
+    defaultClass: "Great Knight",
+    defaultClassDefaultWeapon: ["Sword", "Axe"],
     stat: { STR: true },
   },
   Timerra: {
@@ -327,7 +370,8 @@ const characters = {
   },
   Merrin: {
     class: "Base",
-    defaultClass: "Wolf Knight (Any)",
+    defaultClass: "Wolf Knight",
+    defaultClassDefaultWeapon: ["Knife", "Sword"],
     stat: { STR: true, MAG: true },
   },
   Hortensia: {
@@ -342,14 +386,16 @@ const characters = {
   },
   Rosado: {
     class: "Base",
-    defaultClass: "Wyvern Knight (Any)",
+    defaultClass: "Wyvern Knight",
+    defaultClassDefaultWeapon: ["Lance", "Axe"],
     // may seem weird, but rosado's personal bases at 40 are 16.5 / 12
     // this is a similar ratio to Celine, who can definitely be a mage.
     stat: { STR: true, MAG: true },
   },
   Goldmary: {
     class: "Base",
-    defaultClass: "Hero (Any)",
+    defaultClass: "Hero",
+    defaultClassDefaultWeapon: ["Sword", "Lance"],
     stat: { STR: true },
   },
   Lindon: {
@@ -382,7 +428,8 @@ const characters = {
   },
   Anna: {
     class: "Base",
-    defaultClass: "Mage Knight (Any)",
+    defaultClass: "Mage Knight",
+    defaultClassDefaultWeapon: ["Tome", "Axe"],
     stat: { MAG: true },
   },
 } as const;

@@ -1,5 +1,5 @@
 import { GameConfig } from "./components/GameOptions";
-import { Game, GameMetaType } from "./data/data.types";
+import { Class, Game, GameMetaType } from "./data/data.types";
 import { Games } from "./Games";
 
 /**
@@ -31,22 +31,33 @@ function getOrRand(obj: string | readonly string[]): string {
   }
 }
 
-export interface CompletedPicks {
-  characters: CharacterPick[];
+export interface CompletedPicks<G extends GameMetaType> {
+  characters: CharacterPick<G>[];
   weapons: { [k: string]: number };
-  pairings: { [k: string]: string };
-  friends: { [k: string]: string };
+  pairings: {
+    [k in G["CharacterName"] | G["ChildCharacterName"]]?:
+      | G["CharacterName"]
+      | G["ChildCharacterName"];
+  };
+  friends: {
+    [k in G["CharacterName"] | G["ChildCharacterName"]]?:
+      | G["CharacterName"]
+      | G["ChildCharacterName"];
+  };
   // can be undefined because there aren't enough base game emblems for all picks
-  emblems: { [k: string]: string | undefined };
+  emblems: {
+    [k in G["CharacterName"] | G["ChildCharacterName"]]?: string | undefined;
+  };
   options: GameConfig;
 }
 
-export interface CharacterPick {
-  name: string;
-  class: string;
+export interface CharacterPick<G extends GameMetaType> {
+  name: G["CharacterName"] | G["ChildCharacterName"];
+  class: G["ClassName"];
+  classWeaponPool?: number;
 
   /** Whether to show S support pair (if explicitly needed for class, or if specified) */
-  showPair?: boolean;
+  showPair?: G["Pairings"];
   /** Whether to show A+ friend (if explicitly needed for class) */
   showFriend?: boolean;
 
@@ -62,10 +73,15 @@ export class Picker<G extends GameMetaType> {
   private numPicks: number;
   private options: GameConfig;
   private pool: string[];
-  private picks: CompletedPicks;
+  private picks: CompletedPicks<G>;
   private include: string[];
 
-  constructor(game: string, numPicks: number, options: GameConfig, include?: string[]) {
+  constructor(
+    game: string,
+    numPicks: number,
+    options: GameConfig,
+    include?: string[]
+  ) {
     this.game = Games[game];
     this.numPicks = numPicks;
     this.options = options;
@@ -85,7 +101,7 @@ export class Picker<G extends GameMetaType> {
    * Generates picks for the given settings
    * Returns a promise to return the picks (generates asynchronously)
    */
-  generatePicks(): Promise<CompletedPicks> {
+  generatePicks(): Promise<CompletedPicks<G>> {
     return new Promise((resolve, reject) => {
       let avatar: string | undefined = undefined;
       if (this.game.avatar) {
@@ -208,12 +224,8 @@ export class Picker<G extends GameMetaType> {
                 return { emblem, chars: this.picks.characters };
               }
               const chars = this.picks.characters.filter(char => {
-                const charData = this.game.characters[
-                  char.name as G["CharacterName"]
-                ];
-                const classData = this.game.classes[
-                  char.class as G["ClassName"]
-                ];
+                const charData = this.game.characters[char.name];
+                const classData = this.game.classes[char.class];
 
                 // if the emblem has stat restrictions, it needs to match either the character or the class
                 // eg. a MAG character with a MAG/STR class can use any emblems, because hopefully
@@ -324,6 +336,7 @@ export class Picker<G extends GameMetaType> {
     const character = this.game.characters[char] || this.game.children![char];
     let pickName = char;
     let pickClass: string;
+    let pickClassWeapon: number | undefined = undefined;
     let showPair: boolean | undefined = undefined;
     let showFriend: boolean | undefined = undefined;
 
@@ -369,6 +382,9 @@ export class Picker<G extends GameMetaType> {
       pickClass = character.defaultClass || character.class[0];
     }
 
+    // TODO: instead of promoting from the base class, generate a list of all possible promotions
+    // as is, this currently slightly biases classes that can be promoted to from multiple base classes
+    // switching it over would also make it nicer to implement fully open reclassing systems like 3H/Engage
     console.log(this.game.classes, pickClass);
     let promo = this.game.classes[pickClass].promo;
     while (promo !== null && promo !== undefined) {
@@ -376,9 +392,14 @@ export class Picker<G extends GameMetaType> {
       promo = this.game.classes[pickClass].promo;
     }
 
-    const pick: CharacterPick = {
+    if ("weaponPools" in this.game.classes[pickClass]) {
+      pickClassWeapon = randIn(this.game.classes[pickClass].weaponPools);
+    }
+
+    const pick: CharacterPick<G> = {
       name: pickName,
       class: pickClass,
+      classWeaponPool: pickClassWeapon,
       showFriend,
       showPair,
     };
@@ -444,19 +465,38 @@ export class Picker<G extends GameMetaType> {
   /**
    * Returns whether a new pick would maintain weapon balance across the classes
    */
-  maintainsBalance(pick: CharacterPick) {
-    let counts = Object.keys(this.game.classes).reduce((acc, val) => {
-      if (this.game.classes[val].weapons) {
-        for (const weap of this.game.classes[val].weapons) {
+  maintainsBalance(pick: CharacterPick<G>) {
+    // get all weapons in the game
+    let counts: { [k: string]: number } = Object.values<Class<G>>(
+      this.game.classes
+    ).reduce((acc, val) => {
+      if ("weapons" in val) {
+        for (const weap of val.weapons) {
           acc[weap] = 0;
+        }
+      } else if ("weaponPools" in val) {
+        for (const pool of val.weaponPools) {
+          for (const weap of pool) {
+            acc[weap] = 0;
+          }
         }
       }
       return acc;
     }, {});
 
+    // count total picked weapons
     for (const char of this.picks.characters) {
-      for (const weap of this.game.classes[char.class].weapons) {
-        counts[weap]++;
+      const characterClass = this.game.classes[char.class];
+      if ("weapons" in characterClass) {
+        for (const weap of characterClass.weapons) {
+          characterClass[weap]++;
+        }
+      } else if ("weaponPools" in characterClass) {
+        for (const pool of characterClass.weaponPools) {
+          for (const weap of pool) {
+            characterClass[weap]++;
+          }
+        }
       }
     }
 
@@ -464,10 +504,20 @@ export class Picker<G extends GameMetaType> {
       Object.keys(counts).reduce((acc, val) => acc + counts[val], 0) /
       Object.keys(counts).length;
 
-    // for ordinary weapons users, check if they improve balance
-    for (const weap of this.game.classes[pick.class].weapons) {
-      // console.log(weap, counts[weap], avg);
-      if (counts[weap] < avg + 1) return true;
+    const pickedClass = this.game.classes[pick.class];
+
+    // for ordinary weapons users, check if they improve balance for any of their weapons
+    if ("weapons" in pickedClass) {
+      for (const weap of pickedClass.weapons) {
+        // console.log(weap, counts[weap], avg);
+        if (counts[weap] < avg + 1) return true;
+      }
+    } else if ("weaponPools" in pickedClass) {
+      for (const pool of pickedClass.weaponPools) {
+        for (const weap of pool) {
+          if (counts[weap] < avg + 1) return true;
+        }
+      }
     }
 
     // for non-weapon users, check if balance is ok
@@ -480,7 +530,7 @@ export class Picker<G extends GameMetaType> {
     return true;
   }
 
-  isTrollPick(pick: CharacterPick) {
+  isTrollPick(pick: CharacterPick<G>) {
     const pickChar =
       this.game.characters[pick.name] || this.game.children![pick.name];
     const pickClass = this.game.classes[pick.class];
@@ -495,24 +545,31 @@ export class Picker<G extends GameMetaType> {
       }
     }
 
-    // troll picks in 3H also include:
-    // - ones which require any of a unit's weaknesses
-    if (pickChar.weapons && pickClass.weapons) {
-      if (
-        pickClass.weapons.some(w => pickChar.weapons!.weaknesses.includes(w))
-      ) {
-        return true;
-      }
-    }
-
-    // fates has e-rank hell, which counts as a troll pick
-    if (this.game.short === "fe14") {
-      for (const weap of this.game.classes[pickChar.defaultClass!].weapons) {
-        if (pickClass.weapons.includes(weap)) {
-          return false;
+    // vaguely unnecessary guard due to mixed typings
+    // the following sections are for 3H and Fates which always have `weapons`
+    if ("weapons" in pickClass) {
+      // troll picks in 3H also include:
+      // - ones which require any of a unit's weaknesses
+      if (pickChar.weapons && pickClass.weapons) {
+        if (
+          pickClass.weapons.some(w => pickChar.weapons!.weaknesses.includes(w))
+        ) {
+          return true;
         }
       }
-      return true;
+
+      // fates has e-rank hell, which counts as a troll pick
+      if (this.game.short === "fe14") {
+        const initialClass = this.game.classes[pickChar.defaultClass!];
+        if ("weapons" in initialClass) {
+          for (const weap of initialClass.weapons) {
+            if (pickClass.weapons.includes(weap)) {
+              return false;
+            }
+          }
+        }
+        return true;
+      }
     }
 
     return false;
