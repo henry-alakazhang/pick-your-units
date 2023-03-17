@@ -3,18 +3,24 @@ export type Class<G extends GameMetaType> = {
   readonly promo?: G["ClassName"] | readonly G["ClassName"][];
   /** Stats required for effective use */
   readonly stat?: { STR?: boolean; MAG?: boolean };
+  /**
+   * Whether class is restricted to paid DLC only
+   * TODO: implement
+   * TODO: also handle classes that can be used once for free
+   */
+  readonly dlc?: boolean;
 } & (
-  | {
+    | {
       /** Available weapons */
       readonly weapons: readonly string[];
     }
-  | {
+    | {
       /** Available pools of weapons */
       readonly weaponPools: readonly (readonly string[])[];
       /** Which weapons to use to describe the class (eg. General (Sword)) */
       readonly subtitleWeapon?: "last" | "all";
     }
-);
+  );
 
 export type Character<G extends GameMetaType> = {
   /** Possible base classes */
@@ -50,6 +56,11 @@ export type Character<G extends GameMetaType> = {
     readonly strengths: readonly string[];
     readonly weaknesses: readonly string[];
   };
+  /**
+   * Whether character is restricted to paid DLC only.
+   * TODO: implement
+   */
+  // readonly dlc?: boolean;
 };
 
 // separate type for this so that ChildCharacter can have a different pairings type.
@@ -114,8 +125,8 @@ export interface Game<G extends GameMetaType> {
   readonly classes: { [name in G["ClassName"]]: Class<G> };
   readonly characters: {
     [name in G["CharacterName"]]: G["Pairings"] extends true
-      ? PairableCharacter<G>
-      : Character<G>;
+    ? PairableCharacter<G>
+    : Character<G>;
   };
   readonly children?: { [name in G["ChildCharacterName"]]: ChildCharacter<G> };
   readonly inheritClasses?: (
@@ -148,8 +159,8 @@ export interface Game<G extends GameMetaType> {
     readonly onlypairs?: G["Pairings"] extends true ? boolean : never;
     /** Whether child units exist */
     readonly children?: G["ChildCharacterName"] extends string
-      ? boolean
-      : never;
+    ? boolean
+    : never;
     /** Whether class changing exists */
     readonly classes?: boolean;
     /** Whether you can pick shit classes */
@@ -158,6 +169,8 @@ export interface Game<G extends GameMetaType> {
     readonly factions?: boolean;
     /** Whether emblems exist or not */
     readonly emblems?: boolean;
+    /** Whether there's PAID DLC content */
+    readonly dlc?: boolean;
   };
   /**
    * Criteria for a class to be considered shit.

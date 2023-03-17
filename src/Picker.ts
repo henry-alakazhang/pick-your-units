@@ -36,13 +36,13 @@ export interface CompletedPicks<G extends GameMetaType> {
   weapons: { [k: string]: number };
   pairings: {
     [k in G["CharacterName"] | G["ChildCharacterName"]]?:
-      | G["CharacterName"]
-      | G["ChildCharacterName"];
+    | G["CharacterName"]
+    | G["ChildCharacterName"];
   };
   friends: {
     [k in G["CharacterName"] | G["ChildCharacterName"]]?:
-      | G["CharacterName"]
-      | G["ChildCharacterName"];
+    | G["CharacterName"]
+    | G["ChildCharacterName"];
   };
   // can be undefined because there aren't enough base game emblems for all picks
   emblems: {
@@ -198,8 +198,16 @@ export class Picker<G extends GameMetaType> {
       }
 
       if (this.game.flags["emblems"] && this.game.emblems) {
+        // filter out DLC emblems if not chosen
+        const validEmblems = Object.keys(this.game.emblems).filter(
+          emblem =>
+            // either dlc is enabled
+            this.options.dlc ||
+            // or the emblem is not dlc
+            !this.game.emblems?.[emblem].dlc
+        );
         // randomly pick N emblems to use.
-        const pickedEmblems = shuffle(Object.keys(this.game.emblems)).slice(
+        const pickedEmblems = shuffle(validEmblems).slice(
           0,
           this.picks.characters.length
         );

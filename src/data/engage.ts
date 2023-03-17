@@ -447,13 +447,13 @@ const emblems = {
   Byleth: {},
   Corrin: {},
   Eirika: {},
-  // Edelgard: { stat: { STR: true, MAG: false }, dlc: true },
-  // Tiki: { dlc: true },
-  // Hector: { stat: { STR: true, MAG: false }, dlc: true },
-  // Soren: { stat: { STR: false, MAG: true }, dlc: true },
-  // Camilla: { dlc: true },
-  // Veronica: { stat: { STR: false, MAG: true }, dlc: true },
-  // Chrom: { dlc: true }
+  Edelgard: { dlc: true, stat: { STR: true, MAG: false } },
+  Tiki: { dlc: true },
+  Hector: { dlc: true, stat: { STR: true, MAG: false } },
+  Soren: { dlc: true, stat: { STR: false, MAG: true } },
+  Camilla: { dlc: true },
+  Veronica: { dlc: true, stat: { STR: false, MAG: true } },
+  Chrom: { dlc: true }
 } as const;
 
 export const fe17: Game<EngageGame> = {
@@ -463,6 +463,7 @@ export const fe17: Game<EngageGame> = {
     classes: true,
     emblems: true,
     troll: true,
+    dlc: true,
   },
   classes: { ...promotedClasses, ...uniqueClasses },
   characters,
