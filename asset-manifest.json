@@ -1,14 +1,16 @@
 {
   "files": {
     "main.css": "/pick-your-units/static/css/main.aa8f96d7.css",
-    "main.js": "/pick-your-units/static/js/main.bf14ef88.js",
+    "main.js": "/pick-your-units/static/js/main.3b13a8a9.js",
     "static/media/lissa.png": "/pick-your-units/static/media/lissa.22578974c5b5750a5f85.png",
     "static/media/lucina.png": "/pick-your-units/static/media/lucina.8c15cc4946f4242db6f4.png",
     "static/media/hortensia.png": "/pick-your-units/static/media/hortensia.60428e337fd7e89a22a8.png",
-    "static/media/chrom.png": "/pick-your-units/static/media/chrom.4a122b63d8f1c774f33a.png",
+    "static/media/chrom.png": "/pick-your-units/static/media/chrom.4feb03f1107bdd3aa9d9.png",
     "static/media/ivy.png": "/pick-your-units/static/media/ivy.e153cd175d31b8e363cb.png",
     "static/media/frederick.png": "/pick-your-units/static/media/frederick.cd115e3aab84f79ff233.png",
+    "static/media/veronica.png": "/pick-your-units/static/media/veronica.d68111b7f7ef909dedc5.png",
     "static/media/robin (f).png": "/pick-your-units/static/media/robin (f).8c1ec0c394419988baaa.png",
+    "static/media/hector.png": "/pick-your-units/static/media/hector.48bb4b5ca7de64611476.png",
     "static/media/fogado.png": "/pick-your-units/static/media/fogado.b83e6536333559f4fc15.png",
     "static/media/sumia.png": "/pick-your-units/static/media/sumia.5804648d33ae80997583.png",
     "static/media/micaiah.png": "/pick-your-units/static/media/micaiah.bdd7f6d68e5ddb857a2e.png",
@@ -27,8 +29,10 @@
     "static/media/rosado.png": "/pick-your-units/static/media/rosado.a1811b5fd7ded6d5ada6.png",
     "static/media/panette.png": "/pick-your-units/static/media/panette.81b349a858f50f1e7f16.png",
     "static/media/céline.png": "/pick-your-units/static/media/céline.6f49e6d4c2c0c60cc80c.png",
+    "static/media/camilla.png": "/pick-your-units/static/media/camilla.57a3a144338e3dc64d11.png",
     "static/media/yunaka.png": "/pick-your-units/static/media/yunaka.3a7ed2582c4b1113bf78.png",
     "static/media/pandreo.png": "/pick-your-units/static/media/pandreo.0058964ae5f330667cb3.png",
+    "static/media/robin.png": "/pick-your-units/static/media/robin.8d011aac75942ab8cacd.png",
     "static/media/anna.png": "/pick-your-units/static/media/anna.8af1ebfa820134111d8e.png",
     "static/media/corrin.png": "/pick-your-units/static/media/corrin.07140e324e68c4ae52d9.png",
     "static/media/sigurd.png": "/pick-your-units/static/media/sigurd.297e53ae8f7b3ca44bbe.png",
@@ -54,6 +58,7 @@
     "static/media/citrinne.png": "/pick-your-units/static/media/citrinne.b8faa87075a952f9e170.png",
     "static/media/marth.png": "/pick-your-units/static/media/marth.02afc30e21ef143317fd.png",
     "static/media/lapis.png": "/pick-your-units/static/media/lapis.e2a9f4afd36b22bb22ac.png",
+    "static/media/soren.png": "/pick-your-units/static/media/soren.1ed63cb37c3c40d52985.png",
     "static/media/zelkov.png": "/pick-your-units/static/media/zelkov.f492783f94295877e47d.png",
     "static/media/kana (m).png": "/pick-your-units/static/media/kana (m).ee6193f808e6274057df.png",
     "static/media/lindon.png": "/pick-your-units/static/media/lindon.003edb2c272a67a279f5.png",
@@ -133,7 +138,6 @@
     "static/media/orochi.png": "/pick-your-units/static/media/orochi.ef6ac1ca0744dc383132.png",
     "static/media/palla.jpg": "/pick-your-units/static/media/palla.93aa114739207836d7e5.jpg",
     "static/media/zeke.jpg": "/pick-your-units/static/media/zeke.93bdb510f97b52508f51.jpg",
-    "static/media/camilla.png": "/pick-your-units/static/media/camilla.57a3a144338e3dc64d11.png",
     "static/media/shura.png": "/pick-your-units/static/media/shura.b2f83cae1583ca2a21e6.png",
     "static/media/sonya.jpg": "/pick-your-units/static/media/sonya.35130d6fa03365def3a0.jpg",
     "static/media/midori.png": "/pick-your-units/static/media/midori.76195ccccd6a1cf14b6f.png",
@@ -247,10 +251,10 @@
     "index.html": "/pick-your-units/index.html",
     "static/media/downloadimages.sh": "/pick-your-units/static/media/downloadimages.c8f43dc592643afeb21c.sh",
     "main.aa8f96d7.css.map": "/pick-your-units/static/css/main.aa8f96d7.css.map",
-    "main.bf14ef88.js.map": "/pick-your-units/static/js/main.bf14ef88.js.map"
+    "main.3b13a8a9.js.map": "/pick-your-units/static/js/main.3b13a8a9.js.map"
   },
   "entrypoints": [
     "static/css/main.aa8f96d7.css",
-    "static/js/main.bf14ef88.js"
+    "static/js/main.3b13a8a9.js"
   ]
 }
