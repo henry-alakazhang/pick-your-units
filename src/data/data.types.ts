@@ -3,6 +3,12 @@ export type Class<G extends GameMetaType> = {
   readonly promo?: G["ClassName"] | readonly G["ClassName"][];
   /** Stats required for effective use */
   readonly stat?: { STR?: boolean; MAG?: boolean };
+  /**
+   * Whether class is restricted to paid DLC only
+   * TODO: implement
+   * TODO: also handle classes that can be used once for free
+   */
+  readonly dlc?: boolean;
 } & (
   | {
       /** Available weapons */
@@ -50,6 +56,11 @@ export type Character<G extends GameMetaType> = {
     readonly strengths: readonly string[];
     readonly weaknesses: readonly string[];
   };
+  /**
+   * Whether character is restricted to paid DLC only.
+   * TODO: implement
+   */
+  // readonly dlc?: boolean;
 };
 
 // separate type for this so that ChildCharacter can have a different pairings type.
@@ -158,6 +169,8 @@ export interface Game<G extends GameMetaType> {
     readonly factions?: boolean;
     /** Whether emblems exist or not */
     readonly emblems?: boolean;
+    /** Whether there's PAID DLC content */
+    readonly dlc?: boolean;
   };
   /**
    * Criteria for a class to be considered shit.

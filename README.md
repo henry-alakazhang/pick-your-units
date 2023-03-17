@@ -5,6 +5,8 @@ An automatic Fire Emblem PMU picker by NinjaCaterpie.
 Access it via this link:
 https://henry-alakazhang.github.io/pick-your-units/
 
+Images downloaded from fireemblemwiki, serenesforest and/or the engage datamine spreadsheet. Credit to all involved.
+
 ## Local Development
 
 `npm install`  
@@ -13,9 +15,14 @@ https://henry-alakazhang.github.io/pick-your-units/
 ## Feature Backlog
 
 - Explicitly exclude certain units or emblems
-- Add a toggle for DLC
+- Add DLC character support (for 3H and presumably Engage)
+- Add DLC class support (for Awakening, Fates, presumably Engage)
 
 ## Changelog
+
+### V2.3.0 (March 2023)
+
+- Implemented DLC emblems
 
 ### V2.2.0 (March 2023)
 

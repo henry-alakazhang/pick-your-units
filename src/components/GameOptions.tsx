@@ -65,6 +65,10 @@ export class GameOptions extends Component<
         display: "Pick units from other factions",
         disabled: false,
       },
+      dlc: {
+        display: "Include paid DLC content",
+        disabled: false,
+      },
     };
 
     const availableOptions = typedObjectKeys(optionStuff).filter(
